@@ -1,0 +1,15 @@
+hierarchy:id:name
+CRM:0:CR\nM#fillcolor:blue:shape:rect,CRM:A:Above The Line
+CRM:A:Above The Line,CRM:1:Cash and Contingency
+CRM:1:Cash and Contingency,CRM:1:Cash,color:black
+CRM:1:Cash,CRM:1:Cash - Documentary LC Confirmed
+CRM:1:Cash - Documentary LC Confirmed#fontcolor:red,CRM:840:FI Trade Financing
+CRM:1:Cash,CRM:2:Cash (M),color:blue:label:hi!:fontcolor:red:fontsize:20:fontname:helvetica
+CRM:2:Cash (M),CRM:207:Variable Funding Note
+CRM:2:Cash (M),CRM:209:Variable\nFunding\nNote\nLeverage#margin:0.2
+CRM:0:CR\nM,CRM:812:IAS-39\nReclassification
+CRM:2:Cash (M),CRM:841:Liquidity backed by IAS-39
+CRM:1:Cash,CRM:3:Cash Management#style:rounded:style:filled:style:dashed,style:filled,rounded,dotted
+CRM:3:Cash Management,CRM:215:Funded Default Fund Contributions
+CRM:3:Cash Management,CRM:505:Overdraft,arrowsize:0.5
+CRM#style:rounded:bgcolor:cornsilk1:label:My CRM:color:red:width:10
