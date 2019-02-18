@@ -1,6 +1,5 @@
 (ns clojurehandler.plain_clojure_handler
-  (:require ;[clojurehandler.impl      :as impl]
-            [clojure.java.shell       :as sh]
+  (:require [clojure.java.shell       :as sh]
             [clojure.string           :as str]
             [clojure.java.io          :as io]
             [clojure.data.json        :as json]
@@ -29,8 +28,6 @@
 (defn dot->svg
   "Takes a string containing a GraphViz dot file, and returns a string containing SVG."
   [s & {:keys [path] :or {path path-to-dot}}]
-  (println path)
-  (println "dot to convert>> " s)
   (let [s' (str/replace s "\\\\n" "\n")     ;; for multi-line labels
         {:keys [out err]} (sh/sh path "-Tsvg" :in s')]
     (or
@@ -52,16 +49,20 @@
 (defn ->svg
   "Converts csv1 format to svg format. input is json"
   [js]
-  (println "data received: " js)
-  (let [in (read-input js)
-        svg (case (*format-in* in)
-              "csv" (let [d (processor/process in)]
-                      (dot->svg d))
-              "dot" (dot->svg (:data in)))]
-    (println "This is the svg>> " svg)
-    (case (*format-out* in)
-      "svg" (json/write-str {:svg svg})
-      (json/write-str {:error "url/both functionality not implemented yet!"}))))
+  (try
+    (let [in (read-input js)
+          svg (case (*format-in* in)
+                "csv" (let [d (processor/process in)]
+                        (dot->svg d))
+                "dot" (dot->svg (:data in))
+                (throw (IllegalArgumentException.
+                        "Error: only 'csv' or 'dot' are allowed input formats.")))]
+
+      (case (*format-out* in)
+        "svg" (json/write-str {:svg svg})
+        (json/write-str {:error "Error: only 'svg' format can be specified as an output."})))
+    (catch Exception e
+      (json/write-str "Error from lambda function: " (.getMessage e)))))
 
 ;; gen-class and how to use it
 
