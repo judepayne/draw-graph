@@ -123,13 +123,13 @@
 ;; -----------
 ;; Functions to manipulate the graph
 
-(defn ^:private submap?
+(defn submap?
   "Checks whether m contains all entries in sub."
   [sub m]
   (= sub (select-keys m (keys sub))))
 
 
-(defn ^:private find-node
+(defn find-node
   "Checks if part-node is part of one of the nodes in the graph. Both part-node
   and the nodes in the graph must be in map format. e.g. part-node {:id 12} and
   a node in the graph {:id 12 :name ....}. Returns the first node matched or nil."
@@ -143,12 +143,20 @@
 
 
 (defn subgraph
-  "Returns a sub(di)graph of g going depth first from node n."
+  "Returns a sub(di)graph of g going depth first from the first occurrence of
+   the (part) node n."
   [g n
    & {:keys [part-node?] :or {part-node? false}}]
   (let [node (if part-node? (find-node g n) n)]
     (apply loom.graph/digraph
            (loom.gen/pre-edge-traverse #(loom.graph/successors* g %) node))))
+
+
+(defn filter-graph
+  "Returns a filtered graph where nodes where is not a submap are filtered out."
+  [g sub]
+  (let [filtered-nodes (filter #(not (submap? sub %)) (loom.graph/nodes g))]
+    (loom.graph/remove-nodes* g filtered-nodes)))
 
 
 (defn ^:private leaves
@@ -178,7 +186,7 @@
 ;; -----------
 ;; Public interface functions
 
-(defn ->subgraph [s]
+(defn ->submap [s]
   (->> (split-parts s)
        (partition 2)
        (map (fn [i] [(keyword (first i)) (second i)]))
@@ -186,9 +194,8 @@
 
 
 (defn preprocess-graph [g opts]
-  (let [g* (if  (some? (:subgraph opts))
-             (subgraph g (->subgraph (:subgraph opts))
-                       :part-node? true)
+  (let [g* (if  (some? (:filter-graph opts))
+             (filter-graph g (->submap (:filter-graph opts)))
              g)]
     (if (nil? (:elide opts)) g*
         (remove-levels g*

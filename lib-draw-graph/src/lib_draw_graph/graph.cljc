@@ -38,7 +38,6 @@
         red   (bit-shift-right (+ (:r rgb) (:r rgb-blend)) 1)
         green (bit-shift-right (+ (:g rgb) (:g rgb-blend)) 1)
         blue  (bit-shift-right (+ (:b rgb) (:b rgb-blend)) 1)]
-    (if (= s "Credit Derivatives") (println red " " green " " blue " "))
     (str "#" (hex red) (hex green) (hex blue))))
 
 
