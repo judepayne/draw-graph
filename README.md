@@ -20,7 +20,7 @@ The draw-graph source comes in three parts which are in the folders above. Each 
 draw-graph is perhaps not intended to be deployed yourself as it stands, but I hope could serve as a useful example for any such similar projects.
 The three parts:
 
-- draw-graph.com: The front-end website. A simple Clojurescript front end based on Reagent.
+- web-draw-graph: The front-end website. A simple Clojurescript front end based on Reagent.
 - lambda-draw-graph: The code for the Lambda function that has been deployed to Amazon AWS in the EU-West-2 location (London). The Clojure Lambda function calls into a static build of Graphviz which has been mounted as a 'lambda layer'. 
 - lib-draw-graph: a library that provides the functionality to convert the input csv format into the dot language and to provide some additional processing on top. This library is in the form of .cljc files to allow me the flexibility to move (some of) the processing between the lambda function on AWS and the Clojurescript front end. In the end, I settled on moving as much processing as possible to the front end and pretty much just left the final dot->svg conversion handled by Graphviz on the back end.
 
