@@ -7,7 +7,7 @@
 (def standard-options
   [:hide-leaves? false
    :show-roots? true
-   :cluster-on "hierarchy"
+   :cluster-on "asset_class"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "name"
@@ -18,12 +18,12 @@
    :splines "ortho"
    :rankdir "LR"
    :fixedsize "false"
-;   :ranksep 16
-   :scale 2
+   :ranksep "3 equally"
+;   :scale 2
    :overlap false
    :concentrate false
-   :elide "0"
-   :subgraph "id:3"
+  :elide "0"
+;   :subgraph "asset_class:Credit Derivatives:product_family:"
 ])
 
 (defn s->csv1 [s]
