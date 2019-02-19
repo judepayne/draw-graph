@@ -26,31 +26,31 @@ The AWS command line tool and the AWS web console seem to be functionally equiva
 
 8. Create your lambda function and deploy your jar (and any lambda layer binaries). In my case:
 
-    aws lambda create-function \
-    --function-name DrawGraph \
-    --runtime java8 \
-    --memory-size 1024 \
-    --timeout 59 \
-    --description 'converts a graph in CSV format to svg format using graphviz' \
-    --role arn:aws:iam::948737168603:role/basic_lambda_role \
-    --handler clojurehandler.Handler::handleRequest \
-    --zip-file fileb://target/lambda-draw-graph-0.1.0-standalone.jar \
-    --layers arn:aws:lambda:eu-west-2:948737168603:layer:dot:2 \
-    --region eu-west-2
+        aws lambda create-function \
+        --function-name DrawGraph \
+        --runtime java8 \
+        --memory-size 1024 \
+        --timeout 59 \
+        --description 'converts a graph in CSV format to svg format using graphviz' \
+        --role arn:aws:iam::948737168603:role/basic_lambda_role \
+        --handler clojurehandler.Handler::handleRequest \
+        --zip-file fileb://target/lambda-draw-graph-0.1.0-standalone.jar \
+        --layers arn:aws:lambda:eu-west-2:948737168603:layer:dot:2 \
+        --region eu-west-2
     
 9. Test invoke the lambda. Put the json data to be passed into the lambda in a file and invoke it as per:
     
-    aws lambda invoke \
-    --function-name DrawGraph \
-    --payload fileb://input_csv1.json \
-    out_from_csv1.json
+       aws lambda invoke \
+       --function-name DrawGraph \
+       --payload fileb://input_csv1.json \
+       out_from_csv1.json
     
 10. As you refine your lambda, you'll regularly need to rebuild and redploy just the new jar:
 		`lean clean`		`lean uberjar` and 
 		
-    aws lambda update-function-code \
-    --function-name DrawGraph \
-    --zip-file fileb://target/lambda-draw-graph-0.1.0-standalone.jar
+        aws lambda update-function-code \
+        --function-name DrawGraph \
+        --zip-file fileb://target/lambda-draw-graph-0.1.0-standalone.jar
     
     
 ## API Gateway
