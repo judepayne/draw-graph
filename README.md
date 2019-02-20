@@ -1,4 +1,4 @@
-![](flav.png)
+![](0bc66b4.png)
 example at [draw-graph.com](https://draw-graph.com)
 <br/>
 
