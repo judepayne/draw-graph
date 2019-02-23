@@ -2,30 +2,33 @@
   (:require [clojure.test :refer :all]
             [clojure.string                       :as str]
             [clojure.java.shell                   :as sh]
-            [lib-draw-graph.processor             :as processor]))
+            [loom.alg-generic                     :as loom.gen]
+            [loom.alg                             :as loom.alg]
+            [lib-draw-graph.processor :refer :all]))
 
 
 (def standard-options
   [:hide-leaves? false
    :show-roots? false
-   :cluster-on "asset_class"
+   :cluster-on "animal"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "name"
-   :shape "rect"
-   ;:nodesep 2
+   :shape "ellipse"
+   :nodesep 1
    ;:ranksep 2
-   :sep 1 
-   :splines "ortho"
-   :rankdir "LR"
-   :fixedsize "false"
-   :ranksep "3 equally"
-;   :scale 2
+   ;:sep 1 
+   :splines "curved"
+   :rankdir "TB"
+   :fixedsize "true"
+   ;:ranksep "3 equally"
+   ;:scale 2
    :overlap false
-   :concentrate false
+   :concentrate true
    :elide "0"
-   :filter-graph "asset_class:Credit Derivatives"
-;   :subgraph "asset_class:Credit Derivatives"
+   ;:filter-graph "animal:pandas"
+   :stacks "pandas:brownbears:squirrels"
+   ;:subgraph "asset_class:Credit Derivatives"
 ])
 
 (defn s->csv1 [s]
@@ -41,14 +44,14 @@
 
 (defn csv->preprocessed [filename]
   (let [in (csv->csv1 filename)
-        g (processor/loom-graph (:data in))]
+        g (loom-graph (:data in))]
     (-> g
-        (processor/preprocess-graph (:display-options in)))))
+        (preprocess-graph (:display-options in)))))
 
 
 (defn csv->dot [filename]
   (-> (csv->csv1 filename)
-      processor/process))
+      process))
 
 (def path-to-dot "/usr/local/bin/dot")
 

@@ -1,0 +1,17 @@
+animal:name
+pandas:simone,pandas:max
+pandas:sharhar,pandas:summer
+pandas:nikkai,pandas:isobel
+pandas:malakai,pandas:delila
+pandas:cristolene,pandas:sharhar
+pandas:kacey,pandas:sharhar#shape:rect:fillcolor:blue:fontcolor:white
+pandas:malakai,pandas:ivy
+pandas:max,pandas:Bridget,color:blue
+pandas:ivy,squirrels:huxley,color:red
+pandas:kacey,brownbears:cosmo,color:deeppink
+brownbears:cosmo#shape:septagon:style:filled,brownbears:eliza,color:deeppink
+pandas:simone,pandas:ivy,color:green2
+pandas:simone,pandas:summer,color:green2
+pandas#bgcolor:cornsilk1:style:rounded:rank:source
+brownbears#bgcolor:palegreen:color:limegreen:margin:20
+squirrels#bgcolor:pink:style:rounded:margin:15

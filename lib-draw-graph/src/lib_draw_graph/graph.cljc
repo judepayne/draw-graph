@@ -44,7 +44,7 @@
 (defn ^:private leaf? [g n] (empty? (loom.graph/successors* g n)))
 
 
-(defn ^:private root? [g n] (empty? (loom.graph/predecessors* g n)))
+(defn root? [g n] (empty? (loom.graph/predecessors* g n)))
 
 
 (defn ^:private fff [nested] (first (first (first nested))))
@@ -84,7 +84,6 @@
     :overlap "prism"
     :pad 1
     :rankdir "LR"
-    :rank "same"
     }
    :node
    {:style "filled,rounded"

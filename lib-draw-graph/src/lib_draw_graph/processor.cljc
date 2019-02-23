@@ -16,12 +16,13 @@
 
 
 (def ^:dynamic *part-sep* #":")   ;; separator for keys/ values in CSV1
-(def ^:dynamic *edge-sep* #",")   ;; separator to split an edge into pieces
+(def ^:dynamic *list-sep* #",")   ;; separator to split a list (e.g. edge) into pieces
 (def ^:dynamic *definition-marker* #"#") ;; marker for node/ cluster info
 
-(defn- split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
-(defn- split-edge [e] (str/split e *edge-sep* 3))
-(defn- split-def [s] (str/split s *definition-marker* -1))
+
+(defn split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
+(defn split-list [e] (str/split e *list-sep* 3))
+(defn split-def [s] (str/split s *definition-marker* -1))
 
 
 (defn- third
@@ -64,7 +65,7 @@
 
 (defn edges [headers lines]
   (->> lines
-       (map #(split-edge %))
+       (map #(split-list %))
        (filter #(> (count %) 1))
        (map #(make-edge headers %))))
 
@@ -80,7 +81,7 @@
 
 (defn clusters [lines]
   (->> lines
-       (map #(take 2 (split-edge %)))
+       (map #(take 2 (split-list %)))
        (filter #(= 1 (count %)))
        (mapcat identity)
        (map #(make-cluster %))
@@ -93,7 +94,7 @@
 
 (defn nodes [headers lines]
   (->> lines
-       (mapcat #(take 2 (split-edge %)))
+       (mapcat #(take 2 (split-list %)))
        (map split-def)
        (filter #(= 2 (count %)))
        (map #(make-node headers %))
@@ -183,8 +184,128 @@
             grph* (loom.graph/remove-nodes* grph nds)]
         (recur grph* next-gen (dec lvls))))))
 
-;; -----------
-;; Public interface functions
+
+;; Thanks: http://hueypetersen.com/posts/2013/06/25/graph-traversal-with-clojure/
+(defn eager-stateful-dfs
+  "Eager depth first search that collects state as it goes.
+   successors is a function of 1 arg that returns successors of node passed.
+   start is the starting node.
+   init is a map of initial state.
+   f is a function of 3 args: current state (map), current nodes and one of its children."
+  [successors start f init]
+  (loop [vertices [] explored #{start} frontier [start] state init]
+    (if (empty? frontier)
+      state
+      (let [v (peek frontier)
+            neighbours (successors v)]
+        (recur
+          (conj vertices v)
+          (into explored neighbours)
+          (into (pop frontier) (remove explored neighbours))
+          (reduce (fn [acc cur] (assoc acc cur (f acc v cur))) state neighbours))))))
+
+
+(defn- update-rank
+  "Returns rank for the next (node) given state map."
+  [state node next]
+  (let [mx (fn [x y] (if (nil? x) y (max x y)))]
+    (mx (get state next) (inc (get state node)))))
+
+
+(defn ranks
+  "Returns ranks for each node in g. 0-indexed."
+  [g]
+  (let [root? #(empty? (loom.graph/predecessors* g %))
+        roots (filter root? (loom.graph/nodes g))
+        init (zipmap roots (repeat 0))]
+    (reduce
+     (fn [acc cur]
+       (eager-stateful-dfs (partial loom.graph/successors* g)
+                           cur
+                           update-rank
+                           acc))
+     init
+     roots)))
+
+
+(defn fmap [f m] (into (empty m) (for [[k v] m] [k (f v)])))
+
+
+(defn fmap*
+  "Applies f to every value in nested map."
+  [f m]
+  (fmap #(if (map? %)
+           (fmap* f %)
+           (f %))
+        m))
+
+
+(defn rank-info
+  "Organizes ranks by k. k is usually a cluster."
+  [ranks k]
+  (let [r  (->> ranks
+                (group-by (fn [n] (get (first n) k)))
+                (into {} (map (fn [[k v]] [k (group-by second v)]))))]
+    (fmap* #(map first %) r)))
+
+
+(defn max-ranked-nodes
+  "Returns seq of nodes at the max rank for the k. k is usually a cluster."
+  [info k]
+  (let [m (get info k)]
+    (reduce
+     (fn [acc [k v]] (if (> k (:rank acc)) {:rank k :items v} acc))
+     {:rank 0 :items nil}
+     m)))
+
+
+(defn min-ranked-nodes
+  "Returns seq of nodes at the min rank for the k. k is usually a cluster."
+  [info k]
+  (let [m (get info k)]
+    (reduce
+     (fn [acc [k v]] (if (< k (:rank acc)) {:rank k :items v} acc))
+     {:rank 1000000 :items nil}
+     m)))
+
+
+(defn widest-rank
+  "Returns the count of the max grouping of k"
+  [info k]
+  (let [m (get info k)
+        max-k (key (apply max-key #(count (val %)) m))]
+    max-k))
+
+(defn count-at-rank
+  "Returns the count of nodes at rank"
+  [info k rank]
+  (-> info
+      (get k)
+      (get rank)
+      count))
+
+
+(defn edges-between
+  "Returns a set of edges between all of the min ranked nodes of clstr1
+   and one of the max ranked nodes in clstr2."
+  [info clstr1 clstr2]
+  (let [clstr1-mins (:items (max-ranked-nodes info clstr1))
+        clstr2-max  (first (:items (min-ranked-nodes info clstr2)))]
+    (partition 2 (interleave clstr1-mins (repeat clstr2-max)))))
+
+
+(defn add-stack
+  "Adds a stack of clusters to the graph"
+  [g cluster-on stack]
+  (let [ri    (-> g ranks (rank-info cluster-on))
+        edges (mapcat #(apply edges-between ri %) (partition 2 1 stack))]
+    (-> (apply loom.graph/add-edges g edges)
+        (loom.attr/add-attr-to-edges :style "invis" edges))))
+
+
+
+;; ------------
+;; pre-processing functions
 
 (defn ->submap [s]
   (->> (split-parts s)
@@ -193,14 +314,42 @@
        (into {})))
 
 
+(defn filter-the-graph [g opts]
+  (if  (some? (:filter-graph opts))
+    (filter-graph g (->submap (:filter-graph opts)))
+    g))
+
+
+(defn elide-the-graph [g opts]
+  (if (some? (:elide opts))
+    (remove-levels g
+                   #?(:clj (Integer/parseInt (:elide opts))
+                      :cljs (js/parseInt (:elide opts))))
+    g))
+
+
+(defn add-stacks-to-the-graph [g opts]
+  (if (and (some? (:stacks opts)) (some? (:cluster-on opts)))
+    (let [stacks (split-list (:stacks opts))]
+      (reduce (fn [acc cur]
+                (add-stack acc
+                           (keyword (:cluster-on opts))
+                           (split-parts cur)))
+              g
+              stacks))
+    g))
+
+;; -----------
+;; public interface functions
+
+
+
+
 (defn preprocess-graph [g opts]
-  (let [g* (if  (some? (:filter-graph opts))
-             (filter-graph g (->submap (:filter-graph opts)))
-             g)]
-    (if (nil? (:elide opts)) g*
-        (remove-levels g*
-                       #?(:clj (Integer/parseInt (:elide opts))
-                          :cljs (js/parseInt (:elide opts)))))))
+  (-> g
+      (filter-the-graph opts)
+      (elide-the-graph opts)
+      (add-stacks-to-the-graph opts)))
 
 
 (defn process [in]

@@ -226,6 +226,7 @@
                     (node->descriptor %)))))
 
            ;; clusters
+           (println subgraph?)
            (->> cluster->nodes
              keys
              (remove #(not= current-cluster (cluster->parent %)))
