@@ -154,14 +154,14 @@
 (defn blank? [s] (= "" s))
 
 
+
 ;; NEEDS TO CHANGE WHEN NEW OPTS ADDED
 (defn structure-opts
   "structures the incoming opts map the same as default-options"
   [opts]
   (group-map opts
-             [:graph :dpi :layout :pad :splines :sep
-              :ranksep :scale :overlap :nodesep :rank :rankdir
-              :concentrate]
+             [:graph :dpi :layout :pad :splines :sep :ranksep
+              :scale :overlap :nodesep :rankdir :concentrate]
              [:node :shape :label :fontsize :style :fixedsize]
              [:env :hide-leaves? :show-roots? :cluster-on]))
 
@@ -182,7 +182,10 @@
                          (partial node-cluster (keyword clstr))
                          :cluster->descriptor
                          (fn [n] (merge {:label n}
-                                        (clstr.graph/get-cluster g n))))))]
+                                        (:style (clstr.graph/get-cluster g n))))
+                         :cluster->ranks
+                         (fn [n]
+                           (:ranks (clstr.graph/get-cluster g n))))))]
     args*))
 
 

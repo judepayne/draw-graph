@@ -4,9 +4,7 @@
                   ;[lib-draw-graph.dot-macros :refer [with-gensyms]]
                   )]
      :cljs
-      [(:require [clojure.string :as str])
-       ;(:require-macros [lib-draw-graph.dot-macros :refer [with-gensyms]])
-       ]))
+      [(:require [clojure.string :as str])]))
 
 
 ;; This library is taken from Zac Tellman's Rhizome library
@@ -127,6 +125,10 @@
       (format-options options ", ")
       "]")))
 
+(defn- format-rank [ids]
+  (apply str "{ rank=same; "
+         (concat (interpose ", " ids) ["}"])))
+
 ;;;
 
 (def ^:dynamic *node->id* nil)
@@ -138,7 +140,6 @@
 
 (defn- cluster->id [s]
   (*cluster->id* s))
-
 
 
 (defn graph->dot
@@ -154,14 +155,16 @@
              edge->descriptor
              cluster->parent
              node->cluster
-             cluster->descriptor]
+             cluster->descriptor
+             cluster->ranks]
       :or {directed? true
            vertical? true
            node->descriptor (constantly nil)
            edge->descriptor (constantly nil)
            cluster->parent (constantly nil)
            node->cluster (constantly nil)
-           cluster->descriptor (constantly nil)}
+           cluster->descriptor (constantly nil)
+           cluster->ranks (constantly nil)}
       :as graph-descriptor}]
 
   (binding [*node->id* (or *node->id* (memoize (fn [_] (gensym "node"))))
@@ -173,7 +176,8 @@
           cluster? (if cluster->nodes
                      (comp boolean cluster->nodes)
                      (constantly false))
-          node? (set nodes)]
+          node? (set nodes)
+          ranks (cluster->ranks current-cluster)]
 
      (apply str
        (if current-cluster
@@ -225,8 +229,15 @@
                     default-node-options
                     (node->descriptor %)))))
 
+           ;; ranks
+           (->> ranks
+                (map
+                 (fn [r]
+                   (format-rank
+                    (mapv *node->id* r)))))
+
+
            ;; clusters
-           (println subgraph?)
            (->> cluster->nodes
              keys
              (remove #(not= current-cluster (cluster->parent %)))

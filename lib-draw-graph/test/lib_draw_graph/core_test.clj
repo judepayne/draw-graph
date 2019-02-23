@@ -4,7 +4,9 @@
             [clojure.java.shell                   :as sh]
             [loom.alg-generic                     :as loom.gen]
             [loom.alg                             :as loom.alg]
-            [lib-draw-graph.processor :refer :all]))
+            [lib-draw-graph.processor :refer :all]
+            [lib-draw-graph.clustered-graph       :as clstr]
+            [lib-draw-graph.graph                 :as g]))
 
 
 (def standard-options
@@ -18,7 +20,7 @@
    :nodesep 1
    ;:ranksep 2
    ;:sep 1 
-   :splines "curved"
+   :splines "lines"
    :rankdir "TB"
    :fixedsize "true"
    ;:ranksep "3 equally"
@@ -26,10 +28,13 @@
    :overlap false
    :concentrate true
    :elide "0"
+   :fix-ranks? true
    ;:filter-graph "animal:pandas"
    :stacks "pandas:brownbears:squirrels"
    ;:subgraph "asset_class:Credit Derivatives"
 ])
+
+(defn options [] (apply hash-map standard-options))
 
 (defn s->csv1 [s]
   {:data s
@@ -42,12 +47,14 @@
   (s->csv1 (slurp filename)))
 
 
-(defn csv->preprocessed [filename]
+(defn csv->g [filename]
   (let [in (csv->csv1 filename)
         g (loom-graph (:data in))]
     (-> g
-        (preprocess-graph (:display-options in)))))
+        (preprocess-graph (options)))))
 
+(defn g->dot [g]
+  (g/process-graph g (options)))
 
 (defn csv->dot [filename]
   (-> (csv->csv1 filename)

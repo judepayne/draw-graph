@@ -8,6 +8,7 @@
 
 (defprotocol ClusteredGraph
   (add-cluster [g cluster cluster-meta])
+  (update-cluster [g cluster k cluster-meta])
   (clusters [g])
   (get-cluster [g cluster]))
 
@@ -19,6 +20,10 @@
           {:add-cluster
            (fn [g cluster cluster-meta]
              (update-in g [:clusters] assoc cluster cluster-meta))
+
+           :update-cluster
+           (fn [g cluster k cluster-meta]
+             (assoc-in g [:clusters cluster k] cluster-meta))
 
            :clusters
            (fn [g]
@@ -34,6 +39,9 @@
 
           (add-cluster [ g cluster cluster-meta]
             (update-in g [:clusters] assoc cluster cluster-meta))
+
+          (update-cluster [g cluster k cluster-meta]
+            (assoc-in g [:clusters cluster k] cluster-meta))
 
           (clusters [g] (:clusters g))
 

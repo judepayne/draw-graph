@@ -113,7 +113,7 @@
                        graph (rich-edges edges))
         ;; add clusters
         graph**  (reduce (fn [acc cur]
-                          (clstr.graph/add-cluster acc (first cur) (second cur)))
+                          (clstr.graph/update-cluster acc (first cur) :style (second cur)))
                          graph* clusters)]
     ;; add node attrs
     (reduce (fn [acc [nd attrs]]
@@ -294,18 +294,44 @@
     (partition 2 (interleave clstr1-mins (repeat clstr2-max)))))
 
 
+(def get-rank-info
+  (memoize
+   (fn [g cluster-on]
+     (-> g ranks (rank-info cluster-on)))))
+
+
 (defn add-stack
   "Adds a stack of clusters to the graph"
   [g cluster-on stack]
-  (let [ri    (-> g ranks (rank-info cluster-on))
+  (let [ri    (get-rank-info g cluster-on)
         edges (mapcat #(apply edges-between ri %) (partition 2 1 stack))]
     (-> (apply loom.graph/add-edges g edges)
         (loom.attr/add-attr-to-edges :style "invis" edges))))
 
 
+(defn same-ranks
+  [info]
+  (into {}
+        (map
+         (fn [[k v]]
+           (let [[_ inner] (vals v)]
+             (when (> (count inner) 1)
+               {k (vals v)})))
+         info)))
+
+
+(defn fix-ranks
+  [g cluster-on]
+  (let [same (same-ranks (get-rank-info g cluster-on))]
+    (reduce
+     (fn [acc [k v]]
+       (clstr.graph/update-cluster acc k :ranks v ))
+     g
+     same)))
 
 ;; ------------
 ;; pre-processing functions
+
 
 (defn ->submap [s]
   (->> (split-parts s)
@@ -320,11 +346,11 @@
     g))
 
 
-(defn elide-the-graph [g opts]
-  (if (some? (:elide opts))
-    (remove-levels g
-                   #?(:clj (Integer/parseInt (:elide opts))
-                      :cljs (js/parseInt (:elide opts))))
+(defn fix-ranks-in-the-graph [g opts]
+  (if (and (some? (:cluster-on opts))
+           (= (:layout opts) "dot")
+           (:fix-ranks? opts))
+    (fix-ranks g (keyword (:cluster-on opts)))
     g))
 
 
@@ -339,6 +365,16 @@
               stacks))
     g))
 
+
+(defn elide-the-graph [g opts]
+  (if (some? (:elide opts))
+    (remove-levels g
+                   #?(:clj (Integer/parseInt (:elide opts))
+                      :cljs (js/parseInt (:elide opts))))
+    g))
+
+
+
 ;; -----------
 ;; public interface functions
 
@@ -349,6 +385,7 @@
   (-> g
       (filter-the-graph opts)
       (elide-the-graph opts)
+      (fix-ranks-in-the-graph opts)
       (add-stacks-to-the-graph opts)))
 
 
