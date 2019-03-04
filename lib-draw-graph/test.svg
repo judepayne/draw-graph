@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="833pt" height="652pt"
+ viewBox="0.00 0.00 832.81 652.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(72 580)">
+<title>%3</title>
+<polygon fill="#ffffff" stroke="transparent" points="-72,72 -72,-580 760.8067,-580 760.8067,72 -72,72"/>
+<g id="clust1" class="cluster">
+<title>cluster9889</title>
+<polygon fill="#fff8dc" stroke="#000000" points="8,-282 8,-500 656,-500 656,-282 8,-282"/>
+<text text-anchor="middle" x="332" y="-484.8" font-family="Monospace" font-size="14.00" fill="#000000">pandas</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster9902</title>
+<path fill="#ffc0cb" stroke="#000000" d="M207,-186C207,-186 267,-186 267,-186 273,-186 279,-192 279,-198 279,-198 279,-262 279,-262 279,-268 273,-274 267,-274 267,-274 207,-274 207,-274 201,-274 195,-268 195,-262 195,-262 195,-198 195,-198 195,-192 201,-186 207,-186"/>
+<text text-anchor="middle" x="237" y="-258.8" font-family="Monospace" font-size="14.00" fill="#000000">squirrels</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster9904</title>
+<polygon fill="#98fb98" stroke="#32cd32" points="410,-8 410,-178 504,-178 504,-8 410,-8"/>
+<text text-anchor="middle" x="457" y="-162.8" font-family="Monospace" font-size="14.00" fill="#000000">brownbears</text>
+</g>
+<!-- node9890 -->
+<g id="node1" class="node">
+<title>node9890</title>
+<ellipse fill="#61d2c4" stroke="#000000" cx="369" cy="-380" rx="27" ry="18"/>
+<text text-anchor="middle" x="369" y="-377" font-family="Monospace" font-size="10.00" fill="#000000">delila</text>
+</g>
+</g>
+</svg>

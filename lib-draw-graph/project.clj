@@ -5,5 +5,8 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [rhizome "0.2.7"]
-                 [aysylu/loom "1.0.2"]]
+                 [aysylu/loom "1.0.2"]
+                 [org.clojure/data.xml "0.2.0-alpha6"]
+                 [org.clojure/data.zip "0.1.2"]
+                 [instaparse "1.4.9"]]
   :repl-options {:init-ns lib-draw-graph.core})

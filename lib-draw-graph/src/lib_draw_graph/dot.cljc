@@ -142,6 +142,15 @@
   (*cluster->id* s))
 
 
+(defn clust->nds [f nodes]   ; <-changed
+  (reduce-kv
+   (fn [m k v]
+     (let [separated (zipmap k (repeat (into #{} v)))]
+       (merge-with clojure.set/union separated m)))
+   {}
+   (dissoc (group-by f nodes) nil)))
+
+
 (defn graph->dot
   "Takes a description of a graph, and returns a string describing a GraphViz dot file.
 
@@ -154,7 +163,7 @@
              node->descriptor
              edge->descriptor
              cluster->parent
-             node->cluster
+             node->clusters
              cluster->descriptor
              cluster->ranks]
       :or {directed? true
@@ -162,7 +171,7 @@
            node->descriptor (constantly nil)
            edge->descriptor (constantly nil)
            cluster->parent (constantly nil)
-           node->cluster (constantly nil)
+           node->clusters (constantly nil)
            cluster->descriptor (constantly nil)
            cluster->ranks (constantly nil)}
       :as graph-descriptor}]
@@ -171,8 +180,8 @@
             *cluster->id* (or *cluster->id* (memoize (fn [_] (gensym "cluster"))))]
     (let [current-cluster (::cluster graph-descriptor)
           subgraph? (boolean current-cluster)
-          cluster->nodes (when node->cluster
-                           (dissoc (group-by node->cluster nodes) nil))
+          cluster->nodes (when node->clusters
+                           (clust->nds node->clusters nodes))
           cluster? (if cluster->nodes
                      (comp boolean cluster->nodes)
                      (constantly false))
@@ -215,21 +224,26 @@
              (update-in [:fontname] #(or % "Monospace"))
              (translate-options)
              (format-options ", "))
-           "]\n\n"))
+           "]\n\n"
+
+           ;; Here is the place to do a recursive call to parent cluster I think
+           ;; starter for 10 at least
+
+           ))
 
        (interpose "\n"
          (concat
 
            ;; nodes
            (->> nodes
-             (remove #(not= current-cluster (node->cluster %)))
+             (remove #(not (contains? (node->clusters %) current-cluster))) ;; <-changed
              (map
                #(format-node (node->id %)
                   (merge
                     default-node-options
                     (node->descriptor %)))))
 
-           ;; ranks
+           ;; ranks     <-changed
            (->> ranks
                 (map
                  (fn [r]
@@ -242,13 +256,13 @@
              keys
              (remove #(not= current-cluster (cluster->parent %)))
              (map
-               #(apply graph->dot
-                  nodes
-                  adjacent
-                  (apply concat
-                    (assoc graph-descriptor
-                      ::cluster %
-                      :options (cluster->descriptor %))))))
+              #(apply graph->dot
+                      nodes
+                      adjacent
+                      (apply concat
+                             (assoc graph-descriptor
+                                    ::cluster %
+                                    :options (cluster->descriptor %))))))
 
            ;; edges
            (when-not subgraph?

@@ -8,7 +8,7 @@
               [loom.graph                      :as loom.graph]
               [loom.attr                       :as loom.attr]
               [clojure.string                  :as str]
-              [lib-draw-graph.clustered-graph  :as clstr.graph]
+              [lib-draw-graph.clustered        :as clstr]
               #?@(:cljs [[goog.string :as gstring]])
               #?@(:cljs [[goog.string.format]])))
 
@@ -146,6 +146,26 @@
    (loom.attr/attrs g n)))
 
 
+(defn- cluster-args
+  [g cluster-on]
+  {
+   :node->clusters
+   (fn [n] ((partial clstr/node->clusters g cluster-on) n))
+   ;(fn [n] (get n (keyword cluster-on)))
+
+   :cluster->descriptor
+   (fn [n] (merge {:label n}
+                  (:style (clstr/cluster-attr g n))))
+
+   :cluster->ranks
+   (fn [n]
+     (:fix-ranks (clstr/cluster-attr g n)))
+
+   :cluster->parent
+   (partial clstr/cluster-parent g)   
+   })
+
+
 (defn ^:private node-cluster
   [k n]
   (k n))
@@ -170,23 +190,14 @@
   "Returns the rhizome config (options) for a graph."
   [g opts]
   (let [opts* (deep-merge default-options (structure-opts opts))
-        args
-        {:options (:graph opts*) 
-         :node->descriptor (partial node-descriptor g opts*)
-         :edge->descriptor (partial loom.attr/attrs g)}
-        args* (let [clstr (-> opts* :env :cluster-on)]
-                (if (or (blank? clstr) (nil? clstr))
-                  args
-                  (assoc args
-                         :node->cluster
-                         (partial node-cluster (keyword clstr))
-                         :cluster->descriptor
-                         (fn [n] (merge {:label n}
-                                        (:style (clstr.graph/get-cluster g n))))
-                         :cluster->ranks
-                         (fn [n]
-                           (:ranks (clstr.graph/get-cluster g n))))))]
-    args*))
+        cluster-on (let [cl (-> opts* :env :cluster-on)]
+                     (if (blank? cl) nil cl))]
+    (merge
+     {:options (:graph opts*) 
+      :node->descriptor (partial node-descriptor g opts*)
+      :edge->descriptor (partial loom.attr/attrs g)}
+     (when (some? cluster-on)
+       (cluster-args g cluster-on)))))
 
 
 ;; -------------------------------------------------------------

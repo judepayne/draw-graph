@@ -248,19 +248,17 @@
 
 (defn shape [] (fixed-select [:options :shape] local-state
                              "ellipse" "box" "circle" "egg" "diamond" "octagon" "square"
-                             "underline" "folder"))
+                             "folder" "note" "cylinder" "plaintext" "underline"))
 
 
 (defn layout [] (fixed-select [:options :layout] local-state
                               "dot" "neato" "fdp" "circo" "twopi"))
 
 
-(defn rankdir [] (fixed-select [:options :rankdir] local-state
-                               "LR" "TB" "RL" "BT"))
+(defn rankdir [] (fixed-select [:options :rankdir] local-state "LR" "TB" "RL" "BT"))
 
 
-(defn elide-levels [] (fixed-select [:options :elide] local-state
-                                    0 1 2 3 4) )
+(defn elide-levels [] (fixed-select [:options :elide] local-state 0 1 2 3 4) )
 
 ;; -- Cluster-on dropdown needs to be more dynamic--
 (defn first-line [s]
@@ -287,7 +285,7 @@
 ;; ---- Right Display options-------
 
 (defn splines [] (fixed-select [:options :splines] local-state
-                               "line" "spline" "none" "polyline" "curved" "ortho"))
+                               "line" "spline" "none" "polyline" "ortho"))
 
 
 (defn overlap [] (fixed-select [:options :overlap] local-state

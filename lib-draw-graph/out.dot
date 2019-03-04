@@ -1,0 +1,83 @@
+digraph {
+graph[overlap=false, layout="dot", splines="lines", concentrate=true, dpi=72, pad=1, rankdir="TB", nodesep=1]
+node[fontname="Monospace"]
+edge[fontname="Monospace"]
+
+subgraph cluster11314 {
+graph[dpi=100, label="bears", bgcolor="bisque3", margin="15", style="rounded", fontcolor="chocolate4", fontname="Monospace", rankdir=TP]
+node[fontname="Monospace"]
+edge[fontname="Monospace"]
+
+node11315[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="delila", fillcolor="#61d2c4"]
+node11316[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="cristolene", fillcolor="#61d2c4"]
+node11317[style="filled,rounded", fontsize=10, fixedsize="true", shape="triangle", margin="0.1", label="nikkai", fillcolor="gold4"]
+node11318[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="eliza", fillcolor="#768572"]
+node11319[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="malakai", fillcolor="#61d2c4"]
+node11320[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="max", fillcolor="#61d2c4"]
+node11321[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="Bridget", fillcolor="darkviolet", fontcolor="floralwhite"]
+node11322[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="simone", fillcolor="#61d2c4"]
+node11323[style="filled", fontsize=10, fixedsize="true", shape="septagon", margin="0.1", label="cosmo", fillcolor="#768572"]
+node11324[style="filled,rounded", fontsize=10, fixedsize="true", shape="rect", margin="0.1", label="sharhar", fillcolor="blue", fontcolor="white"]
+node11325[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="isobel", fillcolor="#61d2c4"]
+node11326[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="kacey", fillcolor="#61d2c4"]
+node11327[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="summer", fillcolor="#61d2c4"]
+node11328[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="ivy", fillcolor="#61d2c4"]
+subgraph cluster11329 {
+graph[dpi=100, label="brownbears", bgcolor="palegreen", color="limegreen", margin="20", fontname="Monospace", rankdir=TP]
+node[fontname="Monospace"]
+edge[fontname="Monospace"]
+
+node11318[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="eliza", fillcolor="#768572"]
+node11323[style="filled", fontsize=10, fixedsize="true", shape="septagon", margin="0.1", label="cosmo", fillcolor="#768572"]
+}
+
+subgraph cluster11330 {
+graph[dpi=100, label="pandas", bgcolor="cornsilk1", fontcolor="black", fontname="Monospace", rankdir=TP]
+node[fontname="Monospace"]
+edge[fontname="Monospace"]
+
+node11315[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="delila", fillcolor="#61d2c4"]
+node11316[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="cristolene", fillcolor="#61d2c4"]
+node11317[style="filled,rounded", fontsize=10, fixedsize="true", shape="triangle", margin="0.1", label="nikkai", fillcolor="gold4"]
+node11319[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="malakai", fillcolor="#61d2c4"]
+node11320[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="max", fillcolor="#61d2c4"]
+node11321[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="Bridget", fillcolor="darkviolet", fontcolor="floralwhite"]
+node11322[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="simone", fillcolor="#61d2c4"]
+node11324[style="filled,rounded", fontsize=10, fixedsize="true", shape="rect", margin="0.1", label="sharhar", fillcolor="blue", fontcolor="white"]
+node11325[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="isobel", fillcolor="#61d2c4"]
+node11326[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="kacey", fillcolor="#61d2c4"]
+node11327[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="summer", fillcolor="#61d2c4"]
+node11328[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="ivy", fillcolor="#61d2c4"]
+{ rank=same; node11315, node11320, node11324, node11325, node11328}
+{ rank=same; node11316, node11317, node11319, node11322, node11326}
+{ rank=same; node11321, node11327}
+}
+
+}
+
+subgraph cluster11331 {
+graph[dpi=100, label="squirrels", bgcolor="pink", margin="15", style="rounded", fontname="Monospace", rankdir=TP]
+node[fontname="Monospace"]
+edge[fontname="Monospace"]
+
+node11332[style="filled,rounded", fontsize=10, fixedsize="true", shape="ellipse", margin="0.1", label="huxley", fillcolor="#acf5ab"]
+}
+
+node11316 -> node11324[label=""]
+node11317 -> node11325[label=""]
+node11319 -> node11315[label=""]
+node11319 -> node11328[label=""]
+node11320 -> node11321[color="blue", label=""]
+node11321 -> node11332[style="invis", label=""]
+node11321 -> node11323[style="invis", label=""]
+node11322 -> node11320[label=""]
+node11322 -> node11327[color="green2", label=""]
+node11322 -> node11328[color="green2", label=""]
+node11323 -> node11318[color="deeppink", label=""]
+node11324 -> node11327[label=""]
+node11326 -> node11323[color="deeppink", label=""]
+node11326 -> node11324[label=""]
+node11327 -> node11332[style="invis", label=""]
+node11327 -> node11323[style="invis", label=""]
+node11328 -> node11332[color="red", label=""]
+}

@@ -4,8 +4,8 @@
             [clojure.java.shell                   :as sh]
             [loom.alg-generic                     :as loom.gen]
             [loom.alg                             :as loom.alg]
-            [lib-draw-graph.processor :refer :all]
-            [lib-draw-graph.clustered-graph       :as clstr]
+            [lib-draw-graph.processor             :refer :all]
+            [lib-draw-graph.clustered             :refer :all]
             [lib-draw-graph.graph                 :as g]))
 
 
@@ -17,10 +17,10 @@
    ;; :dpi 72  <- dpi should be 72!
    :label "name"
    :shape "ellipse"
-   :nodesep 1
+   :nodesep 0.8
    ;:ranksep 2
    ;:sep 1 
-   :splines "lines"
+   :splines "ortho"
    :rankdir "TB"
    :fixedsize "true"
    ;:ranksep "3 equally"
@@ -30,7 +30,8 @@
    :elide "0"
    :fix-ranks? true
    ;:filter-graph "animal:pandas"
-   :stacks "pandas:brownbears:squirrels"
+   :stacks "animals:rodents"
+   :cluster-parent "pandas,bears,brownbears,bears,bears,carnivores,carnivores,animals,squirrels,rodents,wolves,carnivores,rodents,animals"
    ;:subgraph "asset_class:Credit Derivatives"
 ])
 
