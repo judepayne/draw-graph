@@ -31,7 +31,7 @@
    :fix-ranks? true
    ;:filter-graph "animal:pandas"
    :stacks "animals:rodents"
-   :cluster-parent "pandas,bears,brownbears,bears,bears,carnivores,carnivores,animals,squirrels,rodents,wolves,carnivores,rodents,animals"
+   :cluster-parent "pandas,bears,brownbears,bears,bears,carnivores,carnivores,animals,squirrels,rodents,wolves,carnivores,rodents,animals,flora,plantae"
    ;:subgraph "asset_class:Credit Derivatives"
 ])
 

@@ -142,7 +142,7 @@
   (*cluster->id* s))
 
 
-(defn clust->nds [f nodes]   ; <-changed
+(defn- clust->nds [f nodes]   ; <-changed
   (reduce-kv
    (fn [m k v]
      (let [separated (zipmap k (repeat (into #{} v)))]

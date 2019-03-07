@@ -15,6 +15,12 @@ pandas:simone,pandas:summer,color:green2
 wolves:leo,wolves:sebastian
 wolves:leo,wolves:angelique
 pandas:summer,wolves:leo
+flora:daisy#fillcolor:gold:shape:box,flora:rose,splines:none:arrowhead:obox
+flora:rose#fillcolor:gold:shape:box,flora:lily,style:invis
+flora:lily#fillcolor:gold:shape:box,flora:jasmine,splines:none:arrowhead:invodot:arrowsize:1.3
+flora:jasmine#fillcolor:gold:shape:box,flora:fleur,style:invis
+flora:fleur#fillcolor:gold:shape:box,flora:alyssa#fillcolor:gold:shape:box,fillcolor:palegoldenrod:style:dashed:color:goldenrod2
+flora:fleur,flora:aster#fillcolor:gold:shape:star,fillcolor:gray:style:dotted
 pandas#bgcolor:cornsilk1:fontcolor:black
 brownbears#bgcolor:palegreen:color:limegreen:margin:20
 squirrels#bgcolor:pink:margin:15:style:rounded
@@ -23,3 +29,5 @@ carnivores#bgcolor:ivory3:margin:15:style:rounded:fontcolor:maroon1
 animals#bgcolor:lightskyblue1
 rodents#bgcolor:indianred2
 wolves#bgcolor:gray64:style:rounded:fontcolor:white
+flora#bgcolor:palegreen:style:rounded:fontcolor:seagreen
+plantae#bgcolor:palegreen2:style:rounded
