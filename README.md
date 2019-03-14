@@ -12,8 +12,9 @@ Please see the demonstration deployment of the application at [draw-graph.com](h
 
 ## Motivation
 
-I wrote draw-graph to help automate the production of 'how things connect' style diagrams in the enterprise, which I know from personal experience can take many hours for complex diagrams to produce by hand in tools like Visio. The input format to a tool like Graphviz (i.e. the 'dot' language) is off-puttingly hard for non technical users to produce automatically and off-puttingly laborious to produce by hand.
-However, there's is a lot of information either locked up in spreadsheets or can be got into spreadsheets as well as a lot of proficient users of tools like Excel. Creating a simple csv format over the 'dot' language seemed like a good compromise.
+I wrote draw-graph to help automate the production of 'how things connect' style diagrams in the enterprise. From personal experience it can often take many hours to produce complex diagrams by hand in tools like Visio. Graphviz is a great library for producing diagrams from data descriptions, but it's input format (the 'dot' language) is off-puttingly hard for non technical users to produce automatically and off-puttingly laborious to produce by hand.
+
+However, there's is a lot of information either locked up in spreadsheets or can be got into spreadsheets as well as a lot of proficient users of tools like Excel in the enterpriseand in general. Creating a simple csv format over the 'dot' language seemed like a good compromise.
 
 
 ## Structure
