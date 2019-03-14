@@ -4,7 +4,7 @@
            needs to be updated when new graphviz options are added."
       :author "Jude Payne"}
     lib-draw-graph.graph
-    (:require [lib-draw-graph.dot              :as rhidot]
+    (:require [rhizome.dot                     :as rhidot]
               [loom.graph                      :as loom.graph]
               [loom.attr                       :as loom.attr]
               [clojure.string                  :as str]
@@ -47,7 +47,7 @@
 (defn root? [g n] (empty? (loom.graph/predecessors* g n)))
 
 
-(defn ^:private fff [nested] (first (first (first nested))))
+(defn ^:private fff [nested] (first (ffirst nested)))
 
 
 (defn deep-merge
@@ -86,7 +86,7 @@
     :rankdir "LR"
     }
    :node
-   {:style "filled,rounded"
+   {:style "filled"
     :fontsize 10
     :fixedsize "true"
     :shape "ellipse"
@@ -94,7 +94,7 @@
    :env
    {:hide-leaves? false
     :show-roots?  false
-    :cluster-on nil}})
+   }})
 
 ;; node functions
 
@@ -109,13 +109,14 @@
 
 (defn fillcolor
   "Return the fillcolor for node n in g given an options"
-  [g opts n]
+  [g n]
   ;; if cluster-on, use that key to generate node colours
   ;; otherwise grab any node and use the first key in it
-  (let [color-key (if (nil? (-> opts :env :cluster-on))
-                    (fff (loom.graph/nodes g))
-                    (-> opts :env :cluster-on))]
+  (let [color-key (if-let [cl (clstr/cluster-key g)] 
+                    cl
+                    (fff (loom.graph/nodes g)))]
     (str->rgb ((keyword color-key) n))))
+
 
 (defn first-label
   "Gets the first valid label for the node."
@@ -124,13 +125,15 @@
                      (if (= "" v) false v)) lbls)]
     (if (nil? lbl) "" lbl)))
 
+
 (defn node-label
   "Returns the label for the node n in g given options"
   [g opts n]
   (cond
     (and (leaf? g n) (-> opts :env :hide-leaves?)) ""
-    :else (let [lbls (str/split (-> opts :node :label) #":")]
-            (first-label lbls n))))
+    :else (if-let [lbls (-> opts :node :label)]
+            (str/replace (first-label (str/split lbls #"/") n) #"\+" "\n")
+            "")))
 
 
 (defn ^:private node-descriptor
@@ -141,17 +144,27 @@
    ;; attrs result from functions..
    {:shape (shape g opts n)
     :label (node-label g opts n)
-    :fillcolor (fillcolor g opts n)}
+    :fillcolor (fillcolor g n)}
    ;;per node attrs supplied by user
    (loom.attr/attrs g n)))
 
 
+;; NEEDS TO CHANGE WHEN NEW OPTS ADDED
+(defn structure-opts
+  "structures the incoming opts map the same as default-options"
+  [opts]
+  (group-map opts
+             [:graph :dpi :layout :pad :splines :sep :ranksep
+              :scale :overlap :nodesep :rankdir :concentrate]
+             [:node :shape :label :fontsize :style :fixedsize]
+             [:env :hide-leaves? :show-roots?]))
+
+
 (defn- cluster-args
-  [g cluster-on]
+  [g]
   {
    :node->clusters
-   (fn [n] ((partial clstr/node->clusters g cluster-on) n))
-   ;(fn [n] (get n (keyword cluster-on)))
+   (fn [n] ((partial clstr/node->clusters g (clstr/cluster-key g)) n))
 
    :cluster->descriptor
    (fn [n] (merge {:label n}
@@ -166,38 +179,21 @@
    })
 
 
-(defn ^:private node-cluster
-  [k n]
-  (k n))
-
-
-(defn blank? [s] (= "" s))
-
-
-
-;; NEEDS TO CHANGE WHEN NEW OPTS ADDED
-(defn structure-opts
-  "structures the incoming opts map the same as default-options"
-  [opts]
-  (group-map opts
-             [:graph :dpi :layout :pad :splines :sep :ranksep
-              :scale :overlap :nodesep :rankdir :concentrate]
-             [:node :shape :label :fontsize :style :fixedsize]
-             [:env :hide-leaves? :show-roots? :cluster-on]))
-
-
 (defn ^:private get-rhizome-args
   "Returns the rhizome config (options) for a graph."
   [g opts]
-  (let [opts* (deep-merge default-options (structure-opts opts))
-        cluster-on (let [cl (-> opts* :env :cluster-on)]
-                     (if (blank? cl) nil cl))]
+  (let [opts* (deep-merge default-options (structure-opts opts))]
     (merge
-     {:options (:graph opts*) 
+     {
+      :options (:graph opts*) 
+
       :node->descriptor (partial node-descriptor g opts*)
+
       :edge->descriptor (partial loom.attr/attrs g)}
-     (when (some? cluster-on)
-       (cluster-args g cluster-on)))))
+
+     ;; merge in cluster argument when g is clustered
+     (when (clstr/cluster-key g)
+       (cluster-args g)))))
 
 
 ;; -------------------------------------------------------------

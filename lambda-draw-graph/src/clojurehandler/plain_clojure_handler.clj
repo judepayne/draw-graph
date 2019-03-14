@@ -49,10 +49,12 @@
 (defn ->svg
   "Converts csv1 format to svg format. input is json"
   [js]
+  (println "IN json>> " js)
   (try
     (let [in (read-input js)
           svg (case (*format-in* in)
                 "csv" (let [d (processor/process in)]
+                        (println "PROCESSED dot>> " d)
                         (dot->svg d))
                 "dot" (dot->svg (:data in))
                 (throw (IllegalArgumentException.
@@ -62,7 +64,9 @@
         "svg" (json/write-str {:svg svg})
         (json/write-str {:error "Error: only 'svg' format can be specified as an output."})))
     (catch Exception e
-      (json/write-str "Error from lambda function: " (.getMessage e)))))
+      ;(json/write-str {:error (str "Error from lambda function: " (.getMessage e))})
+      (println (str "!!Graphviz error!!>>> " (.getMessage e)))
+      )))
 
 ;; gen-class and how to use it
 

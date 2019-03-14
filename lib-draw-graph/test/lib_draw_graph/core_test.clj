@@ -2,6 +2,7 @@
   (:require [clojure.test :refer :all]
             [clojure.string                       :as str]
             [clojure.java.shell                   :as sh]
+            [clojure.data.json                    :as json]
             [loom.alg-generic                     :as loom.gen]
             [loom.alg                             :as loom.alg]
             [lib-draw-graph.processor             :refer :all]
@@ -17,22 +18,18 @@
    ;; :dpi 72  <- dpi should be 72!
    :label "name"
    :shape "ellipse"
-   :nodesep 0.8
+   ;:nodesep 0.5
    ;:ranksep 2
    ;:sep 1 
    :splines "ortho"
    :rankdir "TB"
-   :fixedsize "true"
-   ;:ranksep "3 equally"
+   :fixedsize true
    ;:scale 2
    :overlap false
    :concentrate true
-   :elide "0"
-   :fix-ranks? true
+   ;:elide "0"
+   :fix-ranks? false
    ;:filter-graph "animal:pandas"
-   :stacks "animals:rodents"
-   :cluster-parent "pandas,bears,brownbears,bears,bears,carnivores,carnivores,animals,squirrels,rodents,wolves,carnivores,rodents,animals,flora,plantae"
-   ;:subgraph "asset_class:Credit Derivatives"
 ])
 
 (defn options [] (apply hash-map standard-options))
@@ -50,19 +47,32 @@
 
 (defn csv->g [filename]
   (let [in (csv->csv1 filename)
-        g (loom-graph (:data in))]
+        g (loom-graph (:data in) (:cluster-on (options)))]
     (-> g
         (preprocess-graph (options)))))
 
+
 (defn g->dot [g]
   (g/process-graph g (options)))
+
 
 (defn csv->dot [filename]
   (-> (csv->csv1 filename)
       process))
 
-(def path-to-dot "/usr/local/bin/dot")
 
+(defn- read-input
+  [js]
+  (json/read-str js :key-fn keyword))
+
+
+(defn js->dot [js]
+  (let [in (read-input js)]
+    (process in)))
+
+
+(def path-to-dot "/usr/local/bin/dot")
+;(def path-to-dot "/Users/jude/Dropbox/Projects/aws/draw-graph/lambda-draw-graph/resources/bin/dot_static")
 
 (defn- format-error [s err]
   (apply str
@@ -88,3 +98,7 @@
 
 (defn csv->svg [filename]
   (dot->svg (csv->dot filename)))
+
+
+(defn js->svg [js]
+  (dot->svg (js->dot js)))

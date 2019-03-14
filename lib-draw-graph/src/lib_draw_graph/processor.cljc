@@ -2,6 +2,7 @@
       :author "Jude Payne"}
   lib-draw-graph.processor
   (:require [lib-draw-graph.graph           :as g]
+            [lib-draw-graph.parser          :as parser]
             [loom.graph                     :as loom.graph]
             [loom.attr                      :as loom.attr]
             [clojure.string                 :as str]
@@ -32,17 +33,6 @@
           :cljs (catch js/Object e nil))))
 
 
-;; For loom graph attrs
-(defn- attr-map [s]
-  (reduce
-   (fn [a c]
-     (let [k (keyword (first c))
-           v (second c)]
-       (update-in a [k] (fn [old] (if (nil? old) v (str old "," v))))))
-   {}
-   (partition 2 (split-parts s))))
-
-
 (defn- add-attr-map
   [g node-or-edge m]
   (reduce
@@ -50,74 +40,39 @@
    g (vec m)))
 
 
-(defn lines [s] (str/split-lines s))
+(defn loom-graph
+  ([s] (loom-graph s nil))
+  ([s cluster-on]
+   (let [parsed (parser/parse-lines (str/split-lines s))
+         gr0 (apply loom.graph/digraph (map #(take 2 %) (:edges parsed)))
+         ;; add edge attrs
+         gr1 (reduce (fn [acc cur]
+                       (add-attr-map acc [(first cur) (second cur)] (third cur)))
+                     gr0
+                     (filter #(= 3 (count %)) (:edges parsed)))
+         ;; add node attributes
+         gr2 (reduce (fn [acc [nd attrs]]
+                       (add-attr-map acc nd attrs))
+                     gr1 (:node-styles parsed))]
+     (if cluster-on
+       (let [;; add cluster styles
+             gr3 (reduce (fn [acc cur]
+                           (clstr/add-attr-to-cluster acc (first cur) :style (second cur)))
+                         gr2
+                         (:cluster-styles parsed))
+             
+             ;; add cluster parents
+             gr4 (reduce (fn [acc [c p]]
+                           (clstr/add-cluster-parent acc c p))
+                         gr3 (:cluster-parents parsed))
+             ;; add cluster edges
+             gr5 (reduce (fn [acc [c1 c2]]
+                           (preprocessor/add-stack acc (keyword cluster-on) [c1 c2]))
+                         gr4
+                         (:cluster-edges parsed))]
+         (clstr/add-cluster-key gr5 cluster-on))
+       gr2))))
 
-
-(defn headers [lines] (map keyword (split-parts (first lines))))
-
-
-(defn make-edge [headers edge]
-  (let [strip (fn [nd] (first (split-def nd)))
-        es (mapv (comp #(zipmap headers %) split-parts strip) (take 2 edge))]
-    (if (third edge) (conj es (attr-map (third edge))) es)))
-
-
-(defn edges [headers lines]
-  (->> lines
-       (map #(split-list %))
-       (filter #(> (count %) 1))
-       (map #(make-edge headers %))))
-
-
-(defn rich-edges [edges]
-  (filter #(= 3 (count %)) edges))
-
-
-(defn make-cluster [cluster]
-  (let [parts (split-def cluster)]
-    {(first parts) (attr-map (second parts))}))
-
-
-(defn clusters [lines]
-  (->> lines
-       (map #(take 2 (split-list %)))
-       (filter #(= 1 (count %)))
-       (mapcat identity)
-       (map #(make-cluster %))
-       (reduce merge)))
-
-
-(defn make-node [headers [nd attrs]]
-  {(zipmap headers (split-parts nd)) (attr-map attrs)})
-
-
-(defn nodes [headers lines]
-  (->> lines
-       (mapcat #(take 2 (split-list %)))
-       (map split-def)
-       (filter #(= 2 (count %)))
-       (map #(make-node headers %))
-       (reduce merge)))
-
-
-(defn loom-graph [s]
-  (let [lines    (lines s)
-        headers  (headers lines)
-        edges    (edges headers (rest lines))
-        clusters (clusters (rest lines))
-        graph    (apply loom.graph/digraph (map #(take 2 %) edges))
-        ;; add edge attrs
-        graph*   (reduce (fn [acc cur]
-                         (add-attr-map acc [(first cur) (second cur)] (third cur)))
-                       graph (rich-edges edges))
-        ;; add clusters
-        graph**  (reduce (fn [acc cur]
-                          (clstr/add-attr-to-cluster acc (first cur) :style (second cur)))
-                         graph* clusters)]
-    ;; add node attrs
-    (reduce (fn [acc [nd attrs]]
-                         (add-attr-map acc nd attrs))
-                          graph** (nodes headers lines))))
 
 
 ;; ------------
@@ -161,29 +116,6 @@
     g))
 
 
-(defn maybe-add-stacks [g opts]
-  (if (and (some? (:stacks opts)) (some? (:cluster-on opts)))
-    (let [stacks (split-list (:stacks opts))]
-      (reduce (fn [acc cur]
-                (preprocessor/add-stack acc
-                                        (keyword (:cluster-on opts))
-                                        (split-parts cur)))
-              g
-              stacks))
-    g))
-
-
-(defn maybe-add-hierarchies [g opts]
-  (if (and (some? (:cluster-parent opts))
-           (some? (:cluster-on opts))
-           (= (:layout opts) "dot"))
-    (reduce (fn [acc cur]
-              (clstr/add-cluster-parent acc (first cur) (second cur)))
-            g
-            (partition 2 (str/split (:cluster-parent opts) #",")))
-    g))
-
-
 (defn maybe-elide [g opts]
   (if (some? (:elide opts))
     (preprocessor/remove-levels g
@@ -200,14 +132,19 @@
   (-> graph
       (maybe-filter opts)
       (maybe-elide opts)
-      (maybe-fix-ranks opts)
-      (maybe-add-hierarchies opts)
-      (maybe-add-stacks opts)
-      ))
+      (maybe-fix-ranks opts)))
+
+
+(defn- not-blank [s]
+  (if (or (= "" s) nil)
+    nil
+    s))
 
 
 (defn process [in]
-  (let [g (loom-graph (:data in))]
+  (let [g (if-let [cluster-on (not-blank (-> in :display-options :cluster-on))]
+            (loom-graph (:data in) cluster-on)
+            (loom-graph (:data in)))]
     (-> g
         (preprocess-graph (:display-options in))
         (g/process-graph (:display-options in)))))

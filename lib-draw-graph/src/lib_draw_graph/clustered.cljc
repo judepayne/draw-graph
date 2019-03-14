@@ -11,6 +11,16 @@
 ;; rather than extending the type and defining new protocols, for now.
 
 
+(defn add-cluster-key
+  [g cluster-on]
+  (assoc-in g [:clusters :key] cluster-on))
+
+
+(defn cluster-key
+  [g]
+  (get-in g [:clusters :key]))
+
+
 (defn add-attr-to-cluster
   [g cluster attr-k attr-v]
   (assoc-in g [:clusters :attr cluster attr-k] attr-v))

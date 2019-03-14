@@ -1,0 +1,6 @@
+h:animal:name
+e:flora:fleur,flora:aster|fillcolor:gold:shape:star,|fillcolor:gray:style:dotted
+e:flora:lily,flora:angelique,|taillabel:<<table cellpadding='1' border='1' cellborder='0' bgcolor='#c731ed' color='magenta' style='rounded'><tr><td><font point-size='9'>1.</font></td></tr></table>>:headlabel:<<table cellpadding='1' border='1' cellborder='0' bgcolor='#c731ed' color='magenta' style='rounded'><tr><td><font point-size='9'>1.</font></td></tr></table>>:labeldistance:0.5:labelangle:0:color:#c731ed00:style:dotted:constraint:false
+cs:flora|bgcolor:palegreen:style:rounded:fontcolor:seagreen
+cs:plantae|bgcolor:palegreen2:style:rounded
+cp:flora:plantae

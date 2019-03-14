@@ -22,7 +22,7 @@ The AWS command line tool and the AWS web console seem to be functionally equiva
 
 6. Set up a role that can invoke your lambda and has appropriate permissions for any other AWS services that your lambda uses (e.g. S3). I used the AWS web console for this, although it can also be done via the AWS command line tool. Take a note of the ARN.
 
-7. Create any lambda layers your lambda needs (to call into) e.g. for me the graphviz binary. Take a note of the ARN. I used the AWS web console for this.
+7. Create any lambda layers your lambda needs (to call into) e.g. for me the graphviz binary. Take a note of the ARN. I used the AWS web console for this. See below for building graphviz for AWS lambda.
 
 8. Create your lambda function and deploy your jar (and any lambda layer binaries). In my case:
 
@@ -56,4 +56,39 @@ The AWS command line tool and the AWS web console seem to be functionally equiva
 ## API Gateway
 
 Now you should set up an API Gateway (REST interface) over your lambda to make it publicly accessible over http. I used the AWS web console for this, for creating a new API Gateway and then adding a simple POST pass-through method through to the lambda function. The only trick in my case was to turn off CORS headers to allow for this REST interface to be called from the browser.
+
+
+## Building Graphviz for AWS Lambda
+
+A statically linked graphviz binary is deployed as a 'lambda layer' and is called into by the clojure code with the data in graphviz' 'dot' format.
+It's a bit of a challenge to build Graphviz so that it successfully runs on AWS lambda.
+In my case there was prior art: https://lifeinplaintextblog.wordpress.com/deploying-graphviz-on-aws-lambda/
+but I needed to do my own build; in order to add support for graphviz' 'html-like labels', I needed to compile graphviz with expat statically linked.
+Although the blog article above mentions renting an AWS EC2 instance and compiling on that to ensure that you are building on the eventual target platform that the Lmabdas run on (see [this](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html) for the precise AMI image), I found that building on Redhat linux (that's Amazon's flavour of linux is apparently forked from) then deploying the pre-built binary to the lambda layer in a zip file structured like [so](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path) worked just fine.
+
+The steps I followed to produce a statically linked build were:
+
+    // only do this step if building on the Amazon EC2 instance:
+    $ sudo yum groupinstall "Development tools"
     
+    // on with the build. static build of expat first
+    wget https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
+    tar -xvf expat-2.3.6.tar.bz2
+    cd expat-2.2.6
+    // --enable-shared=so means make only outputs .a files for static linking
+    // into graphviz, and .so files won't be produced
+    ./configure  --enable-shared=no -q
+    make --quiet
+    sudo make install
+    
+    
+    // Then Graphviz itself
+    cd ..
+    wget https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES/graphviz.tar.gz
+    tar -xvf graphviz.tar.gz
+    cd graphviz-2.40.1/
+    ./configure   --enable-static=yes --enable-shared=no --with-expat=yes
+    make
+
+    // then cd into cmd/dot to find the dot_static bindary
+

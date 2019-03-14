@@ -9,7 +9,7 @@
    :cluster-on ""
    :rankdir "LR"
    :fixedsize "true"
-   :elide 0
+   :elide "0"
    :splines "splines"
    :overlap "false"
    :concentrate "false"})

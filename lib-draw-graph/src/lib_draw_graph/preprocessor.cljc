@@ -177,11 +177,15 @@
   "Returns a set of edges between all of the min ranked nodes of clstr1
    and one of the max ranked nodes in clstr2."
   [g info clstr1 clstr2]
-  (let [clstr1s (clstr/cluster-descendants g clstr1)
+  (let [edges (loom.graph/edges g)
+        clstr1s (clstr/cluster-descendants g clstr1)
         clstr2s (clstr/cluster-descendants g clstr2)
         clstr1s-mins (mapcat #(:items (max-ranked-nodes info %)) clstr1s)
         clstr2s-maxs  (mapcat #(:items (min-ranked-nodes info %)) clstr2s)]
-    (for [x clstr1s-mins y clstr2s-maxs] [x y])))
+    (for [x clstr1s-mins
+          y clstr2s-maxs
+          :when (not (.contains edges [x y]))]
+      [x y])))
 
 
 (def get-rank-info
@@ -193,8 +197,6 @@
 (defn add-stack
   "Adds a stack of clusters to the graph"
   [g cluster-on stack]
-  ;(clojure.pprint/pprint (get-rank-info g cluster-on))
-  ;(println stack)
   (let [ri    (get-rank-info g cluster-on)
         edges (mapcat #(apply edges-between g ri %) (partition 2 1 stack))]
     (-> (apply loom.graph/add-edges g edges)

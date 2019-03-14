@@ -10,7 +10,6 @@
    [clojure.string           :as string]
    [draw-graph.utils         :as utils]
    [draw-graph.examples      :as examples]
-   [lib-draw-graph.spec      :as spec]
    [lib-draw-graph.processor :as processor]
    [draw-graph.file          :as file])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
@@ -47,7 +46,8 @@
 ;; Processing
 
 ;; determines whether dot is produced locally or in the lambda
-(def ^:dynamic *produce-dot-locally* true)
+(def ^:dynamic *produce-dot-locally* false)
+
 
 
 (defn clj->json
@@ -114,23 +114,24 @@
 
 
 (defn get-svg []
-  (let [chk (spec/check-csv1 (:data @local-state))]
-    (if (= :ok chk)
-      (do
-        (reset! processing true)
-        (reset! error "")
-        (->> 
-         (->svg (clj->json (if *produce-dot-locally*
-                             (dot->svg (processor/process (->dot)))
-                             (->csv1))))
-             (p/map json->clj)
-             (p/map :svg)
-             ;(p/map utils/html->hiccup)  ;; suppress conversion of svg to hiccup for perf
-             (p/map put-svg)
-             (p/error (fn [error] (put-error (.-message error))))))
-      (do
-        (reset! svg "")
-        (put-error (str "Format error with line >> " chk))))))
+  (do
+    (reset! processing true)
+    (reset! error "")
+    (->> 
+     (->svg (clj->json (if *produce-dot-locally*
+                         (try
+                           (dot->svg (processor/process (->dot)))
+                           (catch js/Error e
+                             (do
+                               (reset! svg "")
+                               (put-error (str "Format error with line >> "
+                                               (.getMessage e))))))
+                         (->csv1))))
+     (p/map json->clj)
+     (p/map :svg)
+                                        ;(p/map utils/html->hiccup)  ;; suppress conversion of svg to hiccup for perf
+     (p/map put-svg)
+     (p/error (fn [error] (put-error (.-message error)))))))
 
 
 ;; -------------------------
@@ -258,7 +259,7 @@
 (defn rankdir [] (fixed-select [:options :rankdir] local-state "LR" "TB" "RL" "BT"))
 
 
-(defn elide-levels [] (fixed-select [:options :elide] local-state 0 1 2 3 4) )
+(defn elide-levels [] (fixed-select [:options :elide] local-state "0" "1" "2" "3" "4") )
 
 ;; -- Cluster-on dropdown needs to be more dynamic--
 (defn first-line [s]
@@ -426,6 +427,7 @@
    [:div.site-banner "draw-graph"]
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]
+
    ;; direct react call to insert svg as (html) text - for better performance
    [:div {:dangerouslySetInnerHTML {:__html @svg}}] 
    [:div.error @error]])
