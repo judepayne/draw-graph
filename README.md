@@ -12,9 +12,9 @@ Please see the demonstration deployment of the application at [draw-graph.com](h
 
 ## Motivation
 
-I wrote draw-graph to help automate the production of 'how things connect' style diagrams in the enterprise, which I know from personal experience can take many hours for complex diagrams to produce by hand in tools like Visio. The input format to a tool like Graphviz (i.e. the 'dot' language) is off-puttingly hard for non technical users to produce automatically and off-puttingly laborious to produce by hand, but in the enterprise, there is a lot of information either locked up in spreadsheets or can be got into spreadsheets as well as a lot of proficient users of tools like Excel. Creating a simple csv format over the 'dot' language seemed like a good compromise.
+I wrote draw-graph to help automate the production of 'how things connect' style diagrams in the enterprise, which I know from personal experience can take many hours for complex diagrams to produce by hand in tools like Visio. The input format to a tool like Graphviz (i.e. the 'dot' language) is off-puttingly hard for non technical users to produce automatically and off-puttingly laborious to produce by hand.
+However, there's is a lot of information either locked up in spreadsheets or can be got into spreadsheets as well as a lot of proficient users of tools like Excel. Creating a simple csv format over the 'dot' language seemed like a good compromise.
 
-The second motivation for draw-graph was to begin to explore the Amazon AWS platform (which I found to be fantastic) and to get Clojure working on AWS.
 
 ## Structure
 
