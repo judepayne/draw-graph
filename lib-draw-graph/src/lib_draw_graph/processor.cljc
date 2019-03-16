@@ -54,7 +54,8 @@
          gr2 (reduce (fn [acc [nd attrs]]
                        (add-attr-map acc nd attrs))
                      gr1 (:node-styles parsed))]
-     (if cluster-on
+     (if (and cluster-on
+              (.contains (:header parsed) cluster-on)) ;; check to prevent stack-overflow
        (let [;; add cluster styles
              gr3 (reduce (fn [acc cur]
                            (clstr/add-attr-to-cluster acc (first cur) :style (second cur)))

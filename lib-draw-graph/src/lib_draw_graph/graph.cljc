@@ -4,7 +4,7 @@
            needs to be updated when new graphviz options are added."
       :author "Jude Payne"}
     lib-draw-graph.graph
-    (:require [rhizome.dot                     :as rhidot]
+    (:require [lib-draw-graph.dot                     :as rhidot]
               [loom.graph                      :as loom.graph]
               [loom.attr                       :as loom.attr]
               [clojure.string                  :as str]
