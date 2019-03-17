@@ -124,8 +124,7 @@
                            (catch js/Error e
                              (do
                                (reset! svg "")
-                               (put-error (str "Format error with line >> "
-                                               (.getMessage e))))))
+                               (put-error (str e)))))
                          (->csv1))))
      (p/map json->clj)
      (p/map :svg)
