@@ -6,12 +6,19 @@
                :cljs [instaparse.core :as insta :refer-macros [defparser]])))
 
 
+(defn ex
+  "Creates an exception object with error-string."
+  [error-string]
+  #?(:clj (java.lang.Exception. error-string)
+     :cljs (js/Error. error-string)))
+
+
 (defn- third
   "Returns third element of coll, or nil."
   [coll]
   (try (nth coll 2)
        #?(:clj (catch Exception e nil)
-          :cljs (catch js/Object e nil))))
+          :cljs (catch js/Error e nil))))
 
 
 (def ^:dynamic *part-sep* #":")   ;; separator for keys/ values in CSV
@@ -76,14 +83,14 @@
              (assoc acc k' v))))
        {}
        (partition 2 args))
-      (throw (Exception. (str "Error parsing: " s " > Must be an even number of parts"))))))
+      (throw (ex (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
 (defn pairs [s]
   (let [args (split-parts s)]
     (if (even? (count args))
       (partition 2 args)
-      (throw (Exception. (str "Error parsing: " s " > Must be an even number of parts"))))))
+      (throw (ex (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
 (defn conjcat [coll1 coll2]
@@ -149,7 +156,7 @@
    (fn [acc cur]
      (let [p (csv-line-parser cur)]
        (if (insta/failure? p)
-         (throw (Exception. (str "Parsing error with line: " cur)))
+         (throw (ex (str "Parsing error with line: " cur)))
          (let [line (second p)]
            (case (first line)
              :H  (parse-header acc line)
@@ -157,6 +164,6 @@
              :Cs (parse-cluster-style acc line)
              :Cp (parse-cluster-parent acc line)
              :Ce (parse-cluster-edge acc line)
-             (throw (Exception. (str "No parser for this line: " cur))))))))
+             (throw (ex (str "No parser for this line: " cur))))))))
    {}
    lines))

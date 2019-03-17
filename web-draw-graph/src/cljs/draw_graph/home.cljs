@@ -11,6 +11,7 @@
    [draw-graph.utils         :as utils]
    [draw-graph.examples      :as examples]
    [lib-draw-graph.processor :as processor]
+   [lib-draw-graph.parser    :as parser]
    [draw-graph.file          :as file])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
@@ -46,7 +47,7 @@
 ;; Processing
 
 ;; determines whether dot is produced locally or in the lambda
-(def ^:dynamic *produce-dot-locally* false)
+(def ^:dynamic *produce-dot-locally* true)
 
 
 
@@ -58,7 +59,6 @@
 (defn json->clj
   [ds]
   (js->clj (.parse js/JSON ds) :keywordize-keys true))
-
 
 (def url-lambda-draw-graph "https://0j6kjsk388.execute-api.eu-west-2.amazonaws.com/beta")
 
@@ -190,7 +190,8 @@
    [:option {:value "draw-graph.examples/example2"} "Two facing trees"]
    [:option {:value "draw-graph.examples/example3"} "Two trees"]
    [:option {:value "draw-graph.examples/example4"} "CERN email connections"]
-   [:option {:value "draw-graph.examples/example5"} "Circular tree"]]) 
+   [:option {:value "draw-graph.examples/example5"} "Circular tree"]
+   [:option {:value "draw-graph.examples/example6"} "Friendship cluster layout"]]) 
 
 
 (defn click-upload-csv-hidden [e]

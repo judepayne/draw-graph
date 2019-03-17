@@ -55,7 +55,7 @@
                        (add-attr-map acc nd attrs))
                      gr1 (:node-styles parsed))]
      (if (and cluster-on
-              (.contains (:header parsed) cluster-on)) ;; check to prevent stack-overflow
+              (some #{(keyword cluster-on)} (:header parsed))) ;; check to prevent stack-overflow
        (let [;; add cluster styles
              gr3 (reduce (fn [acc cur]
                            (clstr/add-attr-to-cluster acc (first cur) :style (second cur)))
@@ -78,22 +78,6 @@
 
 ;; ------------
 ;; pre-processing functions
-
-
-(defn cluster-graph->loom
-  "Construct loom graph from cluster-graph string specification"
-  [cg]
-  (let [data (->> cg
-                  split-list
-                  (map split-parts)
-                  (map #(interleave (repeat (first %)) (rest %)))
-                  flatten
-                  (partition 2))]
-    (apply loom.graph/digraph data)))
-
-
-(defn cluster-graph->loom [cg]
-  (let [cg* (split-list cg)]))
 
 
 (defn ->submap [s]

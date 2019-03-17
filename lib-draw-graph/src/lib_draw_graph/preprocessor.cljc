@@ -184,7 +184,7 @@
         clstr2s-maxs  (mapcat #(:items (min-ranked-nodes info %)) clstr2s)]
     (for [x clstr1s-mins
           y clstr2s-maxs
-          :when (not (.contains edges [x y]))]
+          :when (not (some #{[x y]} edges))]
       [x y])))
 
 
