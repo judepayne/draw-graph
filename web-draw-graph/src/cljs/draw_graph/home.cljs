@@ -124,7 +124,7 @@
                            (catch js/Error e
                              (do
                                (reset! svg "")
-                               (put-error (str e)))))
+                               (put-error (str  e)))))
                          (->csv1))))
      (p/map json->clj)
      (p/map :svg)
@@ -420,10 +420,7 @@
 
 (defn home-page []
   [:div
-   [:link {:href "https://fonts.googleapis.com/css?family=Roboto+Mono"
-           :rel "stylesheet"}]
-   [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-           :rel "stylesheet"}]
+   [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" :rel "stylesheet"}]
    [:div.site-banner "draw-graph"]
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]

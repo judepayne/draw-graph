@@ -16,7 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 1.115em;
   color: #333;
-  line-height: 1.2em;
+  line-height: 1.4em;
 }
 
 h1, h2, h3 {
@@ -31,18 +31,31 @@ h2 {
 }
 
 h3 {
-  font-size: 1.3em
+  margin-top: 3em;
+  font-size: 1.3em;
+}
+
+h4 {
+  margin-top: 2em;
 }
 
 a {
   text-decoration: none;
   color: #09f;
 }
+
 .block-text{
-  max-width: 800px;
+  max-width: 700px;
   margin-top: 3em;
   font-size: 1.1em;
+  font-family: 'EB Garamond', serif;
 }
+
+.block-text h3, h2{
+  font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
+}
+
+
 pre{
   margin-left: 2em;
   font-size: 1em;
@@ -56,6 +69,7 @@ pre{
 code {
   margin-top: 3em;
   margin-bottom: 3em;
+  background-color: #fafafa;
 }
 a:hover {
   text-decoration: underline;
