@@ -6,7 +6,6 @@
             [loom.graph                     :as loom.graph]
             [loom.attr                      :as loom.attr]
             [clojure.string                 :as str]
-            [lib-draw-graph.spec            :as spec]
             [lib-draw-graph.clustered       :as clstr]
             [lib-draw-graph.preprocessor    :as preprocessor]))
 

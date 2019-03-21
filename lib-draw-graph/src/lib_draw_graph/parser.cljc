@@ -35,9 +35,9 @@
     "whitespace = #'\\s+'"))
 
 
-(def regex-text "#'[\\+\\w\\d\\s\\n\\.<>\\'#=/-]+'")
+(def regex-text "#'[\\+\\w\\d\\s\\n\\.\\(\\)<>\\'#=/-]+'")
 
-(def regex-kvs  "#'[/\\+\\w\\d\\s\\n\\.:<>\\'#=/-]+'")
+(def regex-kvs  "#'[/\\+\\w\\d\\s\\n\\.\\(\\):<>\\'#=/-]+'")
 
 
 (def csv-grammar

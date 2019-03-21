@@ -16,7 +16,7 @@
    :cluster-on "animal"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "name"
+   :label "name/animal"
    :shape "ellipse"
    ;:nodesep 0.5
    ;:ranksep 2
