@@ -109,12 +109,14 @@
 
 (defn fillcolor
   "Return the fillcolor for node n in g given an options"
-  [g n]
+  [g opts n]
   ;; if cluster-on, use that key to generate node colours
   ;; otherwise grab any node and use the first key in it
-  (let [color-key (if-let [cl (clstr/cluster-key g)] 
-                    cl
-                    (fff (loom.graph/nodes g)))]
+  (let [color-key (if-let [ck (-> opts :env :color-on)]
+                    ck
+                    (if-let [cl (clstr/cluster-key g)] 
+                      cl
+                      (fff (loom.graph/nodes g))))]
     (str->rgb ((keyword color-key) n))))
 
 
@@ -144,7 +146,7 @@
    ;; attrs result from functions..
    {:shape (shape g opts n)
     :label (node-label g opts n)
-    :fillcolor (fillcolor g n)}
+    :fillcolor (fillcolor g opts n)}
    ;;per node attrs supplied by user
    (loom.attr/attrs g n)))
 
@@ -157,7 +159,7 @@
              [:graph :dpi :layout :pad :splines :sep :ranksep
               :scale :overlap :nodesep :rankdir :concentrate]
              [:node :shape :label :fontsize :style :fixedsize]
-             [:env :hide-leaves? :show-roots?]))
+             [:env :hide-leaves? :show-roots? :color-on]))
 
 
 (defn- cluster-args
