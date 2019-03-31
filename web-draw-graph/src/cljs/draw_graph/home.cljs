@@ -47,7 +47,7 @@
 ;; Processing
 
 ;; determines whether dot is produced locally or in the lambda
-(def ^:dynamic *produce-dot-locally* true)
+(def ^:dynamic *produce-dot-locally* false)
 
 
 
@@ -216,7 +216,7 @@
   [:div
    [:textarea {
                :id "tweak-box"
-               :rows 13
+               :rows 18
                :cols 40
                :wrap "soft"
                :spellCheck "false"
@@ -280,7 +280,19 @@
    (if (= "" (first @headers))
      [:option {:key "none" :value ""} "-"]
      (cons [:option {:key "none" :value ""} "-"]
-           (for [x @headers] [:option {:key x} x])))])
+           (rest (for [x @headers] [:option {:key x} x]))))])
+
+
+(defn color-on []
+  [:select.form-control
+   {:field :list :id :color-on
+    :value (:color-on @options)
+    :on-change #(swap! local-state update-in [:options :color-on]
+                       (fn [e] (-> % .-target .-value)))}
+   (if (= "" (first @headers))
+     [:option {:key "none" :value ""} "-"]
+     (cons [:option {:key "none" :value ""} "-"]
+           (rest (for [x @headers] [:option {:key x} x]))))])
 
 
 ;; ---- Right Display options-------
@@ -346,14 +358,15 @@
 (defn left-disp-opts [state]
   (fn []
     [:div.item7 {:class (:local-class @state)}
-     (row "hide leaves" [hide-leaves])
-     (row "highlight roots" [show-roots])
+     (row "layout" [layout])
      (row "node label" [node-label]) ;;dynamically generated
      (row "node shape" [shape])
      (row "cluster on" [cluster-on])
-     (row "layout" [layout])
+     (row "color on" [color-on])
      (row "rankdir" [rankdir])
-     (row "elide lower levels" [elide-levels])]))
+     (row "elide lower levels" [elide-levels])
+     (row "hide leaves" [hide-leaves])
+     (row "highlight roots" [show-roots])]))
 
 (defn right-disp-opts [state]
   (fn []
@@ -424,7 +437,7 @@
    [:div.site-banner "draw-graph"]
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]
-
+   ;;@local-state
    ;; direct react call to insert svg as (html) text - for better performance
    [:div {:dangerouslySetInnerHTML {:__html @svg}}] 
    [:div.error @error]])

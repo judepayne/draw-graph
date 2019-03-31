@@ -14,6 +14,7 @@
   [:hide-leaves? false
    :show-roots? false
    :cluster-on "animal"
+   :color-on "name"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "name/animal"

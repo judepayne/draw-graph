@@ -34,6 +34,7 @@ Nodes in draw-graph are each specified as a map of key value pairs, but to avoid
 
 draw-graph uses 4 special characters in its input format. Avoid these in the data that you supply. They are `|` `:` `+` and `,`
 
+In the header row (below), avoid the character `/` in the specified keys as this has a special meaning. See fallback labels below.
 
 The data that you load into draw-graph can have five different types of rows.
 
@@ -192,7 +193,7 @@ Sometimes in one of your nodes, one of the values might be missing and it's vali
 
     Bluebird-class::1434
     
-In this case, you can specify `node-label` with a fallback key to use, or multiple fallback keys for that matter. e.g. rather than just `name`, specify as `name:id` or even `name:id:class`
+In this case, you can specify `node-label` with a fallback key to use, or multiple fallback keys for that matter. e.g. rather than just `name`, specify as `name/id` or even `name/id/class`
 
 `node shape` is a Graphviz setting which controls the style of node shape 
 

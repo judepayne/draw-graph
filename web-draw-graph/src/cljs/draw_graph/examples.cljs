@@ -7,6 +7,7 @@
    :shape "ellipse"
    :layout "dot"
    :cluster-on ""
+   :color-on ""
    :rankdir "LR"
    :fixedsize "true"
    :elide "0"

@@ -143,8 +143,8 @@ select {
   background-color: #EEE;
   min-width: 120px;
   border: none;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   color: #666;
 }
 
@@ -160,7 +160,7 @@ select {
 }
 
 .opts-hdr{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .hidden {
@@ -187,12 +187,12 @@ select {
 .wrapper {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50px 50px 220px 30px 380px 50px;
+  grid-template-rows: 50px 50px 360px 30px 480px 50px;
   grid-gap: 3px
 }
 
 .wrapper-collapsed {
-  grid-template-rows: 50px 50px 280px 30px 20px 50px;
+  grid-template-rows: 50px 50px 360px 30px 20px 50px;
 }
 
 /* Examples */
@@ -261,7 +261,7 @@ select {
   }  
   .wrapper {
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 50px 50px 280px 50px;
+    grid-template-rows: 50px 50px 400px 50px;
   }
   .item5 {
     grid-column: 1 / 4;

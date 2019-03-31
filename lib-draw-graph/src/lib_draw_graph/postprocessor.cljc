@@ -13,7 +13,7 @@
 ;; Not sure this is true!
 
 ;; Remove this!
-(def test-svg (slurp "test.svg"))
+;(def test-svg (slurp "test.svg"))
 
 
 ;; -----------------
@@ -170,7 +170,7 @@
   (str "l " (xy. x y)))
 
 
-(defn rect
+(defn rect-poly
   "Generate the svg points string for a rectangular polygon.
   start is an xy (point) at the bottom left of the rectangle."
   [start width height]
@@ -219,7 +219,7 @@
   (zip/xml-zip xml))
 
 
-(def z (->zipper (parse-svg test-svg)))
+;(def z (->zipper (parse-svg test-svg)))
 
 
 ;; 11 nexts between two subsequent cluster g's
