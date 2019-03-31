@@ -1,9 +1,6 @@
 (ns ^{:doc "Simulated annealing for cluster layout."
       :author "Jude Payne"}
-  lib-draw-graph.anneal
-  (:require [clojure.math.combinatorics :as combo]
-            #?(:cljs [cljs.core.async :refer [<! timeout]]))
-  #?(:cljs (:require-macros [cljs.core.async.macros :refer [go]])))
+  lib-draw-graph.anneal)
 
 
 #?(:clj (import [java.lang Math]))
@@ -12,14 +9,8 @@
 (defn ex
   "Creates an exception object with error-string."
   [error-string]
-  #?(:clj (java.lang.Exception. error-string)
+  #?(:clj (Exception. error-string)
      :cljs (js/Error. error-string)))
-
-
-(defn wait [ms f & args]
-  #?(:clj (do (Thread/sleep ms) (apply f args))
-     :cljs (js/setTimeout (fn [] (apply f args)) ms)))
-
 
 
 ;; From Clojure data analysis cookbook
@@ -80,7 +71,7 @@
 (def possible-dims [:x :y :w :h])                 ;; possible dimensions (to vary)
 (defn rand-dim [] (rand-nth possible-dims))       ;; random dimension selected
 (def max-move 10)                                 ;; move amount +/- dim can be changed by
-(def PEN 10000)                                  ;; Penalty cost amount
+(def PEN 10000)                                   ;; Penalty cost amount
 (def SEP 5)                                       ;; the Separation in points
 (defn change [] (- (rand-int (* 2 max-move)) max-move)) ;; generate a change
 (defn apply-change [old delta] (+ old delta))        ;; apply a change to old value
