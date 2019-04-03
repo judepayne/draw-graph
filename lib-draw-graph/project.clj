@@ -9,5 +9,6 @@
                  [org.clojure/data.xml "0.2.0-alpha6"]
                  [org.clojure/data.zip "0.1.2"]
                  [instaparse "1.4.9"]
+                 [criterium "0.4.4"]
                  [org.clojure/math.combinatorics "0.1.4"]]
   :repl-options {:init-ns lib-draw-graph.core})

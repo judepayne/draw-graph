@@ -2,6 +2,7 @@
       :author "Jude Payne"}
   lib-draw-graph.anneal)
 
+(use 'criterium.core)
 
 #?(:clj (import [java.lang Math]))
 
@@ -9,7 +10,7 @@
 (defn ex
   "Creates an exception object with error-string."
   [error-string]
-  #?(:clj (Exception. error-string)
+  #?(:clj (Exception. ^String error-string)
      :cljs (js/Error. error-string)))
 
 
@@ -30,17 +31,17 @@
             cost cost
             k 1]
        (if (and (< k max-iter)
-                (or (nil? min-cost)
-                    (> cost min-cost)))
+                (> cost min-cost))
          (let [t (temp-fn (/ k max-iter))
                next-state (neighbor-fn state)
-               next-cost (cost-fn constraints state (second next-state) (first next-state))]
+               next-cost (cost-fn constraints state
+                                  (second next-state) (first next-state))]
            (if (> (p-fn cost next-cost t) (rand))
              (recur (second next-state) next-cost (inc k))
              (recur state cost (inc k))))
          state)))))
 
-
+;; 20000 runs 180ms => down to 136. 25% saving
 ;; Note: svg coordinates are x across and y DOWN.
 
 (def test-state
@@ -84,16 +85,17 @@
   with a rectangle/ polygon specified as two x,y points."
   [rect]
   (let [dim (rand-dim)
-        delta (change)
-        -delta (* -1 delta)]
+        delta (change)]
     (case dim
       :x (-> rect
-             (update-in [:x] apply-change delta)
-             (update-in [:w] apply-change -delta))
+             (assoc :x (+ (:x rect) delta)) 
+             (assoc :w (- (:w rect) delta)))
       :y (-> rect
-             (update-in [:y] apply-change delta)
-             (update-in [:h] apply-change -delta))
-      (update-in rect [dim] apply-change delta))))
+             (assoc :y (+ (:y rect) delta))
+             (assoc :h (- (:h rect) delta)))
+      :w (-> rect
+             (assoc :w (+ (:w rect) delta)))
+      (-> rect (assoc :h (+ (:h rect) delta))))))
 
 
 (defn collision?
@@ -106,14 +108,14 @@
        (> (+ (:y m1) (:h m1) sep) (:y m2))))
 
 
-
 (defn inside?
   "Returns true if m is completely inside m1."
   [sep m1 m]
-  (and (> (:x m) (+ (:x m1) sep))
-       (> (:y m) (+ (:y m1) sep))
-       (< (+ (:x m) (:w m)) (+ (:x m1) (:w m1) (* -1 sep)))
-       (< (+ (:y m) (:h m)) (+ (:y m1) (:h m1) (* -1 sep)))))
+  (let [-sep (* -1 sep)]
+    (and (> (:x m) (+ (:x m1) sep))
+         (> (:y m) (+ (:y m1) sep))
+         (< (+ (:x m) (:w m)) (+ (:x m1) (:w m1) -sep))
+         (< (+ (:y m) (:h m)) (+ (:y m1) (:h m1) -sep)))))
 
 
 (defn has-grown?
@@ -130,19 +132,21 @@
 
 (defn passes-constraints?
   "Checks that the new (proposed) state item satisfies constraints."
-  [constraints state next-state varied-key]
-  (reduce (fn [a [k v]]
-            (and a
-                 (case k
-                   :boundary  (every? (partial inside? SEP v) (vals next-state))
-                   :collision (if v (not-any?
-                                     #((partial collision? SEP (get next-state varied-key)) %)
-                                              (vals (dissoc next-state varied-key))) 
-                                  false)
-                   :grow      (if v (has-grown? (get state varied-key)
-                                                (get next-state varied-key))))))
-          true
-          constraints))
+  [constraints state next-state varied]
+  (let [prev-item (get state varied)
+        item (get next-state varied)
+        collide-item (partial collision? SEP item)
+        others (vals (dissoc next-state varied))]
+    (reduce
+     (fn [a [k v]]
+       (and a
+            (case k
+              :grow      (when v (has-grown? prev-item item))
+              :boundary  (inside? SEP v item)
+              :collision (when v (not-any? #(collide-item %) others)))))
+            true
+            constraints)))
+
 
 (defn rand-key [m] (rand-nth (keys m)))
 
@@ -161,7 +165,6 @@
   For the initial call to calculate the system's cost, requires only constraints and state.
   Subsequent calls require the state, next-state and k, the key of the entry that has
   changed between them."
-
   ([constraints state]
    (let [boundary (:boundary constraints)]
      (if (empty? boundary)
@@ -189,6 +192,10 @@
     (if (< c1 c0)
       1
       (Math/exp (* -1 (/ diff t))))))
+
+
+
+;; Random generation
 
 
 (defn rand-rect [boundary sep]
