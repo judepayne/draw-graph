@@ -2,114 +2,65 @@
       :author "Jude Payne"}
     lib-draw-graph.geometry)
 
-;; All code here is performance optimised by minimising reflection.
+
+(defn overlaps?
+  "Returns true if m1 and m2 are in collision with each other.
+   sep is the separation that should be preserved."
+  [sep m1 m2]
+  (and (< (:x m1) (+ (:x m2) (:w m2) sep))
+       (> (+ (:x m1) (:w m1) sep) (:x m2))
+       (< (:y m1) (+ (:y m2) (:h m2) sep))
+       (> (+ (:y m1) (:h m1) sep) (:y m2))))
 
 
-(defn ex
-  "Creates an exception object with error-string."
-  [error-string]
-  #?(:clj (Exception. ^String error-string)
-     :cljs (js/Error. error-string)))
+(defn inside?
+  "Returns true if m is completely inside m1."
+  [sep m1 m]
+  (let [-sep (* -1 sep)]
+    (and (> (:x m) (+ (:x m1) sep))
+         (> (:y m) (+ (:y m1) sep))
+         (< (+ (:x m) (:w m)) (+ (:x m1) (:w m1) -sep))
+         (< (+ (:y m) (:h m)) (+ (:y m1) (:h m1) -sep)))))
 
 
-;; accessing members of deftype and defrecord
-;; https://dev.clojure.org/jira/browse/CLJ-1774
-;; don't treat a record as a map for speed!
-(defrecord Rect [^long x ^long y ^long w ^long h])
+(defn bigger?
+  "Returns true if m2 has grown from m1"
+  [m1 m2]
+  (or (< (:x m2) (:x m1))
+      (< (:y m2) (:y m1))
+      (> (:w m2) (:w m1))
+      (> (:h m2) (:h m1))))
 
 
-(defprotocol Rectangular
-  "Geometric checks between rectangular shapes."
-  (inside? [this that sep] "is this (+ sep-arator) inside that?")
-  (overlaps? [this that sep] "is this (+ sep) overlapping that?")
-  (bigger? [this that] "is this bigger than that?")
-  (area [this] "returns the area."))
+(def area (fn [m] (* (:w m) (:h m))))
 
 
-(defprotocol Random
-  "Randomly alter a shape."
-  (rand-shift [this max-shift] [this max-shift dimension]
-    "Randomly shift the left, top, right or bottom edge. When a dimension
-     is passed, can only be either :x (for randomly shifting left or right)
-     or :y (for randomly shifting top or bottom)."))
+
+;; Random generation of rectangles for anneal demo
+
+(defn rand-rect [boundary sep]
+  {(gensym)
+   {:x (+ (:x boundary) (+ sep (rand-int (- (:w boundary) (* 2 sep)))))
+    :y (+ (:y boundary) (+ sep (rand-int (- (:h boundary) (* 2 sep)))))
+    :w (rand-int (int (/ (:w boundary) 5)))
+    :h (rand-int (int (/ (:h boundary) 5)))}})
 
 
-(defprotocol Svg
-  "Convert to and from svg representations."
-  (->poly-coordinates [this])
-  (->hiccup [this])
-  (from-svg [s]))
+(defn- rand-rects*
+  [boundary sep]
+  (lazy-seq (cons (rand-rect boundary sep) (rand-rects* boundary sep))))
 
 
-;; helper constructs
-
-(def rect-keys [:x :y :w :h])
-
-
-(defn- rand-chg [^long max-shift]
-  (- (rand-int (* 2 max-shift)) max-shift))
-
-
-;; Implementations of protocols
-
-(extend-type Rect
-
-  Rectangular
-  (inside? [this ^long sep that]
-    (and (> (:x this) (+ (:x that) sep))
-         (> (:y this) (+ (:y that) sep))
-         (< (+ (:x this) (:w this)) (+ (:x that) (:w that) (* -1 sep)))
-         (< (+ (:y this) (:h this)) (+ (:y that) (:h that) (* -1 sep)))))
-
-  (overlaps? [this sep that]
-    (and (< (:x this) (+ (:x that) (:w that) sep))
-         (> (+ (:x this) (:w this) sep) (:x that))
-         (< (:y this) (+ (:y that) (:h that) sep))
-         (> (+ (:y this) (:h this) sep) (:y that))))
-
-  (bigger? [this that]
-    (or (< (:x this) (:x that))
-        (< (:y this) (:y that))
-        (> (:w this) (:w that))
-        (> (:h this) (:h that))))
-
-  (area [^Rect this]
-    (* (:w this) (:h this)))
-
-
-  Random
-  (rand-shift
-    ([^Rect this ^long max-shift]
-     (let [dim (get rect-keys (rand-int 4))
-           delta (rand-chg max-shift)
-           -delta (* -1 delta)]
-       (case dim
-         :x (Rect. (+ (:x this) delta) (:y this)
-                   (+ (:w this) -delta) (:h this))          
-         :y (Rect. (:x this) (+ (:y this) delta) 
-                   (:w this) (+ (:h this) -delta))
-         :w (Rect. (:x this) (:y this) (+ (:w this) delta) (:h this))
-         :h (Rect. (:x this) (:y this) (:w this) (+ (:h this) delta)))))
-
-    ([^Rect this ^long max-shift ^clojure.lang.Keyword dimension]
-     (let [delta (rand-chg max-shift)
-           -delta (* -1 delta)]
-       (case dimension
-         :x (let [dim (get [:x :w] (rand-int 2))]
-              (case dim
-                :x (Rect. (+ (:x this) delta) (:y this)
-                          (+ (:w this) -delta) (:h this))
-                :w (Rect. (:x this) (:y this) (+ (:w this) delta) (:h this))))
-         :y (let [dim (get [:y :h] (rand-int 2))]
-              (case dim
-                :y (Rect. (:x this) (+ (:y this) delta) 
-                          (:w this) (+ (:h this) -delta))
-                :h (Rect. (:x this) (:y this) (:w this) (+ (:h this) delta))))
-         (throw (ex "Possible dimensions to vary are :x and :y"))))))
-
-  
-  Svg
-  ;; We will implement the svg methods later
-  )
-
-
+(defn rand-rects
+  [n boundary sep]
+  (reduce
+   (fn [a c]
+     (if (= (count a) n)
+       (reduced a)
+       (if (and
+            (not-any? #((partial overlaps? sep (first (vals c)))  %) (vals a))
+            (inside? sep boundary (first (vals c))))
+         (merge a c)
+         a)))
+   {}
+   (take (+ n 30) (rand-rects* boundary sep))))

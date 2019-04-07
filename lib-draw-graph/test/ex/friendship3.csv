@@ -14,6 +14,9 @@ e:pandas:simone,pandas:ivy,|color:green2
 e:pandas:simone,pandas:summer,|color:green2
 e:wolves:leo,wolves:sebas-+tian
 e:wolves:leo,wolves:angel-+ique
+e:wolves:leo,carnivores:polaris
+e:carnivores:polaris,carnivores:penguiny
+e:brownbears:eliza,carnivores:polaris
 e:pandas:summer,wolves:leo
 e:flora:daisy|fillcolor:gold:shape:box,flora:rose,|splines:none:arrowhead:obox
 e:flora:rose|fillcolor:gold:shape:box,flora:lily,|style:invis

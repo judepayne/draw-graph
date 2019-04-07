@@ -1,8 +1,8 @@
 (ns ^{:doc "Simulated annealing for cluster layout."
       :author "Jude Payne"}
-  lib-draw-graph.anneal)
+  lib-draw-graph.anneal
+  (:require [lib-draw-graph.geometry :refer [overlaps? inside? bigger? area]]))
 
-(use 'criterium.core)
 
 #?(:clj (import [java.lang Math]))
 
@@ -25,24 +25,124 @@
     cost-fn          ;; the cost function
     p-fn             ;; the probability of a move function
     temp-fn          ;; the temperature of the system
-    ]
-   (let [cost (cost-fn constraints initial)]
+    & {:keys [dims terminate-early?]
+       :or {dims [:x :y :w :h] terminate-early? false}}]
+   (let [cost (cost-fn constraints initial)
+         last-cost (atom cost)]
      (loop [state initial
             cost cost
             k 1]
-       (if (and (< k max-iter)
-                (> cost min-cost))
-         (let [t (temp-fn (/ k max-iter))
-               next-state (neighbor-fn state)
-               next-cost (cost-fn constraints state
-                                  (second next-state) (first next-state))]
-           (if (> (p-fn cost next-cost t) (rand))
-             (recur (second next-state) next-cost (inc k))
-             (recur state cost (inc k))))
-         state)))))
+       ;; check every 500 reps that cost has changed more than 0.01%
+       (if (and (= 0 (rem k 500))
+                terminate-early?
+                (> 0.0001 (let [lc @last-cost
+                              del-cost (/ (- lc cost) cost)]
+                            (reset! last-cost cost)
+                            del-cost)))
+         state
+         ;; if it hasn't, loop the annealing function
+         (if (and (< k max-iter)
+                  (> cost min-cost))
+           (let [t (temp-fn (/ k max-iter))
+                 next-state (neighbor-fn state dims)
+                 next-cost (cost-fn constraints state
+                                    (second next-state) (first next-state))]
+             (if (> (p-fn cost next-cost t) (rand))
+               (recur (second next-state) next-cost (inc k))
+               (recur state cost (inc k))))
+           state))))))
 
+
+;; Annealing constants
+
+(def ^:const max-move 10)         ;; move amount +/- dim can be changed by
+(def ^:const PEN 10000)           ;; Penalty cost amount
+(def ^:const SEP 5)               ;; the Separation in points
+
+
+(defn- vary-rect
+  "When a rectangle/ polygon is defined with a point, width and height
+  (as opposed to two points), when varying the x or y of the point, it
+  is necessary to adjust the width or height as well to be consistent
+  with a rectangle/ polygon specified as two x,y points."
+  [rect dims]
+  (let [dim (rand-nth dims)
+        delta (- (rand-int (* 2 max-move)) max-move)]
+    (case dim
+      :x (-> rect
+             (assoc :x (+ (:x rect) delta)) 
+             (assoc :w (- (:w rect) delta)))
+      :y (-> rect
+             (assoc :y (+ (:y rect) delta))
+             (assoc :h (- (:h rect) delta)))
+      :w (-> rect
+             (assoc :w (+ (:w rect) delta)))
+      (-> rect (assoc :h (+ (:h rect) delta))))))
+
+
+(defn neighbor-fn
+  "Varies a random item from state and returns the new state
+  after checking that the new state passes constraints."
+  [state dims]
+  (let [k (rand-nth (keys state))
+        next (vary-rect (get state k) dims)]
+    [k (assoc state k next)]))
+
+
+(defn- passes-constraints?
+  "Checks that the new (proposed) state item satisfies constraints."
+  [constraints state next-state varied]
+  (let [prev-item (get state varied)
+        item (get next-state varied)
+        collide-item (partial overlaps? SEP item)
+        others (vals (dissoc next-state varied))]
+    (reduce
+     (fn [a [k v]]
+       (and a
+            (case k
+              :grow      (when v (bigger? prev-item item))
+              :boundary  (inside? SEP v item)
+              :collision (when v (not-any? #(collide-item %) others))
+              :obstacles (not-any? #(collide-item %) (vals v)))))
+            true
+            constraints)))
+
+
+(defn cost-fn
+  "Calculates cost, which is total bounded area minus sum of current areas.
+  For the initial call to calculate the system's cost, requires only constraints and state.
+  Subsequent calls require the state, next-state and k, the key of the entry that has
+  changed between them."
+  ([constraints state]
+   (let [boundary (:boundary constraints)]
+     (if (empty? boundary)
+       (throw (ex "no boundary condition!"))
+       (let [bounded-area (area boundary)]
+         (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals state)))))))
+
+  ([constraints state next-state k]
+   (let [bounded-area (area (:boundary constraints))
+         cost (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals next-state)))
+         penalty (if (passes-constraints? constraints state next-state k) 0 PEN)]
+     (+ cost penalty))))
+
+
+(defn temp-fn
+  "the temperature. r should be between 0 and 1"
+  [r]
+  (- 1.0 (float r)))
+
+
+(defn p-fn  "the probability of a move function, using Boltzmann"
+  [c0 c1 t]
+  (let [diff (- c1 c0)]
+    (if (< c1 c0)
+      1
+      (Math/exp (* -1 (/ diff t))))))
+
+
+;; test data
 ;; 20000 runs 180ms => down to 136. 25% saving
-;; Note: svg coordinates are x across and y DOWN.
 
 (def test-state
   {1023 {:x 10
@@ -65,177 +165,5 @@
               :w 200
               :h 200}
    :collision true
+   :obstacles {1 {:x 180 :y -50 :w 10 :h 10}}
    :grow true})
-
-
-
-(def possible-dims [:x :y :w :h])                 ;; possible dimensions (to vary)
-(defn rand-dim [] (rand-nth possible-dims))       ;; random dimension selected
-(def max-move 10)                                 ;; move amount +/- dim can be changed by
-(def PEN 10000)                                   ;; Penalty cost amount
-(def SEP 5)                                       ;; the Separation in points
-(defn change [] (- (rand-int (* 2 max-move)) max-move)) ;; generate a change
-(defn apply-change [old delta] (+ old delta))        ;; apply a change to old value
-
-
-(defn vary-rect
-  "When a rectangle/ polygon is defined with a point, width and height
-  (as opposed to two points), when varying the x or y of the point, it
-  is necessary to adjust the width or height as well to be consistent
-  with a rectangle/ polygon specified as two x,y points."
-  [rect]
-  (let [dim (rand-dim)
-        delta (change)]
-    (case dim
-      :x (-> rect
-             (assoc :x (+ (:x rect) delta)) 
-             (assoc :w (- (:w rect) delta)))
-      :y (-> rect
-             (assoc :y (+ (:y rect) delta))
-             (assoc :h (- (:h rect) delta)))
-      :w (-> rect
-             (assoc :w (+ (:w rect) delta)))
-      (-> rect (assoc :h (+ (:h rect) delta))))))
-
-
-(defn collision?
-  "Returns true if m1 and m2 are in collision with each other.
-   sep is the separation that should be preserved."
-  [sep m1 m2]
-  (and (< (:x m1) (+ (:x m2) (:w m2) sep))
-       (> (+ (:x m1) (:w m1) sep) (:x m2))
-       (< (:y m1) (+ (:y m2) (:h m2) sep))
-       (> (+ (:y m1) (:h m1) sep) (:y m2))))
-
-
-(defn inside?
-  "Returns true if m is completely inside m1."
-  [sep m1 m]
-  (let [-sep (* -1 sep)]
-    (and (> (:x m) (+ (:x m1) sep))
-         (> (:y m) (+ (:y m1) sep))
-         (< (+ (:x m) (:w m)) (+ (:x m1) (:w m1) -sep))
-         (< (+ (:y m) (:h m)) (+ (:y m1) (:h m1) -sep)))))
-
-
-(defn has-grown?
-  "Returns true if m2 has grown from m1"
-  [m1 m2]
-  (or (< (:x m2) (:x m1))
-      (< (:y m2) (:y m1))
-      (> (:w m2) (:w m1))
-      (> (:h m2) (:h m1))))
-
-
-(def area (fn [m] (* (:w m) (:h m))))
-
-
-(defn passes-constraints?
-  "Checks that the new (proposed) state item satisfies constraints."
-  [constraints state next-state varied]
-  (let [prev-item (get state varied)
-        item (get next-state varied)
-        collide-item (partial collision? SEP item)
-        others (vals (dissoc next-state varied))]
-    (reduce
-     (fn [a [k v]]
-       (and a
-            (case k
-              :grow      (when v (has-grown? prev-item item))
-              :boundary  (inside? SEP v item)
-              :collision (when v (not-any? #(collide-item %) others)))))
-            true
-            constraints)))
-
-
-(defn rand-key [m] (rand-nth (keys m)))
-
-
-(defn neighbor-fn
-  "Varies a random item from state and returns the new state
-  after checking that the new state passes constraints."
-  [state]
-  (let [k (rand-key state)
-        next (vary-rect (get state k))]
-    [k (assoc state k next)]))
-
-
-(defn cost-fn
-  "Calculates cost, which is total bounded area minus sum of current areas.
-  For the initial call to calculate the system's cost, requires only constraints and state.
-  Subsequent calls require the state, next-state and k, the key of the entry that has
-  changed between them."
-  ([constraints state]
-   (let [boundary (:boundary constraints)]
-     (if (empty? boundary)
-       (throw (ex "no boundary condition!"))
-       (let [bounded-area (area boundary)]
-         (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals state)))))))
-
-  ([constraints state next-state k]
-   (let [bounded-area (area (:boundary constraints))
-         cost (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals next-state)))
-         penalty (if (passes-constraints? constraints state next-state k) 0 PEN)]
-     (+ cost penalty))))
-
-
-(defn temp
-  "the temperature. r should be between 0 and 1"
-  [r]
-  (- 1.0 (float r)))
-
-
-(defn move-prob
-  "the probability of a move function, using Boltzmann"
-  [c0 c1 t]
-  (let [diff (- c1 c0)]
-    (if (< c1 c0)
-      1
-      (Math/exp (* -1 (/ diff t))))))
-
-
-
-;; Random generation
-
-
-(defn rand-rect [boundary sep]
-  {(gensym)
-   {:x (+ (:x boundary) (+ sep (rand-int (- (:w boundary) (* 2 sep)))))
-    :y (+ (:y boundary) (+ sep (rand-int (- (:h boundary) (* 2 sep)))))
-    :w (rand-int (int (/ (:w boundary) 5)))
-    :h (rand-int (int (/ (:h boundary) 5)))}})
-
-
-(defn- rand-rects*
-  [boundary sep]
-  (lazy-seq (cons (rand-rect boundary sep) (rand-rects* boundary sep))))
-
-
-(defn rand-rects
-  [n boundary sep]
-  (reduce
-   (fn [a c]
-     (if (= (count a) n)
-       (reduced a)
-       (if (and
-            (not-any? #((partial collision? sep (first (vals c)))  %) (vals a))
-            (inside? sep boundary (first (vals c))))
-         (merge a c)
-         a)))
-   {}
-   (take (+ n 30) (rand-rects* boundary sep))))
-
-
-(def boundary [3 3 580 360])
-
-(defn gen-rects []
-  (rand-rects (+ 3 (rand-int 7))
-                            (zipmap [:x :y :w :h] boundary)
-                            5))
-
-(def constraints
-  {:boundary (zipmap [:x :y :w :h] boundary)
-   :collision true
-   :grow true})
-
-

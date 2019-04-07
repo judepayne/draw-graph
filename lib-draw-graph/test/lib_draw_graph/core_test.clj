@@ -7,7 +7,8 @@
             [loom.alg                             :as loom.alg]
             [lib-draw-graph.processor             :refer :all]
             [lib-draw-graph.clustered             :refer :all]
-            [lib-draw-graph.graph                 :as g]))
+            [lib-draw-graph.graph                 :as g]
+            [lib-draw-graph.postprocessor         :refer :all]))
 
 
 (def standard-options

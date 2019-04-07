@@ -1,10 +1,11 @@
 (ns draw-graph.help
   (:refer-clojure :exclude [atom flush])
   (:require
-     [draw-graph.utils       :as utils]
-     [lib-draw-graph.anneal  :as a]
-     [reagent.core           :as r]
-     [reagent.ratom           :as ratom]
+     [draw-graph.utils         :as utils]
+     [lib-draw-graph.anneal    :as a]
+     [lib-draw-graph.geometry  :as g]
+     [reagent.core             :as r]
+     [reagent.ratom            :as ratom]
      [cljs.core.async :refer [<! chan close!]])
   (:require-macros
    [cljs.core.async.macros :as m :refer [go]]))
@@ -27,15 +28,24 @@
                   :stroke "#98b4c7"
                   :stroke-width 2}}])
 
+(defn rect-filled [x y w h]
+  [:rect {:x x :y y :width w :height h
+          :style {:fill "#98b4c7"
+                  :stroke "#98b4c7"
+                  :stroke-width 2}}])
+
 (def boundary [3 3 580 360])
 
 (defn gen-rects []
-  (a/rand-rects (+ 3 (rand-int 7))
-                            (zipmap [:x :y :w :h] boundary)
-                            5))
+  (g/rand-rects (+ 4 (rand-int 7))
+                (zipmap [:x :y :w :h] boundary)
+                5))
 
-(defn state->svg [state]
-  (map #(apply rect %) (map vals (vals state))))
+
+(defn rects->svg [state filled?]
+  (if filled?
+    (map #(apply rect-filled %) (map vals (vals state)))
+    (map #(apply rect %) (map vals (vals state)))))
 
 (def constraints
   {:boundary (zipmap [:x :y :w :h] boundary)
@@ -48,15 +58,15 @@
 (defn a [n]
   (if (:running @state)
     (swap! state assoc :state
-           (a/annealing (:state @state) n 0 constraints a/neighbor-fn a/cost-fn a/move-prob a/temp))))
+           (a/annealing (:state @state) n 0 (:constraints @state) a/neighbor-fn a/cost-fn a/p-fn a/temp-fn :dims [:x :y :w :h]))))
 
 
 (defn anneal []
   (go
-    (dotimes [n 60]
+    (dotimes [n 72]
       (do
         (a 100)
-        (<! (timeout 50))))))
+        (<! (timeout 40))))))
 
 
 (defn anneal-demo []
@@ -65,10 +75,18 @@
      [:div
       [:svg {:x 0 :y 0 :width 600 :height 400}
        (apply rect boundary)
-       (state->svg (:state @state))]]
+       (rects->svg (:state @state) false)
+       (rects->svg (-> @state :constraints :obstacles) true)
+       ]]
      [:input {:type "button" :value "Generate"
-              :on-click #(do (swap! state assoc :state (gen-rects))
-                             (swap! state assoc :running false))}]
+              :on-click #(let [rects (gen-rects)
+                               ob? (if (= 0 (rand-int 2)) false true)
+                               st (if ob? (into {} (rest rects)) rects)
+                               obs (if ob? (into {} [(first rects)]) [])]
+                           (do (swap! state assoc :state st)
+                               (swap! state assoc :running false)
+                               (swap! state assoc :constraints
+                                      (assoc constraints :obstacles obs))))}]
      [:input {:type "button" :value "Anneal!"
               :on-click #(do (swap! state assoc :running true)
                            (anneal))}]]))
@@ -80,6 +98,8 @@
   [:div.block-text
    [:p (utils/md->hiccup page-content)]
    [:h3 "Simulated annealing for layout demo"]
-   [:p "(slowed down ~50x)"]
-   [:div [anneal-demo]]])
+   [:p "(slowed down ~50x. Obstacles shown as filled rectangles.)"]
+   [:div [anneal-demo]]
+   ;@state
+   ])
 
