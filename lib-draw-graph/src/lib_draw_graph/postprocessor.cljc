@@ -4,6 +4,7 @@
   (:require [lib-draw-graph.svg :refer :all]
             [lib-draw-graph.anneal :refer :all]
             [lib-draw-graph.clustered :refer :all]
+            [lib-draw-graph.geometry :as g]
             [clojure.set :as s]))
 
 
@@ -101,4 +102,160 @@
    {}
    clstrs))
 
+
+(defn tasks->clusters 
+  "Converts anneal-tasks to a set of clusters"
+  [tasks]
+  (reduce (fn [a c]
+            (-> a
+                (conj (first c))
+                (clojure.set/union (second c))))
+          #{}
+          tasks))
+
+
+(defn sep
+  "Returns the separation map between the bounding"
+  [bounding & rects]
+  {:l (- (apply min (map :x rects)) (:x bounding))
+   :t (- (apply min (map :y rects)) (:y bounding))
+   :r (- (+ (:x bounding) (:w bounding))
+         (apply max (map (fn [o] (+ (:x o) (:w o))) rects)))
+   :b (- (+ (:y bounding) (:h bounding))
+         (apply max (map (fn [o] (+ (:y o) (:h o))) rects)))})
+
+
+(def collision-sep 8)
+
+
+(defn env
+  "Constructs a nested map which parameters required for annealing
+   from a zipper, a graph and the key clustered on in the graph."
+  [z g cluster-on]
+  (let [tasks (free-clusters-with-children g cluster-on)
+        clstrs (tasks->clusters tasks)
+        rects (clusters->boxes z clstrs)]
+    (reduce
+     (fn [a [prnt chdn]]
+       (let [p-rect (get rects prnt)
+             c-rects (map #(get rects %) chdn)
+             sep (apply sep p-rect c-rects)
+             state (into {} (map #(vector % (get rects %)) chdn))
+             constr {:boundary (g/inner-rect sep p-rect)
+                    :grow true
+                    :collision collision-sep}]
+         (-> a
+             (assoc-in [prnt :constraints] constr)
+             (assoc-in [prnt :state] state)
+             (assoc-in [prnt :boundary-sep] sep)
+             (assoc-in [prnt :rect] p-rect))))
+     {}
+     tasks)))
+
+
+(defn env->map
+  "Flattens an environment back rectangles"
+  [env]
+  (reduce
+   (fn [a [k v]]
+     (-> a
+         (assoc k (-> v :rect))
+         (merge (-> v :state))))
+   {}
+   env))
+
+
+(defn do-annealing
+  [z g cluster-on dims]
+  (let [env (env z g cluster-on)]
+    (reduce (fn [a [k v]]
+              (let [new-st (annealing (-> v :state)
+                                      10000
+                                      0
+                                      (-> (get a k) :constraints)
+                                      neighbor-fn
+                                      cost-fn
+                                      p-fn
+                                      temp-fn
+                                      :terminate-early? true
+                                      :dims dims)
+                    adj-env (reduce
+                             (fn [acc [k' v']]
+                               (if (some?  (get acc k'))
+                                 (-> acc
+                                     (assoc-in [k' :rect] v')
+                                     (assoc-in [k' :constraints :boundary]
+                                               (g/inner-rect
+                                                (-> (get acc k') :boundary-sep)
+                                                v')))
+                                 acc))
+                             a
+                             new-st)]
+                (-> adj-env
+                    (assoc-in [k :state] new-st))))
+            env
+            env)))
+
+
+(defn editor-rects [env clstr node]
+  (if-let [edited (get env clstr)]
+    (let [ps (rect->svg edited)]
+      (assoc-in node [:attrs (first ps)] (second ps)))
+    node))
+
+
+(defn edit-cluster-rects [z env]
+  (tree-edit z
+             all-clusters
+             7
+             (fn [n] (first (:content n)))
+             5
+             (partial editor-rects env)))
+
+
+;; Section on moving text around (cluster labels)
+
+(def y-label-spacer 18) ;; y dist below bounding rect's top
+
+
+(defn editor-label-posn [env clstr node]
+  ;; recentres cluster label
+  (if-let [edited (get env clstr)]
+    (-> node
+        (assoc-in [:attrs :x] (+ (:x edited) (/ (:w edited) 2)))
+        (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer)))
+    node))
+
+
+(defn edit-cluster-labels [z env]
+  (tree-edit z
+             all-clusters
+             7
+             (fn [n] (first (:content n)))
+             7
+             (partial editor-label-posn env)))
+
+
+(defn optimize-clusters
+  "Anneals free clusters in z & g.
+   z is a zipper over the svg and g the underlying graph.
+   Returns svg."
+  [z g cluster-on
+   & {:keys [dims]
+       :or {dims [:x :y :w :h]}}]
+  (let [env-out (env->map (do-annealing z g cluster-on dims))]
+    (-> (edit-cluster-rects z env-out)
+        ->zipper
+        (edit-cluster-labels env-out)
+        ->xml)))
+
+
+(defn post-process
+  [z g cluster-on
+   & {:keys [dims font]
+       :or {dims [:x :y :w :h] font nil}}]
+  (let [svg (optimize-clusters z g cluster-on :dims dims)]
+    (if font
+      (clojure.string/replace svg "Monospace" font)
+      svg)))
 

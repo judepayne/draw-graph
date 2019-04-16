@@ -5,7 +5,7 @@
 
 (defn overlaps?
   "Returns true if m1 and m2 are in collision with each other.
-   sep is the separation that should be preserved."
+   sep is a single distance to be taken into consideration."
   [sep m1 m2]
   (and (< (:x m1) (+ (:x m2) (:w m2) sep))
        (> (+ (:x m1) (:w m1) sep) (:x m2))
@@ -15,12 +15,24 @@
 
 (defn inside?
   "Returns true if m is completely inside m1."
-  [sep m1 m]
-  (let [-sep (* -1 sep)]
-    (and (> (:x m) (+ (:x m1) sep))
-         (> (:y m) (+ (:y m1) sep))
-         (< (+ (:x m) (:w m)) (+ (:x m1) (:w m1) -sep))
-         (< (+ (:y m) (:h m)) (+ (:y m1) (:h m1) -sep)))))
+  [m1 m]
+  (and (>= (:x m) (+ (:x m1)))
+       (>= (:y m) (+ (:y m1)))
+       (<= (+ (:x m) (:w m)) (+ (:x m1) (:w m1)))
+       (<= (+ (:y m) (:h m)) (+ (:y m1) (:h m1)))))
+
+
+(defn inner-rect
+  "Returns rect where the boundary is shifted inwards by the sep (separation).
+   sep is either a single integer or is a map of individual :l :r :t :b
+   (left right top bottom) separation distances that should used in the shift."
+  [sep rect]
+  (if (number? sep) (inner-rect {:l sep :r sep :t sep :b sep} rect)
+      (assoc rect
+             :x (+ (:x rect) (:l sep))
+             :y (+ (:y rect) (:t sep))
+             :w (- (:w rect) (:r sep) (:l sep))
+             :h (- (:h rect) (:b sep) (:t sep)))))
 
 
 (defn bigger?
@@ -36,31 +48,3 @@
 
 
 
-;; Random generation of rectangles for anneal demo
-
-(defn rand-rect [boundary sep]
-  {(gensym)
-   {:x (+ (:x boundary) (+ sep (rand-int (- (:w boundary) (* 2 sep)))))
-    :y (+ (:y boundary) (+ sep (rand-int (- (:h boundary) (* 2 sep)))))
-    :w (rand-int (int (/ (:w boundary) 5)))
-    :h (rand-int (int (/ (:h boundary) 5)))}})
-
-
-(defn- rand-rects*
-  [boundary sep]
-  (lazy-seq (cons (rand-rect boundary sep) (rand-rects* boundary sep))))
-
-
-(defn rand-rects
-  [n boundary sep]
-  (reduce
-   (fn [a c]
-     (if (= (count a) n)
-       (reduced a)
-       (if (and
-            (not-any? #((partial overlaps? sep (first (vals c)))  %) (vals a))
-            (inside? sep boundary (first (vals c))))
-         (merge a c)
-         a)))
-   {}
-   (take (+ n 30) (rand-rects* boundary sep))))

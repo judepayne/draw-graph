@@ -8,7 +8,9 @@
             [lib-draw-graph.processor             :refer :all]
             [lib-draw-graph.clustered             :refer :all]
             [lib-draw-graph.graph                 :as g]
-            [lib-draw-graph.postprocessor         :refer :all]))
+            [lib-draw-graph.postprocessor         :refer :all]
+            [lib-draw-graph.anneal                :refer :all]
+            [lib-draw-graph.svg                   :refer :all]))
 
 
 (def standard-options
@@ -104,3 +106,14 @@
 
 (defn js->svg [js]
   (dot->svg (js->dot js)))
+
+
+(comment)
+(def svg (csv->svg "test/ex/friendship1-b.csv"))
+(def z (svg->zipper svg))
+(def gr (csv->g "test/ex/friendship1-b.csv"))
+(def env1 (env z gr "animal"))
+(def env1-out (env->map (do-annealing z gr "animal")))
+
+  
+

@@ -14,6 +14,9 @@
      :cljs (js/Error. error-string)))
 
 
+(def debug (atom {}))
+
+
 ;; From Clojure data analysis cookbook
 (defn annealing
 
@@ -27,19 +30,31 @@
     temp-fn          ;; the temperature of the system
     & {:keys [dims terminate-early?]
        :or {dims [:x :y :w :h] terminate-early? false}}]
+   (reset! debug {:count 0 :success 0 :failure 0})
+   ;(println "new job:")
+   ;(println "state>>> " initial)
+   ;(println "constraints>>> " constraints)
    (let [cost (cost-fn constraints initial)
          last-cost (atom cost)]
      (loop [state initial
             cost cost
             k 1]
-       ;; check every 500 reps that cost has changed more than 0.01%
+       ;; check every 500 reps that cost has changed more than 0.001%
        (if (and (= 0 (rem k 500))
                 terminate-early?
-                (> 0.0001 (let [lc @last-cost
+                (> 0.00001 (let [lc @last-cost
                               del-cost (/ (- lc cost) cost)]
                             (reset! last-cost cost)
                             del-cost)))
-         state
+
+          (do 
+            ;(println "initial>>>" initial)
+            ;(println "final>>> " state)
+            ;(println "diff>>> " (take 2 (diff initial state)))
+                                        ;(println @debug)
+            ;(println "") 
+            state)
+
          ;; if it hasn't, loop the annealing function
          (if (and (< k max-iter)
                   (> cost min-cost))
@@ -57,7 +72,6 @@
 
 (def ^:const max-move 10)         ;; move amount +/- dim can be changed by
 (def ^:const PEN 10000)           ;; Penalty cost amount
-(def ^:const SEP 5)               ;; the Separation in points
 
 
 (defn- vary-rect
@@ -94,18 +108,30 @@
   [constraints state next-state varied]
   (let [prev-item (get state varied)
         item (get next-state varied)
-        collide-item (partial overlaps? SEP item)
-        others (vals (dissoc next-state varied))]
+        others (vals (dissoc next-state varied))
+        sep (:collision constraints)]
+
+(comment (do (swap! debug update-in [:count] inc)
+                 (if 
+                     (and
+                      (bigger? prev-item item)
+                      (inside? (:boundary constraints) item) ;;boundary spec'd exactly - without a SEP
+                      (not-any? #(overlaps? (:collision constraints) item %) others))
+                   (swap! debug update-in [:success] inc)
+                   (swap! debug update-in [:failure] inc))))
+    
     (reduce
      (fn [a [k v]]
        (and a
             (case k
-              :grow      (when v (bigger? prev-item item))
-              :boundary  (inside? SEP v item)
-              :collision (when v (not-any? #(collide-item %) others))
-              :obstacles (not-any? #(collide-item %) (vals v)))))
-            true
-            constraints)))
+              :grow      (if v (bigger? prev-item item) true)
+              :boundary  (inside? v item)
+              :collision (if sep (not-any? #(overlaps? sep item %) others) true)
+              :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) (vals v)) true))))
+     true
+     constraints)))
+
+
 
 
 (defn cost-fn
@@ -164,6 +190,30 @@
               :y -200
               :w 200
               :h 200}
-   :collision true
-   :obstacles {1 {:x 180 :y -50 :w 10 :h 10}}
+   :collision 8   ;; this number is the separation to be taken into account in deciding whether objects are in collision.
+   :obstacles nil ;{1 {:x 180 :y -50 :w 10 :h 10}}
    :grow true})
+
+(def test-state2
+  {"carnivores"
+   {:radius 12, :name "carnivores", :x 182, :y -812, :w 469, :h 662},
+   "rodents"
+   {:name "rodents", :x 493, :y -142, :w 118, :h 126}})
+
+
+(def test-constraints2
+  {:boundary {:x 174, :y -842, :w 485, :h 834}
+   :collision 8
+   :obstacles []
+   :grow true})
+
+
+(def test-state3
+  {"squirrels"
+   {:radius 12, :name "squirrels", :x 298, :y -112, :w 102, :h 88}})
+
+
+(def test-constraints3
+  {:boundary {:name "rodents", :x 190, :y -112, :w 453, :h 88},
+   :grow true,
+   :collision 8})

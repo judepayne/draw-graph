@@ -209,8 +209,11 @@
   (zip/xml-zip xml))
 
 
+(defn ->xml [parsed]
+  (xml/emit-str parsed))
+
 ;; remove this
-(def z (->zipper (parse-svg test-svg)))
+;; (def z (->zipper (parse-svg test-svg)))
 
 
 (defn tree-find
@@ -220,7 +223,7 @@
    i.e. a certain 'jump' away from each of the matched nodes.
 
    Example usage:
-     (tree-find z (partial cluster \"pandas\") (partial jump -2))
+     (tree-find z (partial cluster \"pandas\") -2)
    will return all nodes in the zipper z which are two locs previous
    to the nodes matched by the function (partial cluster \"pandas\")"
   ([zipper match-pred]
@@ -230,12 +233,12 @@
      (if (zip/end? loc)
        nodes
        (if-let [matcher-result (match-pred loc)]
-         (recur (zip/next loc) (conj nodes (zip/node (shift loc))))
+         (recur (zip/next loc) (conj nodes (zip/node (jump shift loc))))
          (recur (zip/next loc) nodes))))))
 
 
 (defn cluster->rect [zipper clstr]
-  (-> (tree-find zipper (partial cluster clstr) (partial jump -2))
+  (-> (tree-find zipper (partial cluster clstr) -2)
       first
       bounding-box
       (assoc :name clstr)
@@ -283,10 +286,13 @@
     (apply str
            (interpose " "
                       [start
-                       (add start (xy. 0 -height))
-                       (add start (xy. width -height))
+                       (add start (xy. 0 height))
+                       (add start (xy. width height))
                        (add start (xy. width 0))
                        start]))))
+
+(defn rect->poly [r]
+  (rect-poly (xy. (:x r) (:y r)) (:w r) (:h r)))
 
 
 (defn rounded-rect
@@ -299,7 +305,7 @@
         -w (* -1 w)]
     (apply str
            (interpose " "
-                      ["M" (add start (xy. radius 0))
+                      ["M" (add start (xy. radius height))
                        (l w 0)
                        (c radius :up)
                        (l 0 -h)
@@ -309,6 +315,18 @@
                        (l 0 h)
                        (c radius :right)]))))
 
+
+(defmulti rect->svg (fn [r] (some? (:radius r))))
+
+
+(defmethod rect->svg false [r]
+  (let [points (rect-poly (xy. (:x r) (:y r)) (:w r) (:h r))]
+    [:points points]))
+
+
+(defmethod rect->svg true [r]
+  (let [points (rounded-rect (xy. (:x r) (:y r)) (:w r) (:h r) (:radius r))]
+    [:d points]))
 
 
 (defn tree-edit
@@ -328,8 +346,49 @@
          (recur (zip/next loc)))))))
 
 
-(defn editor [node]
-  (println  ">>Here is a your thing: " node)
+(defn tree-edit
+  "Take a zipper, a function that matches a pattern in the tree,
+   and a function that edits the current location in the tree.  Examine the tree
+   nodes in depth-first order, determine whether the matcher matches, and if so
+   apply the editor.
+   k-shift is the jump (from match) to get to the loc where get-k is applied to
+   extract the key.
+   d-shift is the jump (from match) to get to the loc where the data to be edited sits."
+  ([zipper matcher editor]
+   (tree-edit zipper matcher 0 identity 0 editor))
+  ([zipper matcher k-shift get-k d-shift editor]
+   (loop [loc zipper]
+     (if (zip/end? loc)
+       (zip/root loc)
+       (if (matcher loc)
+         (let [k (get-k (zip/node (jump k-shift loc)))
+               new-loc  (zip/edit (jump d-shift loc) (partial editor k))]
+           (recur (zip/next (jump (- d-shift) new-loc))))
+         (recur (zip/next loc)))))))
+
+;; notes  jumps are 7 to content then -2 to get attr then (obviously -5)
+
+
+(defn ed-test [k node]
+  (println  ">>Here is your clstr: " k)
+  (println ">>Here is your node: " node)
   node)
 
+
+(defn ->root
+  "zips all the way up and returns the root node, reflecting any
+ changes."
+  {:added "1.0"}
+  [loc]
+    (if (zip/end? loc)
+      loc
+      (let [p (zip/up loc)]
+        (if p
+          (recur p)
+          loc))))
+
+
+(defn ->node
+  [loc]
+  (zip/node loc))
 
