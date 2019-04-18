@@ -109,11 +109,11 @@
 
 
 (comment)
-(def svg (csv->svg "test/ex/friendship1-b.csv"))
+(def svg (csv->svg "test/ex/friendship1.csv"))
 (def z (svg->zipper svg))
-(def gr (csv->g "test/ex/friendship1-b.csv"))
+(def gr (csv->g "test/ex/friendship1.csv"))
 (def env1 (env z gr "animal"))
-(def env1-out (env->map (do-annealing z gr "animal")))
+(def env1-out (env->map (do-annealing z gr "animal" [:x :y :w :h])))
 
   
 

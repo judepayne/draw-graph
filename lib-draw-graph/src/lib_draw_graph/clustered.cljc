@@ -89,16 +89,16 @@
 (defn cluster->nodes
   "Returns the nodes in the current cluster but not in children
    of the current cluster."
-  [g cluster-on cluster]
+  [g cluster]
   (filter
-   #(= cluster (get % (->keyword cluster-on)))
+   #(= cluster (get % (cluster-key g)))
    (loom.graph/nodes g)))
 
 
 (defn cluster->all-nodes
   "Returns all nodes in a cluster, given the :cluster-on key"
-  [g cluster-on cluster]
-  (let [k (->keyword cluster-on)]
+  [g cluster]
+  (let [k (cluster-key g)]
     (letfn [(children [clstr acc]
               (let [chds (cluster-children g clstr)
                     cur-nodes (cluster->nodes g k clstr)
@@ -114,24 +114,24 @@
 
 (defn nodes-by-cluster
   "Returns nodes in the graph grouped by cluster."
-  [g cluster-on]
-  (group-by (->keyword cluster-on) (loom.graph/nodes g)))
+  [g]
+  (group-by (cluster-key g) (loom.graph/nodes g)))
 
 
 (defn clusters
   "Returns the set of all clusters in the graph."
-  [g cluster-on]
-  (into #{} (flatten (conj (keys (nodes-by-cluster g cluster-on))
+  [g]
+  (into #{} (flatten (conj (keys (nodes-by-cluster g))
                            (vals (-> g :clusters :hierarchy :->parent))))))
 
 
 (defn node->clusters
   "Returns the set of clusters that the node is in."
-  [g cluster-on n]
+  [g n]
   (letfn [(ancestor [acc]
             (if-let [new-ancestor (cluster-parent g (first acc))]
               (ancestor (cons new-ancestor acc))
               acc))]
-    (into #{} (ancestor [((->keyword cluster-on) n)]))))
+    (into #{} (ancestor [((cluster-key g) n)]))))
 
 

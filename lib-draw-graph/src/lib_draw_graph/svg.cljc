@@ -140,6 +140,9 @@
 ;; 2 previous
 (def text :xmlns.http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg/text) ;<- where we find
 ; content ("squirrels") or whatever
+(def ellipse :xmlns.http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg/ellipse)
+
+(def circle :xmlns.http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg/circle)
 
 
 (defmulti bounding-box
@@ -154,6 +157,9 @@
       parse-polygon
       polygon->bounding-box))
 
+;; normally the shape is 2 back
+;; but eliminate Note from from end - it's further back
+;; also eliminate underline
 
 (defmethod bounding-box path [svg]
   (-> svg
@@ -161,6 +167,31 @@
       :d
       parse-path
       path->bounding-box))
+
+
+(defmethod bounding-box ellipse [svg]
+  (let [attrs (-> svg :attrs)
+        float (fn [s] (Float/parseFloat s))
+        cx (float (:cx attrs))
+        cy (float (:cy attrs))
+        rx (float (:rx attrs))
+        ry (float (:ry attrs))]
+    {:left (- cx rx)
+     :right (+ cx rx)
+     :top (- cy ry)
+     :bottom (+ cy ry)}))
+
+
+(defmethod bounding-box circle [svg]
+  (let [attrs (-> svg :attrs)
+        float (fn [s] (Float/parseFloat s))
+        cx (float (:cx attrs))
+        cy (float (:cy attrs))
+        r (float (:r attrs))]
+    {:left (- cx r)
+     :right (+ cx r)
+     :top (- cy r)
+     :bottom (+ cy r)}))
 
 
 (defn box->rect
@@ -195,6 +226,24 @@
     (> num-locs 0) (nth (iterate zip/next loc) num-locs)
     (< num-locs 0) (nth (iterate zip/prev loc) (- num-locs))
     0 loc))
+
+
+(defn node
+  "Matches the text of a node, including accomodating text split
+   with the special '+' characters."
+  [node loc]
+  (let [parts (clojure.string/split node #"\+")
+        raw-node (clojure.string/replace node #"\+" "")
+        num-parts (count parts)
+        jumps (take (dec num-parts) (iterate (partial + 3) 3))
+        get-part (fn [loc] (first (:content (zip/node loc))))
+        first-part (get-part loc)
+        contents (clojure.string/join
+                  (cons first-part
+                        (for [x jumps
+                              :let [y (get-part (jump x loc))]]
+                          y)))]
+    (= raw-node contents)))
 
 
 ;; Zippers for parsing the main svg tree.
@@ -242,6 +291,14 @@
       first
       bounding-box
       (assoc :name clstr)
+      box->rect))
+
+
+(defn node->rect [zipper nd]
+  (-> (tree-find zipper (partial node nd) -2)
+      first
+      bounding-box
+      (assoc :name nd)
       box->rect))
 
 

@@ -12,10 +12,12 @@
   "Returns clusters that (a) contain clusters (b) contain no nodes directly."
   ;; TODO: remove the (b) restriction by parsing all svg nodes and adding
   ;; 'obstacles' into the annealing routine.
-  [g cluster-on]
-  (let [clstrs (clusters g cluster-on)
-        with-nodes (into #{} (keys (nodes-by-cluster g cluster-on)))]
-    (s/difference clstrs with-nodes)))
+  [g]
+  (let [clstrs (clusters g)
+        ;with-nodes (into #{} (keys (nodes-by-cluster g)))
+        has-chdn (filter #(some? (cluster-children g %)) clstrs)]
+    ;(s/difference clstrs with-nodes)
+    (into #{} has-chdn)))
 
 
 ;;Kahn sort - topological sort of a graph
@@ -66,8 +68,8 @@
 
 (defn sorted-free-clusters
   "Kahn sorted free clusters"
-  [g cluster-on]
-  (filter (free-clusters g cluster-on) (kahn-sort (cluster-graph g))))
+  [g]
+  (filter (free-clusters g) (kahn-sort (cluster-graph g))))
 
 
 (defn with-chdn
@@ -78,8 +80,8 @@
 
 (defn free-clusters-with-children
   "Provides the targets for annealing in the graph."
-  [g cluster-on]
-  (->> (sorted-free-clusters g cluster-on)
+  [g]
+  (->> (sorted-free-clusters g)
        (with-chdn g)))
 
 ;; Now we need to set up the annealing jobs by reading in the svg
@@ -95,12 +97,18 @@
 
 
 (defn clusters->boxes
-  "Get the bounding boxes for the clusters from the zipper holding the svg."
+  "Get the bounding boxes for the clusters from the zipper over the svg."
   [z clstrs]
   (reduce 
    (fn [a c] (assoc a c (cluster->rect z c)))
    {}
    clstrs))
+
+
+(defn nodes->boxes
+  "Get the bounding boxes for all nodes from the zipper over the svg."
+  [z]
+  )
 
 
 (defn tasks->clusters 
@@ -131,8 +139,8 @@
 (defn env
   "Constructs a nested map which parameters required for annealing
    from a zipper, a graph and the key clustered on in the graph."
-  [z g cluster-on]
-  (let [tasks (free-clusters-with-children g cluster-on)
+  [z g node-key]
+  (let [tasks (free-clusters-with-children g)
         clstrs (tasks->clusters tasks)
         rects (clusters->boxes z clstrs)]
     (reduce
@@ -142,8 +150,17 @@
              sep (apply sep p-rect c-rects)
              state (into {} (map #(vector % (get rects %)) chdn))
              constr {:boundary (g/inner-rect sep p-rect)
-                    :grow true
-                    :collision collision-sep}]
+                     :grow true
+                     :collision collision-sep
+                     :obstacles (reduce
+                                 (fn [acc cur]
+                                   (assoc acc
+                                          (get cur node-key)
+                                          (dissoc
+                                           (node->rect z (get cur node-key))
+                                           node-key)))
+                                 {}
+                                 (cluster->nodes g prnt))}]
          (-> a
              (assoc-in [prnt :constraints] constr)
              (assoc-in [prnt :state] state)
@@ -166,8 +183,8 @@
 
 
 (defn do-annealing
-  [z g cluster-on dims]
-  (let [env (env z g cluster-on)]
+  [z g dims node-key]
+  (let [env (env z g node-key)]
     (reduce (fn [a [k v]]
               (let [new-st (annealing (-> v :state)
                                       10000
@@ -240,10 +257,10 @@
   "Anneals free clusters in z & g.
    z is a zipper over the svg and g the underlying graph.
    Returns svg."
-  [z g cluster-on
+  [z g node-key
    & {:keys [dims]
        :or {dims [:x :y :w :h]}}]
-  (let [env-out (env->map (do-annealing z g cluster-on dims))]
+  (let [env-out (env->map (do-annealing z g dims node-key))]
     (-> (edit-cluster-rects z env-out)
         ->zipper
         (edit-cluster-labels env-out)
@@ -251,10 +268,10 @@
 
 
 (defn post-process
-  [z g cluster-on
+  [z g node-key
    & {:keys [dims font]
        :or {dims [:x :y :w :h] font nil}}]
-  (let [svg (optimize-clusters z g cluster-on :dims dims)]
+  (let [svg (optimize-clusters z g node-key :dims dims)]
     (if font
       (clojure.string/replace svg "Monospace" font)
       svg)))
