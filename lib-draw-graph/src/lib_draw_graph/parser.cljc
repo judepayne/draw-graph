@@ -1,17 +1,10 @@
 (ns ^{:doc "Parsers for input data."
       :author "Jude Payne"}
   lib-draw-graph.parser
-  (:require [clojure.string    :as str]
+  (:require [clojure.string          :as str]
+            [lib-draw-graph.util     :as util]
             #?(:clj [instaparse.core :as insta :refer [defparser]]
                :cljs [instaparse.core :as insta :refer-macros [defparser]])))
-
-
-(defn ex
-  "Creates an exception object with error-string."
-  [error-string]
-  #?(:clj (java.lang.Exception. error-string)
-     :cljs (js/Error. error-string)))
-
 
 (defn- third
   "Returns third element of coll, or nil."
@@ -83,14 +76,14 @@
              (assoc acc k' v))))
        {}
        (partition 2 args))
-      (throw (ex (str "Error parsing: " s " > Must be an even number of parts"))))))
+      (throw (util/err (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
 (defn pairs [s]
   (let [args (split-parts s)]
     (if (even? (count args))
       (partition 2 args)
-      (throw (ex (str "Error parsing: " s " > Must be an even number of parts"))))))
+      (throw (util/err (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
 (defn conjcat [coll1 coll2]
@@ -156,7 +149,7 @@
    (fn [acc cur]
      (let [p (csv-line-parser cur)]
        (if (insta/failure? p)
-         (throw (ex (str "Parsing error with line: " cur)))
+         (throw (util/err (str "Parsing error with line: " cur)))
          (let [line (second p)]
            (case (first line)
              :H  (parse-header acc line)
@@ -164,6 +157,6 @@
              :Cs (parse-cluster-style acc line)
              :Cp (parse-cluster-parent acc line)
              :Ce (parse-cluster-edge acc line)
-             (throw (ex (str "No parser for this line: " cur))))))))
+             (throw (util/err (str "No parser for this line: " cur))))))))
    {}
    lines))

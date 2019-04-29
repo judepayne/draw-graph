@@ -23,11 +23,13 @@
    :g (bit-shift-right (bit-and rgb 0x00FF00) 8)
    :b (bit-and rgb 0x0000FF)})
 
+
 (defn ^:private hex
   "Convert an unsigned integer to a hex string representation."
   [n]
   #?(:clj (format "%x" n)
      :cljs (.toString n 16)))
+
 
 (defn ^:private str->rgb
   "Converts a string to an rgb color value, blending with blend-with."
@@ -123,7 +125,8 @@
 (defn first-label
   "Gets the first valid label for the node."
   [lbls n]
-  (let [lbl (some #(let [v ((keyword %) n)]
+  (let [lbls (str/split lbls #"/")
+        lbl (some #(let [v ((keyword %) n)]
                      (if (= "" v) false v)) lbls)]
     (if (nil? lbl) "" lbl)))
 
@@ -134,7 +137,7 @@
   (cond
     (and (leaf? g n) (-> opts :env :hide-leaves?)) ""
     :else (if-let [lbls (-> opts :node :label)]
-            (str/replace (first-label (str/split lbls #"/") n) #"\+" "\n")
+            (str/replace (first-label lbls n) #"\+" "\n")
             "")))
 
 

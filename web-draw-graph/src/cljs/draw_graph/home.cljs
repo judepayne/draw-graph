@@ -7,6 +7,7 @@
    [accountant.core          :as accountant]
    [kvlt.core                :as kvlt]
    [promesa.core             :as p]
+   [promesa.async-cljs :refer-macros [async]]
    [clojure.string           :as string]
    [draw-graph.utils         :as utils]
    [draw-graph.examples      :as examples]
@@ -47,8 +48,7 @@
 ;; Processing
 
 ;; determines whether dot is produced locally or in the lambda
-(def ^:dynamic *produce-dot-locally* false)
-
+(def ^:dynamic *produce-dot-locally* true)
 
 
 (defn clj->json
@@ -68,6 +68,7 @@
   [m]
   (into {} (filter (complement (comp #{""} last)) m)))
 
+
 (defn ->csv1 []
   {:display-options (remove-empty-strings (:options @local-state))
    :data (:data @local-state)
@@ -79,11 +80,11 @@
   {:display-options (remove-empty-strings (:options @local-state))
    :data (:data @local-state)})
 
+
 (defn dot->svg [data]
   {:data data
    :format-in "dot"
    :format-out "svg"})
-
 
 
 (defn post [url json-data]
@@ -113,29 +114,53 @@
   (reset! error message))
 
 
-(defn get-svg []
+(defn convert-dot->svg [dot]
+  (->>
+   (->svg (clj->json (dot->svg dot)))
+   (p/map json->clj)
+   (p/map :svg)))
+
+
+(defn process-remotely []
   (do
     (reset! processing true)
     (reset! error "")
     (->> 
-     (->svg (clj->json (if *produce-dot-locally*
-                         (try
-                           (dot->svg (processor/process (->dot)))
-                           (catch js/Error e
-                             (do
-                               (reset! svg "")
-                               (put-error (str  e)))))
-                         (->csv1))))
+     (->svg (clj->json (->csv1)))
      (p/map json->clj)
      (p/map :svg)
-                                        ;(p/map utils/html->hiccup)  ;; suppress conversion of svg to hiccup for perf
      (p/map put-svg)
      (p/error (fn [error] (put-error (.-message error)))))))
 
 
+(defn process-locally []
+  (do
+    (reset! processing true)
+    (reset! error "")
+    (let [in (->csv1)
+          g (try
+              (processor/csv->g in)
+              (catch js/Error e
+                (do
+                  (reset! svg "")
+                  (put-error (str  e)))))
+          dot (processor/g->dot in g)]
+      (->> (->svg (clj->json (dot->svg dot)))
+           (p/map json->clj)
+           (p/map :svg)
+           (p/map (partial processor/postprocess-svg g (-> in :display-options)))
+           (p/map put-svg)
+           (p/error (fn [error] (put-error (.-message error))))))))
+
+
+(defn get-svg []
+  (if *produce-dot-locally*
+    (process-locally)
+    (process-remotely)))
+
+
 ;; -------------------------
 ;; Controls input
-
 
 ;; ---- Utility functions
 
@@ -190,7 +215,8 @@
    [:option {:value "draw-graph.examples/example3"} "Two trees"]
    [:option {:value "draw-graph.examples/example4"} "CERN email connections"]
    [:option {:value "draw-graph.examples/example5"} "Circular tree"]
-   [:option {:value "draw-graph.examples/example6"} "Friendship cluster layout"]]) 
+   [:option {:value "draw-graph.examples/example6"} "cluster layout"]
+   [:option {:value "draw-graph.examples/example7"} "complex cluster layout"]]) 
 
 
 (defn click-upload-csv-hidden [e]
@@ -230,7 +256,7 @@
                                   (-> % .-target .-value))}]])
 
 
-;; ---- Left Display options
+;; Left Display options
 
 (defn hide-leaves []
   [:input {:type :checkbox :id :hide-leaves?
@@ -249,7 +275,7 @@
 
 (defn shape [] (fixed-select [:options :shape] local-state
                              "ellipse" "box" "circle" "egg" "diamond" "octagon" "square"
-                             "folder" "note" "cylinder" "plaintext" "underline"))
+                             "folder" "cylinder" "plaintext"))
 
 
 (defn layout [] (fixed-select [:options :layout] local-state
@@ -295,8 +321,6 @@
            (rest (for [x @headers] [:option {:key x} x]))))])
 
 
-;; ---- Right Display options-------
-
 (defn splines [] (fixed-select [:options :splines] local-state
                                "line" "spline" "none" "polyline" "ortho"))
 
@@ -324,11 +348,54 @@
 (defn filtergraph [] (text-input [:options :filter-graph] local-state))
 
 
+(defn pp? []
+  [:input {:type :checkbox :id :pp?
+           :checked (-> @options :post-process?)
+           :on-change #(swap! local-state update-in
+                              [:options :post-process?] not)}])
+
+
+(defn pp-font [] (text-input [:options :pp-font] local-state))
+
+
+(defn pp-clusters []
+  [:div
+   [:a.lbl (str \u2191)]
+   [:input {:type :checkbox :id :pp-clusters-top?
+            :checked (-> @options :pp-clusters :y)
+            :on-change #(swap! local-state update-in
+                               [:options :pp-clusters :y] not)}]
+   [:a.lbl (str \u00A0 \u00A0 \u00A0 \u00A0 \u2193)]
+   [:input {:type :checkbox :id :pp-clusters-bottom?
+            :checked (-> @options :pp-clusters :h)
+            :on-change #(swap! local-state update-in
+                               [:options :pp-clusters :h] not)}]
+   [:a.lbl (str \u00A0 \u00A0 \u2190)]
+   [:input {:type :checkbox :id :pp-clusters-left?
+            :checked (-> @options :pp-clusters :x)
+            :on-change #(swap! local-state update-in
+                               [:options :pp-clusters :x] not)}]
+   [:a.lbl (str \u00A0 \u00A0 \u2192)]
+   [:input {:type :checkbox :id :pp-clusters-right?
+            :checked (-> @options :pp-clusters :w)
+            :on-change #(swap! local-state update-in
+                               [:options :pp-clusters :w] not)}]])
+
+
+
 ;; ---- Options layout
 
 (defn row [label ctrl]
   [:div [:div.lbl label]
         [:div ctrl]])
+
+
+(defn label-row [label]
+  [:div [:a.lbl.row-sep label]])
+
+
+(defn empty-row []
+  [:div [:a.lbl.row-label (str \u00A0)]])  ;; \00A0 = &nbsp
 
 
 (defn toggle [a k v1 v2]
@@ -358,27 +425,44 @@
 (defn left-disp-opts [state]
   (fn []
     [:div.item7 {:class (:local-class @state)}
-     (row "layout" [layout])
+     (label-row "draw-graph")
      (row "node label" [node-label]) ;;dynamically generated
-     (row "node shape" [shape])
-     (row "cluster on" [cluster-on])
-     (row "color on" [color-on])
-     (row "rankdir" [rankdir])
      (row "elide lower levels" [elide-levels])
      (row "hide leaves" [hide-leaves])
-     (row "highlight roots" [show-roots])]))
+     (row "filter graph" [filtergraph])
+     (label-row "graphviz")
+     
+     (row "layout" [layout])
+     (row "rankdir" [rankdir])
+     (row "overlap" [overlap])
+     (row "ranksep" [ranksep])
+     (row "scale" [scale])
+
+     (label-row "draw-graph post process")
+     (row "expand clusters" [pp-clusters])
+]))
+
 
 (defn right-disp-opts [state]
   (fn []
     [:div.item8 {:class (:local-class @state)} 
+     (empty-row)
+     (row "cluster on" [cluster-on])
+     (row "color on" [color-on])
+     (row "highlight roots" [show-roots])
+     (empty-row)
+     (empty-row)
+     (empty-row)
+
+     (row "node shape" [shape])
      (row "splines" [splines])
-     (row "overlap" [overlap])
      (row "concentrate (edges)" [concentrate])
-     (row "ranksep" [ranksep])
      (row "nodesep" [nodesep])
-     (row "scale" [scale])
      (row "(node) fixedsize" [fixedsize])
-     (row "filter graph" [filtergraph])]))
+     
+     (row "" [pp?])
+     (row "font" [pp-font])
+]))
 
 
 ;; ---- Control buttons
@@ -437,7 +521,7 @@
    [:div.site-banner "draw-graph"]
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]
-   ;;@local-state
+   ;;(:options @local-state)
    ;; direct react call to insert svg as (html) text - for better performance
    [:div {:dangerouslySetInnerHTML {:__html @svg}}] 
    [:div.error @error]])

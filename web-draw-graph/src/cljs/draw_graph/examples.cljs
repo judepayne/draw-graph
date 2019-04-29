@@ -13,7 +13,10 @@
    :elide "0"
    :splines "splines"
    :overlap "false"
-   :concentrate "false"})
+   :concentrate "false"
+   :post-process? false
+   :pp-clusters {:y true :h true :x true :w true}
+   :pp-font ""})
 
 ;; ------------------
 ;; example 1: friendship graph
@@ -148,6 +151,19 @@ cs:plantae|bgcolor:palegreen2:style:rounded
 cp:pandas:bears:brownbears:bears:bears:carnivores:carnivores:animals
 cp:squirrels:rodents:wolves:carnivores:rodents:animals:flora:plantae
 ce:animals:rodents:pandas:wolves"
+   :options
+   (merge default-options
+          {:layout "dot"
+           :label "name"
+           :shape "ellipse"
+           :splines "ortho"
+           :cluster-on "animal"
+           :rankdir "TB"
+           })})
+
+
+(defn ^:export example7 []
+  {:data "h:animal:name\ne:pandas:simone,pandas:max\ne:pandas:sharhar,pandas:summer\ne:pandas:nikkai|fillcolor:gold4:shape:triangle,pandas:isobel\ne:pandas:malakai,pandas:delila\ne:pandas:cristo-+lene,pandas:sharhar\ne:pandas:kacey,pandas:sharhar|shape:rect:fillcolor:blue:fontcolor:white\ne:pandas:malakai,pandas:ivy\ne:pandas:max,pandas:Bridget|fillcolor:aquamarine:fontcolor:black,|color:blue\ne:pandas:ivy,squirrels:huxley,|color:red\ne:pandas:kacey,brownbears:cosmo,|color:deeppink\ne:brownbears:cosmo|shape:septagon:style:filled,brownbears:eliza,|color:deeppink\ne:pandas:simone,pandas:ivy,|color:green2\ne:pandas:simone,pandas:summer,|color:green2\ne:wolves:leo,wolves:sebas-+tian\ne:wolves:leo,wolves:angel-+ique\ne:wolves:leo,carnivores:polaris\ne:carnivores:polaris,carnivores:penguiny\ne:brownbears:eliza,carnivores:polaris\ne:pandas:summer,wolves:leo\ne:flora:daisy|fillcolor:gold:shape:box,flora:rose,|splines:none:arrowhead:obox\ne:flora:rose|fillcolor:gold:shape:box,flora:lily,|style:invis\ne:flora:lily|fillcolor:gold:shape:box,flora:jasmine,|splines:none:arrowhead:invodot:arrowsize:1.3\ne:flora:jasmine|fillcolor:gold:shape:box,flora:fleur,|style:invis\ne:flora:fleur|fillcolor:gold:shape:box,flora:alyssa|fillcolor:gold:shape:box,|fillcolor:palegoldenrod:style:dashed:color:goldenrod2\ne:flora:fleur,flora:aster|fillcolor:gold:shape:star,|fillcolor:gray:style:dotted\ne:wolves:angel-+ique,flora:lily,|taillabel:<<table cellpadding='1' border='1' cellborder='0' bgcolor='#c731ed' color='magenta' style='rounded'><tr><td><font point-size='9'>1.</font></td></tr></table>>:headlabel:<<table cellpadding='1' border='1' cellborder='0' bgcolor='#c731ed' color='magenta' style='rounded'><tr><td><font point-size='9'>1.</font></td></tr></table>>:labeldistance:0.5:labelangle:0:color:#c731ed00:style:dotted:constraint:false\ncs:pandas|bgcolor:cornsilk1:fontcolor:black\ncs:brownbears|bgcolor:palegreen:color:limegreen:margin:20\ncs:squirrels|bgcolor:pink:margin:15:style:rounded\ncs:bears|bgcolor:bisque3:margin:15:style:rounded:fontcolor:chocolate4\ncs:carnivores|bgcolor:ivory3:margin:15:style:rounded:fontcolor:maroon1\ncs:animals|bgcolor:lightskyblue1\ncs:rodents|bgcolor:indianred2\ncs:wolves|bgcolor:gray64:style:rounded:fontcolor:white\ncs:flora|bgcolor:palegreen:style:rounded:fontcolor:seagreen\ncs:plantae|bgcolor:palegreen2:style:rounded\ncp:pandas:bears:brownbears:bears:bears:carnivores:carnivores:animals\ncp:squirrels:rodents:wolves:carnivores:rodents:animals:flora:plantae\nce:animals:rodents:pandas:wolves"
    :options
    (merge default-options
           {:layout "dot"

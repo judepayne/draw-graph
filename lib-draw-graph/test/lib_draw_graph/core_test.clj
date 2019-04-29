@@ -34,6 +34,9 @@
    ;:elide "0"
    :fix-ranks? false
    ;:filter-graph "animal:pandas"
+   :post-process? true
+   :pp-clusters {:y true :h true :x true :w true}
+   :pp-font "Helvetica"
 ])
 
 (defn options [] (apply hash-map standard-options))
@@ -62,7 +65,7 @@
 
 (defn csv->dot [filename]
   (-> (csv->csv1 filename)
-      process))
+      process-to-dot))
 
 
 (defn- read-input
@@ -72,7 +75,7 @@
 
 (defn js->dot [js]
   (let [in (read-input js)]
-    (process in)))
+    (process-to-svg in)))
 
 
 (def path-to-dot "/usr/local/bin/dot")
@@ -101,19 +104,8 @@
 
 
 (defn csv->svg [filename]
-  (dot->svg (csv->dot filename)))
+  (process-to-svg (csv->csv1 filename) dot->svg))
 
 
 (defn js->svg [js]
   (dot->svg (js->dot js)))
-
-
-(comment)
-(def svg (csv->svg "test/ex/friendship1.csv"))
-(def z (svg->zipper svg))
-(def gr (csv->g "test/ex/friendship1.csv"))
-(def env1 (env z gr "animal"))
-(def env1-out (env->map (do-annealing z gr "animal" [:x :y :w :h])))
-
-  
-

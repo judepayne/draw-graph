@@ -40,12 +40,6 @@
   (json/read-str js :key-fn keyword))
 
 
-(defn ->dot
-  "Converts csv format to dot. input is not json, but clojure map"
-  [in]
-  (processor/process in))
-
-
 (defn ->svg
   "Converts csv1 format to svg format. input is json"
   [js]
@@ -53,20 +47,21 @@
   (try
     (let [in (read-input js)
           svg (case (*format-in* in)
-                "csv" (let [d (processor/process in)]
-                        (println "PROCESSED dot>> " d)
-                        (dot->svg d))
+                "csv" (do ;(println "PROCESSING data>> " in)
+                          (processor/process-to-svg in dot->svg))
                 "dot" (dot->svg (:data in))
                 (throw (IllegalArgumentException.
-                        "Error: only 'csv' or 'dot' are allowed input formats.")))]
+                        "Error: only 'csv' or 'dot' are allowed input formats.")))
+          ;; put in the svg post processing here
+          ;; need a function with process to make the graph.. or maybe it's returned.
+          ]
 
       (case (*format-out* in)
         "svg" (json/write-str {:svg svg})
         (json/write-str {:error "Error: only 'svg' format can be specified as an output."})))
     (catch Exception e
       ;(json/write-str {:error (str "Error from lambda function: " (.getMessage e))})
-      (println (str "!!Graphviz error!!>>> " (.getMessage e)))
-      )))
+      (println (str "!!Graphviz error!!>>> " (.getMessage e))))))
 
 ;; gen-class and how to use it
 

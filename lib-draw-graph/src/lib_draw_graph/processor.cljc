@@ -7,7 +7,10 @@
             [loom.attr                      :as loom.attr]
             [clojure.string                 :as str]
             [lib-draw-graph.clustered       :as clstr]
-            [lib-draw-graph.preprocessor    :as preprocessor]))
+            [lib-draw-graph.preprocessor    :as preprocessor]
+            [lib-draw-graph.postprocessor   :as postprocessor]
+            [lib-draw-graph.util            :as util]))
+
 
 ;; Keys used in all JSON messages
 
@@ -111,6 +114,11 @@
 ;; -----------
 ;; public interface functions
 
+(defn- not-blank [s]
+  (if (or (= "" s) nil)
+    nil
+    s))
+
 
 (defn preprocess-graph [graph opts]
   (-> graph
@@ -119,16 +127,61 @@
       (maybe-fix-ranks opts)))
 
 
-(defn- not-blank [s]
-  (if (or (= "" s) nil)
-    nil
-    s))
+(defn postprocess-svg [graph opts svg]
+  (if (-> opts :post-process?)
+    (let [svg' (let [font (-> opts :pp-font)]
+                 (if (and (not= font "") (not (nil? font)))
+                   (clojure.string/replace svg "Monospace" font)
+                   svg))
+          svg'' (if (not-blank (-> opts :cluster-on))
+                  ;; do cluster optimization
+                  (let [dims (reduce-kv (fn [m k v] (if v (conj m k) m))
+                                        []
+                                        (-> opts :pp-clusters))]
+                    (postprocessor/optimize-clusters
+                     svg'
+                     graph
+                     (partial g/first-label (-> opts :label))
+                     :dims dims))
+                  ;; not a clustered graph. just return the svg
+                  svg')]
+      svg'')
+    ;; just return the svg as post processing not required
+    svg))
 
 
-(defn process [in]
-  (let [g (if-let [cluster-on (not-blank (-> in :display-options :cluster-on))]
+(defn process-to-dot [in]
+  (let [cluster-on (not-blank (-> in :display-options :cluster-on))
+        g (if cluster-on
             (loom-graph (:data in) cluster-on)
             (loom-graph (:data in)))]
     (-> g
         (preprocess-graph (:display-options in))
         (g/process-graph (:display-options in)))))
+
+
+(defn csv->g [in]
+  (let [cluster-on (not-blank (-> in :display-options :cluster-on))]
+    (if cluster-on
+      (loom-graph (:data in) cluster-on)
+      (loom-graph (:data in)))))
+
+
+(defn g->dot [in g]
+  (-> g
+      (preprocess-graph (:display-options in))
+      (g/process-graph (:display-options in))))
+
+
+(defn process-to-svg [in dot->svg]
+  (case (:format-in in)
+
+    "dot" (dot->svg (:data in)) ;; we can't do any post-processing
+
+    "csv" (let [g (csv->g in)
+                dot (g->dot in g)
+                svg (dot->svg dot)]
+            (postprocess-svg g (-> in :display-options) svg))
+
+    (throw (util/err "Error: only 'csv' or 'dot' are allowed input formats."))))
+

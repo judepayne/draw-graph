@@ -4,13 +4,8 @@
   (:require [clojure.zip           :as zip]
             [clojure.data.zip.xml  :refer [xml-> xml1-> attr attr= text= tag=]]
             [clojure.data.xml      :as xml]
-            [lib-draw-graph.geometry :refer :all]
             #?(:clj [instaparse.core :as insta :refer [defparser]]
-               :cljs [instaparse.core :as insta :ref-macros [defparser]])))
-
-;; Remove this!
-(def test-svg (slurp "test.svg"))
-;; and this:
+               :cljs [instaparse.core :as insta :refer-macros [defparser]])))
 
 
 ;; -----------------
@@ -25,26 +20,30 @@
     (str x "," y))
   Geom
   (add [this that]
-    (let [x-sum (+ x (.x that))
-          y-sum (+ y (.y that))]
+    (let [x-sum (+ x #?(:clj (.x that) :cljs (.-x that)))
+          y-sum (+ y #?(:clj (.y that) :cljs (.-y that)))]
       (xy. x-sum y-sum))))
 
 
 (defn xs
   "Returns the x components of the xys"
   [& xys]
-  (map #(.x %) xys))
+  #?(:clj (map #(.x %) xys)
+     :cljs (map #(.-x %) xys)))
 
 
 (defn ys
   "Returns the y components of the xys"
   [& xys]
-  (map #(.y %) xys))
+  #?(:clj (map #(.y %) xys)
+     :cljs (map #(.-y %) xys)))
 
 
 (defn str-pair->xy [pair]
-  (xy. (read-string (first pair))
-       (read-string (second pair))))
+  #?(:clj (xy. (read-string (first pair))
+               (read-string (second pair)))
+     :cljs (xy. (cljs.reader/read-string (first pair))
+                (cljs.reader/read-string (second pair)))))
 
 
 ;; -----------------
@@ -125,7 +124,9 @@
             xs (apply xs pts)
             ys (apply ys pts)
             bdg (polygon->bounding-box pts)
-            radius (abs (- (:left bdg) (.x (first pts))))]
+            radius (abs (- (:left bdg)
+                           #?(:clj (.x (first pts))
+                              :cljs (.-x (first pts)))))]
         (assoc bdg :radius radius))))
 
 
@@ -157,9 +158,6 @@
       parse-polygon
       polygon->bounding-box))
 
-;; normally the shape is 2 back
-;; but eliminate Note from from end - it's further back
-;; also eliminate underline
 
 (defmethod bounding-box path [svg]
   (-> svg
@@ -171,11 +169,11 @@
 
 (defmethod bounding-box ellipse [svg]
   (let [attrs (-> svg :attrs)
-        float (fn [s] (Float/parseFloat s))
-        cx (float (:cx attrs))
-        cy (float (:cy attrs))
-        rx (float (:rx attrs))
-        ry (float (:ry attrs))]
+        flo (fn [s] #?(:clj (Float/parseFloat s) :cljs (js/parseFloat s)))
+        cx (flo (:cx attrs))
+        cy (flo (:cy attrs))
+        rx (flo (:rx attrs))
+        ry (flo (:ry attrs))]
     {:left (- cx rx)
      :right (+ cx rx)
      :top (- cy ry)
@@ -184,10 +182,10 @@
 
 (defmethod bounding-box circle [svg]
   (let [attrs (-> svg :attrs)
-        float (fn [s] (Float/parseFloat s))
-        cx (float (:cx attrs))
-        cy (float (:cy attrs))
-        r (float (:r attrs))]
+        flo (fn [s] #?(:clj (Float/parseFloat s) :cljs (js/parseFloat s)))
+        cx (flo (:cx attrs))
+        cy (flo (:cy attrs))
+        r (flo (:r attrs))]
     {:left (- cx r)
      :right (+ cx r)
      :top (- cy r)
@@ -250,8 +248,7 @@
 
 (defn parse-svg [svg]
   (-> svg
-      java.io.StringReader.
-      xml/parse))
+      xml/parse-str))
 
 
 (defn ->zipper [xml]
@@ -384,23 +381,6 @@
 (defmethod rect->svg true [r]
   (let [points (rounded-rect (xy. (:x r) (:y r)) (:w r) (:h r) (:radius r))]
     [:d points]))
-
-
-(defn tree-edit
-  "Take a zipper, a function that matches a pattern in the tree,
-   and a function that edits the current location in the tree.  Examine the tree
-   nodes in depth-first order, determine whether the matcher matches, and if so
-   apply the editor."
-  ([zipper matcher editor]
-   (tree-edit zipper matcher identity identity editor))
-  ([zipper matcher shift reshift editor]
-   (loop [loc zipper]
-     (if (zip/end? loc)
-       (zip/root loc)
-       (if-let [matcher-result (matcher loc)]
-         (let [new-loc (zip/edit (shift loc) editor)]
-           (recur (zip/next (reshift new-loc))))
-         (recur (zip/next loc)))))))
 
 
 (defn tree-edit

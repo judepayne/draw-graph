@@ -160,7 +160,7 @@ select {
 }
 
 .opts-hdr{
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .hidden {
@@ -175,7 +175,7 @@ select {
 .lbl {
   font-size: 0.75em;
   color: #09F;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .show-hide, .show-hide:hover {
@@ -184,10 +184,23 @@ select {
   color: #999;
 }
 
+.row-label {
+  margin-top: 20px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: #999;
+}
+
+.row-sep {
+  margin-left: 3px;
+  text-decoration: none;
+  color: #999;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50px 50px 360px 30px 480px 50px;
+  grid-template-rows: 50px 50px 360px 30px 600px 50px;
   grid-gap: 3px
 }
 
@@ -261,7 +274,7 @@ select {
   }  
   .wrapper {
     grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 50px 50px 400px 50px;
+    grid-template-rows: 50px 50px 490px 50px;
   }
   .item5 {
     grid-column: 1 / 4;
