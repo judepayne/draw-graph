@@ -28,6 +28,7 @@
    :splines "ortho"
    :rankdir "TB"
    :fixedsize true
+   :tooltip "name/animal"
    ;:scale 2
    :overlap false
    :concentrate true
@@ -52,14 +53,14 @@
   (s->csv1 (slurp filename)))
 
 
-(defn csv->g [filename]
+(defn csv->graph [filename]
   (let [in (csv->csv1 filename)
         g (loom-graph (:data in) (:cluster-on (options)))]
     (-> g
         (preprocess-graph (options)))))
 
 
-(defn g->dot [g]
+(defn graph->dot [g]
   (g/process-graph g (options)))
 
 

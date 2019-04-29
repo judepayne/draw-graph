@@ -1,5 +1,6 @@
 (ns draw-graph.examples)
 
+
 (def default-options
   {:label ""
    :hide-leaves? false
@@ -16,7 +17,9 @@
    :concentrate "false"
    :post-process? false
    :pp-clusters {:y true :h true :x true :w true}
-   :pp-font ""})
+   :pp-font ""
+   :tooltip ""})
+
 
 ;; ------------------
 ;; example 1: friendship graph

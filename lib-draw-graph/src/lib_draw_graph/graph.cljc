@@ -84,7 +84,7 @@
     :layout "dot"
     :splines "lines"
     :overlap "prism"
-    :pad 1
+    :pad 0.2
     :rankdir "LR"
     }
    :node
@@ -141,6 +141,18 @@
             "")))
 
 
+(defn node-tooltip
+  "Returns the tooltip for the node n in g given options"
+  [g opts n]
+  (when-let [tt (-> opts :node :tooltip)]
+    (let [ks (map keyword (str/split tt #"/"))]
+      (reduce
+       (fn [a c]
+         (str a (name c) ": "(get n c) "\n" " "))
+       ""
+       ks))))
+
+
 (defn ^:private node-descriptor
   "Returns map of attributes for the node from *display-conf*."
   [g opts n]
@@ -149,7 +161,8 @@
    ;; attrs result from functions..
    {:shape (shape g opts n)
     :label (node-label g opts n)
-    :fillcolor (fillcolor g opts n)}
+    :fillcolor (fillcolor g opts n)
+    :tooltip (node-tooltip g opts n)}
    ;;per node attrs supplied by user
    (loom.attr/attrs g n)))
 
@@ -161,7 +174,7 @@
   (group-map opts
              [:graph :dpi :layout :pad :splines :sep :ranksep
               :scale :overlap :nodesep :rankdir :concentrate]
-             [:node :shape :label :fontsize :style :fixedsize]
+             [:node :shape :label :fontsize :style :fixedsize :tooltip]
              [:env :hide-leaves? :show-roots? :color-on]))
 
 

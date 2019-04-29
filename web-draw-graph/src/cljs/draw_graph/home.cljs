@@ -273,6 +273,9 @@
 (defn node-label [] (text-input [:options :label] local-state))
 
 
+(defn tooltip [] (text-input [:options :tooltip] local-state))
+
+
 (defn shape [] (fixed-select [:options :shape] local-state
                              "ellipse" "box" "circle" "egg" "diamond" "octagon" "square"
                              "folder" "cylinder" "plaintext"))
@@ -422,47 +425,75 @@
       "Options" [:a.lbl.show-hide (:lbl @state)]]]))
 
 
-(defn left-disp-opts [state]
+(defn left-disp-opts1 [state]
   (fn []
-    [:div.item7 {:class (:local-class @state)}
+    [:div.controls1l {:class (:local-class @state)}
      (label-row "draw-graph")
-     (row "node label" [node-label]) ;;dynamically generated
-     (row "elide lower levels" [elide-levels])
+     (row "node label" [node-label])
+     (row "tooltip" [tooltip])
      (row "hide leaves" [hide-leaves])
-     (row "filter graph" [filtergraph])
-     (label-row "graphviz")
-     
-     (row "layout" [layout])
-     (row "rankdir" [rankdir])
-     (row "overlap" [overlap])
-     (row "ranksep" [ranksep])
-     (row "scale" [scale])
+     (row "post process" [pp?])
 
-     (label-row "draw-graph post process")
-     (row "expand clusters" [pp-clusters])
 ]))
 
 
-(defn right-disp-opts [state]
+(defn middle-disp-opts1 [state]
   (fn []
-    [:div.item8 {:class (:local-class @state)} 
+    [:div.controls1m {:class (:local-class @state)} 
      (empty-row)
      (row "cluster on" [cluster-on])
-     (row "color on" [color-on])
+     (row "filter graph" [filtergraph])
      (row "highlight roots" [show-roots])
-     (empty-row)
-     (empty-row)
-     (empty-row)
+     (row "expand clusters" [pp-clusters])
 
-     (row "node shape" [shape])
-     (row "splines" [splines])
-     (row "concentrate (edges)" [concentrate])
-     (row "nodesep" [nodesep])
-     (row "(node) fixedsize" [fixedsize])
-     
-     (row "" [pp?])
-     (row "font" [pp-font])
 ]))
+
+
+(defn right-disp-opts1 [state]
+  (fn []
+    [:div.controls1r {:class (:local-class @state)} 
+     (empty-row)
+     (row "color on" [color-on])
+     (row "elide lower levels" [elide-levels])
+     (empty-row)
+     (empty-row)
+     (row "font" [pp-font])    
+]))
+
+(defn left-disp-opts2 [state]
+  (fn []
+    [:div.controls2l {:class (:local-class @state)} 
+     (label-row "graphviz")     
+     (row "layout" [layout])
+     (row "(node) fixedsize" [fixedsize])
+     (row "nodesep" [nodesep])     
+     (row "overlap" [overlap])
+     
+]))
+
+(defn middle-disp-opts2 [state]
+  (fn []
+    [:div.controls2m {:class (:local-class @state)} 
+     (empty-row)
+     (row "rankdir" [rankdir])
+     (row "splines" [splines])
+     (row "ranksep" [ranksep])
+     (row "scale" [scale])   
+     
+]))
+
+(defn right-disp-opts2 [state]
+  (fn []
+    [:div.controls2r {:class (:local-class @state)} 
+     (empty-row)
+     (row "node shape" [shape])
+     (empty-row) (empty-row)
+     (row "concentrate (edges)" [concentrate])
+     (empty-row) (empty-row)
+
+]))
+
+
 
 
 ;; ---- Control buttons
@@ -507,10 +538,15 @@
      [:div.item4 [:label {:id "file-name"} (:data-filename @local-state)]]
      [:div.item5 [data-input local-state]]
      [disp-opts-hdr state]
-     [left-disp-opts state]
-     [right-disp-opts state]
+     [left-disp-opts1 state]
+     [middle-disp-opts1 state]
+     [right-disp-opts1 state]
+     [left-disp-opts2 state]
+     [middle-disp-opts2 state]
+     [right-disp-opts2 state]
      [:div.item9 [process-button]]
-     [:div.item10 [save-button]]]))
+     [:div.item10 [save-button]]
+     [:div.item11 {:dangerouslySetInnerHTML {:__html @svg}}]]))
 
 ;; -------------------------
 ;; Page
@@ -522,6 +558,4 @@
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]
    ;;(:options @local-state)
-   ;; direct react call to insert svg as (html) text - for better performance
-   [:div {:dangerouslySetInnerHTML {:__html @svg}}] 
    [:div.error @error]])
