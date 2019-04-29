@@ -429,8 +429,8 @@
   (fn []
     [:div.controls1l {:class (:local-class @state)}
      (label-row "draw-graph")
-     (row "node label" [node-label])
-     (row "tooltip" [tooltip])
+     (row "node labels" [node-label])
+     (row "node tooltips" [tooltip])
      (row "hide leaves" [hide-leaves])
      (row "post process" [pp?])
 

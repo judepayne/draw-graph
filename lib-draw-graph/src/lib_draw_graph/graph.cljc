@@ -146,11 +146,13 @@
   [g opts n]
   (when-let [tt (-> opts :node :tooltip)]
     (let [ks (map keyword (str/split tt #"/"))]
-      (reduce
-       (fn [a c]
-         (str a (name c) ": "(get n c) "\n" " "))
-       ""
-       ks))))
+      (apply str (interpose
+                  "\n"
+                  (reduce
+                   (fn [a c]
+                     (conj a (str (name c) ": "(get n c))))
+                   []
+                   ks))))))
 
 
 (defn ^:private node-descriptor
@@ -162,7 +164,7 @@
    {:shape (shape g opts n)
     :label (node-label g opts n)
     :fillcolor (fillcolor g opts n)
-    :tooltip (node-tooltip g opts n)}
+    :tooltip  (node-tooltip g opts n)}
    ;;per node attrs supplied by user
    (loom.attr/attrs g n)))
 
