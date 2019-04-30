@@ -132,7 +132,7 @@
 
 
 (defn node-label
-  "Returns the label for the node n in g given options"
+  "Returns the label for the node n in g given options."
   [g opts n]
   (cond
     (and (leaf? g n) (-> opts :env :hide-leaves?)) ""
@@ -142,7 +142,7 @@
 
 
 (defn node-tooltip
-  "Returns the tooltip for the node n in g given options"
+  "Returns the tooltip for the node n in g given options."
   [g opts n]
   (when-let [tt (-> opts :node :tooltip)]
     (let [ks (map keyword (str/split tt #"/"))]
@@ -155,16 +155,25 @@
                    ks))))))
 
 
+(defn node-url
+  "Returns the url for the node n in g given options."
+  [g opts n]
+  (when-let [url (-> opts :node :url)]
+    (get n (keyword url))))
+
+
 (defn ^:private node-descriptor
   "Returns map of attributes for the node from *display-conf*."
   [g opts n]
   (merge
    (:node opts) ;;static attrs
    ;; attrs result from functions..
-   {:shape (shape g opts n)
-    :label (node-label g opts n)
-    :fillcolor (fillcolor g opts n)
-    :tooltip  (node-tooltip g opts n)}
+   (-> {}
+       (assoc :shape (shape g opts n))
+       (assoc :label (node-label g opts n))
+       (assoc :fillcolor (fillcolor g opts n))
+       (assoc :tooltip  (node-tooltip g opts n))
+       (assoc :URL (node-url g opts n) :target "_blank"))
    ;;per node attrs supplied by user
    (loom.attr/attrs g n)))
 
@@ -176,7 +185,7 @@
   (group-map opts
              [:graph :dpi :layout :pad :splines :sep :ranksep
               :scale :overlap :nodesep :rankdir :concentrate]
-             [:node :shape :label :fontsize :style :fixedsize :tooltip]
+             [:node :shape :label :fontsize :style :fixedsize :tooltip :url]
              [:env :hide-leaves? :show-roots? :color-on]))
 
 

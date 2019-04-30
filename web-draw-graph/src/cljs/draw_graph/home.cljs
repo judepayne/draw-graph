@@ -324,6 +324,18 @@
            (rest (for [x @headers] [:option {:key x} x]))))])
 
 
+(defn url []
+  [:select.form-control
+   {:field :list :id :url
+    :value (:url @options)
+    :on-change #(swap! local-state update-in [:options :url]
+                       (fn [e] (-> % .-target .-value)))}
+   (if (= "" (first @headers))
+     [:option {:key "none" :value ""} "-"]
+     (cons [:option {:key "none" :value ""} "-"]
+           (rest (for [x @headers] [:option {:key x} x]))))])
+
+
 (defn splines [] (fixed-select [:options :splines] local-state
                                "line" "spline" "none" "polyline" "ortho"))
 
@@ -431,7 +443,7 @@
      (label-row "draw-graph")
      (row "node labels" [node-label])
      (row "node tooltips" [tooltip])
-     (row "hide leaves" [hide-leaves])
+     (row "elide lower levels" [elide-levels])
      (row "post process" [pp?])
 
 ]))
@@ -442,8 +454,9 @@
     [:div.controls1m {:class (:local-class @state)} 
      (empty-row)
      (row "cluster on" [cluster-on])
-     (row "filter graph" [filtergraph])
-     (row "highlight roots" [show-roots])
+     (row "node URL" [url])
+     (row "hide leaves" [hide-leaves])
+
      (row "expand clusters" [pp-clusters])
 
 ]))
@@ -454,9 +467,8 @@
     [:div.controls1r {:class (:local-class @state)} 
      (empty-row)
      (row "color on" [color-on])
-     (row "elide lower levels" [elide-levels])
-     (empty-row)
-     (empty-row)
+     (row "filter graph" [filtergraph])
+     (row "highlight roots" [show-roots])
      (row "font" [pp-font])    
 ]))
 

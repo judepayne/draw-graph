@@ -57,7 +57,8 @@
   (let [in (csv->csv1 filename)
         g (loom-graph (:data in) (:cluster-on (options)))]
     (-> g
-        (preprocess-graph (options)))))
+        (preprocess-graph (options))
+        )))
 
 
 (defn graph->dot [g]

@@ -15,10 +15,10 @@
 
 
 (def ^:dynamic *part-sep* #":")   ;; separator for keys/ values in CSV
-
+(def ^:dynamic *part-sep-data* #":(?!//)")  ;; exception for links
 
 (defn split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
-
+(defn split-parts-data [s] (str/split s *part-sep-data* -1))
 
 (def regex-number "#'-?[0-9]\\d*(\\.\\d+)?'")
 
@@ -97,7 +97,7 @@
         edge (insta/transform
               {:Node-style attribute-map
                :Node (fn [& args]
-                       {nk (zipmap (:header state) (split-parts (first args)))
+                       {nk (zipmap (:header state) (split-parts-data (first args)))
                         sk (if (some? (second args)) (second args))})
                :Edge-style attribute-map
                :E (fn [& args] args)}
