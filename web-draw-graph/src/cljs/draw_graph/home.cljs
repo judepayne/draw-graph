@@ -29,6 +29,7 @@
 (def local-state (atom {:options examples/default-options
                         :processing false
                         :error ""
+                        :warn ""
                         :svg default-svg-text
                         :data ""}))
 ;; various cursors over the atom
@@ -36,6 +37,7 @@
 (def svg (cursor local-state [:svg]))
 (def processing (cursor local-state [:processing]))
 (def error (cursor local-state [:error]))
+(def warn (cursor local-state [:warn]))
 
 
 ;; -------------------------
@@ -114,6 +116,18 @@
   (reset! error message))
 
 
+(defn put-warn [message]
+  (reset! processing false)
+  (reset! warn message))
+
+
+(defn put-result [result]  
+  (when (:svg result) (reset! svg (:svg result)))
+  (when (:error result) (reset! error (:error result)))
+  (when (:warn result) (reset! warn (:warn result)))
+  (reset! processing false))
+
+
 (defn convert-dot->svg [dot]
   (->>
    (->svg (clj->json (dot->svg dot)))
@@ -125,11 +139,11 @@
   (do
     (reset! processing true)
     (reset! error "")
+    (reset! warn "")
     (->> 
      (->svg (clj->json (->csv1)))
      (p/map json->clj)
-     (p/map :svg)
-     (p/map put-svg)
+     (p/map put-result)
      (p/error (fn [error] (put-error (.-message error)))))))
 
 
@@ -137,6 +151,7 @@
   (do
     (reset! processing true)
     (reset! error "")
+    (reset! warn "")
     (let [in (->csv1)
           g (try
               (processor/csv->g in)
@@ -144,7 +159,9 @@
                 (do
                   (reset! svg "")
                   (put-error (str  e)))))
+          warn (processor/check-graph g)
           dot (processor/g->dot in g)]
+      (if (not= warn "") (put-warn warn))
       (->> (->svg (clj->json (dot->svg dot)))
            (p/map json->clj)
            (p/map :svg)
@@ -397,6 +414,8 @@
                                [:options :pp-clusters :w] not)}]])
 
 
+(defn pp-cluster-sep [] (text-input [:options :pp-cluster-sep] local-state))
+
 
 ;; ---- Options layout
 
@@ -445,7 +464,7 @@
      (row "node tooltips" [tooltip])
      (row "elide lower levels" [elide-levels])
      (row "post process" [pp?])
-
+     (row "font" [pp-font])    
 ]))
 
 
@@ -456,9 +475,8 @@
      (row "cluster on" [cluster-on])
      (row "node URL" [url])
      (row "hide leaves" [hide-leaves])
-
      (row "expand clusters" [pp-clusters])
-
+     (empty-row) (empty-row)
 ]))
 
 
@@ -469,7 +487,8 @@
      (row "color on" [color-on])
      (row "filter graph" [filtergraph])
      (row "highlight roots" [show-roots])
-     (row "font" [pp-font])    
+     (row "cluster separation" [pp-cluster-sep])
+     (empty-row) (empty-row)
 ]))
 
 (defn left-disp-opts2 [state]
@@ -569,5 +588,6 @@
    [:div.site-banner "draw-graph"]
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]
-   ;;(:options @local-state)
+   ;(:options @local-state)
+   [:div.warn @warn]
    [:div.error @error]])

@@ -30,11 +30,6 @@
   (assoc-in g [:clusters :attr cluster attr-k] attr-v))
 
 
-(defn cluster-attr
-  [g cluster]
-  (get (-> g :clusters :attr) cluster))
-
-
 (defn add-inter-cluster-edge
   [g edge]
   (if-let [cg (-> g :clusters :graph)]
@@ -86,6 +81,18 @@
     (flatten (descend cluster []))))
 
 
+(defn cluster-attr
+  "Gets attrs for the cluster, or if none, it's parent's attrs
+   and so on."
+  [g cluster]
+  (let [attr (get (-> g :clusters :attr) cluster)]
+    (if attr
+      attr
+      (if-let [parent (cluster-parent g cluster)]
+        (cluster-attr g parent)
+        nil))))
+
+
 (defn cluster->nodes
   "Returns the nodes in the current cluster but not in children
    of the current cluster."
@@ -127,6 +134,13 @@
   ([g cluster-on]
    (into #{} (flatten (conj (keys (nodes-by-cluster g cluster-on))
                             (vals (-> g :clusters :hierarchy :->parent)))))))
+
+
+(defn clusters-from-nodes
+  "Returns the set of all clusters in the graph by looking at nodes"
+  ([g] (clusters g (cluster-key g)))
+  ([g cluster-on]
+   (into #{} (map #(get % cluster-on) (loom.graph/nodes g)))))
 
 
 (defn node->clusters

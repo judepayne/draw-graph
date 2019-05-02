@@ -18,6 +18,7 @@
    :post-process? false
    :pp-clusters {:y true :h true :x true :w true}
    :pp-font ""
+   :pp-cluster-sep ""
    :tooltip ""
    :url ""})
 

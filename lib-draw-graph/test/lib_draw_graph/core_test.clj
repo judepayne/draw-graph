@@ -16,27 +16,28 @@
 (def standard-options
   [:hide-leaves? false
    :show-roots? false
-   :cluster-on "animal"
-   :color-on "name"
+   :cluster-on "function"
+   ;:color-on "name"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "name/animal"
-   :shape "ellipse"
+   :label "application"
+   :shape "cylinder"
    ;:nodesep 0.5
-   ;:ranksep 2
+   :ranksep 0.5
    ;:sep 1 
    :splines "ortho"
    :rankdir "TB"
-   :fixedsize true
-   :tooltip "name/animal"
+   :fixedsize false
+   :tooltip "application"
    ;:scale 2
    :overlap false
    :concentrate true
    ;:elide "0"
-   :fix-ranks? false
+   :fix-ranks? true
    ;:filter-graph "animal:pandas"
    :post-process? true
    :pp-clusters {:y true :h true :x true :w true}
+   :pp-cluster-sep "0"
    :pp-font "Helvetica"
 ])
 
@@ -57,8 +58,7 @@
   (let [in (csv->csv1 filename)
         g (loom-graph (:data in) (:cluster-on (options)))]
     (-> g
-        (preprocess-graph (options))
-        )))
+        (preprocess-graph (options)))))
 
 
 (defn graph->dot [g]

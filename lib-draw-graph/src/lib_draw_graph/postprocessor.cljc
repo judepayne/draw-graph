@@ -5,6 +5,7 @@
             [lib-draw-graph.anneal :as anneal]
             [lib-draw-graph.clustered :as clstr]
             [lib-draw-graph.geometry :as g]
+            [lib-draw-graph.util :as util]
             [clojure.set :as s]))
 
 
@@ -105,12 +106,6 @@
    clstrs))
 
 
-(defn nodes->boxes
-  "Get the bounding boxes for all nodes from the zipper over the svg."
-  [z]
-  )
-
-
 (defn tasks->clusters 
   "Converts anneal-tasks to a set of clusters"
   [tasks]
@@ -138,28 +133,56 @@
 
 (defn adjust-sep
   "takes a sep, preserves the top but adjusts other seps to minimum."
-  [sep]
-  (let [min-lrb (min (:l sep) (:r sep) (:b sep))]
-    (assoc sep :l min-lrb :r min-lrb :b min-lrb)))
+  ([sep & {:keys [cluster-sep BT?] :or {cluster-sep nil BT? false}}]
+   (if (not BT?)
+     (if cluster-sep
+       (assoc sep :l cluster-sep :r cluster-sep :b cluster-sep)
+       (let [min-lrb (min (:l sep) (:r sep) (:b sep))]
+         (assoc sep :l min-lrb :r min-lrb :b min-lrb)))
+     ;; Bottom Top layout. Need to constraint differently
+     (if cluster-sep
+       (assoc sep :l cluster-sep :r cluster-sep :t cluster-sep)
+       (let [min-lrt (min (:l sep) (:r sep) (:t sep))]
+         (assoc sep :l min-lrt :r min-lrt :t min-lrt))))))
+
+
+(defn parse-int [s]
+  #?(:clj (Integer/parseInt s)
+     :cljs (js/parseInt s)))
+
+
+(defn str->int [cs error-msg]
+  (if (integer? cs)
+    cs
+    (try
+      (parse-int cs)
+      #?(:clj (catch Exception e (throw (util/err error-msg)))
+         :cljs (catch js/Error e (throw (util/err error-msg)))))))
 
 
 (defn env
   "Constructs a nested map which parameters required for annealing
    from a zipper, a graph and the key clustered on in the graph."
-  [z g node-label-fn]
-  (let [tasks (free-clusters-with-children g)
+  [z g opts node-label-fn]
+  (let [cluster-sep (when (-> opts :pp-cluster-sep)
+                      (str->int  (-> opts :pp-cluster-sep) "cluster separation should be an integer"))
+        BT? (= (-> opts :rankdir) "BT")
+        tasks (free-clusters-with-children g)
         clstrs (tasks->clusters tasks)
         rects (clusters->boxes z clstrs)]
-    ;(println rects)
     (reduce
      (fn [a [prnt chdn]]
        (let [p-rect (get rects prnt)
              c-rects (map #(get rects %) chdn)
-             sep (adjust-sep (apply sep p-rect c-rects))
+             sep (if cluster-sep
+                   (adjust-sep (apply sep p-rect c-rects) :cluster-sep cluster-sep :BT? BT?)
+                   (adjust-sep (apply sep p-rect c-rects) :BT? BT?))
              state (into {} (map #(vector % (get rects %)) chdn))
              constr {:boundary (g/inner-rect sep p-rect)
                      :grow true
-                     :collision collision-sep
+                     :collision (if cluster-sep
+                                  cluster-sep
+                                  collision-sep)
                      :obstacles (reduce
                                  (fn [acc cur]
                                    (assoc acc
@@ -189,8 +212,13 @@
 
 
 (defn do-annealing
-  [z g dims label-fn]
-  (let [env (env z g label-fn)]
+  [z g opts label-fn]
+  (let [env (env z g opts label-fn)
+        dims (if (-> opts :pp-clusters)
+               (reduce-kv (fn [m k v] (if v (conj m k) m))
+                                        []
+                                        (-> opts :pp-clusters))
+               [:x :w :y :h])]
     (reduce (fn [a [k v]]
               (let [new-st (anneal/annealing (-> v :state)
                                       10000
@@ -238,38 +266,71 @@
 
 ;; Section on moving text around (cluster labels)
 
+(def x-label-spacer 10) ;; x dist insider bounding rect
 (def y-label-spacer 18) ;; y dist below bounding rect's top
+(def y-label-spacer-BT 10)
 
 
-(defn editor-label-posn [env clstr node]
-  ;; recentres cluster label
-  (if-let [edited (get env clstr)]
-    (-> node
-        (assoc-in [:attrs :x] (+ (:x edited) (/ (:w edited) 2)))
-        (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer)))
-    node))
+(defn editor-label-posn [env g opts clstr node]
+  ;; repositions cluster label
+  (let [BT? (= "BT" (-> opts :rankdir))]
+    (if (not BT?)
+      (if-let [edited (get env clstr)]
+        (case (-> (clstr/cluster-attr g clstr) :style :labeljust)
+          
+          "l" (-> node
+                  (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
+                  (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))
+                  (assoc-in [:attrs :text-anchor] "start"))
+
+          "r" (-> node
+                  (assoc-in [:attrs :x] (- (+ (:x edited) (:w edited)) x-label-spacer))
+                  (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))
+                  (assoc-in [:attrs :text-anchor] "end"))
+
+          (-> node
+              (assoc-in [:attrs :x] (+ (:x edited) (/ (:w edited) 2)))
+              (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))))
+        node)
+
+      ;; Bottom Top layout. position labels at bottom
+      (if-let [edited (get env clstr)]
+        (case (-> (clstr/cluster-attr g clstr) :style :labeljust)
+          
+          "l" (-> node
+                  (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
+                  (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))
+                  (assoc-in [:attrs :text-anchor] "start"))
+
+          "r" (-> node
+                  (assoc-in [:attrs :x] (- (+ (:x edited) (:w edited)) x-label-spacer))
+                  (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))
+                  (assoc-in [:attrs :text-anchor] "end"))
+
+          (-> node
+              (assoc-in [:attrs :x] (+ (:x edited) (/ (:w edited) 2)))
+              (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))))
+        node))))
 
 
-(defn edit-cluster-labels [z env]
+(defn edit-cluster-labels [z g opts env]
   (svg/tree-edit z
                  svg/all-clusters
                  7
                  (fn [n] (first (:content n)))
                  7
-                 (partial editor-label-posn env)))
+                 (partial editor-label-posn env g opts)))
 
 
 (defn optimize-clusters
   "Anneals free clusters in z & g.
    z is a zipper over the svg and g the underlying graph.
    Returns svg."
-  [svg g label-fn
-   & {:keys [dims]
-       :or {dims [:x :y :w :h]}}]
+  [svg g label-fn opts]
   (let [z (svg->zipper svg)
-        env-out (env->map (do-annealing z g dims label-fn))]
+        env-out (env->map (do-annealing z g opts label-fn))]
     (-> (edit-cluster-rects z env-out)
         svg/->zipper
-        (edit-cluster-labels env-out)
+        (edit-cluster-labels g opts env-out)
         svg/->xml)))
 

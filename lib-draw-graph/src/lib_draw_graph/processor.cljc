@@ -73,6 +73,7 @@
                            (preprocessor/add-stack acc (keyword cluster-on) [c1 c2]))
                          gr4
                          (:cluster-edges parsed))]
+
          (clstr/add-cluster-key gr5 cluster-on))
        gr2))))
 
@@ -112,7 +113,27 @@
 
 
 ;; -----------
+;; Tests
+
+(defn clusters-consistent? [g]
+  (if (and (clstr/cluster-key g)
+           (not= (clstr/clusters g) (clstr/clusters-from-nodes g)))
+    "Different clusters in nodes compared to clusters edges.\n"
+    ""))
+
+
+;; -----------
 ;; public interface functions
+
+(defn check-graph
+  "Runs various tests over a clustered graph and outputs a warning message."
+  [g]
+  (reduce
+   (fn [acc cur]
+     (str acc (cur g)))
+   ""
+   []))
+
 
 (defn- not-blank [s]
   (if (or (= "" s) nil)
@@ -135,14 +156,11 @@
                    svg))
           svg'' (if (not-blank (-> opts :cluster-on))
                   ;; do cluster optimization
-                  (let [dims (reduce-kv (fn [m k v] (if v (conj m k) m))
-                                        []
-                                        (-> opts :pp-clusters))]
-                    (postprocessor/optimize-clusters
-                     svg'
-                     graph
-                     (partial g/first-label (-> opts :label))
-                     :dims dims))
+                  (postprocessor/optimize-clusters
+                   svg'
+                   graph
+                   (partial g/first-label (-> opts :label))
+                   opts)
                   ;; not a clustered graph. just return the svg
                   svg')]
       svg'')

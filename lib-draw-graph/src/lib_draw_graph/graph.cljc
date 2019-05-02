@@ -4,11 +4,12 @@
            needs to be updated when new graphviz options are added."
       :author "Jude Payne"}
     lib-draw-graph.graph
-    (:require [rhizome.dot                :as rhidot]
+    (:require [rhizome.dot                     :as rhidot]
               [loom.graph                      :as loom.graph]
               [loom.attr                       :as loom.attr]
               [clojure.string                  :as str]
               [lib-draw-graph.clustered        :as clstr]
+              [lib-draw-graph.util             :as util]
               #?@(:cljs [[goog.string :as gstring]])
               #?@(:cljs [[goog.string.format]])))
 
@@ -50,14 +51,6 @@
 
 
 (defn ^:private fff [nested] (first (ffirst nested)))
-
-
-(defn deep-merge
-  "Like merge, but merges maps recursively."
-  [& maps]
-  (if (every? map? maps)
-    (apply merge-with deep-merge maps)
-    (last maps)))
 
 
 (defn group-map
@@ -211,7 +204,7 @@
 (defn ^:private get-rhizome-args
   "Returns the rhizome config (options) for a graph."
   [g opts]
-  (let [opts* (deep-merge default-options (structure-opts opts))]
+  (let [opts* (util/deep-merge default-options (structure-opts opts))]
     (merge
      {
       :options (:graph opts*) 

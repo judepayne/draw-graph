@@ -32,12 +32,15 @@
         {:keys [out err]} (sh/sh path "-Tsvg" :in s')]
     (or
       out
-     (throw (IllegalArgumentException. ^String (format-error s' err))))))
+      (throw (IllegalArgumentException. ^String (str "Graphviz!: "(format-error s' err)))))))
 
 
 (defn- read-input
   [js]
   (json/read-str js :key-fn keyword))
+
+
+; (processor/process-to-svg in dot->svg)
 
 
 (defn ->svg
@@ -47,8 +50,11 @@
   (try
     (let [in (read-input js)
           svg (case (*format-in* in)
-                "csv" (do ;(println "PROCESSING data>> " in)
-                          (processor/process-to-svg in dot->svg))
+                "csv" (let [g (processor/csv->g in)
+                            ;; warning goes here
+                            dot (processor/g->dot in g)
+                            svg (dot->svg dot)]
+                        (processor/postprocess-svg g (-> in :display-options) svg))
                 "dot" (dot->svg (:data in))
                 (throw (IllegalArgumentException.
                         "Error: only 'csv' or 'dot' are allowed input formats.")))
@@ -60,8 +66,8 @@
         "svg" (json/write-str {:svg svg})
         (json/write-str {:error "Error: only 'svg' format can be specified as an output."})))
     (catch Exception e
-      ;(json/write-str {:error (str "Error from lambda function: " (.getMessage e))})
-      (println (str "!!Graphviz error!!>>> " (.getMessage e))))))
+      (println (str "Error!: " (.getMessage e)))
+      (json/write-str {:error (str "Lambda function error: " (.getMessage e))}))))
 
 ;; gen-class and how to use it
 

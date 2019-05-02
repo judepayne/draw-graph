@@ -86,6 +86,11 @@
       (throw (util/err (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
+(defn form-pairs [s]
+  (let [args (split-parts s)]
+    (partition 2 1 args)))
+
+
 (defn conjcat [coll1 coll2]
   (if (empty? coll1) coll1
       (concat coll1 coll2)))
@@ -111,14 +116,14 @@
                                   nil edge')]
                       (if styles (merge edge {:node-styles styles}) edge))]
     (if (nil? (:edges state))
-      (let [s (assoc-in state [:edges] (list (:edges with-styles)))]
+      (let [s1 (assoc-in state [:edges] (list (:edges with-styles)))]
         (if (:node-styles with-styles)
-          (merge-with merge s (dissoc with-styles :edges))
-          s))
-      (let [s (merge-with conj state {:edges (:edges edge)})]
+          (merge-with merge s1 (dissoc with-styles :edges))
+          s1))
+      (let [s1 (merge-with conj state {:edges (:edges edge)})]
         (if (:node-styles with-styles)
-          (merge-with merge s (dissoc with-styles :edges))
-          s)))))
+          (util/deep-merge s1 (dissoc with-styles :edges))
+          s1)))))
 
 
 (defn parse-cluster-style [state s]
