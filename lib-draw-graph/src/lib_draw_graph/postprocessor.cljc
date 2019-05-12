@@ -211,9 +211,17 @@
    env))
 
 
+(def max-move-factor 50)  ;; max move defined by size of primary annealing dimension / this
+
+
 (defn do-annealing
   [z g opts label-fn]
   (let [env (env z g opts label-fn)
+        rankdir (-> opts :rankdir)
+        y-retard (if (or (= "TB" rankdir) (= "BT" rankdir))
+                   (str->int (-> opts :pp-anneal-bias) "anneal bias should be an integer") nil)
+        x-retard (if (or (= "LR" rankdir) (= "RL" rankdir))
+                   (str->int (-> opts :pp-anneal-bias) "anneal bias should be an integer") nil)
         dims (if (-> opts :pp-clusters)
                (reduce-kv (fn [m k v] (if v (conj m k) m))
                                         []
@@ -229,7 +237,16 @@
                                       anneal/p-fn
                                       anneal/temp-fn
                                       :terminate-early? true
-                                      :dims dims)
+                                      :dims dims
+                                      :x-retard x-retard
+                                      :y-retard y-retard
+                                      :max-move (if (or (= "TB" rankdir) (= "BT" rankdir))
+                                                  (quot
+                                                   (-> (get a k) :constraints :boundary :w)
+                                                   max-move-factor)
+                                                  (quot
+                                                   (-> (get a k) :constraints :boundary :h)
+                                                   max-move-factor)))
                     adj-env (reduce
                              (fn [acc [k' v']]
                                (if (some?  (get acc k'))
@@ -276,7 +293,7 @@
   (let [BT? (= "BT" (-> opts :rankdir))]
     (if (not BT?)
       (if-let [edited (get env clstr)]
-        (case (-> (clstr/cluster-attr g clstr) :style :labeljust)
+        (case (-> (clstr/cluster-attr g clstr :style) :labeljust)
           
           "l" (-> node
                   (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))

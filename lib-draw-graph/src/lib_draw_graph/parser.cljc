@@ -30,12 +30,15 @@
 
 (def regex-text "#'[\\+\\w\\d\\s\\n\\.\\(\\)@&<>\\'#=/-]+'")
 
-(def regex-kvs  "#'[/\\+\\w\\d\\s\\n\\.\\(\\)@&:<>\\'#=/-]+'")
+(def regex-kvs  "#'[/\\+\\w\\d\\s\\n\\.\\(\\)@&:<>\\'#=/-]*'")
+
+(def regex-all "#'(.*)'")
 
 
 (def csv-grammar
   (str
-   "S = <'h:'> H   |
+   "S = <';'>  Cmt |
+        <'h:'> H   |
         <'e:'> E   |
         <'ce:'> Ce |
         <'cp:'> Cp |
@@ -48,7 +51,8 @@
     H = " regex-kvs "
     Ce = KVs
     Cp = KVs
-    Cs = " regex-text "<'|'>" regex-kvs))
+    Cs = " regex-text "<'|'>" regex-kvs "
+    Cmt = " regex-all))
 
 
 (defparser csv-line-parser
@@ -65,18 +69,21 @@
 
 
 (defn attribute-map [s]
-  (let [args (split-parts s)]
-    (if (even? (count args))
-      (reduce
-       (fn [acc [k v]]
-         ;; make comma separated list if key exists already
-         (let [k' (keyword k)]
-           (if-let [old (k' acc)]
-             (assoc acc k' (str old "," v))
-             (assoc acc k' v))))
-       {}
-       (partition 2 args))
-      (throw (util/err (str "Error parsing: " s " > Must be an even number of parts"))))))
+  (let [args (split-parts-data s)
+        n (count args)]
+    (cond
+      (= "" (first args)) nil
+      (even? n) (reduce
+                 (fn [acc [k v]]
+                   ;; make comma separated list if key exists already
+                   (let [k' (keyword k)]
+                     (if-let [old (k' acc)]
+                       (assoc acc k' (str old "," v))
+                       (assoc acc k' v))))
+                 {}
+                 (partition 2 args))
+      :else (throw (util/err (str "Error parsing: " s " > Must be an even number of parts")))
+      )))
 
 
 (defn pairs [s]
@@ -149,6 +156,11 @@
     (merge-with conjcat state {:cluster-edges relns})))
 
 
+(defn parse-comments [state s]
+  (merge-with conjcat state {:commented-out s}))
+
+
+
 (defn parse-lines [lines]
   (reduce
    (fn [acc cur]
@@ -162,6 +174,7 @@
              :Cs (parse-cluster-style acc line)
              :Cp (parse-cluster-parent acc line)
              :Ce (parse-cluster-edge acc line)
+             :Cmt (parse-comments acc line)
              (throw (util/err (str "No parser for this line: " cur))))))))
    {}
    lines))

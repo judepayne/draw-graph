@@ -26,7 +26,7 @@
        [:footer
         [:p
          [:span.site "draw-graph"] " is a free utility by "
-         [:a {:href "https://github.com/judepayne"}
+         [:a {:href "https://github.com/judepayne" :tabIndex "0"}
           "Jude Payne"] "."]]])
 
 (def selected-page (r/atom home-page))

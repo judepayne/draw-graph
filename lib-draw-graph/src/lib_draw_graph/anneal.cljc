@@ -8,6 +8,12 @@
 #?(:clj (import [java.lang Math]))
 
 
+;; Annealing constants
+
+(def ^:const max-move-default 14)         ;; default move amount +/- dim can be changed by
+(def ^:const PEN 10000)                ;; Penalty cost amount
+
+
 ;; From Clojure data analysis cookbook
 (defn annealing
 
@@ -19,8 +25,10 @@
     cost-fn          ;; the cost function
     p-fn             ;; the probability of a move function
     temp-fn          ;; the temperature of the system
-    & {:keys [dims terminate-early?]
-       :or {dims [:x :y :w :h] terminate-early? false}}]
+    & {:keys [dims terminate-early? x-retard y-retard max-move]
+       :or {dims [:x :y :w :h] terminate-early? false
+            x-retard nil y-retard nil
+            max-move max-move-default}}]
    (let [cost (cost-fn constraints initial)
          last-cost (atom cost)]
      (loop [state initial
@@ -39,7 +47,7 @@
          (if (and (< k max-iter)
                   (> cost min-cost))
            (let [t (temp-fn (/ k max-iter))
-                 next-state (neighbor-fn state dims)
+                 next-state (neighbor-fn state dims x-retard y-retard max-move)
                  next-cost (cost-fn constraints state
                                     (second next-state) (first next-state))]
              (if (> (p-fn cost next-cost t) (rand))
@@ -48,10 +56,16 @@
            state))))))
 
 
-;; Annealing constants
-
-(def ^:const max-move 10)         ;; move amount +/- dim can be changed by
-(def ^:const PEN 10000)           ;; Penalty cost amount
+(defn random-move
+  [max-move]
+  "Returns a random +/- amount less than max-move. Every so often, we
+   throw in small amounts to help fine tuning at the end of annealing."
+  (let [small-move-prob 4      ;; i.e. 1 in n chance
+        small-move 5
+        mm (if (> (inc (rand-int small-move-prob)) (dec small-move-prob))
+             small-move
+             max-move)]
+    (- (rand-int (* 2 mm)) mm)))
 
 
 (defn- vary-rect
@@ -59,27 +73,40 @@
   (as opposed to two points), when varying the x or y of the point, it
   is necessary to adjust the width or height as well to be consistent
   with a rectangle/ polygon specified as two x,y points."
-  [rect dims]
+  [rect dims x-retard y-retard max-move]
   (let [dim (rand-nth dims)
-        delta (- (rand-int (* 2 max-move)) max-move)]
+        delta (random-move max-move)]
     (case dim
-      :x (-> rect
-             (assoc :x (+ (:x rect) delta)) 
-             (assoc :w (- (:w rect) delta)))
-      :y (-> rect
-             (assoc :y (+ (:y rect) delta))
-             (assoc :h (- (:h rect) delta)))
-      :w (-> rect
-             (assoc :w (+ (:w rect) delta)))
-      (-> rect (assoc :h (+ (:h rect) delta))))))
+      :x (if (and x-retard (not (zero? x-retard)))
+           (-> rect
+               (assoc :x (+ (:x rect) (quot delta x-retard))) 
+               (assoc :w (- (:w rect) (quot delta x-retard))))
+           (-> rect
+               (assoc :x (+ (:x rect) delta)) 
+               (assoc :w (- (:w rect) delta))))
+      :y (if (and y-retard (not (zero? y-retard)))
+           (-> rect
+               (assoc :y (+ (:y rect) (quot delta y-retard)))
+               (assoc :h (- (:h rect) (quot delta y-retard))))
+           (-> rect
+               (assoc :y (+ (:y rect) delta))
+               (assoc :h (- (:h rect) delta))))
+      :w (if (and x-retard (not (zero? x-retard)))
+           (-> rect
+               (assoc :w (+ (:w rect) (quot delta x-retard))))
+           (-> rect
+               (assoc :w (+ (:w rect) delta))))
+      (if (and y-retard (not (zero? y-retard)))
+        (-> rect (assoc :h (+ (:h rect) (quot delta y-retard))))
+        (-> rect (assoc :h (+ (:h rect) delta)))))))
 
 
 (defn neighbor-fn
   "Varies a random item from state and returns the new state
   after checking that the new state passes constraints."
-  [state dims]
+  [state dims x-retard y-retard max-move]
   (let [k (rand-nth (keys state))
-        next (vary-rect (get state k) dims)]
+        next (vary-rect (get state k) dims x-retard y-retard max-move)]
     [k (assoc state k next)]))
 
 

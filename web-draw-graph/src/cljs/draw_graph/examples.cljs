@@ -3,7 +3,6 @@
 
 (def default-options
   {:label ""
-   :hide-leaves? false
    :show-roots? false
    :shape "ellipse"
    :layout "dot"
@@ -17,10 +16,13 @@
    :concentrate "false"
    :post-process? false
    :pp-clusters {:y true :h true :x true :w true}
+   :pp-anneal-bias "3"
    :pp-font ""
    :pp-cluster-sep ""
    :tooltip ""
-   :url ""})
+   :constraint true
+   ;:url ""
+   :fix-ranks? true})
 
 
 ;; ------------------
@@ -107,7 +109,7 @@ cs:squirrels|bgcolor:pink:style:rounded:margin:15"
    (merge default-options
           {:layout "neato"
            :label "layer"
-           :cluster-on "id"
+           :color-on "id"
            :shape "circle"
            :splines "curved"
            :overlap "ipsep"
@@ -177,5 +179,29 @@ ce:animals:rodents:pandas:wolves"
            :splines "ortho"
            :cluster-on "animal"
            :rankdir "TB"
+           :tooltip "name/animal"
+           })})
+
+
+(defn ^:export example8 []
+  {:data "h:view:function:application:id\ne:Current State:Golden Sources:Books:PTN-1234|fillcolor:#EEBD1B,Current State:Golden Sources:Books:PTN-1234|fillcolor:#EEBD1B,|style:invis\ne:Current State:Golden Sources:Products:PTN-6538|fillcolor:#EEBD1B,Current State:Golden Sources:Instrument+Hub|fillcolor:#E8EEF7,|style:invis\ne:Current State:Golden Sources:Instrument:PTN-2345|fillcolor:#EEBD1B,Current State:Golden Sources:P-RAM|fillcolor:#E8EEF7,|style:invis\ne:Current State:Golden Sources:Employee:PTN-23|fillcolor:#EEBD1B,Current State:Golden Sources:Affinity|fillcolor:#E8EEF7,|style:invis\ne:Current State:Golden Sources:Clients:PTN-675664|fillcolor:#EEBD1B,Current State:Golden Sources:ERP|fillcolor:#E8EEF7,|style:invis\ne:Current State:Capture:HCB|fillcolor:#E8EEF7,Current State:Settlement:hePikes|fillcolor:#E8EEF7,|style:dotted\ne:Current State:Capture:sysTicket|fillcolor:#E8EEF7,Current State:Reporting:TradeDepo|fillcolor:#E8EEF7,|style:dotted:constraint:true\ne:Current State:Capture:sysTicket|fillcolor:#E8EEF7,Current State:Lifecycle:CONFIRMATIONS+Writer+Doc|fillcolor:#c6ddf2:shape:box,|style:dotted\ne:Current State:Capture:FORPS-bus|fillcolor:#c6ddf2:shape:box,Current State:Capture:FORPS-bus|fillcolor:#c6ddf2:shape:box,|style:invis\ne:Current State:Lifecycle:BAD Image|fillcolor:#E8EEF7,Current State:Risk:Guerilla Risk|fillcolor:#E8EEF7,|color:#267a17:taillabel:25k/day:fontcolor:red:fontsize:10:labeltooltip:BAD Image->Guerilla Risk\ne:Current State:Lifecycle:CONFIRMATIONS+Writer+Doc|fillcolor:#E8EEF7,Current State:Reporting:i-Assert(CZH)|fillcolor:#E8EEF7,|color:#dd809e\ne:Current State:Lifecycle:Fidelity Plus|fillcolor:#c6ddf2:shape:box,Current State:Reporting:i-Assert(CZH)|fillcolor:#E8EEF7,|color:#dd809e:label:10k/day:URL:http://www.google.com:labeltooltip:Fidelity->i-Assert(CZH):edgetooltip:Fidelity->i-Assert(CZH):fontcolor:blue:headlabel:10k/day:taillabel:10k/day:fontsize:10\ne:Current State:Lifecycle:Fidelity Plus|fillcolor:#c6ddf2:shape:box,Current State:Reporting:1-Charge|fillcolor:#E8EEF7,|color:#dd809e:URL:http://www.google.com:target:_graphviz:penwidth:2:tooltip:click me. tooltip and url demo\ne:Current State:Risk:Guerilla Risk|fillcolor:#E8EEF7,Current State:Risk:GRIMACE|fillcolor:#E8EEF7,|color:#267a17:constraint:false\ncp:Golden Sources:Current State\ncp:Capture:Current State\ncp:Lifecycle:Current State\ncp:Reporting:Current State\ncp:Settlement:Current State\ncp:Risk:Current State\nce:Golden Sources:Capture\nce:Golden Sources:Lifecycle\nce:Capture:Risk\nce:Lifecycle:Risk\nce:Risk:Settlement\nce:Settlement:Reporting\ncs:Current State|bgcolor:#fdfdff:color:#49c1e5:margin:8:labeljust:l"
+   :options
+   (merge default-options
+          {:layout "dot"
+           :label "application"
+           :shape "cylinder"
+           :splines "ortho"
+           :cluster-on "function"
+           :rankdir "TB"
+           :post-process? true
+           :pp-clusters {:y true :h true :x true :w true}
+           :pp-anneal-bias "3"
+           :pp-font "sans-serif"
+           :pp-cluster-sep "0"
+           :tooltip "application/id"
+           :constraint true
+           :fixedsize "false"
+           :ranksep 0
+           :nodesep 0.3
            })})
 

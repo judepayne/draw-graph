@@ -3,7 +3,8 @@
   lib-draw-graph.clustered
   (:require [loom.graph            :as loom.graph]
             [loom.attr             :as loom.attr]
-            [loom.alg-generic      :as loom.gen]))
+            [loom.alg-generic      :as loom.gen]
+            [clojure.set           :as set]))
 
 
 ;; Loom Digraph is a Clojure record
@@ -25,19 +26,41 @@
   (get-in g [:clusters :key]))
 
 
+(defn clustered?
+  [g]
+  (if (cluster-key g)
+    true
+    false))
+
+
 (defn add-attr-to-cluster
   [g cluster attr-k attr-v]
   (assoc-in g [:clusters :attr cluster attr-k] attr-v))
 
 
-(defn add-inter-cluster-edge
-  [g edge]
-  (if-let [cg (-> g :clusters :graph)]
-    (assoc-in g [:clusters :graph]
-              (loom.graph/add-edges cg edge))
-    (assoc-in g [:clusters :graph]
-              (loom.graph/digraph edge))))
 
+;; --- Cluster edge graph functionality ------
+
+(defn add-cluster-edge
+  [g src tgt]
+  (update-in g [:clusters :edge-graph]
+             (fn [old tgt]
+               (case old
+                 nil (loom.graph/digraph [src tgt])
+                 (loom.graph/add-edges old [src tgt])))
+             tgt))
+
+
+(defn remove-clusters-from-edge-graph
+  [g clstrs]
+  (update-in g [:clusters :edge-graph]
+             (fn [old clstrs]
+               (apply loom.graph/remove-nodes old clstrs))
+             clstrs))
+
+
+
+;; --- Cluster parent graph functionality ------
 
 (defn add-cluster-parent
   [g cluster parent]
@@ -82,14 +105,14 @@
 
 
 (defn cluster-attr
-  "Gets attrs for the cluster, or if none, it's parent's attrs
+  "Gets sub-key attrs for the cluster, or if none, it's parent's attrs
    and so on."
-  [g cluster]
-  (let [attr (get (-> g :clusters :attr) cluster)]
+  [g cluster sub-key]
+  (let [attr (sub-key (get (-> g :clusters :attr) cluster))]
     (if attr
       attr
       (if-let [parent (cluster-parent g cluster)]
-        (cluster-attr g parent)
+        (cluster-attr g parent sub-key)
         nil))))
 
 
@@ -128,21 +151,6 @@
    (group-by (->keyword cluster-on) (loom.graph/nodes g))))
 
 
-(defn clusters
-  "Returns the set of all clusters in the graph."
-  ([g] (clusters g (cluster-key g)))
-  ([g cluster-on]
-   (into #{} (flatten (conj (keys (nodes-by-cluster g cluster-on))
-                            (vals (-> g :clusters :hierarchy :->parent)))))))
-
-
-(defn clusters-from-nodes
-  "Returns the set of all clusters in the graph by looking at nodes"
-  ([g] (clusters g (cluster-key g)))
-  ([g cluster-on]
-   (into #{} (map #(get % cluster-on) (loom.graph/nodes g)))))
-
-
 (defn node->clusters
   "Returns the set of clusters that the node is in."
   ([g n] (node->clusters g (cluster-key g) n))
@@ -153,4 +161,67 @@
                acc))]
      (into #{} (ancestor [(get n (->keyword cluster-on))])))))
 
+
+(defn nodes->clusters
+  "Returns the set of clusters that the nodes are in."
+  [g nds]
+  (apply set/union (map #(node->clusters g %) nds)))
+
+
+;; ------------------------------
+
+
+(defn clusters
+  "Returns the set of all clusters in the graph."
+  [g]
+  (nodes->clusters g (loom.graph/nodes g)))
+
+
+(defn ^:private filter->parent
+  [m set-to-remove]
+  (reduce
+   (fn [a [k v]]
+     (if (some set-to-remove #{k v})
+       a
+       (assoc a k v)))
+   {}
+   m))
+
+
+(defn ^:private filter->children
+  [m set-to-remove]
+  (reduce
+   (fn [a [k v]]
+     (if (some #{k} set-to-remove)
+       a
+       (let [v' (set/difference v set-to-remove)]
+         (if (empty? v')
+           a
+           (assoc a k v')))))
+   {}
+   m))
+
+
+(defn remove-clusters
+  [g & clstrs]
+  (let [clstrs-set (into #{} clstrs)
+        g' (if (-> g :clusters :edge-graph)
+                   (remove-clusters-from-edge-graph g clstrs-set)
+                   g)]
+    (-> g'
+        (update-in [:clusters :attr] #(apply dissoc % clstrs))
+        (update-in [:clusters :hierarchy :->parent] filter->parent clstrs-set)
+        (update-in [:clusters :hierarchy :->children] filter->children clstrs-set))))
+
+
+(defn remove-nodes
+  "Removes nodes from a clustered graph. Returns a map of {:graph <graph>
+   :clusters <the clusters which remain>}"
+  [g nodes]
+  (let [clstrs (clusters g)
+        g' (apply loom.graph/remove-nodes g nodes)
+        clstrs-to-remove (set/difference (clusters g) (clusters g'))
+        g'' (apply remove-clusters g' clstrs-to-remove)]
+    {:graph g''
+     :clusters (clusters g')}))
 

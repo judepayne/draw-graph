@@ -3,8 +3,11 @@
   lib-draw-graph.preprocessor
   (:require [loom.graph                     :as loom.graph]
             [loom.alg-generic               :as loom.gen]
+            [loom.alg                       :as loom.alg]
             [loom.attr                      :as loom.attr]
-            [lib-draw-graph.clustered       :as clstr]))
+            [lib-draw-graph.clustered       :as clstr]
+            [lib-draw-graph.graph           :as graph]
+            [clojure.set                    :as set]))
 
 
 ;; -----------
@@ -39,36 +42,35 @@
            (loom.gen/pre-edge-traverse #(loom.graph/successors* g %) node))))
 
 
-(defn filter-graph
-  "Returns a filtered graph where nodes where is not a submap are filtered out."
-  [g sub]
-  (let [filtered-nodes (filter #(not (submap? sub %)) (loom.graph/nodes g))]
-    (loom.graph/remove-nodes* g filtered-nodes)))
-
-
-(defn ^:private leaves
+(defn leaves
   "Returns the leaves in the graph."
   [g]
-  (filter #(= 0 (loom.graph/out-degree g %)) (loom.graph/nodes g)))
+  (filter #(graph/leaf? g %) (loom.graph/nodes g)))
 
 
-(defn ^:private parents-of
+(defn parents-of
   "Returns the nodes that are parents of nodes."
   [g nodes]
-  (dedupe (mapcat #(loom.graph/predecessors* g %) nodes)))
+  (letfn [(visible-parents [g n]
+            (let [prnts (loom.graph/predecessors* g n)]
+              (filter #(not (graph/edge-invisible? g % n)) prnts)))]
+    (dedupe (mapcat #(visible-parents g %) nodes))))
 
 
 (defn remove-levels
   "Removes the n lowest levels from the graph."
   [g n]
-  (loop [grph g
-         nds (leaves g)
-         lvls n]
-    (if (zero? lvls)
-      grph
-      (let [next-gen (parents-of grph nds)
-            grph* (loom.graph/remove-nodes* grph nds)]
-        (recur grph* next-gen (dec lvls))))))
+  (let [clustered? (clstr/clustered? g)]
+    (loop [grph g
+           nds (leaves g)
+           lvls n]
+      (if (zero? lvls)
+        grph
+        (let [next-gen (parents-of grph nds)
+              grph* (if clustered?
+                      (:graph (clstr/remove-nodes grph nds))
+                      (loom.graph/remove-nodes* grph nds))]
+          (recur grph* next-gen (dec lvls)))))))
 
 
 
@@ -156,26 +158,10 @@
      m)))
 
 
-(defn widest-rank
-  "Returns the count of the max grouping of k"
-  [info k]
-  (let [m (get info k)
-        max-k (key (apply max-key #(count (val %)) m))]
-    max-k))
-
-
-(defn count-at-rank
-  "Returns the count of nodes at rank"
-  [info k rank]
-  (-> info
-      (get k)
-      (get rank)
-      count))
-
-
 (defn edges-between
   "Returns a set of edges between all of the min ranked nodes of clstr1
-   and one of the max ranked nodes in clstr2."
+   and one of the max ranked nodes in clstr2. edges already in the graph
+   are returned marked with :constraint"
   [g info clstr1 clstr2]
   (let [edges (loom.graph/edges g)
         clstr1s (clstr/cluster-descendants g clstr1)
@@ -183,9 +169,8 @@
         clstr1s-mins (mapcat #(:items (max-ranked-nodes info %)) clstr1s)
         clstr2s-maxs  (mapcat #(:items (min-ranked-nodes info %)) clstr2s)]
     (for [x clstr1s-mins
-          y clstr2s-maxs
-          :when (not (some #{[x y]} edges))]
-      [x y])))
+          y clstr2s-maxs]
+      [x y (if (some #{[x y]} edges) :constraint)])))
 
 
 (def get-rank-info
@@ -198,9 +183,105 @@
   "Adds a stack of clusters to the graph"
   [g cluster-on stack]
   (let [ri    (get-rank-info g cluster-on)
-        edges (mapcat #(apply edges-between g ri %) (partition 2 1 stack))]
-    (-> (apply loom.graph/add-edges g edges)
-        (loom.attr/add-attr-to-edges :style "invis" edges))))
+        edges (mapcat #(apply edges-between g ri %) (partition 2 1 stack))
+        ;;separate edges marked with :constraint from those that are not.
+        edges' (group-by #(= :constraint (nth % 2)) edges)
+        edges'-f (get edges' false)
+        edges'-t (get edges' true)]
+    (-> (apply loom.graph/add-edges g edges'-f) ;; don't add :constraint edges
+        (loom.attr/add-attr-to-edges :style "invis" edges'-f)
+        ;; for edges marked with :constraint, set the :constraint in the attrs
+        (loom.attr/add-attr-to-edges :constraint true edges'-f))))
+
+
+(defn add-invisible-cluster-edges
+  [g edges]
+  (let [g' (reduce (fn [acc [c1 c2]]
+                     (-> acc
+                         (add-stack (clstr/cluster-key g) [c1 c2])))
+                   g
+                   edges)]
+    g'))
+
+
+(defn sort-clusters-by-rank
+  "Takes the ranks from an old graph and a subset of clusters and returns
+   the clusters in rank order."
+  [ranks clusters]
+  (let [r' (into [] (vals (reduce (fn [acc [k vs]]
+                                    (assoc acc k (into #{} (map first vs))))
+                                  {}
+                                  (group-by val ranks))))]
+   (loop [old-ranks r'
+           acc []
+           clstrs clusters]
+      (if (empty? old-ranks)
+        acc
+        (let [items-at (first old-ranks)
+              matched (set/intersection clstrs items-at)
+              unmatched (set/difference clstrs items-at)]
+          (if (empty? matched)
+            (recur (rest old-ranks) acc clstrs)
+            (recur (rest old-ranks) (conj acc matched) unmatched)))))))
+
+
+(defn rankseq->edges
+  [rankseq]
+  (mapcat
+   (fn [[srcs dests]] (for [x srcs y dests] [x y]))
+   (partition 2 1 rankseq)))
+
+
+(defn remove-invisible-edges
+  [g]
+  (let [edges (filter (fn [[s d]] (= "invis" (loom.attr/attr g s d :style)))
+                      (loom.graph/edges g))]
+    (apply loom.graph/remove-edges g edges)))
+
+
+
+(defn remove-nodes-and-rerank
+  "A wrapper function to ensure that invisible cluster edges are always
+   added back in when appropriate."
+  [g nds]
+  (let [{:keys [graph clusters]} (clstr/remove-nodes g nds)
+        edges (when (-> g :clusters :edge-graph)
+                (rankseq->edges
+                 (sort-clusters-by-rank
+                  (ranks (-> g :clusters :edge-graph))
+                  clusters)))]
+    (if edges
+      (-> graph
+          remove-invisible-edges
+          (add-invisible-cluster-edges edges))
+      graph)))
+
+
+(defn filter-graph
+  "Returns a filtered graph where nodes where is not a submap are filtered out."
+  [g subs]
+  (let [sub (first subs)
+        filtered-nodes (filter #(not (reduce
+                                      (fn [acc term] (or acc (submap? term %)))
+                                      false subs))
+                               (loom.graph/nodes g))]
+    (remove-nodes-and-rerank g filtered-nodes)))
+
+
+(defn paths
+  "Returns a graph with only nodes on paths between start filtering term and the end."
+  [g start-subs end-subs]
+  (let [start-nodes (loom.graph/nodes (filter-graph g start-subs))
+        end-nodes (loom.graph/nodes (filter-graph g end-subs))
+        combins (for [s start-nodes
+                      e end-nodes]
+                  [s e])
+        paths (map
+               #(apply loom.gen/bf-path (partial graph/successors g) %)
+               combins)
+        nds (remove nil? (into #{} (flatten paths)))
+        nds-compl (set/difference (loom.graph/nodes g) nds)]
+    (remove-nodes-and-rerank g nds-compl)))
 
 
 (defn same-ranks

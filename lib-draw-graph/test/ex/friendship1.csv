@@ -37,4 +37,5 @@ cs:flora|bgcolor:palegreen:style:rounded:fontcolor:seagreen
 cs:plantae|bgcolor:palegreen2:style:rounded
 cp:pandas:bears:brownbears:bears:bears:carnivores:carnivores:animals
 cp:squirrels:rodents:wolves:carnivores:rodents:animals:flora:plantae
-ce:animals:rodents:pandas:wolves
+ce:pandas:wolves
+ce:carnivores:rodents

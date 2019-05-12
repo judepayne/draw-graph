@@ -44,10 +44,29 @@
     (str "#" (hex red) (hex green) (hex blue))))
 
 
-(defn ^:private leaf? [g n] (empty? (loom.graph/successors* g n)))
+(defn edge-invisible?
+  [g n1 n2]
+  (let [style (:style (loom.attr/attrs g n1 n2))]
+    (and style (some #(= "invis" %) (str/split style #",")))))
 
 
-(defn root? [g n] (empty? (loom.graph/predecessors* g n)))
+(defn leaf? [g n]
+  (let [succs (loom.graph/successors* g n)
+        visible-succs (filter #(not (edge-invisible? g n %)) succs)]
+    (empty? visible-succs)))
+
+
+(defn root? [g opts n]
+  (and
+   (-> opts :env :show-roots?)
+   (empty? (loom.graph/predecessors* g n))))
+
+
+(defn successors
+  "Takes into account invisible edges"
+  [g n]
+  (let [succs (loom.graph/successors* g n)]
+    (filter #(not (edge-invisible? g n %)) succs)))
 
 
 (defn ^:private fff [nested] (first (ffirst nested)))
@@ -97,8 +116,7 @@
   "Returns the shape of node n in g given options"
   [g opts n]
   (cond
-    (and (root? g n) (-> opts :env :show-roots?)) "star"
-    (and (leaf? g n) (-> opts :env :hide-leaves?)) "point"
+    (root? g opts n) "tripleoctagon"
     :else (-> opts :node :shape)))
 
 
@@ -138,14 +156,15 @@
   "Returns the tooltip for the node n in g given options."
   [g opts n]
   (when-let [tt (-> opts :node :tooltip)]
-    (let [ks (map keyword (str/split tt #"/"))]
-      (apply str (interpose
+    (let [ks (map keyword (str/split tt #"/"))
+          tt (apply str (interpose
                   "\n"
                   (reduce
                    (fn [a c]
                      (conj a (str (name c) ": "(get n c))))
                    []
-                   ks))))))
+                   ks)))]
+      tt)))
 
 
 (defn node-url
@@ -168,7 +187,29 @@
        (assoc :tooltip  (node-tooltip g opts n))
        (assoc :URL (node-url g opts n) :target "_blank"))
    ;;per node attrs supplied by user
-   (loom.attr/attrs g n)))
+   (if (and (root? g opts n) (map? (loom.attr/attrs g n)))
+     (dissoc (loom.attr/attrs g n) :shape)
+     (loom.attr/attrs g n))))
+
+
+(defn ^:private constrained? [g n1 n2]
+  (loom.attr/attr g n1 n2 :constraint))
+
+
+(defn ^:private maybe-show-constraint [g opts n1 n2]
+  (let [show (-> opts :env :show-constraint)]
+    (when (and show (constrained? g n1 n2))
+      {:style "" :color "deeppink3" :penwidth 4})))
+
+
+(defn ^:private edge-descriptor
+  "Return map of attributes for the edge from *display-conf*"
+  [g opts n1 n2]
+  (merge
+   (:edge opts) ;; static attrs
+   ;; per node attrs supplied by user
+   (loom.attr/attrs g n1 n2)
+   (maybe-show-constraint g opts n1 n2)))
 
 
 ;; NEEDS TO CHANGE WHEN NEW OPTS ADDED
@@ -179,7 +220,7 @@
              [:graph :dpi :layout :pad :splines :sep :ranksep
               :scale :overlap :nodesep :rankdir :concentrate]
              [:node :shape :label :fontsize :style :fixedsize :tooltip :url]
-             [:env :hide-leaves? :show-roots? :color-on]))
+             [:env :hide-leaves? :show-roots? :color-on :constraint :show-constraint]))
 
 
 (defn- cluster-args
@@ -190,11 +231,11 @@
 
    :cluster->descriptor
    (fn [n] (merge {:label n}
-                  (:style (clstr/cluster-attr g n))))
+                  (clstr/cluster-attr g n :style)))
 
    :cluster->ranks
    (fn [n]
-     (:fix-ranks (clstr/cluster-attr g n)))
+     (clstr/cluster-attr g n :fix-ranks))
 
    :cluster->parent
    (partial clstr/cluster-parent g)   
@@ -211,7 +252,7 @@
 
       :node->descriptor (partial node-descriptor g opts*)
 
-      :edge->descriptor (partial loom.attr/attrs g)}
+      :edge->descriptor (partial edge-descriptor g opts*)}
 
      ;; merge in cluster argument when g is clustered
      (when (clstr/cluster-key g)

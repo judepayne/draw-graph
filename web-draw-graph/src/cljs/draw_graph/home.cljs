@@ -13,6 +13,7 @@
    [draw-graph.examples      :as examples]
    [lib-draw-graph.processor :as processor]
    [lib-draw-graph.parser    :as parser]
+   [lib-draw-graph.clustered :as clstr]
    [draw-graph.file          :as file])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
@@ -50,7 +51,7 @@
 ;; Processing
 
 ;; determines whether dot is produced locally or in the lambda
-(def ^:dynamic *produce-dot-locally* true)
+(def ^:dynamic *produce-dot-locally* false)
 
 
 (defn clj->json
@@ -153,19 +154,21 @@
     (reset! error "")
     (reset! warn "")
     (let [in (->csv1)
+          opts (:display-options in)
           g (try
               (processor/csv->g in)
               (catch js/Error e
                 (do
                   (reset! svg "")
                   (put-error (str  e)))))
-          warn (processor/check-graph g)
-          dot (processor/g->dot in g)]
-      (if (not= warn "") (put-warn warn))
+          g' (processor/preprocess-graph g opts)
+         ; warn (processor/check-graph g')
+          dot (processor/g->dot in g')]
+      ;(if (not= warn "") (put-warn warn))
       (->> (->svg (clj->json (dot->svg dot)))
            (p/map json->clj)
            (p/map :svg)
-           (p/map (partial processor/postprocess-svg g (-> in :display-options)))
+           (p/map (partial processor/postprocess-svg g' opts))
            (p/map put-svg)
            (p/error (fn [error] (put-error (.-message error))))))))
 
@@ -198,20 +201,31 @@
     (set! (-> js/document (.getElementById id) (.-value)) val)))
 
 
-(defn fixed-select [path a & options]
+(defn fixed-select [path a tabIndex & options]
   [:select
    {:field :list :id (last path)
     :values (get-in @a path)
     :value (get-in @local-state path)
+    :tabIndex tabIndex
     :on-change #(swap! local-state update-in path
                        (fn [e] (-> % .-target .-value)))}
    (for [x options] [:option {:key x} x])])
 
 
-(defn text-input [path a]
+(defn text-input [path a tabIndex]
  [:input
    {:type :text :id (last path)
     :value (get-in @a path)
+    :tabIndex tabIndex
+    :on-change #(swap! local-state update-in path
+                       (fn [e] (-> % .-target .-value)))}])
+
+
+(defn wide-text-input [path a tabIndex]
+ [:input.wide
+   {:type :text :id (last path)
+    :value (get-in @a path)
+    :tabIndex tabIndex
     :on-change #(swap! local-state update-in path
                        (fn [e] (-> % .-target .-value)))}])
 
@@ -225,7 +239,8 @@
 
 
 (defn example-dropdown []
-  [:select {:on-change #(load-example-data (.. % -target -value))}  
+  [:select {:tabIndex 1
+            :on-change #(load-example-data (.. % -target -value))}  
    [:option {:value nil} "-"]  
    [:option {:value "draw-graph.examples/example1"} "Friendship graph"]
    [:option {:value "draw-graph.examples/example2"} "Two facing trees"]
@@ -233,7 +248,8 @@
    [:option {:value "draw-graph.examples/example4"} "CERN email connections"]
    [:option {:value "draw-graph.examples/example5"} "Circular tree"]
    [:option {:value "draw-graph.examples/example6"} "cluster layout"]
-   [:option {:value "draw-graph.examples/example7"} "complex cluster layout"]]) 
+   [:option {:value "draw-graph.examples/example7"} "complex cluster layout"]
+   [:option {:value "draw-graph.examples/example8"} "Architecture diagram"]]) 
 
 
 (defn click-upload-csv-hidden [e]
@@ -246,6 +262,7 @@
 (defn load-button []
   [:div
    [:button {:id "upload-csv"
+             :tabIndex 2
              :on-click click-upload-csv-hidden
              :title "Upload a csv in 'csv1' format. see help"}
     "Load csv"]
@@ -259,6 +276,7 @@
   [:div
    [:textarea {
                :id "tweak-box"
+               :tabIndex 3
                :rows 18
                :cols 40
                :wrap "soft"
@@ -275,37 +293,40 @@
 
 ;; Left Display options
 
-(defn hide-leaves []
-  [:input {:type :checkbox :id :hide-leaves?
-           :checked (:hide-leaves? @options)
-           :on-change #(swap! local-state update-in [:options :hide-leaves?] not)}])
-
 
 (defn show-roots []
   [:input {:type :checkbox :id :show-roots?
            :checked (:show-roots? @options)
+           :tabIndex 12
            :on-change #(swap! local-state update-in [:options :show-roots?] not)}])
 
 
-(defn node-label [] (text-input [:options :label] local-state))
+(defn node-label [] (text-input [:options :label] local-state 4))
 
 
-(defn tooltip [] (text-input [:options :tooltip] local-state))
+(defn tooltip [] (text-input [:options :tooltip] local-state 7))
 
 
-(defn shape [] (fixed-select [:options :shape] local-state
+(defn shape [] (fixed-select [:options :shape] local-state 24
                              "ellipse" "box" "circle" "egg" "diamond" "octagon" "square"
                              "folder" "cylinder" "plaintext"))
 
 
-(defn layout [] (fixed-select [:options :layout] local-state
+(defn layout [] (fixed-select [:options :layout] local-state 22
                               "dot" "neato" "fdp" "circo" "twopi"))
 
 
-(defn rankdir [] (fixed-select [:options :rankdir] local-state "LR" "TB" "RL" "BT"))
+(defn rankdir [] (fixed-select [:options :rankdir] local-state 23 "LR" "TB" "RL" "BT"))
 
 
-(defn elide-levels [] (fixed-select [:options :elide] local-state "0" "1" "2" "3" "4") )
+(defn constraint [] (fixed-select [:options :constraint] local-state "true" "false" 32))
+
+
+(defn elide-levels [] (fixed-select [:options :elide] local-state 11 "0" "1" "2" "3" "4") )
+
+
+(defn anneal-bias [] (fixed-select [:options :pp-anneal-bias] local-state 19
+                                   "0" "1" "2" "3" "4" "5" "6" "7" "8"))
 
 ;; -- Cluster-on dropdown needs to be more dynamic--
 (defn first-line [s]
@@ -321,6 +342,7 @@
   [:select.form-control
    {:field :list :id :cluster-on
     :value (:cluster-on @options)
+    :tabIndex 5
     :on-change #(swap! local-state update-in [:options :cluster-on]
                        (fn [e] (-> % .-target .-value)))}
    (if (= "" (first @headers))
@@ -333,6 +355,7 @@
   [:select.form-control
    {:field :list :id :color-on
     :value (:color-on @options)
+    :tabIndex 6
     :on-change #(swap! local-state update-in [:options :color-on]
                        (fn [e] (-> % .-target .-value)))}
    (if (= "" (first @headers))
@@ -345,6 +368,7 @@
   [:select.form-control
    {:field :list :id :url
     :value (:url @options)
+    :tabIndex 8
     :on-change #(swap! local-state update-in [:options :url]
                        (fn [e] (-> % .-target .-value)))}
    (if (= "" (first @headers))
@@ -353,41 +377,47 @@
            (rest (for [x @headers] [:option {:key x} x]))))])
 
 
-(defn splines [] (fixed-select [:options :splines] local-state
+(defn splines [] (fixed-select [:options :splines] local-state 26
                                "line" "spline" "none" "polyline" "ortho"))
 
 
-(defn overlap [] (fixed-select [:options :overlap] local-state
+(defn overlap [] (fixed-select [:options :overlap] local-state 30
                                "true" "false" "scale" "scalexy" "compress" "vpsc"
                                "orthoxy" "ipsep"))
 
 
-(defn sep [] (text-input [:options :sep] local-state))
+;; (defn sep [] (text-input [:options :sep] local-state)) ;; - unused
 
-(defn concentrate [] (fixed-select [:options :concentrate] local-state
+(defn concentrate [] (fixed-select [:options :concentrate] local-state 29
                                    "false" "true"))
 
-(defn ranksep [] (text-input [:options :ranksep] local-state))
+(defn ranksep [] (text-input [:options :ranksep] local-state 28))
 
 
-(defn nodesep [] (text-input [:options :nodesep] local-state))
+(defn nodesep [] (text-input [:options :nodesep] local-state 27))
 
-(defn scale [] (text-input [:options :scale] local-state))
 
-(defn fixedsize [] (fixed-select [:options :fixedsize] local-state
+(defn scale [] (text-input [:options :scale] local-state 31))
+
+
+(defn fixedsize [] (fixed-select [:options :fixedsize] local-state 25
                                   "true" "false" "shape"))
 
-(defn filtergraph [] (text-input [:options :filter-graph] local-state))
+(defn filtergraph [] (text-input [:options :filter-graph] local-state 9))
+
+
+(defn paths [] (wide-text-input [:options :paths] local-state 10))
 
 
 (defn pp? []
   [:input {:type :checkbox :id :pp?
            :checked (-> @options :post-process?)
+           :tabIndex 13
            :on-change #(swap! local-state update-in
                               [:options :post-process?] not)}])
 
 
-(defn pp-font [] (text-input [:options :pp-font] local-state))
+(defn pp-font [] (text-input [:options :pp-font] local-state 21))
 
 
 (defn pp-clusters []
@@ -395,33 +425,38 @@
    [:a.lbl (str \u2191)]
    [:input {:type :checkbox :id :pp-clusters-top?
             :checked (-> @options :pp-clusters :y)
+            :tab-index 15
             :on-change #(swap! local-state update-in
                                [:options :pp-clusters :y] not)}]
    [:a.lbl (str \u00A0 \u00A0 \u00A0 \u00A0 \u2193)]
    [:input {:type :checkbox :id :pp-clusters-bottom?
             :checked (-> @options :pp-clusters :h)
+            :tabIndex 16
             :on-change #(swap! local-state update-in
                                [:options :pp-clusters :h] not)}]
    [:a.lbl (str \u00A0 \u00A0 \u2190)]
    [:input {:type :checkbox :id :pp-clusters-left?
             :checked (-> @options :pp-clusters :x)
+            :tabIndex 17
             :on-change #(swap! local-state update-in
                                [:options :pp-clusters :x] not)}]
    [:a.lbl (str \u00A0 \u00A0 \u2192)]
    [:input {:type :checkbox :id :pp-clusters-right?
             :checked (-> @options :pp-clusters :w)
+            :tabIndex 18
             :on-change #(swap! local-state update-in
                                [:options :pp-clusters :w] not)}]])
 
 
-(defn pp-cluster-sep [] (text-input [:options :pp-cluster-sep] local-state))
+(defn pp-cluster-sep [] (text-input [:options :pp-cluster-sep] local-state 20))
 
 
 ;; ---- Options layout
 
-(defn row [label ctrl]
+(defn row [label ctrl tooltip]
   [:div [:div.lbl label]
-        [:div ctrl]])
+        [:div {:class "tooltip"} ctrl
+         [:span {:class "tooltiptext"} tooltip]]])
 
 
 (defn label-row [label]
@@ -460,11 +495,12 @@
   (fn []
     [:div.controls1l {:class (:local-class @state)}
      (label-row "draw-graph")
-     (row "node labels" [node-label])
-     (row "node tooltips" [tooltip])
-     (row "elide lower levels" [elide-levels])
-     (row "post process" [pp?])
-     (row "font" [pp-font])    
+     (row "node labels" [node-label] "The header key to use for the node label")
+     (row "node tooltips" [tooltip] "The header key to use for tooltips embedded in the final svg")
+     (row "filter graph" [filtergraph] "Filters the graph - good for zooming in")
+     (row "elide lower levels" [elide-levels] "Hide <n> lowest levels in the graph")
+     (row "post process" [pp?] "Post Procees the svg: anneal clusters and font replacement")
+     (row "anneal cluster separation" [pp-cluster-sep] "How close clusters are allowed to get in pixels during annealing")
 ]))
 
 
@@ -472,10 +508,12 @@
   (fn []
     [:div.controls1m {:class (:local-class @state)} 
      (empty-row)
-     (row "cluster on" [cluster-on])
-     (row "node URL" [url])
-     (row "hide leaves" [hide-leaves])
-     (row "expand clusters" [pp-clusters])
+     (row "cluster on" [cluster-on] "The header key to cluster the graph on")
+     (row "node URL" [url] "The header key to use as an embedded link in the final svg")
+     (row "paths" [paths] "Filter the graph by paths through it. see help page.")
+     (row "highlight roots" [show-roots] "Highlights the roots of the graph")
+     (row "anneal expand clusters" [pp-clusters] "Controls which dimensions of clusters are expanded in post processing")
+     (row "font" [pp-font] "The name of the replacement font to use in post processing")    
      (empty-row) (empty-row)
 ]))
 
@@ -484,10 +522,11 @@
   (fn []
     [:div.controls1r {:class (:local-class @state)} 
      (empty-row)
-     (row "color on" [color-on])
-     (row "filter graph" [filtergraph])
-     (row "highlight roots" [show-roots])
-     (row "cluster separation" [pp-cluster-sep])
+     (row "color on" [color-on] "The header key to vary node coloration by")
+     (empty-row) (empty-row)
+     (empty-row) (empty-row)
+     (empty-row) (empty-row)
+     (row "anneal bias" [anneal-bias] "Favors left-right cluster expansion by this factor in TB/ BT layouts, ditto for top bottom in LR/ RL layouts")
      (empty-row) (empty-row)
 ]))
 
@@ -495,10 +534,10 @@
   (fn []
     [:div.controls2l {:class (:local-class @state)} 
      (label-row "graphviz")     
-     (row "layout" [layout])
-     (row "(node) fixedsize" [fixedsize])
-     (row "nodesep" [nodesep])     
-     (row "overlap" [overlap])
+     (row "layout" [layout] "The Graphviz layout algorithm")
+     (row "(node) fixedsize" [fixedsize] "Nodes fixed in size or varied according to contents")
+     (row "nodesep" [nodesep] "Separation between nodes in inches")     
+     (row "overlap" [overlap] "Determines how Graphviz removes overlapping edges")
      
 ]))
 
@@ -506,10 +545,10 @@
   (fn []
     [:div.controls2m {:class (:local-class @state)} 
      (empty-row)
-     (row "rankdir" [rankdir])
-     (row "splines" [splines])
-     (row "ranksep" [ranksep])
-     (row "scale" [scale])   
+     (row "rankdir" [rankdir] "The layout direction e.g. TB mean Top Bottom etc")
+     (row "splines" [splines] "Controls the form of the edges in the graph")
+     (row "ranksep" [ranksep] "Separation between ranks in inches")
+     (row "scale" [scale] "Scales the graph up by this factor")   
      
 ]))
 
@@ -517,10 +556,10 @@
   (fn []
     [:div.controls2r {:class (:local-class @state)} 
      (empty-row)
-     (row "node shape" [shape])
+     (row "node shape" [shape] "The shape used for nodes")
      (empty-row) (empty-row)
-     (row "concentrate (edges)" [concentrate])
-     (empty-row) (empty-row)
+     (row "concentrate (edges)" [concentrate] "Merge edges with a common end point")
+     (row "edge constraints" [constraint] "Sets whether edges influence rank in dot layouts")
 
 ]))
 
@@ -589,5 +628,7 @@
    [:p {:font-size "0.9em;"} "Network diagrams from csv files"]
    [controls disp-opts-state]
    ;(:options @local-state)
+   ;[:div {:dangerouslySetInnerHTML {:__html @svg}}]
+   ;(:svg @local-state)
    [:div.warn @warn]
    [:div.error @error]])

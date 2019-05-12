@@ -3,42 +3,50 @@
             [clojure.string                       :as str]
             [clojure.java.shell                   :as sh]
             [clojure.data.json                    :as json]
+            [loom.graph                           :as loom]
             [loom.alg-generic                     :as loom.gen]
             [loom.alg                             :as loom.alg]
-            [lib-draw-graph.processor             :refer :all]
-            [lib-draw-graph.clustered             :refer :all]
             [lib-draw-graph.graph                 :as g]
-            [lib-draw-graph.postprocessor         :refer :all]
+            [lib-draw-graph.clustered             :refer :all]
+            [lib-draw-graph.svg                   :refer :all]
             [lib-draw-graph.anneal                :refer :all]
-            [lib-draw-graph.svg                   :refer :all]))
+            [lib-draw-graph.preprocessor          :refer :all]
+            [lib-draw-graph.postprocessor         :refer :all]
+            [lib-draw-graph.processor             :refer :all]))
 
 
 (def standard-options
-  [:hide-leaves? false
-   :show-roots? false
-   :cluster-on "function"
-   ;:color-on "name"
+  [:show-roots? false
+   :cluster-on "animal"
+   ;:color-on "id"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "application"
-   :shape "cylinder"
-   ;:nodesep 0.5
-   :ranksep 0.5
+   :label "name"
+   :shape "ellipse"
+ ;  :nodesep 0.5
+ ;  :ranksep 0.01
    ;:sep 1 
-   :splines "ortho"
+   :splines "line"
    :rankdir "TB"
    :fixedsize false
-   :tooltip "application"
+   :tooltip "name/animal"
+ ;  :url ""
    ;:scale 2
-   :overlap false
-   :concentrate true
-   ;:elide "0"
-   :fix-ranks? true
+   :overlap "ipsep"
+   :concentrate false
+ ;  :elide "0"
+   :constraint false
+   :show-constraint false
+ ;  :fix-ranks? true
+   ;:filter-graph "function:Capture,function:Lifecycle,function:Reporting"
    ;:filter-graph "animal:pandas"
+   ;:paths "function:Capture,function:Lifecycle|function:Reporting"
    :post-process? true
    :pp-clusters {:y true :h true :x true :w true}
-   :pp-cluster-sep "0"
-   :pp-font "Helvetica"
+;   :pp-clusters {:y false :h false :x false :w false}
+   :pp-anneal-bias "3"
+;   :pp-cluster-sep "0"
+   :pp-font "sans-serif"
 ])
 
 (defn options [] (apply hash-map standard-options))

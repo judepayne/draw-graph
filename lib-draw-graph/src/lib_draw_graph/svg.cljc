@@ -406,12 +406,6 @@
 ;; notes  jumps are 7 to content then -2 to get attr then (obviously -5)
 
 
-(defn ed-test [k node]
-  (println  ">>Here is your clstr: " k)
-  (println ">>Here is your node: " node)
-  node)
-
-
 (defn ->root
   "zips all the way up and returns the root node, reflecting any
  changes."

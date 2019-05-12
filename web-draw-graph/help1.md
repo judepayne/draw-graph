@@ -4,17 +4,23 @@
 
 ### Introduction<div id=“introduction” />
 
-draw-graph allows you to produce graph/ network diagrams from simple data descriptions.
+draw-graph allows you to produce graph/ network diagrams from simple data descriptions. Network diagrams show how things connect - boxes and arrows diagrams.
 
 draw-graph is powered by Graphviz, a very capable (and complex!) library for displaying graph/ network diagrams. Unfortunately for the non-technical user, the input format for Graphviz, dot, can be rather complex. Although it can be written by hand, for large graphs, it’s often preferable to produce the dot format programmatically. draw-graph solves this problem by using a csv (comma separated values) input format that you would typically prepare in a spreadsheet before uploading or pasting into draw-graph.
 draw-graph then gives you access to some of the key Graphviz settings (out of several hundred) for controlling the display in a simple way.
 
+In addition to the graphviz functionality, draw-graph has both preprocessing and postprocessing stages.
+
+Preprocessing allows for facilities like filtering the graph or finding paths through it. Postprocessing tweaks the appearance of the image returned by draw-graph to improve it.
+
 
 ### Basic graph terms<div id=“basic-graph-terms” />
 
-**nodes** are nodes in your graph. Sometimes called vertices. Nodes in draw-graph are each made by a list of values that describes the node (the keys for the values are specified only once, in the header row). Nodes can be individually styled within the data you load into draw-graph. A node might participate in none, one or many..
+**nodes** are nodes in your graph - the boxes on your diagram. Each node in draw-graph is just a map of keys and values which you define. In the data that you make describing the diagram you want, the keys are specified just once in the header row, and the values are specified for each node.
 
-**edges** are connections between two nodes in a graph. Edges can be individually styled within the data you load into draw-graph.
+Nodes can be individually styled within the data you load into draw-graph. A node might participate in none, one or many..
+
+**edges** are connections between two nodes in a graph - the arrows on your diagram. Edges can be individually styled within the data you load into draw-graph.
 
 **clusters** are sections within the graph, best thought of as a collection of nodes. Clusters can be individually styled in the data you load into draw-graph.
 
@@ -28,7 +34,17 @@ As well as styling clusters, you can specify how they relate to each other to co
 Please use the **'Examples'** drop down on the main page to see what is achievable with draw-graph and see how the data specification of the graph is used to do that.
 
 
-Nodes in draw-graph are each specified as a map of key value pairs, but to avoid you having to write down the keys over and over, keys are only specified once, in the header row. This works because, in draw-graph, *every node in a graph must have exactly the same keys*.
+As previousyly mentioned, Nodes in draw-graph are each specified as a map of key value pairs, but to avoid you having to write down the keys over and over, keys are only specified once, in the header row. This works because, in draw-graph, *every node in a graph must have exactly the same keys* (even if for some nodes, a particular key doesn't have a value, so it's left blank).
+
+
+####Working up the data
+
+The draw-graph web does provide a small text area for working with the data but an easier way to work up the data is in a spreadsheet. For example:
+
+![two trees facing one way](img/spreadsheet.png =600x350)
+
+The data was typed in the columns to the left and then in the column marked as blue, a spreadsheet formula concatenates the contents of the previous columns together. When it was ready, the contents of that column were copied and paste into the draw-graph text area. 
+
 
 ####Special characters to avoid
 
@@ -102,6 +118,9 @@ will style the Simon node according to those Graphviz attributes specified. Plea
 
 One node in your graph might occur many times in the data you load, as that node participates in multiple edges. Styling it once is sufficient in the data.
 
+Please see the same graphviz page as linked above for a comprehensive list of all the available attributes.
+
+
 ####3) Cluster Style rows
 
 Cluster Style rows are not used to specify if/ how nodes should be put into clusters in the graph, but they are used just for styling the clusters. A cluster style row is always started with a `cs:`.
@@ -114,8 +133,10 @@ Before the `|` you put the value of the cluster that you are styling, and after,
 
 If you click through the **Examples** on the main page, you’ll see how various effects can be achieved. There’s a section on more advanced layout tricks, where you need to understand more about Graphviz, further down on this page.
 
+For a comprehensive list of all graphviz attributes that can be applied to nodes, edges and clusters, here's the [link](https://www.graphviz.org/doc/info/attrs.html) again.
 
-####4) Cluster Edge rows and (5) Cluster->parent rows
+
+####4) Cluster Edge rows and (5) Cluster to parent rows
 
 The final two types of rows are really only useful when the `dot` layout is selected in the options. Graphviz' dot layout is probably the most useful, and with it we can get the closest to using Graphviz and draw-graph are a diagramming tool. The key concept to understand with dot is *rank*.
 
@@ -160,6 +181,13 @@ The new cluster you just added, `are they bears`, is not styled yet, so add anot
     
 Another example in the drop down list - Friendship cluster layout - shows a more complicated example of what can be achieved with cluster edge rows and cluster->parent rows. draw-graph adds these in order to get the most out of Graphviz' dot layout and help you produce 'what connects to what' style diagrams which are pretty common in the work place.
 
+
+####Commenting out lines
+
+Use a semi-colon ';' or a double semi-colon ';;' at the beginning or any line in the input data, apart from the header line which must always be present, to have draw-graph ignore the line. This is often useful while you're working.
+
+
+
 ####Splitting text labels
 
 Please pull up the 'Friendship graph' example again.
@@ -170,20 +198,15 @@ Notice how the text of the 'cristolene' node is too wide and slightly extends ov
 The plus `+` symbol is used to split text in a node label. There's just one thing to be careful of and that is the definition of that node is now literally `pandas:crist-+lene`, so if you wish to overflow text for a node where is one more than one edge (i.e. present in more than one row in the data) be sure to change the definition of the node in both, or Graphviz will think that they are two different nodes.
 
 
-####Future plans
-
-At the time of writing, March 2019, I am looking to introduce some changes to draw-graph to post process the svg before its displayed. This is to get even closer to being able to directly use draw-graph as a diagramming tool.
-
-
 ### Options<div id=“options” />
 
 We’ve already covered how the styling of nodes, edges and clusters is embedded in the data definition itself. Options is for globally controlling either styling aspects for the whole graph, or for performing operations (e.g. filtering) on the whole graph.
 
-Here are details of the various controls within the options panel:
+Draw-graph splits the options into two sections, those provided by draw-graph itself and those which are pass throughs into graphviz settings.
 
-`hide leaves?` :true/false - will suppress (show as point nodes) the leaves of the graph. Leaf nodes in graph speak are any nodes which don’t have any edge coming out of them.
 
-`show roots?` :true/false - will highlight root nodes in the graph as stars symbols. Root nodes are nodes which don’t have any edges going into them.
+####draw-graph options
+
 
 `node label` is the key from your data to be used as the label on each node.
 
@@ -195,74 +218,55 @@ Sometimes in one of your nodes, one of the values might be missing and it's vali
     
 In this case, you can specify `node-label` with a fallback key to use, or multiple fallback keys for that matter. e.g. rather than just `name`, specify as `name/id` or even `name/id/class`
 
-`node shape` is a Graphviz setting which controls the style of node shape 
 
 `cluster on` clusters the graph on one of the keys from your data. For example, setting cluster-on ‘class’ will group the graph by ‘class’.
 
-`layout` : this is a Graphviz setting that determines how the graph gets laid out. possible settings are 'dot' 'fdp' 'neato' ‘circo’ ‘twopi’. Please note, that of these, several layouts do not support clustering. It’s worth experimenting with the layout options as these make dramatic differences to the look of the graph. More information is available [here.](https://www.graphviz.org) (under 'Roadmap'). Also, please click through the Examples and note the settings that are used for each.
 
-**Please note** that for large graphs - more than a hundred edges - the ‘dot’ layout will be much faster than the other two.
-
-`rankdir` is a Graphviz setting that only applies to the dot layout. It controls whether the graph is laid out left to right, top to bottom, etc.
-
-`elide lower levels` is a draw-graph setting which will remove from the display of the graph (but will not touch your data) the number specified of the lower levels in the graph.
-
-I’ve found this useful for large, especially tree like graphs, with several hundreds or even thousands of nodes, when you might want to produce an image that shows the upper structure of the tree but hides the (details of) the lower levels/ leaf nodes. `elide lower levels` is like a more powerful version of `hide leaves`.
-
-`splines` is a Graphviz setting which controls the style of edges.
-
-`overlap` is a Graphviz setting which controls whether/ how nodes are allowed to overlap.
-
-`ranksep` is a Graphviz setting which specifies the gap (in inches) between different ranks in the graph. See ’Two facing trees’ in the Graphviz layout tricks section below.
-
-`nodesep` is a Graphviz setting which specifies the gap (in inches) between nodes in the same rank.
-
-`scale` is a Graphviz setting which scales the graph after layout.
-
-`filter graph` is a draw-graph setting which allows you to ‘zoom in’ on a particular section in a (large) graph. In the text box, specify the value like
-
-    id:30
-
-Where id is one of the keys in each of the nodes and 30 is a particular value, i.e. a particular node.
-In case you have more than one node whether id is 30, you can be more specific and specify, for example:
-
-    class:Bluebird-class:id:30
-
-filter graph will filter down to just the nodes meeting this/ these criteria.
-
-For more information on any of the Graphviz settings, please see  [here](https://www.graphviz.org/doc/info/attrs.html)
+`color on` controls how the color for a node is chosen. By default, draw-graph will generate a light random color for each node based on the setting for `cluster-on` unless you set `color-on` differently. Any node color specified directly in the input data will override this.
 
 
-### Saving the graph image<a name=“saving”></a>
+`node-tooltips` In the output image, node tooltips will appear when hovering over each node. `node-tooltips` should be specified as one or more of the keys in the input data. For example:
 
-You can save you image as an .svg file into the downloads folder that your browser uses.
+    name
+    
+or
+
+    name/animal
+
+`node-url` if one of the key - value pairs on your node data is a url. then that key can be selected here and in the output image, clicking on that node, will take you to the url (in a new browser tab page).
 
 
-### Layout tricks<div id=“layout-tricks” />
+`filter-graph` allows you to specify filtering terms which are applied in the preprocessing stage. For example, pick the 'Architecture diagram' example and press draw-graph. In the example, the keys for the nodes and `view`, `function` and `application`. Set `filter-graph` to:
 
-Here are some tips on how to solve certain graph layout challenges.
+    function:Capture
+    
+and press draw-graph again.
 
-#### 1. Two facing trees
+Now set `filter-graph` to:
 
-Sometimes you might want to show how the nodes in two tree-like clusters relate to each other, but can face a problem that both trees face the same way, when you would rather have them facing each other.
-Here’s an example of the problem:
-![two trees facing one way](img/two-trees1.png)
+    function:Captue,function:Lifecycle
+    
+(a series of filter terms don't need to be based on the same key) and hit draw-graph again.
 
-The trick to fixing this problem is to understand Graphviz’s concept of rank (in the dot layout).
-In the image, prds:b2 points to grc:b1. That’s why the whole grc cluster is shifted to the right of prds.
-We can fix this and get the grc cluster over to the right and facing back towards prds by reversing the direction of all the edges *just inside the grc cluster/tree*. We’ll also need to get the arrows inside the grc cluster to point the other way.
 
-So for example the edge:
+`paths` is a slightly more complex way of effectively filtering the graph. Pick the 'Architecture diagram' again and enter:
 
-    grc:a1,grc:b1
+    function:Capture,function:Lifecycle|function:Reporting
+    
+`paths` is made up of two filter terms separated with the pipe character '|'. The graph is filtered both for the first filter terms and the second. Then a pathfinding algorithm is run between all combinations of the first set of nodes and the second. Any other nodes found on any of those paths (as well as the start and end nodes captured by the filter terms) are shown in the resulting graph.
+`paths` is useful for answering questions about how certain domains connect and what do those connections pass through.
 
-Needs to become
 
-    grc:b1,grc:a1,dir:back
+`ellide lower levels` will hide the <n> lowest levels (the 'leaf' nodes) in the graph.
 
-If you do that for each of the internal edges of grc, the resulting image will look like so:
-![two trees facing each other](img/two-trees2.png)
 
-Finally, for larger trees when many connections between them, you might want to separate the two trees more. This can be accomplished by adding on an attribute to the edges *between the two trees* `minlen:5` - or any number for the ‘minimum length’ that you want.
+`highlight roots?` :true/false - will highlight root nodes in the graph as stars symbols. Root nodes are nodes which don’t have any edges going into them.
 
-Please see the ‘two facing trees’ example and its data for how this accomplished for two larger trees that need to face each other.
+
+
+**`post process`** set this true to have draw-graph postprocess the output image with the controls.
+
+**Simulated annealing**
+
+Simulated annealing is use in draw-graph to lay out clusters more optimally that Graphviz does. Here's a demo:
+

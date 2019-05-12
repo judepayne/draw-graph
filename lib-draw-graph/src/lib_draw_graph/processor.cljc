@@ -35,6 +35,12 @@
           :cljs (catch js/Object e nil))))
 
 
+(defn some-dims?
+  "Returns true if some of the map entries are true"
+  [m]
+  (not (empty? (select-keys m (for [[k v] m :when v] k)))))
+
+
 (defn- add-attr-map
   [g node-or-edge m]
   (reduce
@@ -70,7 +76,9 @@
                          gr3 (:cluster-parents parsed))
              ;; add cluster edges
              gr5 (reduce (fn [acc [c1 c2]]
-                           (preprocessor/add-stack acc (keyword cluster-on) [c1 c2]))
+                           (-> acc
+                               (clstr/add-cluster-edge c1 c2)
+                               (preprocessor/add-stack (keyword cluster-on) [c1 c2])))
                          gr4
                          (:cluster-edges parsed))]
 
@@ -90,9 +98,20 @@
        (into {})))
 
 
+(defn maybe-paths [g opts]
+  (if (and (some? (:paths opts)) (string? (:paths opts)))
+    (let [subs (str/split (:paths opts) #"\|")]
+      (if (= 2 (count subs))
+        (let [start-sub (map ->submap (str/split (first subs) #","))
+              end-sub (map ->submap (str/split (second subs) #","))]
+          (preprocessor/paths g start-sub end-sub))
+        (throw (util/err "Error: Paths input cannot be parsed."))))
+    g))
+
+
 (defn maybe-filter [g opts]
   (if  (some? (:filter-graph opts))
-    (preprocessor/filter-graph g (->submap (:filter-graph opts)))
+    (preprocessor/filter-graph g (map ->submap (str/split (:filter-graph opts) #",")))
     g))
 
 
@@ -115,11 +134,7 @@
 ;; -----------
 ;; Tests
 
-(defn clusters-consistent? [g]
-  (if (and (clstr/cluster-key g)
-           (not= (clstr/clusters g) (clstr/clusters-from-nodes g)))
-    "Different clusters in nodes compared to clusters edges.\n"
-    ""))
+
 
 
 ;; -----------
@@ -143,26 +158,30 @@
 
 (defn preprocess-graph [graph opts]
   (-> graph
+      (maybe-paths opts)
       (maybe-filter opts)
       (maybe-elide opts)
       (maybe-fix-ranks opts)))
 
 
 (defn postprocess-svg [graph opts svg]
+;  (println (some-dims? (-> opts :pp-clusters)))
   (if (-> opts :post-process?)
-    (let [svg' (let [font (-> opts :pp-font)]
-                 (if (and (not= font "") (not (nil? font)))
-                   (clojure.string/replace svg "Monospace" font)
-                   svg))
-          svg'' (if (not-blank (-> opts :cluster-on))
-                  ;; do cluster optimization
-                  (postprocessor/optimize-clusters
-                   svg'
-                   graph
-                   (partial g/first-label (-> opts :label))
-                   opts)
-                  ;; not a clustered graph. just return the svg
-                  svg')]
+    (let [svg' (if (and (not-blank (-> opts :cluster-on))
+                        (some-dims? (-> opts :pp-clusters))
+                        (= "dot" (-> opts :layout)))
+                 ;; do cluster optimization
+                 (postprocessor/optimize-clusters
+                  svg
+                  graph
+                  (partial g/first-label (-> opts :label))
+                  opts)
+                 ;; not a clustered graph. just return the svg
+                 svg)
+          svg'' (let [font (-> opts :pp-font)]
+                  (if (and (not= font "") (not (nil? font)))
+                    (clojure.string/replace svg' "Monospace" font)
+                    svg'))]
       svg'')
     ;; just return the svg as post processing not required
     svg))
@@ -187,7 +206,6 @@
 
 (defn g->dot [in g]
   (-> g
-      (preprocess-graph (:display-options in))
       (g/process-graph (:display-options in))))
 
 
@@ -197,9 +215,11 @@
     "dot" (dot->svg (:data in)) ;; we can't do any post-processing
 
     "csv" (let [g (csv->g in)
-                dot (g->dot in g)
+                opts (:display-options in)
+                preproc-g (preprocess-graph g opts)
+                dot (g/process-graph preproc-g opts)
                 svg (dot->svg dot)]
-            (postprocess-svg g (-> in :display-options) svg))
+            (postprocess-svg preproc-g opts svg))
 
     (throw (util/err "Error: only 'csv' or 'dot' are allowed input formats."))))
 

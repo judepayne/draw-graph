@@ -51,10 +51,12 @@
     (let [in (read-input js)
           svg (case (*format-in* in)
                 "csv" (let [g (processor/csv->g in)
+                            opts (:display-options in)
+                            g' (processor/preprocess-graph g opts)
                             ;; warning goes here
-                            dot (processor/g->dot in g)
+                            dot (processor/g->dot in g')
                             svg (dot->svg dot)]
-                        (processor/postprocess-svg g (-> in :display-options) svg))
+                        (processor/postprocess-svg g' (-> in :display-options) svg))
                 "dot" (dot->svg (:data in))
                 (throw (IllegalArgumentException.
                         "Error: only 'csv' or 'dot' are allowed input formats.")))
