@@ -29,13 +29,13 @@
    :splines "line"
    :rankdir "TB"
    :fixedsize false
-   :tooltip "name/animal"
+   :tooltip "name/message"
  ;  :url ""
    ;:scale 2
-   :overlap "ipsep"
+   ;:overlap "ipsep"
    :concentrate false
  ;  :elide "0"
-   :constraint false
+   :constraint true
    :show-constraint false
  ;  :fix-ranks? true
    ;:filter-graph "function:Capture,function:Lifecycle,function:Reporting"
@@ -45,7 +45,7 @@
    :pp-clusters {:y true :h true :x true :w true}
 ;   :pp-clusters {:y false :h false :x false :w false}
    :pp-anneal-bias "3"
-;   :pp-cluster-sep "0"
+   :pp-cluster-sep "8"
    :pp-font "sans-serif"
 ])
 

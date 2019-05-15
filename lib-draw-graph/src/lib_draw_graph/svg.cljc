@@ -255,11 +255,14 @@
   (zip/xml-zip xml))
 
 
-(defn ->xml [parsed]
-  (xml/emit-str parsed))
+(def wrong-xlink #"xmlns:ns\d+=\"http://www.w3.org/1999/xlink\" ns\d+")
 
-;; remove this
-;; (def z (->zipper (parse-svg test-svg)))
+
+(defn ->xml [parsed]
+  #?(:clj (xml/emit-str parsed)
+     :cljs (let [raw (xml/emit-str parsed)
+                 fixed (clojure.string/replace raw wrong-xlink "xlink")]
+             fixed)))
 
 
 (defn tree-find

@@ -1,0 +1,7 @@
+h:animal:name:message
+e:pandas:simone:simone's tooltip,grizzly:sharhar:I am violent
+e:grizzly:sharhar:I am violent,pandas:summer:I am so sweet
+e:pandas:max:max's message,grizzly:sharhar:I am violent
+cp:grizzly:pandas
+cs:grizzly|bgcolor:#547996:fontcolor:white
+cs:pandas|bgcolor:#7c9acc:style:rounded:labeljust:r

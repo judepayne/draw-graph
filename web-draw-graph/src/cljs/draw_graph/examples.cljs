@@ -20,8 +20,8 @@
    :pp-font ""
    :pp-cluster-sep ""
    :tooltip ""
-   :constraint true
-   ;:url ""
+   :constraint "true"
+   :url ""
    :fix-ranks? true})
 
 
@@ -199,7 +199,7 @@ ce:animals:rodents:pandas:wolves"
            :pp-font "sans-serif"
            :pp-cluster-sep "0"
            :tooltip "application/id"
-           :constraint true
+           :constraint "true"
            :fixedsize "false"
            :ranksep 0
            :nodesep 0.3

@@ -51,7 +51,7 @@
 ;; Processing
 
 ;; determines whether dot is produced locally or in the lambda
-(def ^:dynamic *produce-dot-locally* false)
+(def ^:dynamic *produce-dot-locally* true)
 
 
 (defn clj->json
@@ -64,6 +64,7 @@
   (js->clj (.parse js/JSON ds) :keywordize-keys true))
 
 (def url-lambda-draw-graph "https://0j6kjsk388.execute-api.eu-west-2.amazonaws.com/beta")
+;(def url-lambda-draw-graph "https://u4jlt3tmhe.execute-api.us-east-1.amazonaws.com/beta")
 
 
 (defn remove-empty-strings
@@ -319,7 +320,7 @@
 (defn rankdir [] (fixed-select [:options :rankdir] local-state 23 "LR" "TB" "RL" "BT"))
 
 
-(defn constraint [] (fixed-select [:options :constraint] local-state "true" "false" 32))
+(defn constraint [] (fixed-select [:options :constraint] local-state 32 "true" "false"))
 
 
 (defn elide-levels [] (fixed-select [:options :elide] local-state 11 "0" "1" "2" "3" "4") )
