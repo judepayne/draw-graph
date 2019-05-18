@@ -293,7 +293,7 @@
   (let [BT? (= "BT" (-> opts :rankdir))]
     (if (not BT?)
       (if-let [edited (get env clstr)]
-        (case (-> (clstr/cluster-attr g clstr :style) :labeljust)
+        (case (-> (clstr/merged-cluster-attr g clstr :style) :labeljust)
           
           "l" (-> node
                   (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
@@ -312,7 +312,7 @@
 
       ;; Bottom Top layout. position labels at bottom
       (if-let [edited (get env clstr)]
-        (case (-> (clstr/cluster-attr g clstr) :style :labeljust)
+        (case (-> (clstr/merged-cluster-attr g clstr :style) :labeljust)
           
           "l" (-> node
                   (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))

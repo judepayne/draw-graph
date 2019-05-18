@@ -165,7 +165,6 @@
 
 
 (defn postprocess-svg [graph opts svg]
-;  (println (some-dims? (-> opts :pp-clusters)))
   (if (-> opts :post-process?)
     (let [svg' (if (and (not-blank (-> opts :cluster-on))
                         (some-dims? (-> opts :pp-clusters))
@@ -180,7 +179,7 @@
                  svg)
           svg'' (let [font (-> opts :pp-font)]
                   (if (and (not= font "") (not (nil? font)))
-                    (clojure.string/replace svg' "Monospace" font)
+                    (clojure.string/replace (if (nil? svg') svg svg') "Monospace" font)
                     svg'))]
       svg'')
     ;; just return the svg as post processing not required

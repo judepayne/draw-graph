@@ -1,0 +1,346 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600pt" height="758pt" viewBox="0.00 0.00 599.80 757.85">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 743.45)">
+<title>%3</title>
+<polygon fill="#ffffff" stroke="transparent" points="-14.4,14.4 -14.4,-743.45 585.4,-743.45 585.4,14.4 -14.4,14.4"/>
+<g id="clust1" class="cluster">
+<title>cluster50</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-721 8,-8 563,-8 563,-721 8,-721"/>
+<text text-anchor="start" x="18" y="-703" font-family="sans-serif" font-size="14.00" fill="#000000">Current State</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster51</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-344 8,-240 563,-240 563,-344 8,-344"/>
+<text text-anchor="start" x="18" y="-326" font-family="sans-serif" font-size="14.00" fill="#000000">Risk</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster52</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="301,-479 301,-344 563,-344 563,-479 301,-479"/>
+<text text-anchor="start" x="311" y="-461" font-family="sans-serif" font-size="14.00" fill="#000000">Capture</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster53</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-117 8,-8 563,-8 563,-117 8,-117"/>
+<text text-anchor="start" x="18" y="-99" font-family="sans-serif" font-size="14.00" fill="#000000">Reporting</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster54</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-479 8,-344 301,-344 301,-479 8,-479"/>
+<text text-anchor="start" x="18" y="-461" font-family="sans-serif" font-size="14.00" fill="#000000">Lifecycle</text>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster55</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-688 8,-479 563,-479 563,-688 8,-688"/>
+<text text-anchor="start" x="18" y="-670" font-family="sans-serif" font-size="14.00" fill="#000000">Golden Sources</text>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster56</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-240 8,-117 563,-117 563,-240 8,-240"/>
+<text text-anchor="start" x="18" y="-222" font-family="sans-serif" font-size="14.00" fill="#000000">Settlement</text>
+</g>
+<!-- node29 -->
+<g id="node1" class="node">
+<title>node29</title>
+<g id="a_node1"><a xlink:title="application: hePikes&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M387,-168.5273C387,-170.3331 374.8982,-171.8 360,-171.8 345.1018,-171.8 333,-170.3331 333,-168.5273 333,-168.5273 333,-139.0727 333,-139.0727 333,-137.2669 345.1018,-135.8 360,-135.8 374.8982,-135.8 387,-137.2669 387,-139.0727 387,-139.0727 387,-168.5273 387,-168.5273"/>
+<path fill="none" stroke="#000000" d="M387,-168.5273C387,-166.7214 374.8982,-165.2545 360,-165.2545 345.1018,-165.2545 333,-166.7214 333,-168.5273"/>
+<text text-anchor="middle" x="360" y="-150.8" font-family="sans-serif" font-size="10.00" fill="#000000">hePikes</text>
+</a>
+</g>
+</g>
+<!-- node35 -->
+<g id="node7" class="node">
+<title>node35</title>
+<g id="a_node7"><a xlink:title="application: TradeDepo&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M347.474,-56.7273C347.474,-58.5331 334.2633,-60 318,-60 301.7367,-60 288.526,-58.5331 288.526,-56.7273 288.526,-56.7273 288.526,-27.2727 288.526,-27.2727 288.526,-25.4669 301.7367,-24 318,-24 334.2633,-24 347.474,-25.4669 347.474,-27.2727 347.474,-27.2727 347.474,-56.7273 347.474,-56.7273"/>
+<path fill="none" stroke="#000000" d="M347.474,-56.7273C347.474,-54.9214 334.2633,-53.4545 318,-53.4545 301.7367,-53.4545 288.526,-54.9214 288.526,-56.7273"/>
+<text text-anchor="middle" x="318" y="-39" font-family="sans-serif" font-size="10.00" fill="#000000">TradeDepo</text>
+</a>
+</g>
+</g>
+<!-- node29&#45;&gt;node35 -->
+<!-- node48 -->
+<g id="node20" class="node">
+<title>node48</title>
+<g id="a_node20"><a xlink:title="application: 1-Charge&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M267,-56.7273C267,-58.5331 254.8982,-60 240,-60 225.1018,-60 213,-58.5331 213,-56.7273 213,-56.7273 213,-27.2727 213,-27.2727 213,-25.4669 225.1018,-24 240,-24 254.8982,-24 267,-25.4669 267,-27.2727 267,-27.2727 267,-56.7273 267,-56.7273"/>
+<path fill="none" stroke="#000000" d="M267,-56.7273C267,-54.9214 254.8982,-53.4545 240,-53.4545 225.1018,-53.4545 213,-54.9214 213,-56.7273"/>
+<text text-anchor="middle" x="240" y="-39" font-family="sans-serif" font-size="10.00" fill="#000000">1-Charge</text>
+</a>
+</g>
+</g>
+<!-- node29&#45;&gt;node48 -->
+<!-- node30 -->
+<g id="node2" class="node">
+<title>node30</title>
+<g id="a_node2"><a xlink:title="application: Products&#10;id: PTN-6538" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M411,-652.1773C411,-653.9831 398.8982,-655.45 384,-655.45 369.1018,-655.45 357,-653.9831 357,-652.1773 357,-652.1773 357,-622.7227 357,-622.7227 357,-620.9169 369.1018,-619.45 384,-619.45 398.8982,-619.45 411,-620.9169 411,-622.7227 411,-622.7227 411,-652.1773 411,-652.1773"/>
+<path fill="none" stroke="#000000" d="M411,-652.1773C411,-650.3714 398.8982,-648.9045 384,-648.9045 369.1018,-648.9045 357,-650.3714 357,-652.1773"/>
+<text text-anchor="middle" x="384" y="-634.45" font-family="sans-serif" font-size="10.00" fill="#000000">Products</text>
+</a>
+</g>
+</g>
+<!-- node47 -->
+<g id="node19" class="node">
+<title>node47</title>
+<g id="a_node19"><a xlink:title="application: Instrument+Hub&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M410.8239,-543.8028C410.8239,-546.4363 397.9046,-548.5756 382,-548.5756 366.0954,-548.5756 353.1761,-546.4363 353.1761,-543.8028 353.1761,-543.8028 353.1761,-500.8472 353.1761,-500.8472 353.1761,-498.2137 366.0954,-496.0744 382,-496.0744 397.9046,-496.0744 410.8239,-498.2137 410.8239,-500.8472 410.8239,-500.8472 410.8239,-543.8028 410.8239,-543.8028"/>
+<path fill="none" stroke="#000000" d="M410.8239,-543.8028C410.8239,-541.1692 397.9046,-539.0299 382,-539.0299 366.0954,-539.0299 353.1761,-541.1692 353.1761,-543.8028"/>
+<text text-anchor="middle" x="382" y="-525.325" font-family="sans-serif" font-size="10.00" fill="#000000">Instrument</text>
+<text text-anchor="middle" x="382" y="-513.325" font-family="sans-serif" font-size="10.00" fill="#000000">Hub</text>
+</a>
+</g>
+</g>
+<!-- node30&#45;&gt;node47 -->
+<!-- node31 -->
+<g id="node3" class="node">
+<title>node31</title>
+<g id="a_node3"><a xlink:title="application: Employee&#10;id: PTN-23" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M335.0469,-652.1773C335.0469,-653.9831 322.924,-655.45 308,-655.45 293.076,-655.45 280.9531,-653.9831 280.9531,-652.1773 280.9531,-652.1773 280.9531,-622.7227 280.9531,-622.7227 280.9531,-620.9169 293.076,-619.45 308,-619.45 322.924,-619.45 335.0469,-620.9169 335.0469,-622.7227 335.0469,-622.7227 335.0469,-652.1773 335.0469,-652.1773"/>
+<path fill="none" stroke="#000000" d="M335.0469,-652.1773C335.0469,-650.3714 322.924,-648.9045 308,-648.9045 293.076,-648.9045 280.9531,-650.3714 280.9531,-652.1773"/>
+<text text-anchor="middle" x="308" y="-634.45" font-family="sans-serif" font-size="10.00" fill="#000000">Employee</text>
+</a>
+</g>
+</g>
+<!-- node44 -->
+<g id="node16" class="node">
+<title>node44</title>
+<g id="a_node16"><a xlink:title="application: Affinity&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M316,-537.0523C316,-538.8581 303.8982,-540.325 289,-540.325 274.1018,-540.325 262,-538.8581 262,-537.0523 262,-537.0523 262,-507.5977 262,-507.5977 262,-505.7919 274.1018,-504.325 289,-504.325 303.8982,-504.325 316,-505.7919 316,-507.5977 316,-507.5977 316,-537.0523 316,-537.0523"/>
+<path fill="none" stroke="#000000" d="M316,-537.0523C316,-535.2464 303.8982,-533.7795 289,-533.7795 274.1018,-533.7795 262,-535.2464 262,-537.0523"/>
+<text text-anchor="middle" x="289" y="-519.325" font-family="sans-serif" font-size="10.00" fill="#000000">Affinity</text>
+</a>
+</g>
+</g>
+<!-- node31&#45;&gt;node44 -->
+<!-- node32 -->
+<g id="node4" class="node">
+<title>node32</title>
+<g id="a_node4"><a xlink:title="application: Clients&#10;id: PTN-675664" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M487,-652.1773C487,-653.9831 474.8982,-655.45 460,-655.45 445.1018,-655.45 433,-653.9831 433,-652.1773 433,-652.1773 433,-622.7227 433,-622.7227 433,-620.9169 445.1018,-619.45 460,-619.45 474.8982,-619.45 487,-620.9169 487,-622.7227 487,-622.7227 487,-652.1773 487,-652.1773"/>
+<path fill="none" stroke="#000000" d="M487,-652.1773C487,-650.3714 474.8982,-648.9045 460,-648.9045 445.1018,-648.9045 433,-650.3714 433,-652.1773"/>
+<text text-anchor="middle" x="460" y="-634.45" font-family="sans-serif" font-size="10.00" fill="#000000">Clients</text>
+</a>
+</g>
+</g>
+<!-- node39 -->
+<g id="node11" class="node">
+<title>node39</title>
+<g id="a_node11"><a xlink:title="application: ERP&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M487,-537.0523C487,-538.8581 474.8982,-540.325 460,-540.325 445.1018,-540.325 433,-538.8581 433,-537.0523 433,-537.0523 433,-507.5977 433,-507.5977 433,-505.7919 445.1018,-504.325 460,-504.325 474.8982,-504.325 487,-505.7919 487,-507.5977 487,-507.5977 487,-537.0523 487,-537.0523"/>
+<path fill="none" stroke="#000000" d="M487,-537.0523C487,-535.2464 474.8982,-533.7795 460,-533.7795 445.1018,-533.7795 433,-535.2464 433,-537.0523"/>
+<text text-anchor="middle" x="460" y="-519.325" font-family="sans-serif" font-size="10.00" fill="#000000">ERP</text>
+</a>
+</g>
+</g>
+<!-- node32&#45;&gt;node39 -->
+<!-- node33 -->
+<g id="node5" class="node">
+<title>node33</title>
+<g id="a_node5"><a xlink:title="application: CONFIRMATIONS+Writer+Doc&#10;id: " target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="207.2072,-420.4 110.7928,-420.4 110.7928,-370.4 207.2072,-370.4 207.2072,-420.4"/>
+<text text-anchor="middle" x="159" y="-404.4" font-family="sans-serif" font-size="10.00" fill="#000000">CONFIRMATIONS</text>
+<text text-anchor="middle" x="159" y="-392.4" font-family="sans-serif" font-size="10.00" fill="#000000">Writer</text>
+<text text-anchor="middle" x="159" y="-380.4" font-family="sans-serif" font-size="10.00" fill="#000000">Doc</text>
+</a>
+</g>
+</g>
+<!-- node37 -->
+<g id="node9" class="node">
+<title>node37</title>
+<g id="a_node9"><a xlink:title="application: i-Assert(CZH)&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M191.3077,-56.7273C191.3077,-58.5331 175.034,-60 155,-60 134.966,-60 118.6923,-58.5331 118.6923,-56.7273 118.6923,-56.7273 118.6923,-27.2727 118.6923,-27.2727 118.6923,-25.4669 134.966,-24 155,-24 175.034,-24 191.3077,-25.4669 191.3077,-27.2727 191.3077,-27.2727 191.3077,-56.7273 191.3077,-56.7273"/>
+<path fill="none" stroke="#000000" d="M191.3077,-56.7273C191.3077,-54.9214 175.034,-53.4545 155,-53.4545 134.966,-53.4545 118.6923,-54.9214 118.6923,-56.7273"/>
+<text text-anchor="middle" x="155" y="-39" font-family="sans-serif" font-size="10.00" fill="#000000">i-Assert(CZH)</text>
+</a>
+</g>
+</g>
+<!-- node33&#45;&gt;node37 -->
+<g id="edge6" class="edge">
+<title>node33-&gt;node37</title>
+<path fill="none" stroke="#dd809e" d="M144.5233,-370.2677C144.5233,-370.2677 144.5233,-70.1583 144.5233,-70.1583"/>
+<polygon fill="#dd809e" stroke="#dd809e" points="148.0233,-70.1583 144.5233,-60.1583 141.0233,-70.1583 148.0233,-70.1583"/>
+</g>
+<!-- node49 -->
+<g id="node21" class="node">
+<title>node49</title>
+<g id="a_node21"><a xlink:title="application: Guerilla Risk&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M237.6012,-291.3273C237.6012,-293.1331 222.5406,-294.6 204,-294.6 185.4594,-294.6 170.3988,-293.1331 170.3988,-291.3273 170.3988,-291.3273 170.3988,-261.8727 170.3988,-261.8727 170.3988,-260.0669 185.4594,-258.6 204,-258.6 222.5406,-258.6 237.6012,-260.0669 237.6012,-261.8727 237.6012,-261.8727 237.6012,-291.3273 237.6012,-291.3273"/>
+<path fill="none" stroke="#000000" d="M237.6012,-291.3273C237.6012,-289.5214 222.5406,-288.0545 204,-288.0545 185.4594,-288.0545 170.3988,-289.5214 170.3988,-291.3273"/>
+<text text-anchor="middle" x="204" y="-273.6" font-family="sans-serif" font-size="10.00" fill="#000000">Guerilla Risk</text>
+</a>
+</g>
+</g>
+<!-- node33&#45;&gt;node49 -->
+<!-- node34 -->
+<g id="node6" class="node">
+<title>node34</title>
+<g id="a_node6"><a xlink:title="application: P-RAM&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M196,-537.0523C196,-538.8581 183.8982,-540.325 169,-540.325 154.1018,-540.325 142,-538.8581 142,-537.0523 142,-537.0523 142,-507.5977 142,-507.5977 142,-505.7919 154.1018,-504.325 169,-504.325 183.8982,-504.325 196,-505.7919 196,-507.5977 196,-507.5977 196,-537.0523 196,-537.0523"/>
+<path fill="none" stroke="#000000" d="M196,-537.0523C196,-535.2464 183.8982,-533.7795 169,-533.7795 154.1018,-533.7795 142,-535.2464 142,-537.0523"/>
+<text text-anchor="middle" x="169" y="-519.325" font-family="sans-serif" font-size="10.00" fill="#000000">P-RAM</text>
+</a>
+</g>
+</g>
+<!-- node36 -->
+<g id="node8" class="node">
+<title>node36</title>
+<g id="a_node8"><a xlink:title="application: BAD Image&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M291.0943,-410.1273C291.0943,-411.9331 277.1573,-413.4 260,-413.4 242.8427,-413.4 228.9057,-411.9331 228.9057,-410.1273 228.9057,-410.1273 228.9057,-380.6727 228.9057,-380.6727 228.9057,-378.8669 242.8427,-377.4 260,-377.4 277.1573,-377.4 291.0943,-378.8669 291.0943,-380.6727 291.0943,-380.6727 291.0943,-410.1273 291.0943,-410.1273"/>
+<path fill="none" stroke="#000000" d="M291.0943,-410.1273C291.0943,-408.3214 277.1573,-406.8545 260,-406.8545 242.8427,-406.8545 228.9057,-408.3214 228.9057,-410.1273"/>
+<text text-anchor="middle" x="260" y="-392.4" font-family="sans-serif" font-size="10.00" fill="#000000">BAD Image</text>
+</a>
+</g>
+</g>
+<!-- node34&#45;&gt;node36 -->
+<!-- node38 -->
+<g id="node10" class="node">
+<title>node38</title>
+<g id="a_node10"><a xlink:title="application: HCB&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M471,-410.1273C471,-411.9331 458.8982,-413.4 444,-413.4 429.1018,-413.4 417,-411.9331 417,-410.1273 417,-410.1273 417,-380.6727 417,-380.6727 417,-378.8669 429.1018,-377.4 444,-377.4 458.8982,-377.4 471,-378.8669 471,-380.6727 471,-380.6727 471,-410.1273 471,-410.1273"/>
+<path fill="none" stroke="#000000" d="M471,-410.1273C471,-408.3214 458.8982,-406.8545 444,-406.8545 429.1018,-406.8545 417,-408.3214 417,-410.1273"/>
+<text text-anchor="middle" x="444" y="-392.4" font-family="sans-serif" font-size="10.00" fill="#000000">HCB</text>
+</a>
+</g>
+</g>
+<!-- node34&#45;&gt;node38 -->
+<!-- node40 -->
+<g id="node12" class="node">
+<title>node40</title>
+<g id="a_node12"><a xlink:title="application: sysTicket&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M547,-410.1273C547,-411.9331 534.8982,-413.4 520,-413.4 505.1018,-413.4 493,-411.9331 493,-410.1273 493,-410.1273 493,-380.6727 493,-380.6727 493,-378.8669 505.1018,-377.4 520,-377.4 534.8982,-377.4 547,-378.8669 547,-380.6727 547,-380.6727 547,-410.1273 547,-410.1273"/>
+<path fill="none" stroke="#000000" d="M547,-410.1273C547,-408.3214 534.8982,-406.8545 520,-406.8545 505.1018,-406.8545 493,-408.3214 493,-410.1273"/>
+<text text-anchor="middle" x="520" y="-392.4" font-family="sans-serif" font-size="10.00" fill="#000000">sysTicket</text>
+</a>
+</g>
+</g>
+<!-- node34&#45;&gt;node40 -->
+<!-- node43 -->
+<g id="node15" class="node">
+<title>node43</title>
+<g id="a_node15"><a xlink:title="application: Fidelity Plus&#10;id: " target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="88.3412,-413.4 23.6588,-413.4 23.6588,-377.4 88.3412,-377.4 88.3412,-413.4"/>
+<text text-anchor="middle" x="56" y="-392.4" font-family="sans-serif" font-size="10.00" fill="#000000">Fidelity Plus</text>
+</a>
+</g>
+</g>
+<!-- node34&#45;&gt;node43 -->
+<!-- node36&#45;&gt;node49 -->
+<g id="edge12" class="edge">
+<title>node36-&gt;node49</title>
+<path fill="none" stroke="#267a17" d="M230.9776,-378.6308C230.9776,-378.6308 230.9776,-304.0565 230.9776,-304.0565"/>
+<polygon fill="#267a17" stroke="#267a17" points="234.4777,-304.0565 230.9776,-294.0565 227.4777,-304.0566 234.4777,-304.0565"/>
+<text text-anchor="middle" x="230.9776" y="-369.6308" font-family="sans-serif" font-size="10.00" fill="#ff0000">25k/day</text>
+</g>
+<!-- node38&#45;&gt;node29 -->
+<g id="edge13" class="edge">
+<title>node38-&gt;node29</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M416.9689,-395C399.5969,-395 380.261,-395 380.261,-395 380.261,-395 380.261,-181.536 380.261,-181.536"/>
+<polygon fill="#000000" stroke="#000000" points="383.7611,-181.536 380.261,-171.536 376.7611,-181.536 383.7611,-181.536"/>
+</g>
+<!-- node38&#45;&gt;node49 -->
+<!-- node39&#45;&gt;node36 -->
+<!-- node39&#45;&gt;node38 -->
+<!-- node39&#45;&gt;node40 -->
+<!-- node39&#45;&gt;node43 -->
+<!-- node40&#45;&gt;node33 -->
+<g id="edge19" class="edge">
+<title>node40-&gt;node33</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M506.5,-377.3438C506.5,-375.3375 506.5,-374 506.5,-374 506.5,-374 217.3184,-374 217.3184,-374"/>
+<polygon fill="#000000" stroke="#000000" points="217.3184,-370.5001 207.3184,-374 217.3184,-377.5001 217.3184,-370.5001"/>
+</g>
+<!-- node40&#45;&gt;node35 -->
+<g id="edge20" class="edge">
+<title>node40-&gt;node35</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M533.5,-377.389C533.5,-305.3729 533.5,-42 533.5,-42 533.5,-42 357.5125,-42 357.5125,-42"/>
+<polygon fill="#000000" stroke="#000000" points="357.5125,-38.5001 347.5125,-42 357.5125,-45.5001 357.5125,-38.5001"/>
+</g>
+<!-- node40&#45;&gt;node49 -->
+<!-- node41 -->
+<g id="node13" class="node">
+<title>node41</title>
+<g id="a_node13"><a xlink:title="application: Books&#10;id: PTN-1234" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M241,-652.1773C241,-653.9831 228.8982,-655.45 214,-655.45 199.1018,-655.45 187,-653.9831 187,-652.1773 187,-652.1773 187,-622.7227 187,-622.7227 187,-620.9169 199.1018,-619.45 214,-619.45 228.8982,-619.45 241,-620.9169 241,-622.7227 241,-622.7227 241,-652.1773 241,-652.1773"/>
+<path fill="none" stroke="#000000" d="M241,-652.1773C241,-650.3714 228.8982,-648.9045 214,-648.9045 199.1018,-648.9045 187,-650.3714 187,-652.1773"/>
+<text text-anchor="middle" x="214" y="-634.45" font-family="sans-serif" font-size="10.00" fill="#000000">Books</text>
+</a>
+</g>
+</g>
+<!-- node41&#45;&gt;node41 -->
+<!-- node42 -->
+<g id="node14" class="node">
+<title>node42</title>
+<g id="a_node14"><a xlink:title="application: GRIMACE&#10;id: " target="_blank">
+<path fill="#e8eef7" stroke="#000000" d="M473.1031,-291.3273C473.1031,-293.1331 459.6104,-294.6 443,-294.6 426.3896,-294.6 412.8969,-293.1331 412.8969,-291.3273 412.8969,-291.3273 412.8969,-261.8727 412.8969,-261.8727 412.8969,-260.0669 426.3896,-258.6 443,-258.6 459.6104,-258.6 473.1031,-260.0669 473.1031,-261.8727 473.1031,-261.8727 473.1031,-291.3273 473.1031,-291.3273"/>
+<path fill="none" stroke="#000000" d="M473.1031,-291.3273C473.1031,-289.5214 459.6104,-288.0545 443,-288.0545 426.3896,-288.0545 412.8969,-289.5214 412.8969,-291.3273"/>
+<text text-anchor="middle" x="443" y="-273.6" font-family="sans-serif" font-size="10.00" fill="#000000">GRIMACE</text>
+</a>
+</g>
+</g>
+<!-- node42&#45;&gt;node29 -->
+<!-- node43&#45;&gt;node37 -->
+<g id="edge25" class="edge">
+<title>node43-&gt;node37</title>
+<g id="a_edge25"><a xlink:href="http://www.google.com" title="Fidelity-&gt;i-Assert(CZH)">
+<path fill="none" stroke="#dd809e" d="M45.1932,-377.389C45.1932,-305.3729 45.1932,-42 45.1932,-42 45.1932,-42 108.7408,-42 108.7408,-42"/>
+<polygon fill="#dd809e" stroke="#dd809e" points="108.7408,-45.5001 118.7408,-42 108.7408,-38.5001 108.7408,-45.5001"/>
+</a>
+</g>
+<g id="a_edge25-label"><a xlink:href="http://www.google.com" title="Fidelity-&gt;i-Assert(CZH)">
+<text text-anchor="middle" x="78.109" y="-224.6" font-family="sans-serif" font-size="10.00" fill="#0000ff">10k/day</text>
+</a>
+</g>
+<g id="a_edge25-headlabel"><a xlink:href="http://www.google.com" title="10k/day">
+<text text-anchor="middle" x="102.6318" y="-45" font-family="sans-serif" font-size="10.00" fill="#0000ff">10k/day</text>
+</a>
+</g>
+<g id="a_edge25-taillabel"><a xlink:href="http://www.google.com" title="10k/day">
+<text text-anchor="middle" x="29.0842" y="-368.389" font-family="sans-serif" font-size="10.00" fill="#0000ff">10k/day</text>
+</a>
+</g>
+</g>
+<!-- node43&#45;&gt;node48 -->
+<g id="edge24" class="edge">
+<title>node43-&gt;node48</title>
+<g id="a_edge24"><a xlink:href="http://www.google.com" title="click me. tooltip and url demo" target="_graphviz">
+<path fill="none" stroke="#dd809e" stroke-width="2" d="M66.8068,-377.1095C66.8068,-331.2466 66.8068,-215 66.8068,-215 66.8068,-215 225.4,-215 225.4,-215 225.4,-215 225.4,-70.1871 225.4,-70.1871"/>
+<polygon fill="#dd809e" stroke="#dd809e" stroke-width="2" points="228.9001,-70.187 225.4,-60.1871 221.9001,-70.1871 228.9001,-70.187"/>
+</a>
+</g>
+</g>
+<!-- node44&#45;&gt;node36 -->
+<!-- node44&#45;&gt;node38 -->
+<!-- node44&#45;&gt;node40 -->
+<!-- node44&#45;&gt;node43 -->
+<!-- node45 -->
+<g id="node17" class="node">
+<title>node45</title>
+<g id="a_node17"><a xlink:title="application: Instrument&#10;id: PTN-2345" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M164.8239,-652.1773C164.8239,-653.9831 151.9046,-655.45 136,-655.45 120.0954,-655.45 107.1761,-653.9831 107.1761,-652.1773 107.1761,-652.1773 107.1761,-622.7227 107.1761,-622.7227 107.1761,-620.9169 120.0954,-619.45 136,-619.45 151.9046,-619.45 164.8239,-620.9169 164.8239,-622.7227 164.8239,-622.7227 164.8239,-652.1773 164.8239,-652.1773"/>
+<path fill="none" stroke="#000000" d="M164.8239,-652.1773C164.8239,-650.3714 151.9046,-648.9045 136,-648.9045 120.0954,-648.9045 107.1761,-650.3714 107.1761,-652.1773"/>
+<text text-anchor="middle" x="136" y="-634.45" font-family="sans-serif" font-size="10.00" fill="#000000">Instrument</text>
+</a>
+</g>
+</g>
+<!-- node45&#45;&gt;node34 -->
+<!-- node46 -->
+<g id="node18" class="node">
+<title>node46</title>
+<g id="a_node18"><a xlink:title="application: FORPS-bus&#10;id: " target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="376.7834,-413.4 315.2166,-413.4 315.2166,-377.4 376.7834,-377.4 376.7834,-413.4"/>
+<text text-anchor="middle" x="346" y="-392.4" font-family="sans-serif" font-size="10.00" fill="#000000">FORPS-bus</text>
+</a>
+</g>
+</g>
+<!-- node46&#45;&gt;node46 -->
+<!-- node47&#45;&gt;node36 -->
+<!-- node47&#45;&gt;node38 -->
+<!-- node47&#45;&gt;node40 -->
+<!-- node47&#45;&gt;node43 -->
+<!-- node49&#45;&gt;node42 -->
+<g id="edge36" class="edge">
+<title>node49-&gt;node42</title>
+<path fill="none" stroke="#267a17" d="M237.736,-282C237.736,-282 402.8336,-282 402.8336,-282"/>
+<polygon fill="#267a17" stroke="#267a17" points="402.8337,-285.5001 412.8336,-282 402.8336,-278.5001 402.8337,-285.5001"/>
+</g>
+</g>
+</svg>

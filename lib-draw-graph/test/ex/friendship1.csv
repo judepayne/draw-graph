@@ -30,7 +30,7 @@ cs:brownbears|bgcolor:palegreen:color:limegreen:margin:20
 cs:squirrels|bgcolor:pink:margin:15:style:rounded
 cs:bears|bgcolor:bisque3:margin:15:style:rounded:fontcolor:chocolate4
 cs:carnivores|bgcolor:ivory3:margin:15:style:rounded:fontcolor:maroon1
-cs:animals|bgcolor:lightskyblue1
+cs:animals|bgcolor:lightskyblue1:labeljust:l
 cs:rodents|bgcolor:indianred2
 cs:wolves|bgcolor:gray64:style:rounded:fontcolor:white
 cs:flora|bgcolor:palegreen:style:rounded:fontcolor:seagreen

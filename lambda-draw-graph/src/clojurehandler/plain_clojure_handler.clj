@@ -46,7 +46,7 @@
 (defn ->svg
   "Converts csv1 format to svg format. input is json"
   [js]
-  (println "IN json>> " js)
+  ;(println "IN json>> " js)
   (try
     (let [in (read-input js)
           svg (case (*format-in* in)

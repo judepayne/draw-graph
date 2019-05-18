@@ -22,21 +22,21 @@
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "name"
-   :shape "ellipse"
+   :shape "rect"
  ;  :nodesep 0.5
- ;  :ranksep 0.01
+   :ranksep 0.01
    ;:sep 1 
-   :splines "line"
+   :splines "ortho"
    :rankdir "TB"
    :fixedsize false
-   :tooltip "name/message"
- ;  :url ""
+   :tooltip "name"
+   :url ""
    ;:scale 2
    ;:overlap "ipsep"
    :concentrate false
  ;  :elide "0"
    :constraint true
-   :show-constraint false
+   :show-constraints? false
  ;  :fix-ranks? true
    ;:filter-graph "function:Capture,function:Lifecycle,function:Reporting"
    ;:filter-graph "animal:pandas"
@@ -45,7 +45,7 @@
    :pp-clusters {:y true :h true :x true :w true}
 ;   :pp-clusters {:y false :h false :x false :w false}
    :pp-anneal-bias "3"
-   :pp-cluster-sep "8"
+   :pp-cluster-sep "0"
    :pp-font "sans-serif"
 ])
 

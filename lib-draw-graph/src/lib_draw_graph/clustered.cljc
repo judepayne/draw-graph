@@ -104,7 +104,7 @@
     (flatten (descend cluster []))))
 
 
-(defn cluster-attr
+(defn first-cluster-attr
   "Gets sub-key attrs for the cluster, or if none, it's parent's attrs
    and so on."
   [g cluster sub-key]
@@ -112,8 +112,18 @@
     (if attr
       attr
       (if-let [parent (cluster-parent g cluster)]
-        (cluster-attr g parent sub-key)
+        (first-cluster-attr g parent sub-key)
         nil))))
+
+
+(defn merged-cluster-attr
+  "Goes to the ultimate parent of the cluster and back down merging attributes
+  such that the child's attributes overwrite the parent's."
+  [g cluster sub-key]
+  (if-let [parent (cluster-parent g cluster)]
+    (conj  (merged-cluster-attr g parent sub-key)
+           (sub-key (get (-> g :clusters :attr) cluster)))
+    (sub-key (get (-> g :clusters :attr) cluster))))
 
 
 (defn cluster->nodes

@@ -197,7 +197,7 @@
 
 
 (defn ^:private maybe-show-constraint [g opts n1 n2]
-  (let [show (-> opts :env :show-constraint)]
+  (let [show (-> opts :env :show-constraints?)]
     (when (and show (constrained? g n1 n2))
       {:style "" :color "deeppink3" :penwidth 4})))
 
@@ -220,7 +220,7 @@
              [:graph :dpi :layout :pad :splines :sep :ranksep
               :scale :overlap :nodesep :rankdir :concentrate]
              [:node :shape :label :fontsize :style :fixedsize :tooltip :url]
-             [:env :hide-leaves? :show-roots? :color-on :constraint :show-constraint]))
+             [:env :hide-leaves? :show-roots? :color-on :constraint :show-constraints?]))
 
 
 (defn- cluster-args
@@ -231,11 +231,11 @@
 
    :cluster->descriptor
    (fn [n] (merge {:label n}
-                  (clstr/cluster-attr g n :style)))
+                  (clstr/merged-cluster-attr g n :style)))
 
    :cluster->ranks
    (fn [n]
-     (clstr/cluster-attr g n :fix-ranks))
+     (clstr/first-cluster-attr g n :fix-ranks))
 
    :cluster->parent
    (partial clstr/cluster-parent g)   

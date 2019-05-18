@@ -21,6 +21,7 @@
    :pp-cluster-sep ""
    :tooltip ""
    :constraint "true"
+   :show-constraints? false
    :url ""
    :fix-ranks? true})
 

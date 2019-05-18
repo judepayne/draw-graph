@@ -14,7 +14,9 @@
    [lib-draw-graph.processor :as processor]
    [lib-draw-graph.parser    :as parser]
    [lib-draw-graph.clustered :as clstr]
-   [draw-graph.file          :as file])
+   [draw-graph.file          :as file]
+   [clojure.data.xml         :as xml]
+   [lib-draw-graph.svg       :as svg])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
 
@@ -292,42 +294,7 @@
                                   (-> % .-target .-value))}]])
 
 
-;; Left Display options
-
-
-(defn show-roots []
-  [:input {:type :checkbox :id :show-roots?
-           :checked (:show-roots? @options)
-           :tabIndex 12
-           :on-change #(swap! local-state update-in [:options :show-roots?] not)}])
-
-
-(defn node-label [] (text-input [:options :label] local-state 4))
-
-
-(defn tooltip [] (text-input [:options :tooltip] local-state 7))
-
-
-(defn shape [] (fixed-select [:options :shape] local-state 24
-                             "ellipse" "box" "circle" "egg" "diamond" "octagon" "square"
-                             "folder" "cylinder" "plaintext"))
-
-
-(defn layout [] (fixed-select [:options :layout] local-state 22
-                              "dot" "neato" "fdp" "circo" "twopi"))
-
-
-(defn rankdir [] (fixed-select [:options :rankdir] local-state 23 "LR" "TB" "RL" "BT"))
-
-
-(defn constraint [] (fixed-select [:options :constraint] local-state 32 "true" "false"))
-
-
-(defn elide-levels [] (fixed-select [:options :elide] local-state 11 "0" "1" "2" "3" "4") )
-
-
-(defn anneal-bias [] (fixed-select [:options :pp-anneal-bias] local-state 19
-                                   "0" "1" "2" "3" "4" "5" "6" "7" "8"))
+;; For the dynamic dropdowns
 
 ;; -- Cluster-on dropdown needs to be more dynamic--
 (defn first-line [s]
@@ -337,6 +304,14 @@
 ;; a reaction to capture the headers in the data file
 (def headers
   (reaction (first-line (:data @local-state))))
+
+
+;; ----end----- For the dynamic dropdowns
+
+
+;; Controls: MUST be laid out in TAB ORDER
+
+(defn node-label [] (text-input [:options :label] local-state 4))
 
 
 (defn cluster-on []
@@ -365,6 +340,9 @@
            (rest (for [x @headers] [:option {:key x} x]))))])
 
 
+(defn tooltip [] (text-input [:options :tooltip] local-state 7))
+
+
 (defn url []
   [:select.form-control
    {:field :list :id :url
@@ -378,47 +356,35 @@
            (rest (for [x @headers] [:option {:key x} x]))))])
 
 
-(defn splines [] (fixed-select [:options :splines] local-state 26
-                               "line" "spline" "none" "polyline" "ortho"))
-
-
-(defn overlap [] (fixed-select [:options :overlap] local-state 30
-                               "true" "false" "scale" "scalexy" "compress" "vpsc"
-                               "orthoxy" "ipsep"))
-
-
-;; (defn sep [] (text-input [:options :sep] local-state)) ;; - unused
-
-(defn concentrate [] (fixed-select [:options :concentrate] local-state 29
-                                   "false" "true"))
-
-(defn ranksep [] (text-input [:options :ranksep] local-state 28))
-
-
-(defn nodesep [] (text-input [:options :nodesep] local-state 27))
-
-
-(defn scale [] (text-input [:options :scale] local-state 31))
-
-
-(defn fixedsize [] (fixed-select [:options :fixedsize] local-state 25
-                                  "true" "false" "shape"))
-
 (defn filtergraph [] (text-input [:options :filter-graph] local-state 9))
 
 
 (defn paths [] (wide-text-input [:options :paths] local-state 10))
 
 
+(defn elide-levels [] (fixed-select [:options :elide] local-state 11 "0" "1" "2" "3" "4") )
+
+
+(defn show-roots []
+  [:input {:type :checkbox :id :show-roots?
+           :checked (:show-roots? @options)
+           :tabIndex 12
+           :on-change #(swap! local-state update-in [:options :show-roots?] not)}])
+
+
+(defn show-invisible-constraints []
+  [:input {:type :checkbox :id :show-constraints?
+           :checked (:show-constraints? @options)
+           :tabIndex 12
+           :on-change #(swap! local-state update-in [:options :show-constraints?] not)}])
+
+
 (defn pp? []
   [:input {:type :checkbox :id :pp?
            :checked (-> @options :post-process?)
-           :tabIndex 13
+           :tabIndex 14
            :on-change #(swap! local-state update-in
                               [:options :post-process?] not)}])
-
-
-(defn pp-font [] (text-input [:options :pp-font] local-state 21))
 
 
 (defn pp-clusters []
@@ -449,7 +415,58 @@
                                [:options :pp-clusters :w] not)}]])
 
 
+(defn anneal-bias [] (fixed-select [:options :pp-anneal-bias] local-state 19
+                                   "0" "1" "2" "3" "4" "5" "6" "7" "8"))
+
+
 (defn pp-cluster-sep [] (text-input [:options :pp-cluster-sep] local-state 20))
+
+
+(defn pp-font [] (text-input [:options :pp-font] local-state 21))
+
+
+(defn layout [] (fixed-select [:options :layout] local-state 22
+                              "dot" "neato" "fdp" "circo" "twopi"))
+
+(defn rankdir [] (fixed-select [:options :rankdir] local-state 23 "LR" "TB" "RL" "BT"))
+
+
+(defn shape [] (fixed-select [:options :shape] local-state 24
+                             "ellipse" "box" "circle" "egg" "diamond" "octagon" "square"
+                             "folder" "cylinder" "plaintext"))
+
+
+(defn fixedsize [] (fixed-select [:options :fixedsize] local-state 25
+                                  "true" "false" "shape"))
+
+
+(defn splines [] (fixed-select [:options :splines] local-state 26
+                               "line" "spline" "none" "polyline" "ortho"))
+
+
+(defn nodesep [] (text-input [:options :nodesep] local-state 27))
+
+
+(defn ranksep [] (text-input [:options :ranksep] local-state 28))
+
+
+(defn concentrate [] (fixed-select [:options :concentrate] local-state 29
+                                   "false" "true"))
+
+
+(defn overlap [] (fixed-select [:options :overlap] local-state 30
+                               "true" "false" "scale" "scalexy" "compress" "vpsc"
+                               "orthoxy" "ipsep"))
+
+
+(defn scale [] (text-input [:options :scale] local-state 31))
+
+
+(defn constraint [] (fixed-select [:options :constraint] local-state 32 "true" "false"))
+
+
+
+
 
 
 ;; ---- Options layout
@@ -526,7 +543,7 @@
      (row "color on" [color-on] "The header key to vary node coloration by")
      (empty-row) (empty-row)
      (empty-row) (empty-row)
-     (empty-row) (empty-row)
+     (row "show invisible constraints" [show-invisible-constraints] "Shows invisible constraint edges, including generated cluster edges. For debugging layouts")
      (row "anneal bias" [anneal-bias] "Favors left-right cluster expansion by this factor in TB/ BT layouts, ditto for top bottom in LR/ RL layouts")
      (empty-row) (empty-row)
 ]))

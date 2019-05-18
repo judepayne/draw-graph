@@ -255,14 +255,20 @@
   (zip/xml-zip xml))
 
 
+;; set up regexes and replacement strings to fix clojurescript's emit-str
+(def wrong-svg-header #"xmlns=\"http://www.w3.org/2000/svg\"")
+(def right-svg-header "xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"")
 (def wrong-xlink #"xmlns:ns\d+=\"http://www.w3.org/1999/xlink\" ns\d+")
+(def relic-ns #"ns\d+:")
 
 
 (defn ->xml [parsed]
   #?(:clj (xml/emit-str parsed)
      :cljs (let [raw (xml/emit-str parsed)
-                 fixed (clojure.string/replace raw wrong-xlink "xlink")]
-             fixed)))
+                 fixed (clojure.string/replace raw wrong-xlink "xlink")
+                 fixed2 (clojure.string/replace fixed relic-ns "xlink:")
+                 fixed3 (clojure.string/replace fixed2 wrong-svg-header right-svg-header)]
+             fixed3)))
 
 
 (defn tree-find
