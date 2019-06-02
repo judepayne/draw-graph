@@ -17,12 +17,11 @@
 (def ^:dynamic *data* :data)  ;; json key where graph data is kept
 (def ^:dynamic *options* :display-options)   ;; where options are kept
 
-(def ^:dynamic *part-sep* #":")   ;; separator for keys/ values in CSV1
+
 (def ^:dynamic *list-sep* #",")   ;; separator to split a list (e.g. edge) into pieces
 (def ^:dynamic *definition-marker* #"#") ;; marker for node/ cluster info
 
 
-(defn split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
 (defn split-list [e] (str/split e *list-sep* 3))
 (defn split-def [s] (str/split s *definition-marker* -1))
 
@@ -41,6 +40,45 @@
   (not (empty? (select-keys m (for [[k v] m :when v] k)))))
 
 
+;; ------------
+;; pre-processing functions
+
+(defn maybe-paths [g opts]
+  (if (and (some? (:paths opts)) (string? (:paths opts)))
+    (let [subs (str/split (:paths opts) #"\|")]
+      (if (= 2 (count subs))
+        (let [start-sub (first subs)
+              end-sub (second subs)]
+          (preprocessor/paths g start-sub end-sub))
+        (throw (util/err "Error: Paths input cannot be parsed."))))
+    g))
+
+
+(defn maybe-filter [g opts]
+  (if  (some? (:filter-graph opts))
+    (let [g' (preprocessor/filter-graph g (:filter-graph opts))]
+      g')
+    g))
+
+
+(defn maybe-fix-ranks [g opts]
+  (if (and (some? (:cluster-on opts))
+           (= (:layout opts) "dot")
+           (:fix-ranks? opts))
+    (preprocessor/fix-ranks g (keyword (:cluster-on opts)))
+    g))
+
+
+(defn maybe-elide [g opts]
+  (if (some? (:elide opts))
+    (preprocessor/remove-levels g
+                                #?(:clj (Integer/parseInt (:elide opts))
+                                   :cljs (js/parseInt (:elide opts))))
+    g))
+
+;; -----------
+;; Construction of the graph
+
 (defn- add-attr-map
   [g node-or-edge m]
   (reduce
@@ -48,16 +86,26 @@
    g (vec m)))
 
 
+(defn- add-meta-map-to-edge
+  [g src dst m]
+  (loom.attr/add-attr-to-edges g :meta m [[src dst]]))
+
+
 (defn loom-graph
   ([s] (loom-graph s nil))
   ([s cluster-on]
    (let [parsed (parser/parse-lines (str/split-lines s))
-         gr0 (apply loom.graph/digraph (map #(take 2 %) (:edges parsed)))
-         ;; add edge attrs
+         gr0 (apply loom.graph/digraph (map #(vector (:src %) (:dst %)) (:edges parsed)))
+         ;; add edge attrs: style and meta
          gr1 (reduce (fn [acc cur]
-                       (add-attr-map acc [(first cur) (second cur)] (third cur)))
+                       (if (:style cur)
+                         (let [g' (add-attr-map acc [(:src cur) (:dst cur)] (:style cur))]
+                           (if (:meta cur)
+                             (add-meta-map-to-edge g' (:src cur) (:dst cur) (:meta cur))
+                             g'))
+                         acc))
                      gr0
-                     (filter #(= 3 (count %)) (:edges parsed)))
+                     (:edges parsed))
          ;; add node attributes
          gr2 (reduce (fn [acc [nd attrs]]
                        (add-attr-map acc nd attrs))
@@ -78,7 +126,9 @@
              gr5 (reduce (fn [acc [c1 c2]]
                            (-> acc
                                (clstr/add-cluster-edge c1 c2)
-                               (preprocessor/add-stack (keyword cluster-on) [c1 c2])))
+                               ;(preprocessor/add-stack (keyword cluster-on) [c1 c2])
+                               ;we'll add te invisible edges later, post filtering
+                               ))
                          gr4
                          (:cluster-edges parsed))]
 
@@ -86,49 +136,27 @@
        gr2))))
 
 
-
-;; ------------
-;; pre-processing functions
-
-
-(defn ->submap [s]
-  (->> (split-parts s)
-       (partition 2)
-       (map (fn [i] [(keyword (first i)) (second i)]))
-       (into {})))
-
-
-(defn maybe-paths [g opts]
-  (if (and (some? (:paths opts)) (string? (:paths opts)))
-    (let [subs (str/split (:paths opts) #"\|")]
-      (if (= 2 (count subs))
-        (let [start-sub (map ->submap (str/split (first subs) #","))
-              end-sub (map ->submap (str/split (second subs) #","))]
-          (preprocessor/paths g start-sub end-sub))
-        (throw (util/err "Error: Paths input cannot be parsed."))))
-    g))
-
-
-(defn maybe-filter [g opts]
-  (if  (some? (:filter-graph opts))
-    (preprocessor/filter-graph g (map ->submap (str/split (:filter-graph opts) #",")))
-    g))
-
-
-(defn maybe-fix-ranks [g opts]
-  (if (and (some? (:cluster-on opts))
-           (= (:layout opts) "dot")
-           (:fix-ranks? opts))
-    (preprocessor/fix-ranks g (keyword (:cluster-on opts)))
-    g))
-
-
-(defn maybe-elide [g opts]
-  (if (some? (:elide opts))
-    (preprocessor/remove-levels g
-                                #?(:clj (Integer/parseInt (:elide opts))
-                                   :cljs (js/parseInt (:elide opts))))
-    g))
+(defn apply-filtering-operations
+  ;; a single place to apply all filtering and filter to the correct
+  ;; edge graph and add cluster edges at the end.
+  [g opts]
+  (let [g' (-> g
+               (maybe-paths opts)
+               (maybe-filter opts))]
+    (if (clstr/edge-graph g')
+      (let [g'' (if (or (-> opts :filter-graph) (-> opts :path))
+                  ;; the graph has been filtered. Need to rebuild the edge-graph
+                  (preprocessor/filter-edge-graph g' (clstr/clusters g'))
+                  g')]
+        (if (clstr/edge-graph g'')
+          (preprocessor/add-invisible-cluster-edges
+           g''
+           opts
+           (loom.graph/edges (clstr/edge-graph g'')))
+          g'' ;; doesn't have an edge-graph - just return it
+          ))
+      ;; doesn't have an edge-graph - just return it
+      g')))
 
 
 ;; -----------
@@ -158,8 +186,7 @@
 
 (defn preprocess-graph [graph opts]
   (-> graph
-      (maybe-paths opts)
-      (maybe-filter opts)
+      (apply-filtering-operations opts)
       (maybe-elide opts)
       (maybe-fix-ranks opts)))
 

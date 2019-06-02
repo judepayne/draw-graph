@@ -59,6 +59,17 @@
              clstrs))
 
 
+(defn delete-edge-graph
+  [g]
+  (assoc g
+         :clusters
+         (dissoc (-> g :clusters) :edge-graph)))
+
+
+(defn edge-graph
+  [g]
+  (-> g :clusters :edge-graph))
+
 
 ;; --- Cluster parent graph functionality ------
 
@@ -213,12 +224,12 @@
 
 
 (defn remove-clusters
+  "Removes clusters from the graph.
+   Doesn't touch cluster edgess, so that those can be filtered down (once)
+   after multiple filtering operations."
   [g & clstrs]
-  (let [clstrs-set (into #{} clstrs)
-        g' (if (-> g :clusters :edge-graph)
-                   (remove-clusters-from-edge-graph g clstrs-set)
-                   g)]
-    (-> g'
+  (let [clstrs-set (into #{} clstrs)]
+    (-> g
         (update-in [:clusters :attr] #(apply dissoc % clstrs))
         (update-in [:clusters :hierarchy :->parent] filter->parent clstrs-set)
         (update-in [:clusters :hierarchy :->children] filter->children clstrs-set))))
@@ -232,6 +243,5 @@
         g' (apply loom.graph/remove-nodes g nodes)
         clstrs-to-remove (set/difference (clusters g) (clusters g'))
         g'' (apply remove-clusters g' clstrs-to-remove)]
-    {:graph g''
-     :clusters (clusters g')}))
+    g''))
 

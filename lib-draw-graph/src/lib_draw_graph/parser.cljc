@@ -15,10 +15,15 @@
 
 
 (def ^:dynamic *part-sep* #":")   ;; separator for keys/ values in CSV
-(def ^:dynamic *part-sep-data* #":(?!//)")  ;; exception for links
+
+;(def ^:dynamic *part-sep-meta* #"(?<!\\):(?!//)")  ;; lookbehind no-worky in js
+(def ^:dynamic *part-sep-meta* #":(?!//)")  ;; exception for links
+
+(def exp #"[^\\\\]:")
 
 (defn split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
-(defn split-parts-data [s] (str/split s *part-sep-data* -1))
+(defn split-parts-meta [s] (str/split s *part-sep-meta* -1))
+
 
 (def regex-number "#'-?[0-9]\\d*(\\.\\d+)?'")
 
@@ -30,23 +35,37 @@
 
 (def regex-text "#'[\\+\\w\\d\\s\\n\\.\\(\\)@&<>\\'#=/-]+'")
 
-(def regex-kvs  "#'[/\\+\\w\\d\\s\\n\\.\\(\\)@&:<>\\'#=/-]*'")
+ ;; no support for escaping
+(def regex-kvs "#'[\\+\\w\\d\\s\\n\\.\\(\\)@&:<>\\'#=/-]+'")
+
+;; support for escaped , \n : and  |
+;; escaped | doesn't work
+(def regex-kvs-esc
+  "#'([/\\+\\w\\d\\s\\n\\.\\(\\)@&:<>\\'#=/-]|(\\\\,)|(\\\\n))*'")
+
 
 (def regex-all "#'(.*)'")
+
+
+(def unescapes
+  {"\\," ","
+   "\\:" ":"})
 
 
 (def csv-grammar
   (str
    "S = <';'>  Cmt |
-        <'h:'> H   |
-        <'e:'> E   |
-        <'ce:'> Ce |
-        <'cp:'> Cp |
-        <'cs:'> Cs 
-    <KVs> = " regex-kvs "  
-    E = Node <','> Node (<',|'> Edge-style)?
+        <'h,'> H   |
+        <'e,'> E   |
+        <'ce,'> Ce |
+        <'cp,'> Cp |
+        <'cs,'> Cs 
+    <KVs-esc> = " regex-kvs-esc "
+    <KVs> = " regex-kvs  "  
+    E = Node <','> Node (<','> Edge-meta? <'|'>Edge-style)?
     Edge-style = KVs
-    Node = KVs (<'|'> Node-style)?
+    Edge-meta = KVs-esc
+    Node = KVs-esc (<'|'> Node-style)?
     Node-style = KVs
     H = " regex-kvs "
     Ce = KVs
@@ -68,8 +87,8 @@
     s)})
 
 
-(defn attribute-map [s]
-  (let [args (split-parts-data s)
+(defn attribute-map [s & {:keys [meta?] :or {meta? false}}]
+  (let [args (if meta? (split-parts-meta s) (split-parts s))
         n (count args)]
     (cond
       (= "" (first args)) nil
@@ -82,8 +101,7 @@
                        (assoc acc k' v))))
                  {}
                  (partition 2 args))
-      :else (throw (util/err (str "Error parsing: " s " > Must be an even number of parts")))
-      )))
+      :else (throw (util/err (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
 (defn pairs [s]
@@ -93,14 +111,39 @@
       (throw (util/err (str "Error parsing: " s " > Must be an even number of parts"))))))
 
 
-(defn form-pairs [s]
-  (let [args (split-parts s)]
-    (partition 2 1 args)))
-
-
 (defn conjcat [coll1 coll2]
   (if (empty? coll1) coll1
       (concat coll1 coll2)))
+
+
+(defn extract [k coll]
+  (reduce (fn [acc cur]
+            (if (get cur k) (get cur k) acc))
+          nil
+          coll))
+
+
+(defn map-vals [m f]
+  (into {} (for [[k v] m] [k (f v)])))
+
+
+(defn unescape [smap s]
+  (reduce
+   (fn [acc [k v]]
+     (str/replace acc k v))
+   s
+   smap))
+
+(def unesc (partial unescape unescapes))
+
+
+(defn unescape-edge [e]
+  (reduce
+   (fn [acc cur]
+     (if (nil? cur) nil
+         (update-in acc [:edges cur] map-vals (partial unescape unescapes))))
+   e
+   [:src :dst :meta]))
 
 
 (defn parse-edge [state s]
@@ -109,13 +152,21 @@
         edge (insta/transform
               {:Node-style attribute-map
                :Node (fn [& args]
-                       {nk (zipmap (:header state) (split-parts-data (first args)))
+                       {nk (zipmap (:header state) (split-parts-meta (unesc (first args))))
                         sk (if (some? (second args)) (second args))})
-               :Edge-style attribute-map
+               :Edge-meta (fn [& args]
+                            {:edge-meta (attribute-map (first args) :meta? true)})
+               :Edge-style (fn [& args]
+                             {:edge-style (attribute-map (first args) :meta? true)})
                :E (fn [& args] args)}
               s)
         edge' edge
-        edge {:edges (map (fn [n] (if (nk n) (nk n) n)) edge')}
+        edge {:edges
+              {:src (nk (first edge'))
+               :dst (nk (second edge'))
+               :meta (extract :edge-meta (drop 2 edge'))
+               :style (extract :edge-style (drop 2 edge'))}}
+      ;  edge (unescape-edge edge)
         with-styles (let [styles 
                           (reduce (fn [a c]
                                     (if (sk c)
@@ -162,19 +213,21 @@
 
 
 (defn parse-lines [lines]
-  (reduce
-   (fn [acc cur]
-     (let [p (csv-line-parser cur)]
-       (if (insta/failure? p)
-         (throw (util/err (str "Parsing error with line: " cur)))
-         (let [line (second p)]
-           (case (first line)
-             :H  (parse-header acc line)
-             :E  (parse-edge acc line)
-             :Cs (parse-cluster-style acc line)
-             :Cp (parse-cluster-parent acc line)
-             :Ce (parse-cluster-edge acc line)
-             :Cmt (parse-comments acc line)
-             (throw (util/err (str "No parser for this line: " cur))))))))
-   {}
-   lines))
+  (let [line-num (atom 0)]
+    (reduce
+     (fn [acc cur]
+       (swap! line-num inc)
+       (let [p (csv-line-parser cur)]
+         (if (insta/failure? p)
+           (throw (util/err (str "Parsing error with line number " @line-num " >> " cur)))
+           (let [line (second p)]
+             (case (first line)
+               :H  (parse-header acc line)
+               :E  (parse-edge acc line)
+               :Cs (parse-cluster-style acc line)
+               :Cp (parse-cluster-parent acc line)
+               :Ce (parse-cluster-edge acc line)
+               :Cmt (parse-comments acc line)
+               (throw (util/err (str "No parser for line " @line-num " >> " cur))))))))
+     {}
+     lines)))

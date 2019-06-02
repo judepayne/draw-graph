@@ -11,7 +11,7 @@
 ;; Annealing constants
 
 (def ^:const max-move-default 14)         ;; default move amount +/- dim can be changed by
-(def ^:const PEN 10000)                ;; Penalty cost amount
+(def ^:const PEN 1000000)                ;; Penalty cost amount
 
 
 ;; From Clojure data analysis cookbook
@@ -34,10 +34,10 @@
      (loop [state initial
             cost cost
             k 1]
-       ;; check every 500 reps that cost has changed more than 0.001%
+       ;; check every 500 reps that cost has changed more than 0.01%
        (if (and (= 0 (rem k 500))
                 terminate-early?
-                (> 0.00001 (let [lc @last-cost
+                (> 0.0001 (let [lc @last-cost
                               del-cost (/ (- lc cost) cost)]
                             (reset! last-cost cost)
                             del-cost)))
@@ -60,7 +60,7 @@
   [max-move]
   "Returns a random +/- amount less than max-move. Every so often, we
    throw in small amounts to help fine tuning at the end of annealing."
-  (let [small-move-prob 4      ;; i.e. 1 in n chance
+  (let [small-move-prob 3      ;; i.e. 1 in n chance
         small-move 5
         mm (if (> (inc (rand-int small-move-prob)) (dec small-move-prob))
              small-move

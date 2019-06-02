@@ -98,6 +98,8 @@
     :overlap "prism"
     :pad 0.2
     :rankdir "LR"
+   ; :size "4,4!"
+   ; :ratio "1.0"
     }
    :node
    {:style "filled"
@@ -106,8 +108,7 @@
     :shape "ellipse"
     :margin "0.1"}
    :env
-   {:hide-leaves? false
-    :show-roots?  false
+   {:show-roots?  false
    }})
 
 ;; node functions
@@ -142,13 +143,27 @@
     (if (nil? lbl) "" lbl)))
 
 
+(defn composite-label
+  "Gets the first valid label for the node."
+  [lbls n]
+  (let [lbls (str/split lbls #"&")
+        lbl (apply str
+                   (interpose "\n"
+                              (map
+                               (fn [x] (get n (keyword x)))
+                               lbls)))]
+    (if (nil? lbl) "" lbl)))
+
+
 (defn node-label
   "Returns the label for the node n in g given options."
   [g opts n]
   (cond
     (and (leaf? g n) (-> opts :env :hide-leaves?)) ""
     :else (if-let [lbls (-> opts :node :label)]
-            (str/replace (first-label lbls n) #"\+" "\n")
+            (if (str/includes? lbls "/")
+              (first-label lbls n)
+              (composite-label lbls n))
             "")))
 
 
@@ -156,7 +171,7 @@
   "Returns the tooltip for the node n in g given options."
   [g opts n]
   (when-let [tt (-> opts :node :tooltip)]
-    (let [ks (map keyword (str/split tt #"/"))
+    (let [ks (map keyword (str/split tt #"&"))
           tt (apply str (interpose
                   "\n"
                   (reduce
@@ -174,6 +189,15 @@
     (get n (keyword url))))
 
 
+;; cljs requires \n to be supplied as \\n otherwise will split line
+;; whereas clj does not & will not. Use cljs fomrat but last minute
+;; replace for when run from clojure
+(defn doub-slash-n
+  [s]
+  (if (nil? s) nil
+      (str/replace s #"\\\\n" "\n")))
+
+
 (defn ^:private node-descriptor
   "Returns map of attributes for the node from *display-conf*."
   [g opts n]
@@ -182,7 +206,7 @@
    ;; attrs result from functions..
    (-> {}
        (assoc :shape (shape g opts n))
-       (assoc :label (node-label g opts n))
+       (assoc :label (doub-slash-n (node-label g opts n)))
        (assoc :fillcolor (fillcolor g opts n))
        (assoc :tooltip  (node-tooltip g opts n))
        (assoc :URL (node-url g opts n) :target "_blank"))
@@ -198,17 +222,34 @@
 
 (defn ^:private maybe-show-constraint [g opts n1 n2]
   (let [show (-> opts :env :show-constraints?)]
-    (when (and show (constrained? g n1 n2))
+    (when (and show (constrained? g n1 n2) (edge-invisible? g n1 n2))
       {:style "" :color "deeppink3" :penwidth 4})))
+
+
+(defn edge-label
+  "Returns the label for the node n in g given options."
+  [g opts n1 n2]
+  (when (-> opts :edge :edge-label)
+    (get (loom.attr/attr g n1 n2 :meta) (keyword (-> opts :edge :edge-label)))))
+
+
+(defn constraints
+  [g opts n1 n2]
+  (if (-> opts :env :constraint)
+    {:constraint true}
+    {:constraint false}))
 
 
 (defn ^:private edge-descriptor
   "Return map of attributes for the edge from *display-conf*"
   [g opts n1 n2]
   (merge
-   (:edge opts) ;; static attrs
-   ;; per node attrs supplied by user
-   (loom.attr/attrs g n1 n2)
+   (if (-> opts :edge :edge-label)
+     {:xlabel (doub-slash-n (edge-label g opts n1 n2)) :forcelabels true}
+     nil)
+   (constraints g opts n1 n2)
+   ;; per edge attrs supplied by user
+   (dissoc (loom.attr/attrs g n1 n2) :meta)
    (maybe-show-constraint g opts n1 n2)))
 
 
@@ -218,9 +259,10 @@
   [opts]
   (group-map opts
              [:graph :dpi :layout :pad :splines :sep :ranksep
-              :scale :overlap :nodesep :rankdir :concentrate]
+              :scale :overlap :nodesep :rankdir :concentrate :ratio]
              [:node :shape :label :fontsize :style :fixedsize :tooltip :url]
-             [:env :hide-leaves? :show-roots? :color-on :constraint :show-constraints?]))
+             [:env :hide-leaves? :show-roots? :color-on :constraint :show-constraints?]
+             [:edge :edge-label]))
 
 
 (defn- cluster-args

@@ -7,7 +7,9 @@
             [loom.attr                      :as loom.attr]
             [lib-draw-graph.clustered       :as clstr]
             [lib-draw-graph.graph           :as graph]
-            [clojure.set                    :as set]))
+            [clojure.set                    :as set]
+            [clojure.string                 :as str]
+            [lib-draw-graph.util            :as util]))
 
 
 ;; -----------
@@ -17,6 +19,15 @@
   "Checks whether m contains all entries in sub."
   [sub m]
   (= sub (select-keys m (keys sub))))
+
+
+(defn parse-num [s]
+  (try
+    (let [n #?(:clj (clojure.edn/read-string s)
+               :cljs (cljs.reader/read-string s))]
+      (if (number? n) n (throw (util/err "Both terms in an inequality filter must be numbers."))))
+    #? (:clj (catch Exception e (throw (util/err "Both terms in an inequality filter must be numbers.")))
+        :cljs (catch js/Error e (throw (util/err "Both terms in an inequality filter must be numbers."))))))
 
 
 (defn find-node
@@ -94,22 +105,39 @@
           (reduce (fn [acc cur] (assoc acc cur (f acc v cur))) state neighbours))))))
 
 
-(defn- update-rank
+(defn update-rank
   "Returns rank for the next (node) given state map."
   [state node next]
   (let [mx (fn [x y] (if (nil? x) y (max x y)))]
     (mx (get state next) (inc (get state node)))))
 
 
+(defn predecessors-not-self
+  "Returns predecessors not including self"
+  [g n]
+  (let [predec (loom.graph/predecessors* g n)]
+    (filter #(not (= n %)) predec)))
+
+
+(defn successors-not-self
+  "Returns successors not including self"
+  [g n]
+  (let [succs (loom.graph/successors* g n)]
+    (filter #(not (= n %)) succs)))
+
+
 (defn ranks
   "Returns ranks for each node in g. 0-indexed."
   [g]
-  (let [root? #(empty? (loom.graph/predecessors* g %))
+  (let [root? #(empty? (predecessors-not-self g %))
         roots (filter root? (loom.graph/nodes g))
         init (zipmap roots (repeat 0))]
+    ;; we need to use successors-not-self or the dfs will incorrectly increase the rank of
+    ;; nodes that have edges to themselves, causing them to have a rank one higher
+    ;; than other nodes and leading to an incorrect set of cluster edges.
     (reduce
      (fn [acc cur]
-       (eager-stateful-dfs (partial loom.graph/successors* g)
+       (eager-stateful-dfs (partial successors-not-self g)
                            cur
                            update-rank
                            acc))
@@ -140,50 +168,60 @@
 
 (defn max-ranked-nodes
   "Returns seq of nodes at the max rank for the k. k is usually a cluster."
-  [info k]
-  (let [m (get info k)]
-    (reduce
-     (fn [acc [k v]] (if (> k (:rank acc)) {:rank k :items v} acc))
-     {:rank 0 :items nil}
-     m)))
+  [info k n]
+  (let [m (into (sorted-map-by >) (get info k))
+        m' (flatten (vals m))]
+    (take n m')))
 
 
 (defn min-ranked-nodes
   "Returns seq of nodes at the min rank for the k. k is usually a cluster."
-  [info k]
-  (let [m (get info k)]
-    (reduce
-     (fn [acc [k v]] (if (< k (:rank acc)) {:rank k :items v} acc))
-     {:rank 1000000 :items nil}
-     m)))
+  [info k n]
+  (let [m (into (sorted-map) (get info k))
+        m' (flatten (vals m))]
+    (take n m')))
+
+
+(def cluster-edges
+  {16 [4 4]
+   12 [4 3]
+   9 [3 3]
+   6 [3 2]
+   4 [2 2]
+   2 [2 1]
+   1 [1 1]})
 
 
 (defn edges-between
   "Returns a set of edges between all of the min ranked nodes of clstr1
    and one of the max ranked nodes in clstr2. edges already in the graph
    are returned marked with :constraint"
-  [g info clstr1 clstr2]
+  [g info ce-uppers ce-lowers clstr1 clstr2]
   (let [edges (loom.graph/edges g)
         clstr1s (clstr/cluster-descendants g clstr1)
         clstr2s (clstr/cluster-descendants g clstr2)
-        clstr1s-mins (mapcat #(:items (max-ranked-nodes info %)) clstr1s)
-        clstr2s-maxs  (mapcat #(:items (min-ranked-nodes info %)) clstr2s)]
+        clstr1s-mins (mapcat #(max-ranked-nodes info % ce-uppers) clstr1s)
+        clstr2s-maxs (mapcat #(min-ranked-nodes info % ce-lowers) clstr2s)]
     (for [x clstr1s-mins
           y clstr2s-maxs]
       [x y (if (some #{[x y]} edges) :constraint)])))
 
 
-(def get-rank-info
-  (memoize
-   (fn [g cluster-on]
-     (-> g ranks (rank-info cluster-on)))))
+(defn get-rank-info
+  [g cluster-on]
+  (let [rks (ranks g)
+        ri (rank-info rks cluster-on)]
+    ri))
 
 
 (defn add-stack
-  "Adds a stack of clusters to the graph"
-  [g cluster-on stack]
-  (let [ri    (get-rank-info g cluster-on)
-        edges (mapcat #(apply edges-between g ri %) (partition 2 1 stack))
+  "Adds a stack of clusters to the graph. cluster-edge-nums is a 2-vector where
+   the first is the number of nodes in the upper cluster and the second the lower."
+  [g ri stack cluster-edge-nums]
+  (let [edges (mapcat
+               #(apply edges-between g ri
+                       (first cluster-edge-nums) (second cluster-edge-nums) %)
+               (partition 2 1 stack))
         ;;separate edges marked with :constraint from those that are not.
         edges' (group-by #(= :constraint (nth % 2)) edges)
         edges'-f (get edges' false)
@@ -195,10 +233,12 @@
 
 
 (defn add-invisible-cluster-edges
-  [g edges]
-  (let [g' (reduce (fn [acc [c1 c2]]
-                     (-> acc
-                         (add-stack (clstr/cluster-key g) [c1 c2])))
+  [g opts edges]
+  (let [ri (get-rank-info g (clstr/cluster-key g))
+        ;; look up vector of cluster edges nums or use [2 2] as a default
+        edge-nums (get cluster-edges (parse-num (-> opts :num-cluster-edges)) [2 2])
+        g' (reduce (fn [acc [c1 c2]]
+                     (add-stack acc ri [c1 c2] edge-nums))
                    g
                    edges)]
     g'))
@@ -232,47 +272,109 @@
    (partition 2 1 rankseq)))
 
 
-(defn remove-invisible-edges
-  [g]
-  (let [edges (filter (fn [[s d]] (= "invis" (loom.attr/attr g s d :style)))
-                      (loom.graph/edges g))]
-    (apply loom.graph/remove-edges g edges)))
+(defn filter-edge-graph
+  "Filter's the graph's edge-graph to just supplied clusters."
+  [g clusters]
+  (let [old-edge-graph (-> g :clusters :edge-graph)
+        old-ranks (ranks old-edge-graph)
+        sorted-clusters (sort-clusters-by-rank old-ranks clusters)
+        new-edges (rankseq->edges sorted-clusters)]
+    (reduce (fn [acc [c1 c2]]
+                           (-> acc
+                               (clstr/add-cluster-edge c1 c2)))
+            (clstr/delete-edge-graph g)
+            new-edges)))
 
 
+(def ^:dynamic *part-sep* #"[^=:<>(<=)(>=)]+|[=:<>(<=)(>=)]")   
+(defn split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
 
-(defn remove-nodes-and-rerank
-  "A wrapper function to ensure that invisible cluster edges are always
-   added back in when appropriate."
-  [g nds]
-  (let [{:keys [graph clusters]} (clstr/remove-nodes g nds)
-        edges (when (-> g :clusters :edge-graph)
-                (rankseq->edges
-                 (sort-clusters-by-rank
-                  (ranks (-> g :clusters :edge-graph))
-                  clusters)))]
-    (if edges
-      (-> graph
-          remove-invisible-edges
-          (add-invisible-cluster-edges edges))
-      graph)))
+(def ^:dynamic *group* #"\[.*\]")
+
+
+(defn remove-first-and-last [s]
+  (subs s 1 (dec (count s))))
+
+
+(defn equality-match?
+  "takes a term key and term value (which may represent a choice in the form
+   [a or b or c] and assesses whether the key and value (or one of the values) is a
+   submap of item."
+  [term-k term-v item]
+  (let [choice? (some? (re-matches *group* term-v))]
+    (if (not choice?)
+      (submap? {term-k term-v} item)
+      (let [opts (str/split (remove-first-and-last term-v) #" or ")]
+        (reduce 
+         (fn [acc cur] (or acc (submap? {term-k cur} item)))
+         false
+         opts)))))
+
+
+(defn inequality-match?
+  "takes a term key, an op and term value and assessing whether the value of the
+   key in the item matches the condition."
+  [term-k op term-v item]
+  (let [v (parse-num term-v)
+        v-item (parse-num (term-k item))]
+    (when (not (number? v-item)) (throw (util/err "internal oops!")))
+    (case op
+      ">" (> v-item v)
+      "<" (< v-item v)
+      ">=" (>= v-item v)
+      "<=" (<= v-item v)
+      (throw (util/err (str op " is not a valid comparison operator."))))))
+
+
+(defn sub-matches?
+  [term item]
+  (if (not (contains? item (keyword (first term))))
+    true
+    (let [op (second term)]
+      (cond
+        (or (= "=" op) (= ":" op)) (equality-match? (keyword (first term)) (nth term 2) item)
+        (or (= ">" op)
+            (= "<" op)
+            (= ">=" op)
+            (= "<=" op)) (inequality-match? (keyword (first term)) (second term) (nth term 2) item)
+        :else (throw (util/err (str op " is not a valid comparison operator.")))))))
 
 
 (defn filter-graph
   "Returns a filtered graph where nodes where is not a submap are filtered out."
-  [g subs]
-  (let [sub (first subs)
+  [g subs & {:keys [filter-edges?] :or {filter-edges? true}}]
+  (let [subs (str/split subs #"( or )(?![^\[]*\])") ;; don't match or inside []
+        subs (map #(re-seq *part-sep* %) subs)
         filtered-nodes (filter #(not (reduce
-                                      (fn [acc term] (or acc (submap? term %)))
+                                      (fn [acc term] (or acc (sub-matches? term %)))
                                       false subs))
-                               (loom.graph/nodes g))]
-    (remove-nodes-and-rerank g filtered-nodes)))
+                               (loom.graph/nodes g))
+        g' (if (clstr/clustered? g)
+             (clstr/remove-nodes g filtered-nodes)
+             (apply loom.graph/remove-nodes g filtered-nodes))]
+     (if filter-edges?
+      (let [filtered-edges (filter
+                            (fn [[src dst]]
+                              (not (reduce
+                                    (fn [acc term]
+                                      (or acc
+                                          (if (= (loom.attr/attr g' src dst :style) "invis")
+                                            true ;; invisible edges are scaffolding. keep them.
+                                            (sub-matches?
+                                             term
+                                             (loom.attr/attr g' src dst :meta)))))
+                                    false
+                                    subs)))
+                            (loom.graph/edges g'))]
+        (apply loom.graph/remove-edges g' filtered-edges))
+      g')))
 
 
 (defn paths
   "Returns a graph with only nodes on paths between start filtering term and the end."
   [g start-subs end-subs]
-  (let [start-nodes (loom.graph/nodes (filter-graph g start-subs))
-        end-nodes (loom.graph/nodes (filter-graph g end-subs))
+  (let [start-nodes (loom.graph/nodes (filter-graph g start-subs :filter-edges? false))
+        end-nodes (loom.graph/nodes (filter-graph g end-subs :filter-edges? false))
         combins (for [s start-nodes
                       e end-nodes]
                   [s e])
@@ -281,7 +383,9 @@
                combins)
         nds (remove nil? (into #{} (flatten paths)))
         nds-compl (set/difference (loom.graph/nodes g) nds)]
-    (remove-nodes-and-rerank g nds-compl)))
+    (if (clstr/clustered? g)
+      (clstr/remove-nodes g nds-compl)
+      (loom.graph/remove-nodes g nds-compl))))
 
 
 (defn same-ranks
