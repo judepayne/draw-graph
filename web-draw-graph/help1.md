@@ -46,20 +46,44 @@ The draw-graph web does provide a small text area for working with the data but 
 The data was typed in the columns to the left and then in the column marked as blue, a spreadsheet formula concatenates the contents of the previous columns together. When it was ready, the contents of that column were copied and paste into the draw-graph text area. 
 
 
-####Special characters to avoid
+####Special characters, including line breaks
 
-draw-graph uses 4 special characters in its input format. Avoid these in the data that you supply. They are `|` `:` `+` and `,`
+draw-graph uses 3 special characters in its input format. Avoid these in the data that you supply. They are `|` `:` and `,`
+
+commas `,` can be escaped in node meta data and edge meta data by putting a backslash in front of the character. For example:
+
+    ...:shar\,har:...
+    
+At the moment, the other two special characters `|` and `:` cannot be escaped.
+
+Sometimes, you may have a node for which the label you want to use is much longer than its peers. In this case, it's useful to break it over two or more lines. This can be achieved by putting a `\n` line break character in the node or edge meta data. For example:
+
+    ...:This is a very\nlong label:...
+    
+With both escaped characters and line breaks, please remember to use this consistently across the node when it appears across all the edges that it participates in. For example if a node is defined as
+
+    ...:shar\,har:...
+    
+in one node, and
+
+    ...:sharhar:...
+    
+in another, draw-graph will assume that they are two different nodes.
+
 
 In the header row (below), avoid the character `/` in the specified keys as this has a special meaning. See fallback labels below.
+
+The special characters `|` and `:` cannot currently be escaped and should be avoided.
+
 
 The data that you load into draw-graph can have five different types of rows.
 
 
 ####1) The header row
 
-The header row is a list of the keys in each node, separated by the colon character. It must always be started with `h:` For example:
+The header row is a list of the keys in each node, separated by the colon character. It must always be started with `h,` For example:
 
-    h:class:name:id
+    h,class:name:id
 
 is a valid header row where the subsequent definition of each row should be a colon separated list of the values for `class`, `name` and `id`. The only character not allowed within each key itself is a comma.
 
@@ -68,13 +92,33 @@ The header row should always come first in the csv file you upload or data you t
 
 ####2) Edges rows
 
-Edge rows are used the specify the data that makes up the graph. An edge is just two nodes separated by a comma. Since the keys in each nodes have already been specified in the header row, only the values now need to be specified. An edge row should always be started with `e:` to tell draw-graph what type of row it is.
+Edge rows are used the specify the data that makes up the graph. Think of it as one node's connection to another.
+
+
+The overall format of an edge row is:
+
+    e,<first node>|<first node styles>,<second node>|<second nodes styles>,<edge meta>|<edge styles>
+    
+Any/all of the following parts may be omitted:
+
+    |<first node styles>
+    |<second nodes styles>
+    ,<edge meta>
+    ,|<edge styles>
+
+
+An edge row should always be started with `e,` to tell draw-graph what type of row it is.
+
+
+*Specifying nodes*
+
+Since the keys in each nodes have already been specified in the header row, only the values now need to be specified.
 
 For example (assuming the header row above):
 
-    Bluebird-class:Simon:1434,Yellow-class:Anita:20345
+    e,Bluebird-class:Simon:1434,Yellow-class:Anita:20345
 
-is a valid edge where the nodes are:
+is a valid simple edge where the nodes are:
 
     class=Bluebird-class:name=Simon:id=1434
 
@@ -88,19 +132,6 @@ As in the header row, a colon is used to separate the different values in the no
 
 You can also pack additional styling information into an edge row, both to style one or both of the nodes and the edge itself (i.e. the connector between nodes).
 
-*Styling edges*
-
-Optionally an edge row can have an additional comma after the data of the two nodes have been specified followed by a `|` character and then a list of keys and values that are used to specify how that particular edge is to be displayed. For example:
-
-    Bluebird-class:Simon:1434,Yellow-class:Anita:20345,|color:deeppink:thickness:2
-
-Since commas and colons are part of the data format, you should be very careful to strip them out of the data itself.
-
-The edge attributes used to specify display of the edges are actually Graphviz attributes.
-
-There’s a complete description of all attributes [here](https://www.graphviz.org/doc/info/attrs.html) and the various colours (also from Graphviz) are specified [here](https://www.graphviz.org/doc/info/colors.html).
-
-Useful common ones include `label` (a text label for the edge), `style` (e.g. set to `dashed` or don't set for an undashed line, or set to `invis` for no line at all), `penwidth` (the thickness of the edge, for example, try a value of 5 for a thick line).
 
 *Styling nodes*
 
@@ -116,19 +147,49 @@ adding
 
 will style the Simon node according to those Graphviz attributes specified. Please see the links just above for a description of all available attributes and colours.
 
-One node in your graph might occur many times in the data you load, as that node participates in multiple edges. Styling it once is sufficient in the data.
+One node in your graph might occur many times in the data you load, as that node participates in multiple edges. Styling it once is sufficient in the data. If you style the same nodes appearing in different edges differently, then styles are merged with the repeated styling attributes in the last node winning over the previous.
+
+Styles set on a node will win out over global defaults specified by draw-graph's options. For example, if you specify `shape:rect` on a node, but `ellipse` in the 'node shape' option, then `rect` will win out for that node.
+
+There’s a complete description of all attributes [here](https://www.graphviz.org/doc/info/attrs.html) and the various colours (also from Graphviz) are specified [here](https://www.graphviz.org/doc/info/colors.html), although it's also fine to specify a color in hex format e.g. #4286f4 (please google for 'color picker').
+
 
 Please see the same graphviz page as linked above for a comprehensive list of all the available attributes.
 
 
+*Edge meta data*
+
+Edge meta data is specified as a chain of key value pairs and can be anything you want, bearing in mind the limitations from the special characters section. It's form is:
+
+    key1:value1:key2:value2:key3... etc
+    
+Edge meta data is useful for display as labels on your edges. There's an option described below called 'edge labels' where you can specify one of the keys to be used across all edge labels. It's also useful for filtering down to a particular set of edges e.g. `volume>100` using the 'filter graph' option described below.
+It's generally useful to have a standard set of edge meta data keys across all edges so that labels and filtering can be consistently applied. The example called 'Complex architecture diagram' is a good example use of edge meta data.
+
+
+*Styling edges*
+
+Optionally an edge row can have an additional comma after the data of the two nodes have been specified followed by a `|` character and then a list of keys and values that are used to specify how that particular edge is to be displayed. For example:
+
+    Bluebird-class:Simon:1434,Yellow-class:Anita:20345,|color:deeppink:thickness:2
+
+The edge attributes used to specify display of the edges are actually Graphviz attributes.
+
+
+Useful common ones include `label` (a text label for the edge), `style` (e.g. set to `dashed` or don't set for an undashed line, or set to `invis` for no line at all), `penwidth` (the thickness of the edge, for example, try a value of 5 for a thick line).
+If you specify any attributes here that can also be set globally by a draw-graph option, for example the label, the per-edge setting specified the data will win out over the default specified in the options.
+
+
+
 ####3) Cluster Style rows
 
-Cluster Style rows are not used to specify if/ how nodes should be put into clusters in the graph, but they are used just for styling the clusters. A cluster style row is always started with a `cs:`.
+Cluster Style rows are not used to specify if/ how nodes should be put into clusters in the graph, but they are used just for styling the clusters. A cluster style row is always started with a `cs,`.
 
 A cluster style row has the form:
 
-    cs:Yellow-class|bgcolor:cornsilk1:style:rounded
+    cs,Yellow-class|bgcolor:cornsilk1:style:rounded
 
+It always has to start with `cs` to indicate the type of row.
 Before the `|` you put the value of the cluster that you are styling, and after, a colon separated list of Graphviz key value pairs. Please see the same links as before.
 
 If you click through the **Examples** on the main page, you’ll see how various effects can be achieved. There’s a section on more advanced layout tricks, where you need to understand more about Graphviz, further down on this page.
@@ -136,7 +197,7 @@ If you click through the **Examples** on the main page, you’ll see how various
 For a comprehensive list of all graphviz attributes that can be applied to nodes, edges and clusters, here's the [link](https://www.graphviz.org/doc/info/attrs.html) again.
 
 
-####4) Cluster Edge rows and (5) Cluster to parent rows
+####4) Cluster Edge rows and Cluster to parent rows
 
 The final two types of rows are really only useful when the `dot` layout is selected in the options. Graphviz' dot layout is probably the most useful, and with it we can get the closest to using Graphviz and draw-graph are a diagramming tool. The key concept to understand with dot is *rank*.
 
@@ -146,7 +207,7 @@ But what if you wanted to brownbears to be below pandas?
 
 Add this definition line somewhere in the data lines and hit 'draw-graph' again.
 
-    e:pandas:Bridget,brownbears:cosmo
+    e,pandas:Bridget,brownbears:cosmo
     
 We chose 'Bridget' because that node in the lowest ranked in pandas.
 
@@ -154,30 +215,38 @@ draw-graph automates this for you. Rather than specifying relationships between 
 
 Delete the line you just added, and replace it with this one.
 
-    ce:pandas:brownbears
+    ce,pandas:brownbears
     
 and hit 'draw-graph' again.
 brownbears is placed below pandas and the edges that draw-graph creates to control that are styled as invisible, so they don't appear in the display. Actually, they're stripped out of the svg by Graphviz while its creating it, so are not even present if you decide to edit the svg in an editor program later.
-You can specify multiple cluster edges on a single `ce:` line so
+You can specify multiple cluster edges on a single `ce,` line so
 
-    ce:pandas:brownbears:pandas:squirrels
+    ce,pandas:brownbears:pandas:squirrels
     
-will bring the squirrels cluster below pandas also. It's also fine to specify `ce:` relationships on multiple lines.
+will bring the squirrels cluster below pandas also. It's also fine to specify `ce,` relationships on multiple lines, which, for clarify, is preferable.
 
-*Cluster->parent* rows are a bit different. They're for nesting clusters. Cluster->parent rows are started with a `cp:`.
-Remove all the `ce:` lines you added above and instead, add this line to the data:
+A note on the implementation of cluster edges. The Graphviz layout engine has no concept of the relative position of clusters. Rather they are just boxes draw around the nodes they contain.
+In order to introduce relative positoning, draw-line creates a lot of invisible edges between nodesin the two clusters you specify an edge between in the graph just before it is rendered. These edges have `constraint:true` set - i.e. they participate in and influence the *rank*. If you ever want to see these edges, there's an option called 'show invisible constraints'.
+Cluster edges only work in one direction. For example if you `dot` layout graph has a 'rankdir' (another option) set to `TB`, i.e. Top to Bottom, then cluster edges can be used to say that one cluster is 'below' another.. but there's no 'to the left of' instruction available at the same time.
 
-    cp:squirrels:pandas
+draw-graph offers the option to control the number of inter-node edges used to implement each cluster edge. Low numbers might not be enough to push your clusters into the desired relative positions given all the other edges that you've specified in the graph that could also be influencing rank. Higher numbers lock the relative position of clusters very effectively but can cause graphviz to produce a wide graph (which can be countered by setting the 'concentrate' option to true).
+
+Generally you want the lowest number of cluster edges that produce the desired cluster positioning.
+
+*Cluster->parent* rows are a bit different. They're for nesting clusters. Cluster->parent rows are started with a `cp,`.
+Remove all the `ce,` lines you added above and instead, add this line to the data:
+
+    cp,squirrels:pandas
     
 which is used to denote that pandas is the parent cluster of squirrels. Hit 'draw-graph' again and you'll see the squirrels cluster moved inside the 'pandas' cluster at the position determined by the relative rank of the node within it to the other nodes inside pandas.
 
 Now let's add a virtual node. Keeping the line above in place, add another new line to the data:
 
-    cp:pandas:are they bears
+    cp,pandas:are they bears
     
 The new cluster you just added, `are they bears`, is not styled yet, so add another line, a cluster style line like so:
 
-    cs:are they bears|bgcolor:lightgray
+    cs,are they bears|bgcolor:lightgray
     
 Another example in the drop down list - Friendship cluster layout - shows a more complicated example of what can be achieved with cluster edge rows and cluster->parent rows. draw-graph adds these in order to get the most out of Graphviz' dot layout and help you produce 'what connects to what' style diagrams which are pretty common in the work place.
 
@@ -185,17 +254,6 @@ Another example in the drop down list - Friendship cluster layout - shows a more
 ####Commenting out lines
 
 Use a semi-colon ';' or a double semi-colon ';;' at the beginning or any line in the input data, apart from the header line which must always be present, to have draw-graph ignore the line. This is often useful while you're working.
-
-
-
-####Splitting text labels
-
-Please pull up the 'Friendship graph' example again.
-Notice how the text of the 'cristolene' node is too wide and slightly extends over the egdes. Find the (single) row that specifies the 'cristoline' node and replace it with this:
-
-    e:pandas:crist-+olene,pandas:sharhar
-    
-The plus `+` symbol is used to split text in a node label. There's just one thing to be careful of and that is the definition of that node is now literally `pandas:crist-+lene`, so if you wish to overflow text for a node where is one more than one edge (i.e. present in more than one row in the data) be sure to change the definition of the node in both, or Graphviz will think that they are two different nodes.
 
 
 ### Options<div id=“options” />
@@ -210,13 +268,15 @@ Draw-graph splits the options into two sections, those provided by draw-graph it
 
 `node label` is the key from your data to be used as the label on each node.
 
-*Fallback labels*
+*Fallback labels & Composite labels*
 
 Sometimes in one of your nodes, one of the values might be missing and it's valid that it's missing e.g. 
 
     Bluebird-class::1434
     
 In this case, you can specify `node-label` with a fallback key to use, or multiple fallback keys for that matter. e.g. rather than just `name`, specify as `name/id` or even `name/id/class`
+
+Composite labels are a way of putting more information into each of the labels on your nodes. For example setting the 'node label' option to `name&id` would put the values for both those keys onto each node.
 
 
 `cluster on` clusters the graph on one of the keys from your data. For example, setting cluster-on ‘class’ will group the graph by ‘class’.
@@ -244,20 +304,46 @@ and press draw-graph again.
 
 Now set `filter-graph` to:
 
-    function:Captue,function:Lifecycle
+    function:Capture or function:Lifecycle
     
-(a series of filter terms don't need to be based on the same key) and hit draw-graph again.
+and hit draw-graph again. A filter-graph 'expression' is made up of a series of 'terms'. At present, logical 'or' is provided for joining the terms into an expression. logical 'and' may well be provided in futures.
+An expression where several terms are over the same key as above can be written more concisely as:
 
+    function:[Capture or Lifecycle]
+    
+`=` means the same thing as `:`, so the above could be written
+
+    function=[Capture or Lifecycle]
+    
+Asides from the equality operator (written as `=` or `:`), inequality operators (`<`, `<=`, `>` and `>=`) are also available. These will only be applied to numreic values.
+
+A filter expression needn't have each term over the same key.
+
+    function=Capture or application:hePikes
+    
+is valid and will pull in the application called 'hePikes' as well as all applications in the Caputre function in the Complex Architecture digram example.
+
+Each term in the filter expression is applied to every node and every edge is the graph, but when a node or edge does not contain the specified key with it, it automatically passes that particular term.
+
+For example, say every node in your graph had the keys:
+
+   view:function:application:id:level
+   
+and every edge the keys:
+
+   volume:format:level
+   
+A filter term based on 'function' say would end up only being applied to nodes. A term based on 'volume' only to edges, but a term based on 'level' would be applied to both nodes and edges. You could use this to, for example, nest different levels of detail within a single graph description and effectively zoom in and out, as you zoomed out seeing summary level nodes and edges for example.
 
 `paths` is a slightly more complex way of effectively filtering the graph. Pick the 'Architecture diagram' again and enter:
 
-    function:Capture,function:Lifecycle|function:Reporting
+    function:Capture or function:Lifecycle|function:Reporting
     
-`paths` is made up of two filter terms separated with the pipe character '|'. The graph is filtered both for the first filter terms and the second. Then a pathfinding algorithm is run between all combinations of the first set of nodes and the second. Any other nodes found on any of those paths (as well as the start and end nodes captured by the filter terms) are shown in the resulting graph.
+`paths` is made up of two filter expressions separated with the pipe character '|'. The graph is filtered both for the first filter expression and the second. Each filter expression is this time run only over the nodes of the graph. Then a pathfinding algorithm is run between all combinations of the first set of nodes and the second. Any other nodes found on any of those paths (as well as the start and end nodes captured by the filter terms) are shown in the resulting graph.
 `paths` is useful for answering questions about how certain domains connect and what do those connections pass through.
 
 
-`ellide lower levels` will hide the <n> lowest levels (the 'leaf' nodes) in the graph.
+`elide lower levels` will hide the <n> lowest levels (the 'leaf' nodes) in the graph.
 
 
 `highlight roots?` :true/false - will highlight root nodes in the graph as stars symbols. Root nodes are nodes which don’t have any edges going into them.

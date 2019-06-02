@@ -16,6 +16,8 @@ Postprocessing is mainly for the graphviz 'dot' layout.
 `font`. Type the name of a font that you want uses for all text in the image. 'sans-serif' and 'serif' are good choices as they are not tied to the particular machine you're working on and will look roughly the same to everyone.
 
 
+`number cluster edges` As described above, this is the number of edges between nodes in two clusters that are generated to force graphviz to position clusters relative to each other.
+
 
 ####draw-graph options
 
