@@ -380,7 +380,7 @@
            :on-change #(swap! local-state update-in [:options :show-roots?] not)}])
 
 
-(defn show-invisible-constraints []
+(defn show-constraints []
   [:input {:type :checkbox :id :show-constraints?
            :checked (:show-constraints? @options)
            :tabIndex 14
@@ -553,7 +553,7 @@
      (row "color on" [color-on] "The header key to vary node coloration by")
      (row "edges labels" [edgelabels] "Edge meta key to use as an edge label")
      (empty-row) (empty-row)
-     (row "show invisible constraints" [show-invisible-constraints] "Shows invisible constraint edges, including generated cluster edges. For debugging layouts")
+     (row "highlight constraints" [show-constraints] "Highlights all (rank) constraining edges, including ordinarily invisible generated cluster edges. For debugging layouts")
      (row "anneal bias" [anneal-bias] "Favors left-right cluster expansion by this factor in TB/ BT layouts, ditto for top bottom in LR/ RL layouts")
      (row "cluster edges num" [cluster-edges-num] "number of invisible edges to create between nodes in two clusters that have a cluster edge. See Help page for further information.")
 ]))

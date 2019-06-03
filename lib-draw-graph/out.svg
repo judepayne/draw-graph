@@ -1,207 +1,736 @@
-<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="546pt" height="242pt" viewBox="0.00 0.00 545.80 241.80">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 227.4)">
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="641pt" height="940pt" viewBox="0.00 0.00 640.80 939.55">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 925.15)">
 <title>%3</title>
-<polygon fill="#ffffff" stroke="transparent" points="-14.4,14.4 -14.4,-227.4 531.4,-227.4 531.4,14.4 -14.4,14.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-14.4,14.4 -14.4,-925.15 626.4,-925.15 626.4,14.4 -14.4,14.4"/>
 <g id="clust1" class="cluster">
-<title>cluster12519</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-205 8,-11 509,-11 509,-205 8,-205"/>
-<text text-anchor="start" x="18" y="-187" font-family="sans-serif" font-size="14.00" fill="#000000">cDiagram</text>
+<title>cluster14070</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-902 8,-8 604,-8 604,-902 8,-902"/>
+<text text-anchor="end" x="594" y="-884" font-family="sans-serif" font-size="14.00" fill="#000000">Current State</text>
 </g>
 <g id="clust2" class="cluster">
-<title>cluster12520</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="260,-100 260,-11 340,-11 340,-100 260,-100"/>
-<text text-anchor="start" x="270" y="-82" font-family="sans-serif" font-size="14.00" fill="#000000">cA</text>
+<title>cluster14071</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-166 8,-88 604,-88 604,-166 8,-166"/>
+<text text-anchor="end" x="594" y="-148" font-family="sans-serif" font-size="14.00" fill="#000000">Payments</text>
 </g>
 <g id="clust3" class="cluster">
-<title>cluster12521</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-98 8,-11 86,-11 86,-98 8,-98"/>
-<text text-anchor="start" x="18" y="-80" font-family="sans-serif" font-size="14.00" fill="#000000">cG</text>
+<title>cluster14072</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-546 8,-394 604,-394 604,-546 8,-546"/>
+<text text-anchor="end" x="594" y="-528" font-family="sans-serif" font-size="14.00" fill="#000000">Risk</text>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster12522</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="340,-100 340,-11 427,-11 427,-100 340,-100"/>
-<text text-anchor="start" x="350" y="-82" font-family="sans-serif" font-size="14.00" fill="#000000">cE</text>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster12523</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="148,-175 148,-100 509,-100 509,-175 148,-175"/>
-<text text-anchor="start" x="158" y="-157" font-family="sans-serif" font-size="14.00" fill="#000000">c0</text>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster12524</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="8,-175 8,-98 148,-98 148,-175 8,-175"/>
-<text text-anchor="start" x="18" y="-157" font-family="sans-serif" font-size="14.00" fill="#000000">cF</text>
+<title>cluster14073</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-720 8,-639 604,-639 604,-720 8,-720"/>
+<text text-anchor="end" x="594" y="-702" font-family="sans-serif" font-size="14.00" fill="#000000">Capture</text>
 </g>
 <g id="clust7" class="cluster">
-<title>cluster12525</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="86,-98 86,-11 174,-11 174,-98 86,-98"/>
-<text text-anchor="start" x="96" y="-80" font-family="sans-serif" font-size="14.00" fill="#000000">cB</text>
+<title>cluster14074</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-874 8,-720 604,-720 604,-874 8,-874"/>
+<text text-anchor="end" x="594" y="-856" font-family="sans-serif" font-size="14.00" fill="#000000">Golden Sources</text>
 </g>
-<g id="clust8" class="cluster">
-<title>cluster12526</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="174,-100 174,-11 260,-11 260,-100 174,-100"/>
-<text text-anchor="start" x="184" y="-82" font-family="sans-serif" font-size="14.00" fill="#000000">cD</text>
+<g id="clust10" class="cluster">
+<title>cluster14075</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-639 8,-546 604,-546 604,-639 8,-639"/>
+<text text-anchor="end" x="594" y="-621" font-family="sans-serif" font-size="14.00" fill="#000000">Lifecycle</text>
 </g>
-<g id="clust9" class="cluster">
-<title>cluster12527</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="427,-100 427,-11 509,-11 509,-100 427,-100"/>
-<text text-anchor="start" x="437" y="-82" font-family="sans-serif" font-size="14.00" fill="#000000">cC</text>
+<g id="clust11" class="cluster">
+<title>cluster14076</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-317 8,-166 604,-166 604,-317 8,-317"/>
+<text text-anchor="end" x="594" y="-299" font-family="sans-serif" font-size="14.00" fill="#000000">Settlement</text>
+</g>
+<g id="clust14" class="cluster">
+<title>cluster14077</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-394 8,-317 604,-317 604,-394 8,-394"/>
+<text text-anchor="end" x="594" y="-376" font-family="sans-serif" font-size="14.00" fill="#000000">Reporting</text>
+</g>
+<g id="clust15" class="cluster">
+<title>cluster14078</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-88 8,-8 604,-8 604,-88 8,-88"/>
+<text text-anchor="end" x="594" y="-70" font-family="sans-serif" font-size="14.00" fill="#000000">Finance</text>
 </g>
 
 <g id="node1" class="node">
-<title>node12511</title>
-<g id="a_node1"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#d7b66b" stroke="#000000" points="493,-63 439,-63 439,-27 493,-27 493,-63"/>
-<text text-anchor="middle" x="466" y="-42" font-family="sans-serif" font-size="10.00" fill="#000000">n2</text>
+<title>node14042</title>
+<g id="a_node1"><a xlink:title="application: War
+id: PTN-" target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="185,-686 131,-686 131,-650 185,-650 185,-686"/>
+<text text-anchor="middle" x="158" y="-670" font-family="sans-serif" font-size="10.00" fill="#000000">War</text>
+<text text-anchor="middle" x="158" y="-660" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
 </a>
 </g>
 </g>
 
-<g id="node2" class="node">
-<title>node12512</title>
-<g id="a_node2"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#7b9795" stroke="#000000" points="78,-145 24,-145 24,-109 78,-109 78,-145"/>
-<text text-anchor="middle" x="51" y="-124" font-family="sans-serif" font-size="10.00" fill="#000000">n4</text>
+<g id="node4" class="node">
+<title>node14045</title>
+<g id="a_node4"><a xlink:title="application: CONFIRMATIONS
+Writer
+Doc
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="357.6495,-608 260.3505,-608 260.3505,-554 357.6495,-554 357.6495,-608"/>
+<text text-anchor="middle" x="309" y="-593" font-family="sans-serif" font-size="10.00" fill="#000000">CONFIRMATIONS</text>
+<text text-anchor="middle" x="309" y="-583" font-family="sans-serif" font-size="10.00" fill="#000000">Writer</text>
+<text text-anchor="middle" x="309" y="-573" font-family="sans-serif" font-size="10.00" fill="#000000">Doc</text>
+<text text-anchor="middle" x="309" y="-563" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
 </a>
 </g>
 </g>
 
 <g id="edge1" class="edge">
-<title>node12511-&gt;node12512</title>
-<path fill="none" stroke="#000000" d="M475,-63.0449C475,-70.749 475,-78 475,-78 475,-78 60,-78 60,-78 60,-78 60,-98.7542 60,-98.7542"/>
-<polygon fill="#000000" stroke="#000000" points="56.5001,-98.7542 60,-108.7542 63.5001,-98.7542 56.5001,-98.7542"/>
+<title>node14042-&gt;node14045</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M180.3584,-649.8939C180.3584,-630.6609 180.3584,-603 180.3584,-603 180.3584,-603 250.3661,-603 250.3661,-603"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="250.3662,-606.5001 260.3661,-603 250.3661,-599.5001 250.3662,-606.5001"/>
 </g>
 
-<g id="node4" class="node">
-<title>node12514</title>
-<g id="a_node4"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#dab07e" stroke="#000000" points="78,-63 24,-63 24,-27 78,-27 78,-63"/>
-<text text-anchor="middle" x="51" y="-42" font-family="sans-serif" font-size="10.00" fill="#000000">n6</text>
+<g id="node12" class="node">
+<title>node14053</title>
+<g id="a_node12"><a xlink:title="application: Fidelity Plus
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="454.9063,-599 387.0937,-599 387.0937,-563 454.9063,-563 454.9063,-599"/>
+<text text-anchor="middle" x="421" y="-583" font-family="sans-serif" font-size="10.00" fill="#000000">Fidelity Plus</text>
+<text text-anchor="middle" x="421" y="-573" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
 </a>
 </g>
 </g>
 
 <g id="edge2" class="edge">
-<title>node12512-&gt;node12514</title>
-<path fill="none" stroke="#cd1076" stroke-width="4" d="M42,-108.8015C42,-108.8015 42,-73.1476 42,-73.1476"/>
-<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="45.5001,-73.1476 42,-63.1476 38.5001,-73.1476 45.5001,-73.1476"/>
+<title>node14042-&gt;node14053</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M171.0752,-649.8701C171.0752,-639.6855 171.0752,-629 171.0752,-629 171.0752,-629 393.6979,-629 393.6979,-629 393.6979,-629 393.6979,-609.1467 393.6979,-609.1467"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="397.198,-609.1467 393.6979,-599.1467 390.198,-609.1468 397.198,-609.1467"/>
 </g>
 
-<g id="node3" class="node">
-<title>node12513</title>
-<g id="a_node3"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#84ea78" stroke="#000000" points="161,-63 107,-63 107,-27 161,-27 161,-63"/>
-<text text-anchor="middle" x="134" y="-42" font-family="sans-serif" font-size="10.00" fill="#000000">n1</text>
+<g id="node14" class="node">
+<title>node14055</title>
+<g id="a_node14"><a xlink:title="application: ADH
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="237,-284 183,-284 183,-248 237,-248 237,-284"/>
+<text text-anchor="middle" x="210" y="-268" font-family="sans-serif" font-size="10.00" fill="#000000">ADH</text>
+<text text-anchor="middle" x="210" y="-258" font-family="sans-serif" font-size="10.00" fill="#000000">John</text>
 </a>
 </g>
 </g>
 
 <g id="edge3" class="edge">
-<title>node12513-&gt;node12512</title>
-<path fill="none" stroke="#000000" d="M125,-63.0267C125,-83.7672 125,-115 125,-115 125,-115 88.1347,-115 88.1347,-115"/>
-<polygon fill="#000000" stroke="#000000" points="88.1347,-111.5001 78.1347,-115 88.1346,-118.5001 88.1347,-111.5001"/>
+<title>node14042-&gt;node14055</title>
+<path fill="none" stroke="#a6a8e0" d="M141,-649.9459C141,-571.7237 141,-266 141,-266 141,-266 172.7294,-266 172.7294,-266"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="172.7294,-269.5001 182.7294,-266 172.7293,-262.5001 172.7294,-269.5001"/>
+<text text-anchor="middle" x="122.1035" y="-444.1083" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
 </g>
 
-<g id="node5" class="node">
-<title>node12515</title>
-<g id="a_node5"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#cd849c" stroke="#000000" points="410,-63 356,-63 356,-27 410,-27 410,-63"/>
-<text text-anchor="middle" x="383" y="-42" font-family="sans-serif" font-size="10.00" fill="#000000">n7</text>
+<g id="node20" class="node">
+<title>node14061</title>
+<g id="a_node20"><a xlink:title="application: BAD Image
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="231.6329,-599 166.3671,-599 166.3671,-563 231.6329,-563 231.6329,-599"/>
+<text text-anchor="middle" x="199" y="-583" font-family="sans-serif" font-size="10.00" fill="#000000">BAD Image</text>
+<text text-anchor="middle" x="199" y="-573" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
 </a>
 </g>
 </g>
 
 <g id="edge4" class="edge">
-<title>node12515-&gt;node12514</title>
-<path fill="none" stroke="#000000" d="M383,-26.9561C383,-14.4367 383,0 383,0 383,0 42,0 42,0 42,0 42,-16.9561 42,-16.9561"/>
-<polygon fill="#000000" stroke="#000000" points="38.5001,-16.956 42,-26.9561 45.5001,-16.9561 38.5001,-16.956"/>
+<title>node14042-&gt;node14061</title>
+<path fill="none" stroke="#a6a8e0" d="M175.7168,-649.9735C175.7168,-649.9735 175.7168,-609.0034 175.7168,-609.0034"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="179.2169,-609.0033 175.7168,-599.0034 172.2169,-609.0034 179.2169,-609.0033"/>
+<text text-anchor="middle" x="156.8203" y="-631.4885" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
 </g>
 
-<g id="node6" class="node">
-<title>node12516</title>
-<g id="a_node6"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#608e5e" stroke="#000000" points="244,-63 190,-63 190,-27 244,-27 244,-63"/>
-<text text-anchor="middle" x="217" y="-42" font-family="sans-serif" font-size="10.00" fill="#000000">n3</text>
+<g id="node22" class="node">
+<title>node14063</title>
+<g id="a_node22"><a xlink:title="application: noShock
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="223,-362 169,-362 169,-326 223,-326 223,-362"/>
+<text text-anchor="middle" x="196" y="-346" font-family="sans-serif" font-size="10.00" fill="#000000">noShock</text>
+<text text-anchor="middle" x="196" y="-336" font-family="sans-serif" font-size="10.00" fill="#000000">Paul</text>
 </a>
 </g>
 </g>
 
 <g id="edge5" class="edge">
-<title>node12516-&gt;node12512</title>
-<path fill="none" stroke="#000000" d="M208,-63.2337C208,-89.0094 208,-133 208,-133 208,-133 88.3473,-133 88.3473,-133"/>
-<polygon fill="#000000" stroke="#000000" points="88.3473,-129.5001 78.3473,-133 88.3473,-136.5001 88.3473,-129.5001"/>
+<title>node14042-&gt;node14063</title>
+<path fill="none" stroke="#a6a8e0" d="M146,-649.652C146,-581.1119 146,-344 146,-344 146,-344 158.9513,-344 158.9513,-344"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="158.9513,-347.5001 168.9513,-344 158.9512,-340.5001 158.9513,-347.5001"/>
+<text text-anchor="middle" x="127.1035" y="-492.3504" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="node2" class="node">
+<title>node14043</title>
+<g id="a_node2"><a xlink:title="application: GRIMACE
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="288.1708,-440 227.8292,-440 227.8292,-404 288.1708,-404 288.1708,-440"/>
+<text text-anchor="middle" x="258" y="-424" font-family="sans-serif" font-size="10.00" fill="#000000">GRIMACE</text>
+<text text-anchor="middle" x="258" y="-414" font-family="sans-serif" font-size="10.00" fill="#000000">Simone</text>
+</a>
+</g>
+</g>
+
+<g id="node10" class="node">
+<title>node14051</title>
+<g id="a_node10"><a xlink:title="application: 1-Charge
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="307.6903,-362 252.3097,-362 252.3097,-326 307.6903,-326 307.6903,-362"/>
+<text text-anchor="middle" x="280" y="-346" font-family="sans-serif" font-size="10.00" fill="#000000">1-Charge</text>
+<text text-anchor="middle" x="280" y="-336" font-family="sans-serif" font-size="10.00" fill="#000000">Paul</text>
+</a>
+</g>
 </g>
 
 <g id="edge6" class="edge">
-<title>node12516-&gt;node12514</title>
-<path fill="none" stroke="#000000" d="M217,-26.5782C217,-17.7209 217,-9 217,-9 217,-9 60,-9 60,-9 60,-9 60,-16.5782 60,-16.5782"/>
-<polygon fill="#000000" stroke="#000000" points="56.5001,-16.5781 60,-26.5782 63.5001,-16.5782 56.5001,-16.5781"/>
+<title>node14043-&gt;node14051</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M276.2751,-403.9092C276.2751,-403.9092 276.2751,-372.2629 276.2751,-372.2629"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="279.7752,-372.2629 276.2751,-362.2629 272.7752,-372.2629 279.7752,-372.2629"/>
 </g>
 
+<g id="node13" class="node">
+<title>node14054</title>
+<g id="a_node13"><a xlink:title="application: hePikes
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="320,-284 266,-284 266,-248 320,-248 320,-284"/>
+<text text-anchor="middle" x="293" y="-268" font-family="sans-serif" font-size="10.00" fill="#000000">hePikes</text>
+<text text-anchor="middle" x="293" y="-258" font-family="sans-serif" font-size="10.00" fill="#000000">John</text>
+</a>
+</g>
+</g>
 
 <g id="edge7" class="edge">
-<title>node12517-&gt;node12511</title>
-<path fill="none" stroke="#cd1076" stroke-width="4" d="M327.3473,-133C372.3289,-133 457,-133 457,-133 457,-133 457,-73.2337 457,-73.2337"/>
-<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="460.5001,-73.2336 457,-63.2337 453.5001,-73.2337 460.5001,-73.2336"/>
+<title>node14043-&gt;node14054</title>
+<path fill="none" stroke="#296640" d="M241.2,-403.9065C241.2,-364.0111 241.2,-272 241.2,-272 241.2,-272 255.8863,-272 255.8863,-272"/>
+<polygon fill="#296640" stroke="#296640" points="255.8864,-275.5001 265.8863,-272 255.8863,-268.5001 255.8864,-275.5001"/>
+<text text-anchor="middle" x="231.7518" y="-322.6101" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="node15" class="node">
+<title>node14056</title>
+<g id="a_node15"><a xlink:title="application: SIP-local
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="132.0147,-56 77.9853,-56 77.9853,-20 132.0147,-20 132.0147,-56"/>
+<text text-anchor="middle" x="105" y="-40" font-family="sans-serif" font-size="10.00" fill="#000000">SIP-local</text>
+<text text-anchor="middle" x="105" y="-30" font-family="sans-serif" font-size="10.00" fill="#000000">Daniel</text>
+</a>
+</g>
 </g>
 
 <g id="edge8" class="edge">
-<title>node12517-&gt;node12513</title>
-<path fill="none" stroke="#cd1076" stroke-width="4" d="M272.6527,-127C227.6711,-127 143,-127 143,-127 143,-127 143,-73.1985 143,-73.1985"/>
-<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="146.5001,-73.1984 143,-63.1985 139.5001,-73.1985 146.5001,-73.1984"/>
+<title>node14043-&gt;node14056</title>
+<path fill="none" stroke="#296640" d="M227.6441,-422C179.8646,-422 92.4963,-422 92.4963,-422 92.4963,-422 92.4963,-66.0061 92.4963,-66.0061"/>
+<polygon fill="#296640" stroke="#296640" points="95.9964,-66.006 92.4963,-56.0061 88.9964,-66.0061 95.9964,-66.006"/>
+<text text-anchor="middle" x="73.5999" y="-313.5769" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
 </g>
 
 <g id="edge9" class="edge">
-<title>node12517-&gt;node12515</title>
-<path fill="none" stroke="#cd1076" stroke-width="4" d="M327.1773,-121C351.3836,-121 383,-121 383,-121 383,-121 383,-73.0109 383,-73.0109"/>
-<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="386.5001,-73.0109 383,-63.0109 379.5001,-73.011 386.5001,-73.0109"/>
+<title>node14043-&gt;node14063</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M229.9988,-403.8314C229.9988,-382.502 229.9988,-350 229.9988,-350 229.9988,-350 229.3108,-350 229.3108,-350"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="233.1187,-346.5002 223.1186,-350 233.1186,-353.5002 233.1187,-346.5002"/>
+</g>
+
+<g id="node3" class="node">
+<title>node14044</title>
+<g id="a_node3"><a xlink:title="application: Guerilla Risk
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="298.1804,-512 227.8196,-512 227.8196,-476 298.1804,-476 298.1804,-512"/>
+<text text-anchor="middle" x="263" y="-496" font-family="sans-serif" font-size="10.00" fill="#000000">Guerilla Risk</text>
+<text text-anchor="middle" x="263" y="-486" font-family="sans-serif" font-size="10.00" fill="#000000">Simone</text>
+</a>
+</g>
 </g>
 
 <g id="edge10" class="edge">
-<title>node12517-&gt;node12516</title>
-<path fill="none" stroke="#cd1076" stroke-width="4" d="M272.8653,-121C251.7458,-121 226,-121 226,-121 226,-121 226,-73.0109 226,-73.0109"/>
-<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="229.5001,-73.0109 226,-63.0109 222.5001,-73.011 229.5001,-73.0109"/>
+<title>node14044-&gt;node14043</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M258,-475.8314C258,-475.8314 258,-450.4133 258,-450.4133"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="261.5001,-450.4132 258,-440.4133 254.5001,-450.4133 261.5001,-450.4132"/>
+<text text-anchor="middle" x="239.1035" y="-465.1223" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
 </g>
 
+<g id="edge11" class="edge">
+<title>node14044-&gt;node14051</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M293.3374,-475.9065C293.3374,-475.9065 293.3374,-372.1577 293.3374,-372.1577"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="296.8375,-372.1576 293.3374,-362.1577 289.8375,-372.1577 296.8375,-372.1576"/>
+</g>
 
-<g id="node8" class="node">
-<title>node12518</title>
-<g id="a_node8"><a xlink:title="application: 
-id: " target="_blank">
-<polygon fill="#7c92cc" stroke="#000000" points="327,-63 273,-63 273,-27 327,-27 327,-63"/>
-<text text-anchor="middle" x="300" y="-42" font-family="sans-serif" font-size="10.00" fill="#000000">n5</text>
+<g id="node11" class="node">
+<title>node14052</title>
+<g id="a_node11"><a xlink:title="application: TradeDepo
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="400.664,-362 337.336,-362 337.336,-326 400.664,-326 400.664,-362"/>
+<text text-anchor="middle" x="369" y="-346" font-family="sans-serif" font-size="10.00" fill="#000000">TradeDepo</text>
+<text text-anchor="middle" x="369" y="-336" font-family="sans-serif" font-size="10.00" fill="#000000">Paul</text>
 </a>
 </g>
 </g>
 
 <g id="edge12" class="edge">
-<title>node12517-&gt;node12518</title>
-<path fill="none" stroke="#cd1076" stroke-width="4" d="M291,-108.8015C291,-108.8015 291,-73.1476 291,-73.1476"/>
-<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="294.5001,-73.1476 291,-63.1476 287.5001,-73.1476 294.5001,-73.1476"/>
+<title>node14044-&gt;node14052</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M298.2923,-488C321.4123,-488 347.3716,-488 347.3716,-488 347.3716,-488 347.3716,-372.2377 347.3716,-372.2377"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="350.8717,-372.2377 347.3716,-362.2377 343.8717,-372.2377 350.8717,-372.2377"/>
+<text text-anchor="middle" x="328.4751" y="-456.6585" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
 </g>
 
 <g id="edge13" class="edge">
-<title>node12518-&gt;node12512</title>
-<path fill="none" stroke="#000000" d="M272.55,-51C264.8324,-51 258.5,-51 258.5,-51 258.5,-51 258.5,-139 258.5,-139 258.5,-139 88.127,-139 88.127,-139"/>
-<polygon fill="#000000" stroke="#000000" points="88.127,-135.5001 78.127,-139 88.127,-142.5001 88.127,-135.5001"/>
+<title>node14044-&gt;node14063</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M227.7177,-494C219.0492,-494 212.2,-494 212.2,-494 212.2,-494 212.2,-372.0935 212.2,-372.0935"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="215.7001,-372.0935 212.2,-362.0935 208.7001,-372.0935 215.7001,-372.0935"/>
 </g>
 
 <g id="edge14" class="edge">
-<title>node12518-&gt;node12513</title>
-<path fill="none" stroke="#000000" d="M300,-26.8408C300,-21.9567 300,-18 300,-18 300,-18 134,-18 134,-18 134,-18 134,-18.8841 134,-18.8841"/>
-<polygon fill="#000000" stroke="#000000" points="130.5001,-16.8408 134,-26.8408 137.5001,-16.8409 130.5001,-16.8408"/>
+<title>node14045-&gt;node14043</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M303.0923,-553.9989C303.0923,-510.0756 303.0923,-428 303.0923,-428 303.0923,-428 298.3274,-428 298.3274,-428"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="298.3274,-424.5001 288.3274,-428 298.3273,-431.5001 298.3274,-424.5001"/>
 </g>
 
 <g id="edge15" class="edge">
-<title>node12518-&gt;node12516</title>
-<path fill="none" stroke="#000000" d="M272.8227,-39C272.8227,-39 254.2384,-39 254.2384,-39"/>
-<polygon fill="#000000" stroke="#000000" points="254.2384,-35.5001 244.2384,-39 254.2383,-42.5001 254.2384,-35.5001"/>
+<title>node14045-&gt;node14044</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M279.3826,-553.9496C279.3826,-553.9496 279.3826,-522.2248 279.3826,-522.2248"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="282.8827,-522.2248 279.3826,-512.2248 275.8827,-522.2248 282.8827,-522.2248"/>
+</g>
+
+<g id="node24" class="node">
+<title>node14065</title>
+<g id="a_node24"><a xlink:title="application: i-Assert(CZH)
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="504.6036,-362 429.3964,-362 429.3964,-326 504.6036,-326 504.6036,-362"/>
+<text text-anchor="middle" x="467" y="-346" font-family="sans-serif" font-size="10.00" fill="#000000">i-Assert(CZH)</text>
+<text text-anchor="middle" x="467" y="-336" font-family="sans-serif" font-size="10.00" fill="#000000">Paul</text>
+</a>
+</g>
+</g>
+
+<g id="edge16" class="edge">
+<title>node14045-&gt;node14065</title>
+<path fill="none" stroke="#dd809e" d="M357.7504,-558C394.2668,-558 437.9499,-558 437.9499,-558 437.9499,-558 437.9499,-372.2455 437.9499,-372.2455"/>
+<polygon fill="#dd809e" stroke="#dd809e" points="441.45,-372.2455 437.9499,-362.2455 434.45,-372.2456 441.45,-372.2455"/>
+<text text-anchor="middle" x="423.4967" y="-507.2225" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="node5" class="node">
+<title>node14046</title>
+<g id="a_node5"><a xlink:title="application: ECN
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="301,-212 247,-212 247,-176 301,-176 301,-212"/>
+<text text-anchor="middle" x="274" y="-196" font-family="sans-serif" font-size="10.00" fill="#000000">ECN</text>
+<text text-anchor="middle" x="274" y="-186" font-family="sans-serif" font-size="10.00" fill="#000000">John</text>
+</a>
+</g>
+</g>
+
+<g id="node8" class="node">
+<title>node14049</title>
+<g id="a_node8"><a xlink:title="application: eFermi
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="244,-134 190,-134 190,-98 244,-98 244,-134"/>
+<text text-anchor="middle" x="217" y="-118" font-family="sans-serif" font-size="10.00" fill="#000000">eFermi</text>
+<text text-anchor="middle" x="217" y="-108" font-family="sans-serif" font-size="10.00" fill="#000000">Loris</text>
+</a>
+</g>
+</g>
+
+<g id="edge17" class="edge">
+<title>node14046-&gt;node14049</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M246.966,-188C244.3249,-188 242.6,-188 242.6,-188 242.6,-188 242.6,-144.1686 242.6,-144.1686"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="246.1001,-144.1686 242.6,-134.1686 239.1001,-144.1687 246.1001,-144.1686"/>
+</g>
+
+<g id="edge18" class="edge">
+<title>node14046-&gt;node14056</title>
+<path fill="none" stroke="#ba521a" d="M274,-175.957C274,-134.1129 274,-34 274,-34 274,-34 142.1528,-34 142.1528,-34"/>
+<polygon fill="#ba521a" stroke="#ba521a" points="142.1528,-30.5001 132.1528,-34 142.1527,-37.5001 142.1528,-30.5001"/>
+<text text-anchor="middle" x="255.1035" y="-41.0549" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="node19" class="node">
+<title>node14060</title>
+<g id="a_node19"><a xlink:title="application: Kuiper
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="161,-134 107,-134 107,-98 161,-98 161,-134"/>
+<text text-anchor="middle" x="134" y="-118" font-family="sans-serif" font-size="10.00" fill="#000000">Kuiper</text>
+<text text-anchor="middle" x="134" y="-108" font-family="sans-serif" font-size="10.00" fill="#000000">Loris</text>
+</a>
+</g>
+</g>
+
+<g id="edge19" class="edge">
+<title>node14046-&gt;node14060</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M246.9284,-200C212.0908,-200 156,-200 156,-200 156,-200 156,-144.2267 156,-144.2267"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="159.5001,-144.2267 156,-134.2267 152.5001,-144.2268 159.5001,-144.2267"/>
+</g>
+
+<g id="node6" class="node">
+<title>node14047</title>
+<g id="a_node6"><a xlink:title="application: HCB
+id: PTN-" target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="468,-686 414,-686 414,-650 468,-650 468,-686"/>
+<text text-anchor="middle" x="441" y="-670" font-family="sans-serif" font-size="10.00" fill="#000000">HCB</text>
+<text text-anchor="middle" x="441" y="-660" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
+</a>
+</g>
+</g>
+
+<g id="edge20" class="edge">
+<title>node14047-&gt;node14045</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M434.4766,-649.8939C434.4766,-630.6609 434.4766,-603 434.4766,-603 434.4766,-603 367.8718,-603 367.8718,-603"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="367.8718,-599.5001 357.8718,-603 367.8718,-606.5001 367.8718,-599.5001"/>
+</g>
+
+<g id="edge21" class="edge">
+<title>node14047-&gt;node14046</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M468.4286,-668C491.4833,-668 520.7012,-668 520.7012,-668 520.7012,-668 520.7012,-194 520.7012,-194 520.7012,-194 311.3439,-194 311.3439,-194"/>
+<polygon fill="#000000" stroke="#000000" points="311.344,-190.5001 301.3439,-194 311.3439,-197.5001 311.344,-190.5001"/>
+<text text-anchor="middle" x="535.1543" y="-354.4577" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge22" class="edge">
+<title>node14047-&gt;node14053</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M444.7148,-649.9735C444.7148,-649.9735 444.7148,-609.0034 444.7148,-609.0034"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="448.2149,-609.0033 444.7148,-599.0034 441.2149,-609.0034 448.2149,-609.0033"/>
+</g>
+
+<g id="edge23" class="edge">
+<title>node14047-&gt;node14054</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M461.4766,-649.9322C461.4766,-614.6489 461.4766,-540 461.4766,-540 461.4766,-540 313.9224,-540 313.9224,-540 313.9224,-540 313.9224,-294.4034 313.9224,-294.4034"/>
+<polygon fill="#000000" stroke="#000000" points="317.4225,-294.4033 313.9224,-284.4034 310.4225,-294.4034 317.4225,-294.4033"/>
+<text text-anchor="middle" x="305.4141" y="-542" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge24" class="edge">
+<title>node14047-&gt;node14061</title>
+<path fill="none" stroke="#a6a8e0" d="M424.2383,-649.9489C424.2383,-635.627 424.2383,-618 424.2383,-618 424.2383,-618 222.8079,-618 222.8079,-618 222.8079,-618 222.8079,-609.0664 222.8079,-609.0664"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="226.308,-609.0664 222.8079,-599.0664 219.308,-609.0665 226.308,-609.0664"/>
+<text text-anchor="middle" x="316.1342" y="-620" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="node7" class="node">
+<title>node14048</title>
+<g id="a_node7"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Books
+id: PTN-1234" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M553,-842.3983C553,-844.7309 540.8982,-846.6257 526,-846.6257 511.1018,-846.6257 499,-844.7309 499,-842.3983 499,-842.3983 499,-804.3517 499,-804.3517 499,-802.0191 511.1018,-800.1243 526,-800.1243 540.8982,-800.1243 553,-802.0191 553,-804.3517 553,-804.3517 553,-842.3983 553,-842.3983"/>
+<path fill="none" stroke="#000000" d="M553,-842.3983C553,-840.0657 540.8982,-838.1709 526,-838.1709 511.1018,-838.1709 499,-840.0657 499,-842.3983"/>
+<text text-anchor="middle" x="526" y="-825.375" font-family="sans-serif" font-size="10.00" fill="#000000">Books</text>
+<text text-anchor="middle" x="526" y="-815.375" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+
+<g id="edge26" class="edge">
+<title>node14049-&gt;node14056</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M217,-97.8446C217,-75.6481 217,-41 217,-41 217,-41 142.1121,-41 142.1121,-41"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="142.1121,-37.5001 132.1121,-41 142.112,-44.5001 142.1121,-37.5001"/>
+</g>
+
+<g id="node9" class="node">
+<title>node14050</title>
+<g id="a_node9"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Instrument+Hub
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="240.9268,-764 155.0732,-764 155.0732,-728 240.9268,-728 240.9268,-764"/>
+<text text-anchor="middle" x="198" y="-748" font-family="sans-serif" font-size="10.00" fill="#000000">Instrument+Hub</text>
+<text text-anchor="middle" x="198" y="-738" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="edge27" class="edge">
+<title>node14050-&gt;node14042</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M165.1914,-727.9092C165.1914,-727.9092 165.1914,-696.2629 165.1914,-696.2629"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="168.6915,-696.2629 165.1914,-686.2629 161.6915,-696.2629 168.6915,-696.2629"/>
+</g>
+
+<g id="edge28" class="edge">
+<title>node14050-&gt;node14047</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M231.825,-727.68C231.825,-719.2117 231.825,-711 231.825,-711 231.825,-711 421.3333,-711 421.3333,-711 421.3333,-711 421.3333,-696.4854 421.3333,-696.4854"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="424.8334,-696.4854 421.3333,-686.4854 417.8334,-696.4855 424.8334,-696.4854"/>
+</g>
+
+<g id="edge29" class="edge">
+<title>node14051-&gt;node14054</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M286.9224,-325.9092C286.9224,-325.9092 286.9224,-294.2629 286.9224,-294.2629"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="290.4225,-294.2629 286.9224,-284.2629 283.4225,-294.2629 290.4225,-294.2629"/>
+</g>
+
+<g id="edge30" class="edge">
+<title>node14051-&gt;node14055</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M252.2716,-338C241.7851,-338 232.3325,-338 232.3325,-338 232.3325,-338 232.3325,-294.1686 232.3325,-294.1686"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="235.8326,-294.1686 232.3325,-284.1686 228.8326,-294.1687 235.8326,-294.1686"/>
+</g>
+
+<g id="edge31" class="edge">
+<title>node14052-&gt;node14054</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M337.2298,-344C326.3953,-344 316.9612,-344 316.9612,-344 316.9612,-344 316.9612,-294.0908 316.9612,-294.0908"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="320.4613,-294.0908 316.9612,-284.0908 313.4613,-294.0909 320.4613,-294.0908"/>
+</g>
+
+<g id="edge32" class="edge">
+<title>node14052-&gt;node14055</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M369,-325.8701C369,-315.6855 369,-305 369,-305 369,-305 234.6663,-305 234.6663,-305 234.6663,-305 234.6663,-294.1299 234.6663,-294.1299"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="238.1664,-294.1299 234.6663,-284.1299 231.1664,-294.1299 238.1664,-294.1299"/>
+</g>
+
+<g id="edge33" class="edge">
+<title>node14053-&gt;node14043</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M396.2367,-562.7117C396.2367,-519.7519 396.2367,-416 396.2367,-416 396.2367,-416 298.3366,-416 298.3366,-416"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="298.3367,-412.5001 288.3366,-416 298.3366,-419.5001 298.3367,-412.5001"/>
+</g>
+
+<g id="edge34" class="edge">
+<title>node14053-&gt;node14044</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M391.6418,-562.6198C391.6418,-538.7215 391.6418,-500 391.6418,-500 391.6418,-500 308.4925,-500 308.4925,-500"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="308.4925,-496.5001 298.4925,-500 308.4924,-503.5001 308.4925,-496.5001"/>
+</g>
+
+<g id="edge35" class="edge">
+<title>node14053-&gt;node14065</title>
+<g id="a_edge35"><a xlink:href="http://www.google.com" xlink:title="Fidelity-&gt;i-Assert(CZH)" target="_blank">
+<path fill="none" stroke="#dd809e" stroke-width="2" d="M446.4515,-562.7965C446.4515,-562.7965 446.4515,-372.2655 446.4515,-372.2655"/>
+<polygon fill="#dd809e" stroke="#dd809e" stroke-width="2" points="449.9516,-372.2654 446.4515,-362.2655 442.9516,-372.2655 449.9516,-372.2654"/>
+</a>
+</g>
+<g id="a_edge35-label"><a xlink:href="http://www.google.com" xlink:title="Fidelity-&gt;i-Assert(CZH)" target="_blank">
+<text text-anchor="middle" x="431.9984" y="-469.531" font-family="sans-serif" font-size="10.00" fill="#0000ff">legacy</text>
+</a>
+</g>
+</g>
+
+<g id="edge36" class="edge">
+<title>node14054-&gt;node14046</title>
+<path fill="none" stroke="#9e5919" d="M289.3333,-247.8314C289.3333,-247.8314 289.3333,-222.4133 289.3333,-222.4133"/>
+<polygon fill="#9e5919" stroke="#9e5919" points="292.8334,-222.4132 289.3333,-212.4133 285.8334,-222.4133 292.8334,-222.4132"/>
+<text text-anchor="middle" x="274.8802" y="-237.1223" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge37" class="edge">
+<title>node14054-&gt;node14049</title>
+<path fill="none" stroke="#81648c" d="M265.7766,-260C252.6876,-260 239.8,-260 239.8,-260 239.8,-260 239.8,-144.2377 239.8,-144.2377"/>
+<polygon fill="#81648c" stroke="#81648c" points="243.3001,-144.2377 239.8,-134.2377 236.3001,-144.2377 243.3001,-144.2377"/>
+<text text-anchor="middle" x="225.3469" y="-217.1072" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge38" class="edge">
+<title>node14054-&gt;node14056</title>
+<path fill="none" stroke="#ba521a" d="M310.5,-247.6429C310.5,-191.6781 310.5,-27 310.5,-27 310.5,-27 142.2888,-27 142.2888,-27"/>
+<polygon fill="#ba521a" stroke="#ba521a" points="142.2888,-23.5001 132.2888,-27 142.2888,-30.5001 142.2888,-23.5001"/>
+<text text-anchor="middle" x="296.0469" y="-55.2159" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge39" class="edge">
+<title>node14054-&gt;node14060</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M277.6667,-247.5782C277.6667,-238.7209 277.6667,-230 277.6667,-230 277.6667,-230 151,-230 151,-230 151,-230 151,-144.0636 151,-144.0636"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="154.5001,-144.0636 151,-134.0636 147.5001,-144.0637 154.5001,-144.0636"/>
+</g>
+
+<g id="edge40" class="edge">
+<title>node14055-&gt;node14056</title>
+<path fill="none" stroke="#ba521a" d="M186.5,-247.7884C186.5,-195.3943 186.5,-48 186.5,-48 186.5,-48 142.1383,-48 142.1383,-48"/>
+<polygon fill="#ba521a" stroke="#ba521a" points="142.1384,-44.5001 132.1383,-48 142.1383,-51.5001 142.1384,-44.5001"/>
+<text text-anchor="middle" x="179.2734" y="-117.7134" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="node16" class="node">
+<title>node14057</title>
+<g id="a_node16"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Affinity
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="324,-764 270,-764 270,-728 324,-728 324,-764"/>
+<text text-anchor="middle" x="297" y="-748" font-family="sans-serif" font-size="10.00" fill="#000000">Affinity</text>
+<text text-anchor="middle" x="297" y="-738" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="edge41" class="edge">
+<title>node14057-&gt;node14042</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M275.9753,-727.8495C275.9753,-715.7292 275.9753,-702 275.9753,-702 275.9753,-702 175.0957,-702 175.0957,-702 175.0957,-702 175.0957,-696.1944 175.0957,-696.1944"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="178.5958,-696.1944 175.0957,-686.1944 171.5958,-696.1945 178.5958,-696.1944"/>
+</g>
+
+<g id="edge42" class="edge">
+<title>node14057-&gt;node14047</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M302.9753,-727.8408C302.9753,-722.9567 302.9753,-719 302.9753,-719 302.9753,-719 428.6667,-719 428.6667,-719 428.6667,-719 428.6667,-696.1243 428.6667,-696.1243"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="432.1668,-696.1243 428.6667,-686.1243 425.1668,-696.1243 432.1668,-696.1243"/>
+</g>
+
+<g id="node17" class="node">
+<title>node14058</title>
+<g id="a_node17"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: P-RAM
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="490,-764 436,-764 436,-728 490,-728 490,-764"/>
+<text text-anchor="middle" x="463" y="-748" font-family="sans-serif" font-size="10.00" fill="#000000">P-RAM</text>
+<text text-anchor="middle" x="463" y="-738" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="node18" class="node">
+<title>node14059</title>
+<g id="a_node18"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Instrument
+id: PTN-2345" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M469.7417,-842.3983C469.7417,-844.7309 455.9628,-846.6257 439,-846.6257 422.0372,-846.6257 408.2583,-844.7309 408.2583,-842.3983 408.2583,-842.3983 408.2583,-804.3517 408.2583,-804.3517 408.2583,-802.0191 422.0372,-800.1243 439,-800.1243 455.9628,-800.1243 469.7417,-802.0191 469.7417,-804.3517 469.7417,-804.3517 469.7417,-842.3983 469.7417,-842.3983"/>
+<path fill="none" stroke="#000000" d="M469.7417,-842.3983C469.7417,-840.0657 455.9628,-838.1709 439,-838.1709 422.0372,-838.1709 408.2583,-840.0657 408.2583,-842.3983"/>
+<text text-anchor="middle" x="439" y="-825.375" font-family="sans-serif" font-size="10.00" fill="#000000">Instrument</text>
+<text text-anchor="middle" x="439" y="-815.375" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="edge43" class="edge">
+<title>node14059-&gt;node14058</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M452.8103,-799.7395C452.8103,-799.7395 452.8103,-774.3368 452.8103,-774.3368"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="456.3104,-774.3368 452.8103,-764.3368 449.3104,-774.3368 456.3104,-774.3368"/>
+<text text-anchor="middle" x="433.9138" y="-789.0382" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="edge44" class="edge">
+<title>node14060-&gt;node14056</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M119.5037,-97.9092C119.5037,-97.9092 119.5037,-66.2629 119.5037,-66.2629"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="123.0038,-66.2629 119.5037,-56.2629 116.0038,-66.2629 123.0038,-66.2629"/>
+</g>
+
+<g id="edge45" class="edge">
+<title>node14061-&gt;node14044</title>
+<path fill="none" stroke="#267a17" d="M231.6402,-581C239.6596,-581 245.9958,-581 245.9958,-581 245.9958,-581 245.9958,-522.0265 245.9958,-522.0265"/>
+<polygon fill="#267a17" stroke="#267a17" points="249.4959,-522.0264 245.9958,-512.0265 242.4959,-522.0265 249.4959,-522.0264"/>
+<g id="a_edge45-label"><a xlink:title="BAD Image-&gt;Guerilla Risk">
+<text text-anchor="middle" x="227.0994" y="-550.6911" font-family="sans-serif" font-size="10.00" fill="#ff0000">strategic</text>
+</a>
+</g>
+</g>
+
+<g id="edge46" class="edge">
+<title>node14061-&gt;node14049</title>
+<path fill="none" stroke="#81648c" d="M179.8,-562.8076C179.8,-512.6364 179.8,-376 179.8,-376 179.8,-376 238.4,-376 238.4,-376 238.4,-376 238.4,-144.2827 238.4,-144.2827"/>
+<polygon fill="#81648c" stroke="#81648c" points="241.9001,-144.2827 238.4,-134.2827 234.9001,-144.2827 241.9001,-144.2827"/>
+<text text-anchor="middle" x="217.1017" y="-378" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge47" class="edge">
+<title>node14061-&gt;node14051</title>
+<path fill="none" stroke="#267a17" d="M190.6,-562.6861C190.6,-514.8804 190.6,-390 190.6,-390 190.6,-390 264.2152,-390 264.2152,-390 264.2152,-390 264.2152,-372.1804 264.2152,-372.1804"/>
+<polygon fill="#267a17" stroke="#267a17" points="267.7153,-372.1804 264.2152,-362.1804 260.7153,-372.1805 267.7153,-372.1804"/>
+<g id="a_edge47-label"><a xlink:title="BAD Image-&gt;1-Charge">
+<text text-anchor="middle" x="176.1469" y="-432.6257" font-family="sans-serif" font-size="10.00" fill="#ff0000">legacy</text>
+</a>
+</g>
+</g>
+
+<g id="edge48" class="edge">
+<title>node14061-&gt;node14054</title>
+<path fill="none" stroke="#81648c" d="M201.4,-562.9909C201.4,-546.9506 201.4,-526 201.4,-526 201.4,-526 310.8835,-526 310.8835,-526 310.8835,-526 310.8835,-294.2827 310.8835,-294.2827"/>
+<polygon fill="#81648c" stroke="#81648c" points="314.3836,-294.2827 310.8835,-284.2827 307.3836,-294.2827 314.3836,-294.2827"/>
+<text text-anchor="middle" x="329.78" y="-485.3786" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="edge49" class="edge">
+<title>node14061-&gt;node14060</title>
+<path fill="none" stroke="#81648c" d="M166.3928,-581C151.0204,-581 136,-581 136,-581 136,-581 136,-144.2286 136,-144.2286"/>
+<polygon fill="#81648c" stroke="#81648c" points="139.5001,-144.2285 136,-134.2286 132.5001,-144.2286 139.5001,-144.2285"/>
+<text text-anchor="middle" x="121.5469" y="-379.8107" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="node21" class="node">
+<title>node14062</title>
+<g id="a_node21"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Clients
+id: PTN-675664" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M379,-842.3983C379,-844.7309 366.8982,-846.6257 352,-846.6257 337.1018,-846.6257 325,-844.7309 325,-842.3983 325,-842.3983 325,-804.3517 325,-804.3517 325,-802.0191 337.1018,-800.1243 352,-800.1243 366.8982,-800.1243 379,-802.0191 379,-804.3517 379,-804.3517 379,-842.3983 379,-842.3983"/>
+<path fill="none" stroke="#000000" d="M379,-842.3983C379,-840.0657 366.8982,-838.1709 352,-838.1709 337.1018,-838.1709 325,-840.0657 325,-842.3983"/>
+<text text-anchor="middle" x="352" y="-825.375" font-family="sans-serif" font-size="10.00" fill="#000000">Clients</text>
+<text text-anchor="middle" x="352" y="-815.375" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="node23" class="node">
+<title>node14064</title>
+<g id="a_node23"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: ERP
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="407,-764 353,-764 353,-728 407,-728 407,-764"/>
+<text text-anchor="middle" x="380" y="-748" font-family="sans-serif" font-size="10.00" fill="#000000">ERP</text>
+<text text-anchor="middle" x="380" y="-738" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="edge50" class="edge">
+<title>node14062-&gt;node14064</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M366,-799.7395C366,-799.7395 366,-774.3368 366,-774.3368"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="369.5001,-774.3368 366,-764.3368 362.5001,-774.3368 369.5001,-774.3368"/>
+<text text-anchor="middle" x="347.1035" y="-789.0382" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="node25" class="node">
+<title>node14066</title>
+<g id="a_node25"><a xlink:title="application: FORPS-bus
+id: PTN-" target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="281.9014,-686 214.0986,-686 214.0986,-650 281.9014,-650 281.9014,-686"/>
+<text text-anchor="middle" x="248" y="-670" font-family="sans-serif" font-size="10.00" fill="#000000">FORPS-bus</text>
+<text text-anchor="middle" x="248" y="-660" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
+</a>
+</g>
+</g>
+
+
+
+<g id="node26" class="node">
+<title>node14067</title>
+<g id="a_node26"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Employee
+id: PTN-23" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M296.4697,-842.3983C296.4697,-844.7309 283.2609,-846.6257 267,-846.6257 250.7391,-846.6257 237.5303,-844.7309 237.5303,-842.3983 237.5303,-842.3983 237.5303,-804.3517 237.5303,-804.3517 237.5303,-802.0191 250.7391,-800.1243 267,-800.1243 283.2609,-800.1243 296.4697,-802.0191 296.4697,-804.3517 296.4697,-804.3517 296.4697,-842.3983 296.4697,-842.3983"/>
+<path fill="none" stroke="#000000" d="M296.4697,-842.3983C296.4697,-840.0657 283.2609,-838.1709 267,-838.1709 250.7391,-838.1709 237.5303,-840.0657 237.5303,-842.3983"/>
+<text text-anchor="middle" x="267" y="-825.375" font-family="sans-serif" font-size="10.00" fill="#000000">Employee</text>
+<text text-anchor="middle" x="267" y="-815.375" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="edge53" class="edge">
+<title>node14067-&gt;node14057</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M283.1169,-799.7395C283.1169,-799.7395 283.1169,-774.3368 283.1169,-774.3368"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="286.617,-774.3368 283.1169,-764.3368 279.617,-774.3368 286.617,-774.3368"/>
+<text text-anchor="middle" x="268.6638" y="-789.0382" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="node27" class="node">
+<title>node14068</title>
+<g id="a_node27"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Products
+id: PTN-6538" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M209,-842.3983C209,-844.7309 196.8982,-846.6257 182,-846.6257 167.1018,-846.6257 155,-844.7309 155,-842.3983 155,-842.3983 155,-804.3517 155,-804.3517 155,-802.0191 167.1018,-800.1243 182,-800.1243 196.8982,-800.1243 209,-802.0191 209,-804.3517 209,-804.3517 209,-842.3983 209,-842.3983"/>
+<path fill="none" stroke="#000000" d="M209,-842.3983C209,-840.0657 196.8982,-838.1709 182,-838.1709 167.1018,-838.1709 155,-840.0657 155,-842.3983"/>
+<text text-anchor="middle" x="182" y="-825.375" font-family="sans-serif" font-size="10.00" fill="#000000">Products</text>
+<text text-anchor="middle" x="182" y="-815.375" font-family="sans-serif" font-size="10.00" fill="#000000">Jacob</text>
+</a>
+</g>
+</g>
+
+<g id="edge54" class="edge">
+<title>node14068-&gt;node14050</title>
+<path fill="none" stroke="#cd1076" stroke-width="4" d="M182.1436,-799.7395C182.1436,-799.7395 182.1436,-774.3368 182.1436,-774.3368"/>
+<polygon fill="#cd1076" stroke="#cd1076" stroke-width="4" points="185.6437,-774.3368 182.1436,-764.3368 178.6437,-774.3368 185.6437,-774.3368"/>
+<text text-anchor="middle" x="167.6904" y="-789.0382" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="node28" class="node">
+<title>node14069</title>
+<g id="a_node28"><a xlink:title="application: sysTicket
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="384.8045,-686 329.1955,-686 329.1955,-650 384.8045,-650 384.8045,-686"/>
+<text text-anchor="middle" x="357" y="-670" font-family="sans-serif" font-size="10.00" fill="#000000">sysTicket</text>
+<text text-anchor="middle" x="357" y="-660" font-family="sans-serif" font-size="10.00" fill="#000000">Ruth</text>
+</a>
+</g>
+</g>
+
+<g id="edge55" class="edge">
+<title>node14069-&gt;node14045</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M343.4614,-649.9735C343.4614,-649.9735 343.4614,-618.2644 343.4614,-618.2644"/>
+<polygon fill="#000000" stroke="#000000" points="346.9615,-618.2644 343.4614,-608.2644 339.9615,-618.2645 346.9615,-618.2644"/>
+<text text-anchor="middle" x="324.5649" y="-636.119" font-family="sans-serif" font-size="10.00" fill="#000000">strategic</text>
+</g>
+
+<g id="edge56" class="edge">
+<title>node14069-&gt;node14052</title>
+<path fill="none" stroke="#a6a8e0" d="M371.1133,-649.652C371.1133,-649.652 371.1133,-372.1467 371.1133,-372.1467"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="374.6134,-372.1467 371.1133,-362.1467 367.6134,-372.1468 374.6134,-372.1467"/>
+<text text-anchor="middle" x="356.6602" y="-512.8994" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
+</g>
+
+<g id="edge57" class="edge">
+<title>node14069-&gt;node14053</title>
+<path fill="none" stroke="#a6a8e0" d="M384.699,-668C393.1947,-668 400.349,-668 400.349,-668 400.349,-668 400.349,-609.0265 400.349,-609.0265"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="403.8491,-609.0264 400.349,-599.0265 396.8491,-609.0265 403.8491,-609.0264"/>
+<text text-anchor="middle" x="385.8958" y="-638.3382" font-family="sans-serif" font-size="10.00" fill="#000000">legacy</text>
 </g>
 </g>
 </svg>

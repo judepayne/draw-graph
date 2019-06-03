@@ -222,7 +222,7 @@
 
 (defn ^:private maybe-show-constraint [g opts n1 n2]
   (let [show (-> opts :env :show-constraints?)]
-    (when (and show (constrained? g n1 n2) (edge-invisible? g n1 n2))
+    (when (and show (constrained? g n1 n2))
       {:style "" :color "deeppink3" :penwidth 4})))
 
 

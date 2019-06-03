@@ -18,11 +18,11 @@
 
 (def standard-options
   [:show-roots? false
-   :cluster-on "container"
+   :cluster-on "function"
    ;:color-on "id"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "node"
+   :label "application&owner"
    :edge-label "format"
    :shape "rect"
    :nodesep 0.4
@@ -37,9 +37,9 @@
    :overlap "false"
    :concentrate false
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
-   :num-cluster-edges "5"
+   :num-cluster-edges "4"
  ;  :elide "0"
-   :constraint false
+   :constraint true
    :show-constraints? true
    :fix-ranks? true
  ;  :filter-graph "application=sysTicket or function=Reporting"
