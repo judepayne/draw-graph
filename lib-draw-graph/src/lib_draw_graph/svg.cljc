@@ -4,6 +4,7 @@
   (:require [clojure.zip           :as zip]
             [clojure.data.zip.xml  :refer [xml-> xml1-> attr attr= text= tag=]]
             [clojure.data.xml      :as xml]
+            [lib-draw-graph.util   :as util]
             #?(:clj [instaparse.core :as insta :refer [defparser]]
                :cljs [instaparse.core :as insta :refer-macros [defparser]])))
 
@@ -293,19 +294,37 @@
 
 
 (defn cluster->rect [zipper clstr]
-  (-> (tree-find zipper (partial cluster clstr) -2)
-      first
-      bounding-box
-      (assoc :name clstr)
-      box->rect))
+  (try
+    (-> (tree-find zipper (partial cluster clstr) -2)
+        first
+        bounding-box
+        (assoc :name clstr)
+        box->rect)
+    #?(:clj (catch Exception e
+              (throw (util/err
+                      (str "Post-processing error: Could not find cluster " clstr
+                           " in the initial svg"))))
+         :cljs (catch js/Error e
+                 (throw (util/err
+                         (str "Post-processing error: Could not find cluster " clstr
+                              " in the initial svg")))))))
 
 
 (defn node->rect [zipper nd]
-  (-> (tree-find zipper (partial node nd) -2)
-      first
-      bounding-box
-      (assoc :name nd)
-      box->rect))
+  (try
+    (-> (tree-find zipper (partial node nd) -2)
+        first
+        bounding-box
+        (assoc :name nd)
+        box->rect)
+    #?(:clj (catch Exception e
+              (throw (util/err
+                      (str "Post-processing error: Could not find node " nd
+                           " in the initial svg"))))
+         :cljs (catch js/Error e
+                 (throw (util/err
+                         (str "Post-processing error: Could not find node " nd
+                              " in the initial svg")))))))
 
 
 ;; -----------------

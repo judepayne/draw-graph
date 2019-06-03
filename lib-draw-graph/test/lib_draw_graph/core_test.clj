@@ -18,11 +18,11 @@
 
 (def standard-options
   [:show-roots? false
-   :cluster-on "function"
+   :cluster-on "container"
    ;:color-on "id"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "application&owner"
+   :label "node"
    :edge-label "format"
    :shape "rect"
    :nodesep 0.4
@@ -39,8 +39,8 @@
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
    :num-cluster-edges "5"
  ;  :elide "0"
-   :constraint true
-   :show-constraints? false
+   :constraint false
+   :show-constraints? true
    :fix-ranks? true
  ;  :filter-graph "application=sysTicket or function=Reporting"
  ;  :filter-graph "type=[trades/clients/books/products/instruments/employees]"
