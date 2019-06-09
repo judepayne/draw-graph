@@ -40,6 +40,8 @@ Thanks to Zachery Tellman for his [Rhizome library](https://github.com/ztellman/
 
 Thanks also to [iamxuxiao](https://github.com/iamxuxiao/mwgraphviz) for providing instructions on how to do a static build of Graphviz and showing how a C binary could be mounted in an AWS Lambda function. (see 'lambda-draw-graph' folder).
 
+Thanks to [mdaines](https://github.com/mdaines/viz.js) for his incredible work in getting to transpile graphviz to ASM javascript. That must have hurt!
+
 
 ## License
 
