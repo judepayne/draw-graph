@@ -32,7 +32,7 @@ The three parts:
 
 ## Architecture
 
-![](draw-graph.png)
+![](arch-draw-graph.png)
 
 ## Acknowledgements
 

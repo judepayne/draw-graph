@@ -1,7 +1,6 @@
-// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
+// Compiled by ClojureScript 1.10.520 {}
 goog.provide('clojure.data.xml.js.dom');
 goog.require('cljs.core');
-goog.require('cljs.core.constants');
 goog.require('clojure.data.xml.name');
 goog.require('clojure.data.xml.node');
 clojure.data.xml.js.dom.doc = (new DOMParser()).parseFromString("<d />","text/xml");
@@ -15,8 +14,8 @@ return clojure.data.xml.js.dom.doc.createTextNode(s);
  * Create an xml element from a content collection and optional metadata
  */
 clojure.data.xml.js.dom.element_STAR_ = (function clojure$data$xml$js$dom$element_STAR_(var_args){
-var G__23427 = arguments.length;
-switch (G__23427) {
+var G__20005 = arguments.length;
+switch (G__20005) {
 case 4:
 return clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$4((arguments[(0)]),(arguments[(1)]),(arguments[(2)]),(arguments[(3)]));
 
@@ -32,43 +31,43 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$4 = (function (tag,attrs,content,meta){
-var el = clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$3(tag,attrs,content);
-var x23428_23431 = el;
-x23428_23431.cljs$core$IMeta$ = cljs.core.PROTOCOL_SENTINEL;
+var el = clojure.data.xml.js.dom.element_STAR_.call(null,tag,attrs,content);
+var x20006_20009 = el;
+x20006_20009.cljs$core$IMeta$ = cljs.core.PROTOCOL_SENTINEL;
 
-x23428_23431.cljs$core$IMeta$_meta$arity$1 = ((function (x23428_23431,el){
+x20006_20009.cljs$core$IMeta$_meta$arity$1 = ((function (x20006_20009,el){
 return (function (_){
 var ___$1 = this;
 return meta;
-});})(x23428_23431,el))
+});})(x20006_20009,el))
 ;
 
-x23428_23431.cljs$core$IWithMeta$ = cljs.core.PROTOCOL_SENTINEL;
+x20006_20009.cljs$core$IWithMeta$ = cljs.core.PROTOCOL_SENTINEL;
 
-x23428_23431.cljs$core$IWithMeta$_with_meta$arity$2 = ((function (x23428_23431,el){
+x20006_20009.cljs$core$IWithMeta$_with_meta$arity$2 = ((function (x20006_20009,el){
 return (function (_,meta__$1){
 var ___$1 = this;
-var x23429 = cljs.core.clone(el);
-x23429.cljs$core$IMeta$ = cljs.core.PROTOCOL_SENTINEL;
+var x20007 = cljs.core.clone.call(null,el);
+x20007.cljs$core$IMeta$ = cljs.core.PROTOCOL_SENTINEL;
 
-x23429.cljs$core$IMeta$_meta$arity$1 = ((function (x23429,___$1,x23428_23431,el){
+x20007.cljs$core$IMeta$_meta$arity$1 = ((function (x20007,___$1,x20006_20009,el){
 return (function (___$2){
 var ___$3 = this;
 return meta__$1;
-});})(x23429,___$1,x23428_23431,el))
+});})(x20007,___$1,x20006_20009,el))
 ;
 
-x23429.cljs$core$IWithMeta$ = cljs.core.PROTOCOL_SENTINEL;
+x20007.cljs$core$IWithMeta$ = cljs.core.PROTOCOL_SENTINEL;
 
-x23429.cljs$core$IWithMeta$_with_meta$arity$2 = ((function (x23429,___$1,x23428_23431,el){
+x20007.cljs$core$IWithMeta$_with_meta$arity$2 = ((function (x20007,___$1,x20006_20009,el){
 return (function (___$2,meta__$2){
 var ___$3 = this;
-return cljs.core._with_meta(el,meta__$2);
-});})(x23429,___$1,x23428_23431,el))
+return cljs.core._with_meta.call(null,el,meta__$2);
+});})(x20007,___$1,x20006_20009,el))
 ;
 
-return x23429;
-});})(x23428_23431,el))
+return x20007;
+});})(x20006_20009,el))
 ;
 
 
@@ -76,21 +75,21 @@ return el;
 });
 
 clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$3 = (function (tag,attrs,content){
-var el = clojure.data.xml.js.dom.doc.createElementNS(clojure.data.xml.name.qname_uri(tag),clojure.data.xml.name.qname_local(tag));
-cljs.core.reduce_kv(((function (el){
+var el = clojure.data.xml.js.dom.doc.createElementNS(clojure.data.xml.name.qname_uri.call(null,tag),clojure.data.xml.name.qname_local.call(null,tag));
+cljs.core.reduce_kv.call(null,((function (el){
 return (function (_,k,v){
-var uri = clojure.data.xml.name.qname_uri(k);
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(uri,"http://www.w3.org/2000/xmlns/")){
-return el.setAttribute(["xmlns:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.data.xml.name.qname_local(k))].join(''),v);
+var uri = clojure.data.xml.name.qname_uri.call(null,k);
+if(cljs.core._EQ_.call(null,uri,"http://www.w3.org/2000/xmlns/")){
+return el.setAttribute(["xmlns:",cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.data.xml.name.qname_local.call(null,k))].join(''),v);
 } else {
-return el.setAttributeNS(uri,clojure.data.xml.name.qname_local(k),v);
+return el.setAttributeNS(uri,clojure.data.xml.name.qname_local.call(null,k),v);
 }
 });})(el))
 ,null,attrs);
 
-cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (el){
+cljs.core.reduce.call(null,((function (el){
 return (function (_,n){
-return el.appendChild(((typeof n === 'string')?clojure.data.xml.js.dom.text_node(n):n));
+return el.appendChild(((typeof n === 'string')?clojure.data.xml.js.dom.text_node.call(null,n):n));
 });})(el))
 ,null,content);
 
@@ -103,8 +102,8 @@ clojure.data.xml.js.dom.element_STAR_.cljs$lang$maxFixedArity = 4;
  * Create an xml Element from content varargs
  */
 clojure.data.xml.js.dom.element = (function clojure$data$xml$js$dom$element(var_args){
-var G__23436 = arguments.length;
-switch (G__23436) {
+var G__20014 = arguments.length;
+switch (G__20014) {
 case 1:
 return clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -115,14 +114,14 @@ return clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$2((arguments[
 break;
 default:
 var args_arr__4751__auto__ = [];
-var len__4730__auto___23438 = arguments.length;
-var i__4731__auto___23439 = (0);
+var len__4730__auto___20016 = arguments.length;
+var i__4731__auto___20017 = (0);
 while(true){
-if((i__4731__auto___23439 < len__4730__auto___23438)){
-args_arr__4751__auto__.push((arguments[i__4731__auto___23439]));
+if((i__4731__auto___20017 < len__4730__auto___20016)){
+args_arr__4751__auto__.push((arguments[i__4731__auto___20017]));
 
-var G__23440 = (i__4731__auto___23439 + (1));
-i__4731__auto___23439 = G__23440;
+var G__20018 = (i__4731__auto___20017 + (1));
+i__4731__auto___20017 = G__20018;
 continue;
 } else {
 }
@@ -136,25 +135,25 @@ return clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$variadic((arg
 });
 
 clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$1 = (function (tag){
-return clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$3(tag,null,null);
+return clojure.data.xml.js.dom.element_STAR_.call(null,tag,null,null);
 });
 
 clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$2 = (function (tag,attrs){
-return clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$3(tag,attrs,null);
+return clojure.data.xml.js.dom.element_STAR_.call(null,tag,attrs,null);
 });
 
 clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$variadic = (function (tag,attrs,content){
-return clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$3(tag,attrs,content);
+return clojure.data.xml.js.dom.element_STAR_.call(null,tag,attrs,content);
 });
 
 /** @this {Function} */
-clojure.data.xml.js.dom.element.cljs$lang$applyTo = (function (seq23433){
-var G__23434 = cljs.core.first(seq23433);
-var seq23433__$1 = cljs.core.next(seq23433);
-var G__23435 = cljs.core.first(seq23433__$1);
-var seq23433__$2 = cljs.core.next(seq23433__$1);
+clojure.data.xml.js.dom.element.cljs$lang$applyTo = (function (seq20011){
+var G__20012 = cljs.core.first.call(null,seq20011);
+var seq20011__$1 = cljs.core.next.call(null,seq20011);
+var G__20013 = cljs.core.first.call(null,seq20011__$1);
+var seq20011__$2 = cljs.core.next.call(null,seq20011__$1);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__23434,G__23435,seq23433__$2);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__20012,G__20013,seq20011__$2);
 });
 
 clojure.data.xml.js.dom.element.cljs$lang$maxFixedArity = (2);
@@ -176,53 +175,53 @@ return clojure.data.xml.js.dom.doc.createComment(content);
  */
 clojure.data.xml.js.dom.node_list = (function clojure$data$xml$js$dom$node_list(elements){
 var f = clojure.data.xml.js.dom.doc.createDocumentFragment();
-var seq__23441_23445 = cljs.core.seq(elements);
-var chunk__23442_23446 = null;
-var count__23443_23447 = (0);
-var i__23444_23448 = (0);
+var seq__20019_20023 = cljs.core.seq.call(null,elements);
+var chunk__20020_20024 = null;
+var count__20021_20025 = (0);
+var i__20022_20026 = (0);
 while(true){
-if((i__23444_23448 < count__23443_23447)){
-var el_23449 = chunk__23442_23446.cljs$core$IIndexed$_nth$arity$2(null,i__23444_23448);
-f.appendChild((clojure.data.xml.js.dom.element_node.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.js.dom.element_node.cljs$core$IFn$_invoke$arity$1(el_23449) : clojure.data.xml.js.dom.element_node.call(null,el_23449)));
+if((i__20022_20026 < count__20021_20025)){
+var el_20027 = cljs.core._nth.call(null,chunk__20020_20024,i__20022_20026);
+f.appendChild(clojure.data.xml.js.dom.element_node.call(null,el_20027));
 
 
-var G__23450 = seq__23441_23445;
-var G__23451 = chunk__23442_23446;
-var G__23452 = count__23443_23447;
-var G__23453 = (i__23444_23448 + (1));
-seq__23441_23445 = G__23450;
-chunk__23442_23446 = G__23451;
-count__23443_23447 = G__23452;
-i__23444_23448 = G__23453;
+var G__20028 = seq__20019_20023;
+var G__20029 = chunk__20020_20024;
+var G__20030 = count__20021_20025;
+var G__20031 = (i__20022_20026 + (1));
+seq__20019_20023 = G__20028;
+chunk__20020_20024 = G__20029;
+count__20021_20025 = G__20030;
+i__20022_20026 = G__20031;
 continue;
 } else {
-var temp__5720__auto___23454 = cljs.core.seq(seq__23441_23445);
-if(temp__5720__auto___23454){
-var seq__23441_23455__$1 = temp__5720__auto___23454;
-if(cljs.core.chunked_seq_QMARK_(seq__23441_23455__$1)){
-var c__4550__auto___23456 = cljs.core.chunk_first(seq__23441_23455__$1);
-var G__23457 = cljs.core.chunk_rest(seq__23441_23455__$1);
-var G__23458 = c__4550__auto___23456;
-var G__23459 = cljs.core.count(c__4550__auto___23456);
-var G__23460 = (0);
-seq__23441_23445 = G__23457;
-chunk__23442_23446 = G__23458;
-count__23443_23447 = G__23459;
-i__23444_23448 = G__23460;
+var temp__5720__auto___20032 = cljs.core.seq.call(null,seq__20019_20023);
+if(temp__5720__auto___20032){
+var seq__20019_20033__$1 = temp__5720__auto___20032;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__20019_20033__$1)){
+var c__4550__auto___20034 = cljs.core.chunk_first.call(null,seq__20019_20033__$1);
+var G__20035 = cljs.core.chunk_rest.call(null,seq__20019_20033__$1);
+var G__20036 = c__4550__auto___20034;
+var G__20037 = cljs.core.count.call(null,c__4550__auto___20034);
+var G__20038 = (0);
+seq__20019_20023 = G__20035;
+chunk__20020_20024 = G__20036;
+count__20021_20025 = G__20037;
+i__20022_20026 = G__20038;
 continue;
 } else {
-var el_23461 = cljs.core.first(seq__23441_23455__$1);
-f.appendChild((clojure.data.xml.js.dom.element_node.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.js.dom.element_node.cljs$core$IFn$_invoke$arity$1(el_23461) : clojure.data.xml.js.dom.element_node.call(null,el_23461)));
+var el_20039 = cljs.core.first.call(null,seq__20019_20033__$1);
+f.appendChild(clojure.data.xml.js.dom.element_node.call(null,el_20039));
 
 
-var G__23462 = cljs.core.next(seq__23441_23455__$1);
-var G__23463 = null;
-var G__23464 = (0);
-var G__23465 = (0);
-seq__23441_23445 = G__23462;
-chunk__23442_23446 = G__23463;
-count__23443_23447 = G__23464;
-i__23444_23448 = G__23465;
+var G__20040 = cljs.core.next.call(null,seq__20019_20033__$1);
+var G__20041 = null;
+var G__20042 = (0);
+var G__20043 = (0);
+seq__20019_20023 = G__20040;
+chunk__20020_20024 = G__20041;
+count__20021_20025 = G__20042;
+i__20022_20026 = G__20043;
 continue;
 }
 } else {
@@ -233,25 +232,25 @@ break;
 
 return f.childNodes;
 });
-clojure.data.xml.js.dom.Text = cljs.core.type(clojure.data.xml.js.dom.text_node(""));
-clojure.data.xml.js.dom.Element = cljs.core.type(clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$e));
-clojure.data.xml.js.dom.NamedNodeMap = cljs.core.type(clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$e).attributes);
-clojure.data.xml.js.dom.NodeList = cljs.core.type(clojure.data.xml.js.dom.node_list(cljs.core.PersistentVector.EMPTY));
-clojure.data.xml.js.dom.Attr = cljs.core.type((clojure.data.xml.js.dom.element.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$e,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$a,"1"], null)).attributes[(0)]));
-clojure.data.xml.js.dom.CData = cljs.core.type(clojure.data.xml.js.dom.cdata(""));
-clojure.data.xml.js.dom.Comment = cljs.core.type(clojure.data.xml.js.dom.xml_comment(""));
+clojure.data.xml.js.dom.Text = cljs.core.type.call(null,clojure.data.xml.js.dom.text_node.call(null,""));
+clojure.data.xml.js.dom.Element = cljs.core.type.call(null,clojure.data.xml.js.dom.element.call(null,new cljs.core.Keyword(null,"e","e",1381269198)));
+clojure.data.xml.js.dom.NamedNodeMap = cljs.core.type.call(null,clojure.data.xml.js.dom.element.call(null,new cljs.core.Keyword(null,"e","e",1381269198)).attributes);
+clojure.data.xml.js.dom.NodeList = cljs.core.type.call(null,clojure.data.xml.js.dom.node_list.call(null,cljs.core.PersistentVector.EMPTY));
+clojure.data.xml.js.dom.Attr = cljs.core.type.call(null,(clojure.data.xml.js.dom.element.call(null,new cljs.core.Keyword(null,"e","e",1381269198),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"a","a",-2123407586),"1"], null)).attributes[(0)]));
+clojure.data.xml.js.dom.CData = cljs.core.type.call(null,clojure.data.xml.js.dom.cdata.call(null,""));
+clojure.data.xml.js.dom.Comment = cljs.core.type.call(null,clojure.data.xml.js.dom.xml_comment.call(null,""));
 /**
  * Coerce xml elements to dom nodes
  */
 clojure.data.xml.js.dom.element_node = (function clojure$data$xml$js$dom$element_node(el){
 if(typeof el === 'string'){
-return clojure.data.xml.js.dom.text_node(el);
+return clojure.data.xml.js.dom.text_node.call(null,el);
 } else {
 if((el instanceof clojure.data.xml.node.CData)){
-return clojure.data.xml.js.dom.cdata(cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(el));
+return clojure.data.xml.js.dom.cdata.call(null,new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(el));
 } else {
 if((el instanceof clojure.data.xml.node.Comment)){
-return clojure.data.xml.js.dom.xml_comment(cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(el));
+return clojure.data.xml.js.dom.xml_comment.call(null,new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(el));
 } else {
 if((el instanceof clojure.data.xml.js.dom.Element)){
 return el;
@@ -268,13 +267,13 @@ return el;
 if((el instanceof clojure.data.xml.js.dom.Text)){
 return el;
 } else {
-if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (256))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ILookup$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.ILookup,el):false)):cljs.core.native_satisfies_QMARK_(cljs.core.ILookup,el))){
-return clojure.data.xml.js.dom.element_STAR_.cljs$core$IFn$_invoke$arity$3(cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(el),cljs.core.cst$kw$attrs.cljs$core$IFn$_invoke$arity$1(el),cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.data.xml.js.dom.element_node,cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(el)));
+if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (256))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ILookup$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ILookup,el):false)):cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ILookup,el))){
+return clojure.data.xml.js.dom.element_STAR_.call(null,new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(el),new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(el),cljs.core.map.call(null,clojure.data.xml.js.dom.element_node,new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(el)));
 } else {
-if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (16777216))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ISequential$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.ISequential,el):false)):cljs.core.native_satisfies_QMARK_(cljs.core.ISequential,el))){
-return clojure.data.xml.js.dom.node_list(el);
+if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (16777216))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ISequential$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ISequential,el):false)):cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ISequential,el))){
+return clojure.data.xml.js.dom.node_list.call(null,el);
 } else {
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Cannot coerce",new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$form,el], null));
+throw cljs.core.ex_info.call(null,"Cannot coerce",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"form","form",-1624062471),el], null));
 
 }
 }
@@ -288,18 +287,18 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Cannot coerce",new cljs.c
 }
 });
 clojure.data.xml.js.dom.dom_element_tag = (function clojure$data$xml$js$dom$dom_element_tag(el){
-return clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2(el.namespaceURI,el.localName);
+return clojure.data.xml.name.qname.call(null,el.namespaceURI,el.localName);
 });
 clojure.data.xml.js.dom.xmlns_attr_QMARK_ = (function clojure$data$xml$js$dom$xmlns_attr_QMARK_(a){
 return (clojure.data.xml.name.xmlns_uri === a.namespaceURI);
 });
-clojure.data.xml.js.dom.remove_xmlns_attrs_xf = cljs.core.remove.cljs$core$IFn$_invoke$arity$1(clojure.data.xml.js.dom.xmlns_attr_QMARK_);
-clojure.data.xml.js.dom.remove_xmlns_attrs = cljs.core.partial.cljs$core$IFn$_invoke$arity$3(cljs.core.into,cljs.core.PersistentArrayMap.EMPTY,clojure.data.xml.js.dom.remove_xmlns_attrs_xf);
-clojure.data.xml.js.dom.filter_xmlns_attrs_xf = cljs.core.filter.cljs$core$IFn$_invoke$arity$1(clojure.data.xml.js.dom.xmlns_attr_QMARK_);
-clojure.data.xml.js.dom.filter_xmlns_attrs = cljs.core.partial.cljs$core$IFn$_invoke$arity$3(cljs.core.into,cljs.core.PersistentArrayMap.EMPTY,clojure.data.xml.js.dom.filter_xmlns_attrs_xf);
+clojure.data.xml.js.dom.remove_xmlns_attrs_xf = cljs.core.remove.call(null,clojure.data.xml.js.dom.xmlns_attr_QMARK_);
+clojure.data.xml.js.dom.remove_xmlns_attrs = cljs.core.partial.call(null,cljs.core.into,cljs.core.PersistentArrayMap.EMPTY,clojure.data.xml.js.dom.remove_xmlns_attrs_xf);
+clojure.data.xml.js.dom.filter_xmlns_attrs_xf = cljs.core.filter.call(null,clojure.data.xml.js.dom.xmlns_attr_QMARK_);
+clojure.data.xml.js.dom.filter_xmlns_attrs = cljs.core.partial.call(null,cljs.core.into,cljs.core.PersistentArrayMap.EMPTY,clojure.data.xml.js.dom.filter_xmlns_attrs_xf);
 clojure.data.xml.js.dom.dom_element_attrs = (function clojure$data$xml$js$dom$dom_element_attrs(var_args){
-var G__23469 = arguments.length;
-switch (G__23469) {
+var G__20047 = arguments.length;
+switch (G__20047) {
 case 1:
 return clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -315,19 +314,19 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$1 = (function (el){
-return clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$2(clojure.data.xml.js.dom.remove_xmlns_attrs_xf,el);
+return clojure.data.xml.js.dom.dom_element_attrs.call(null,clojure.data.xml.js.dom.remove_xmlns_attrs_xf,el);
 });
 
 clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$2 = (function (xf,el){
-return cljs.core.transduce.cljs$core$IFn$_invoke$arity$4(xf,cljs.core.completing.cljs$core$IFn$_invoke$arity$2((function (ta,attr_node){
-return cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(ta,clojure.data.xml.js.dom.dom_element_tag(attr_node),attr_node.value);
-}),cljs.core.persistent_BANG_),cljs.core.transient$(cljs.core.PersistentArrayMap.EMPTY),cljs.core.array_seq.cljs$core$IFn$_invoke$arity$1(el));
+return cljs.core.transduce.call(null,xf,cljs.core.completing.call(null,(function (ta,attr_node){
+return cljs.core.assoc_BANG_.call(null,ta,clojure.data.xml.js.dom.dom_element_tag.call(null,attr_node),attr_node.value);
+}),cljs.core.persistent_BANG_),cljs.core.transient$.call(null,cljs.core.PersistentArrayMap.EMPTY),cljs.core.array_seq.call(null,el));
 });
 
 clojure.data.xml.js.dom.dom_element_attrs.cljs$lang$maxFixedArity = 2;
 
 clojure.data.xml.js.dom.node_list_vec = (function clojure$data$xml$js$dom$node_list_vec(nl){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentVector.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$1(clojure.data.xml.js.dom.element_data),cljs.core.array_seq.cljs$core$IFn$_invoke$arity$1(nl));
+return cljs.core.into.call(null,cljs.core.PersistentVector.EMPTY,cljs.core.map.call(null,clojure.data.xml.js.dom.element_data),cljs.core.array_seq.call(null,nl));
 });
 clojure.data.xml.js.dom.as_node = (function clojure$data$xml$js$dom$as_node(n){
 if((n instanceof clojure.data.xml.js.dom.Text)){
@@ -341,33 +340,33 @@ return n;
  */
 clojure.data.xml.js.dom.element_data = (function clojure$data$xml$js$dom$element_data(el){
 if((el instanceof clojure.data.xml.js.dom.Comment)){
-return clojure.data.xml.node.xml_comment(el.data);
+return clojure.data.xml.node.xml_comment.call(null,el.data);
 } else {
 if((el instanceof clojure.data.xml.js.dom.CData)){
-return clojure.data.xml.node.cdata(el.data);
+return clojure.data.xml.node.cdata.call(null,el.data);
 } else {
 if((el instanceof clojure.data.xml.js.dom.Text)){
 return el.nodeValue;
 } else {
 if((el instanceof clojure.data.xml.js.dom.Element)){
-return clojure.data.xml.node.element_STAR_.cljs$core$IFn$_invoke$arity$4(clojure.data.xml.js.dom.dom_element_tag(el),clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$1(el.attributes),clojure.data.xml.js.dom.node_list_vec(el.childNodes),new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$clojure$data$xml_SLASH_nss,clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$2(clojure.data.xml.js.dom.filter_xmlns_attrs_xf,el.attributes)], null));
+return clojure.data.xml.node.element_STAR_.call(null,clojure.data.xml.js.dom.dom_element_tag.call(null,el),clojure.data.xml.js.dom.dom_element_attrs.call(null,el.attributes),clojure.data.xml.js.dom.node_list_vec.call(null,el.childNodes),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("clojure.data.xml","nss","clojure.data.xml/nss",-1153428346),clojure.data.xml.js.dom.dom_element_attrs.call(null,clojure.data.xml.js.dom.filter_xmlns_attrs_xf,el.attributes)], null));
 } else {
 if(cljs.core.truth_(el.getNamedItemNS)){
-return clojure.data.xml.js.dom.dom_element_attrs.cljs$core$IFn$_invoke$arity$1(el);
+return clojure.data.xml.js.dom.dom_element_attrs.call(null,el);
 } else {
 if((el instanceof clojure.data.xml.js.dom.NodeList)){
-return clojure.data.xml.js.dom.node_list_vec(el);
+return clojure.data.xml.js.dom.node_list_vec.call(null,el);
 } else {
 if(typeof el === 'string'){
 return el;
 } else {
-if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (256))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ILookup$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.ILookup,el):false)):cljs.core.native_satisfies_QMARK_(cljs.core.ILookup,el))){
+if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (256))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ILookup$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ILookup,el):false)):cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ILookup,el))){
 return el;
 } else {
-if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (16777216))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ISequential$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.ISequential,el):false)):cljs.core.native_satisfies_QMARK_(cljs.core.ISequential,el))){
+if((((!((el == null))))?(((((el.cljs$lang$protocol_mask$partition0$ & (16777216))) || ((cljs.core.PROTOCOL_SENTINEL === el.cljs$core$ISequential$))))?true:(((!el.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ISequential,el):false)):cljs.core.native_satisfies_QMARK_.call(null,cljs.core.ISequential,el))){
 return el;
 } else {
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Element cannot be converted to data",new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$element,el], null));
+throw cljs.core.ex_info.call(null,"Element cannot be converted to data",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"element","element",1974019749),el], null));
 
 }
 }
@@ -386,20 +385,18 @@ clojure.data.xml.js.dom.Element.prototype.cljs$core$IMeta$ = cljs.core.PROTOCOL_
 
 clojure.data.xml.js.dom.Element.prototype.cljs$core$IMeta$_meta$arity$1 = (function (el){
 var el__$1 = this;
-return new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$clojure$data$xml_SLASH_nss,(function (){var G__23473 = el__$1.attributes;
-return (clojure.data.xml.js.dom.filter_xmlns_attrs.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.js.dom.filter_xmlns_attrs.cljs$core$IFn$_invoke$arity$1(G__23473) : clojure.data.xml.js.dom.filter_xmlns_attrs.call(null,G__23473));
-})()], null);
+return new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword("clojure.data.xml","nss","clojure.data.xml/nss",-1153428346),clojure.data.xml.js.dom.filter_xmlns_attrs.call(null,el__$1.attributes)], null);
 });
 
 clojure.data.xml.js.dom.Element.prototype.cljs$core$ILookup$ = cljs.core.PROTOCOL_SENTINEL;
 
 clojure.data.xml.js.dom.Element.prototype.cljs$core$ILookup$_lookup$arity$2 = (function (el,k){
 var el__$1 = this;
-var G__23474 = k;
-var G__23474__$1 = (((G__23474 instanceof cljs.core.Keyword))?G__23474.fqn:null);
-switch (G__23474__$1) {
+var G__20051 = k;
+var G__20051__$1 = (((G__20051 instanceof cljs.core.Keyword))?G__20051.fqn:null);
+switch (G__20051__$1) {
 case "tag":
-return clojure.data.xml.js.dom.dom_element_tag(el__$1);
+return clojure.data.xml.js.dom.dom_element_tag.call(null,el__$1);
 
 break;
 case "attrs":
@@ -411,23 +408,22 @@ return el__$1.childNodes;
 
 break;
 default:
-throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("XML tag has no key",new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$key,k,cljs.core.cst$kw$el,el__$1], null));
+throw cljs.core.ex_info.call(null,"XML tag has no key",new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"key","key",-1516042587),k,new cljs.core.Keyword(null,"el","el",-1618201118),el__$1], null));
 
 }
 });
 
 clojure.data.xml.js.dom.Element.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (el,k,nf){
 var el__$1 = this;
-var G__23475 = k;
-var G__23475__$1 = (((G__23475 instanceof cljs.core.Keyword))?G__23475.fqn:null);
-switch (G__23475__$1) {
+var G__20052 = k;
+var G__20052__$1 = (((G__20052 instanceof cljs.core.Keyword))?G__20052.fqn:null);
+switch (G__20052__$1) {
 case "tag":
-return clojure.data.xml.js.dom.dom_element_tag(el__$1);
+return clojure.data.xml.js.dom.dom_element_tag.call(null,el__$1);
 
 break;
 case "attrs":
-var G__23476 = el__$1.attributes;
-return (clojure.data.xml.js.dom.remove_xmlns_attrs.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.js.dom.remove_xmlns_attrs.cljs$core$IFn$_invoke$arity$1(G__23476) : clojure.data.xml.js.dom.remove_xmlns_attrs.call(null,G__23476));
+return clojure.data.xml.js.dom.remove_xmlns_attrs.call(null,el__$1.attributes);
 
 break;
 case "content":
@@ -451,7 +447,7 @@ clojure.data.xml.js.dom.Element.prototype.cljs$core$IEquiv$ = cljs.core.PROTOCOL
 
 clojure.data.xml.js.dom.Element.prototype.cljs$core$IEquiv$_equiv$arity$2 = (function (el0,el1){
 var el0__$1 = this;
-return ((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(el0__$1),cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(el1))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$attrs.cljs$core$IFn$_invoke$arity$1(el0__$1),cljs.core.cst$kw$attrs.cljs$core$IFn$_invoke$arity$1(el1))) && (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(el0__$1),cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(el1))));
+return ((cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(el0__$1),new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(el1))) && (cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(el0__$1),new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(el1))) && (cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(el0__$1),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(el1))));
 
 });
 
@@ -461,14 +457,14 @@ clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ISeqable$ = cljs.core.P
 
 clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (nm){
 var nm__$1 = this;
-return cljs.core.array_seq.cljs$core$IFn$_invoke$arity$1(nm__$1);
+return cljs.core.array_seq.call(null,nm__$1);
 });
 
 clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ILookup$ = cljs.core.PROTOCOL_SENTINEL;
 
 clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ILookup$_lookup$arity$2 = (function (attrs,attr){
 var attrs__$1 = this;
-var temp__5718__auto__ = attrs__$1.getNamedItemNS(clojure.data.xml.name.qname_uri(attr),clojure.data.xml.name.qname_local(attr));
+var temp__5718__auto__ = attrs__$1.getNamedItemNS(clojure.data.xml.name.qname_uri.call(null,attr),clojure.data.xml.name.qname_local.call(null,attr));
 if(cljs.core.truth_(temp__5718__auto__)){
 var i = temp__5718__auto__;
 return i.value;
@@ -479,7 +475,7 @@ return null;
 
 clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (attrs,attr,not_found){
 var attrs__$1 = this;
-var temp__5718__auto__ = attrs__$1.getNamedItemNS(clojure.data.xml.name.qname_uri(attr),clojure.data.xml.name.qname_local(attr));
+var temp__5718__auto__ = attrs__$1.getNamedItemNS(clojure.data.xml.name.qname_uri.call(null,attr),clojure.data.xml.name.qname_local.call(null,attr));
 if(cljs.core.truth_(temp__5718__auto__)){
 var i = temp__5718__auto__;
 return i.value;
@@ -492,9 +488,9 @@ clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ICounted$ = cljs.core.P
 
 clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$ICounted$_count$arity$1 = (function (nm){
 var nm__$1 = this;
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (nm__$1){
+return cljs.core.reduce.call(null,((function (nm__$1){
 return (function (acc,attr){
-if(clojure.data.xml.js.dom.xmlns_attr_QMARK_(attr)){
+if(clojure.data.xml.js.dom.xmlns_attr_QMARK_.call(null,attr)){
 return acc;
 } else {
 return (acc + (1));
@@ -507,15 +503,12 @@ clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$IKVReduce$ = cljs.core.
 
 clojure.data.xml.js.dom.NamedNodeMap.prototype.cljs$core$IKVReduce$_kv_reduce$arity$3 = (function (nm,f,init){
 var nm__$1 = this;
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (nm__$1){
+return cljs.core.reduce.call(null,((function (nm__$1){
 return (function (acc,attr){
-if(clojure.data.xml.js.dom.xmlns_attr_QMARK_(attr)){
+if(clojure.data.xml.js.dom.xmlns_attr_QMARK_.call(null,attr)){
 return acc;
 } else {
-var G__23477 = acc;
-var G__23478 = clojure.data.xml.js.dom.dom_element_tag(attr);
-var G__23479 = attr.value;
-return (f.cljs$core$IFn$_invoke$arity$3 ? f.cljs$core$IFn$_invoke$arity$3(G__23477,G__23478,G__23479) : f.call(null,G__23477,G__23478,G__23479));
+return f.call(null,acc,clojure.data.xml.js.dom.dom_element_tag.call(null,attr),attr.value);
 }
 });})(nm__$1))
 ,init,nm__$1);
@@ -529,15 +522,15 @@ var or__4131__auto__ = (nm0__$1 === nm1);
 if(or__4131__auto__){
 return or__4131__auto__;
 } else {
-var and__4120__auto__ = (cljs.core.count(nm0__$1) === cljs.core.count(nm1));
+var and__4120__auto__ = (cljs.core.count.call(null,nm0__$1) === cljs.core.count.call(null,nm1));
 if(and__4120__auto__){
-return cljs.core.reduce_kv(((function (and__4120__auto__,or__4131__auto__,nm0__$1){
+return cljs.core.reduce_kv.call(null,((function (and__4120__auto__,or__4131__auto__,nm0__$1){
 return (function (_,qn,v){
-var or__4131__auto____$1 = (v === cljs.core.get.cljs$core$IFn$_invoke$arity$3(nm1,qn,""));
+var or__4131__auto____$1 = (v === cljs.core.get.call(null,nm1,qn,""));
 if(or__4131__auto____$1){
 return or__4131__auto____$1;
 } else {
-return cljs.core.reduced(false);
+return cljs.core.reduced.call(null,false);
 }
 });})(and__4120__auto__,or__4131__auto__,nm0__$1))
 ,true,nm0__$1);
@@ -551,7 +544,7 @@ clojure.data.xml.js.dom.NodeList.prototype.cljs$core$ISeqable$ = cljs.core.PROTO
 
 clojure.data.xml.js.dom.NodeList.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (nl){
 var nl__$1 = this;
-return cljs.core.seq(cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.data.xml.js.dom.as_node,cljs.core.array_seq.cljs$core$IFn$_invoke$arity$1(nl__$1)));
+return cljs.core.seq.call(null,cljs.core.map.call(null,clojure.data.xml.js.dom.as_node,cljs.core.array_seq.call(null,nl__$1)));
 });
 
 clojure.data.xml.js.dom.NodeList.prototype.cljs$core$ISequential$ = cljs.core.PROTOCOL_SENTINEL;
@@ -567,13 +560,13 @@ clojure.data.xml.js.dom.NodeList.prototype.cljs$core$IIndexed$ = cljs.core.PROTO
 
 clojure.data.xml.js.dom.NodeList.prototype.cljs$core$IIndexed$_nth$arity$2 = (function (nl,n){
 var nl__$1 = this;
-return clojure.data.xml.js.dom.as_node((nl__$1[n]));
+return clojure.data.xml.js.dom.as_node.call(null,(nl__$1[n]));
 });
 
 clojure.data.xml.js.dom.NodeList.prototype.cljs$core$IIndexed$_nth$arity$3 = (function (nl,n,nf){
 var nl__$1 = this;
 if(((((0) <= n)) && ((n < nl__$1.length)))){
-return clojure.data.xml.js.dom.as_node((nl__$1[n]));
+return clojure.data.xml.js.dom.as_node.call(null,(nl__$1[n]));
 } else {
 return nf;
 }
@@ -587,18 +580,18 @@ var or__4131__auto__ = (nl0__$1 === nl1);
 if(or__4131__auto__){
 return or__4131__auto__;
 } else {
-var and__4120__auto__ = (cljs.core.count(nl0__$1) === cljs.core.count(nl1));
+var and__4120__auto__ = (cljs.core.count.call(null,nl0__$1) === cljs.core.count.call(null,nl1));
 if(and__4120__auto__){
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (and__4120__auto__,or__4131__auto__,nl0__$1){
+return cljs.core.reduce.call(null,((function (and__4120__auto__,or__4131__auto__,nl0__$1){
 return (function (_,n){
-var or__4131__auto____$1 = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.nth.cljs$core$IFn$_invoke$arity$2(nl0__$1,n),cljs.core.nth.cljs$core$IFn$_invoke$arity$2(nl1,n));
+var or__4131__auto____$1 = cljs.core._EQ_.call(null,cljs.core.nth.call(null,nl0__$1,n),cljs.core.nth.call(null,nl1,n));
 if(or__4131__auto____$1){
 return or__4131__auto____$1;
 } else {
-return cljs.core.reduced(false);
+return cljs.core.reduced.call(null,false);
 }
 });})(and__4120__auto__,or__4131__auto__,nl0__$1))
-,true,cljs.core.range.cljs$core$IFn$_invoke$arity$1(cljs.core.count(nl0__$1)));
+,true,cljs.core.range.call(null,cljs.core.count.call(null,nl0__$1)));
 } else {
 return and__4120__auto__;
 }
@@ -616,14 +609,14 @@ clojure.data.xml.js.dom.Attr.prototype.cljs$core$ISeqable$ = cljs.core.PROTOCOL_
 
 clojure.data.xml.js.dom.Attr.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (attr){
 var attr__$1 = this;
-return cljs.core.array_seq.cljs$core$IFn$_invoke$arity$1([cljs.core.key(attr__$1),cljs.core.key(attr__$1)]);
+return cljs.core.array_seq.call(null,[cljs.core.key.call(null,attr__$1),cljs.core.key.call(null,attr__$1)]);
 });
 
 clojure.data.xml.js.dom.Attr.prototype.cljs$core$IMapEntry$ = cljs.core.PROTOCOL_SENTINEL;
 
 clojure.data.xml.js.dom.Attr.prototype.cljs$core$IMapEntry$_key$arity$1 = (function (attr){
 var attr__$1 = this;
-return clojure.data.xml.js.dom.dom_element_tag(attr__$1);
+return clojure.data.xml.js.dom.dom_element_tag.call(null,attr__$1);
 });
 
 clojure.data.xml.js.dom.Attr.prototype.cljs$core$IMapEntry$_val$arity$1 = (function (attr){
@@ -644,28 +637,28 @@ clojure.data.xml.js.dom.Attr.prototype.cljs$core$IIndexed$ = cljs.core.PROTOCOL_
 
 clojure.data.xml.js.dom.Attr.prototype.cljs$core$IIndexed$_nth$arity$2 = (function (attr,n){
 var attr__$1 = this;
-var G__23480 = n;
-switch (G__23480) {
+var G__20053 = n;
+switch (G__20053) {
 case (0):
-return cljs.core.key(attr__$1);
+return cljs.core.key.call(null,attr__$1);
 
 break;
 case (1):
-return cljs.core.val(attr__$1);
+return cljs.core.val.call(null,attr__$1);
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__23480)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__20053)].join('')));
 
 }
 });
 
 clojure.data.xml.js.dom.Attr.prototype.cljs$core$IIndexed$_nth$arity$3 = (function (attr,n,nf){
 var attr__$1 = this;
-var G__23481 = n;
-switch (G__23481) {
+var G__20054 = n;
+switch (G__20054) {
 case (0):
-return clojure.data.xml.js.dom.dom_element_tag(attr__$1);
+return clojure.data.xml.js.dom.dom_element_tag.call(null,attr__$1);
 
 break;
 case (1):
@@ -678,5 +671,7 @@ return nf;
 }
 });
 
-return new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$sym$Text,clojure.data.xml.js.dom.Text,cljs.core.cst$sym$Element,clojure.data.xml.js.dom.Element,cljs.core.cst$sym$NamedNodeMap,clojure.data.xml.js.dom.NamedNodeMap,cljs.core.cst$sym$NodeList,clojure.data.xml.js.dom.NodeList], null);
+return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Symbol(null,"Text","Text",-2054460644,null),clojure.data.xml.js.dom.Text,new cljs.core.Symbol(null,"Element","Element",1498489072,null),clojure.data.xml.js.dom.Element,new cljs.core.Symbol(null,"NamedNodeMap","NamedNodeMap",1757390858,null),clojure.data.xml.js.dom.NamedNodeMap,new cljs.core.Symbol(null,"NodeList","NodeList",-2117955024,null),clojure.data.xml.js.dom.NodeList], null);
 });
+
+//# sourceMappingURL=dom.js.map

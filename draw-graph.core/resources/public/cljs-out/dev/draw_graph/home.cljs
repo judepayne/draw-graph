@@ -68,8 +68,8 @@
   [ds]
   (js->clj (.parse js/JSON ds) :keywordize-keys true))
 
-(def url-lambda-draw-graph "https://0j6kjsk388.execute-api.eu-west-2.amazonaws.com/beta")
-;(def url-lambda-draw-graph "https://u4jlt3tmhe.execute-api.us-east-1.amazonaws.com/beta")
+;(def url-lambda-draw-graph "https://0j6kjsk388.execute-api.eu-west-2.amazonaws.com/beta")
+(def url-lambda-draw-graph "https://u4jlt3tmhe.execute-api.us-east-1.amazonaws.com/beta")
 
 
 (defn remove-empty-strings
@@ -686,6 +686,7 @@
     [:div.site-banner.banner1 "draw-graph" [local-remote local-remote-state]]
     [:div.banner2.controls "Examples  " [example-dropdown]]]
    ;[:p {:font-size "0.9em;"} "Network diagrams from csv files"]
+   ;(:options @local-state)
    [:div.main [controls disp-opts-state]]
    [:div.warn @warn]
    [:div.error @error]])

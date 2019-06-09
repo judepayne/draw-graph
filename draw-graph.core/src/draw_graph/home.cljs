@@ -686,6 +686,7 @@
     [:div.site-banner.banner1 "draw-graph" [local-remote local-remote-state]]
     [:div.banner2.controls "Examples  " [example-dropdown]]]
    ;[:p {:font-size "0.9em;"} "Network diagrams from csv files"]
+   ;(:options @local-state)
    [:div.main [controls disp-opts-state]]
    [:div.warn @warn]
    [:div.error @error]])

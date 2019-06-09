@@ -1,7 +1,6 @@
-// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
+// Compiled by ClojureScript 1.10.520 {}
 goog.provide('cats.protocols');
 goog.require('cljs.core');
-goog.require('cljs.core.constants');
 
 /**
  * A marker protocol for identifying the valid context types.
@@ -30,13 +29,13 @@ return _.cats$protocols$Contextual$_get_context$arity$1(_);
 var x__4433__auto__ = (((_ == null))?null:_);
 var m__4434__auto__ = (cats.protocols._get_context[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(_) : m__4434__auto__.call(null,_));
+return m__4434__auto__.call(null,_);
 } else {
 var m__4431__auto__ = (cats.protocols._get_context["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(_) : m__4431__auto__.call(null,_));
+return m__4431__auto__.call(null,_);
 } else {
-throw cljs.core.missing_protocol("Contextual.-get-context",_);
+throw cljs.core.missing_protocol.call(null,"Contextual.-get-context",_);
 }
 }
 }
@@ -60,13 +59,13 @@ return _.cats$protocols$Printable$_repr$arity$1(_);
 var x__4433__auto__ = (((_ == null))?null:_);
 var m__4434__auto__ = (cats.protocols._repr[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(_) : m__4434__auto__.call(null,_));
+return m__4434__auto__.call(null,_);
 } else {
 var m__4431__auto__ = (cats.protocols._repr["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(_) : m__4431__auto__.call(null,_));
+return m__4431__auto__.call(null,_);
 } else {
-throw cljs.core.missing_protocol("Printable.-repr",_);
+throw cljs.core.missing_protocol.call(null,"Printable.-repr",_);
 }
 }
 }
@@ -89,13 +88,13 @@ return s.cats$protocols$Semigroup$_mappend$arity$3(s,sv,sv_SINGLEQUOTE_);
 var x__4433__auto__ = (((s == null))?null:s);
 var m__4434__auto__ = (cats.protocols._mappend[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$3(s,sv,sv_SINGLEQUOTE_) : m__4434__auto__.call(null,s,sv,sv_SINGLEQUOTE_));
+return m__4434__auto__.call(null,s,sv,sv_SINGLEQUOTE_);
 } else {
 var m__4431__auto__ = (cats.protocols._mappend["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$3(s,sv,sv_SINGLEQUOTE_) : m__4431__auto__.call(null,s,sv,sv_SINGLEQUOTE_));
+return m__4431__auto__.call(null,s,sv,sv_SINGLEQUOTE_);
 } else {
-throw cljs.core.missing_protocol("Semigroup.-mappend",s);
+throw cljs.core.missing_protocol.call(null,"Semigroup.-mappend",s);
 }
 }
 }
@@ -118,13 +117,13 @@ return s.cats$protocols$Monoid$_mempty$arity$1(s);
 var x__4433__auto__ = (((s == null))?null:s);
 var m__4434__auto__ = (cats.protocols._mempty[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(s) : m__4434__auto__.call(null,s));
+return m__4434__auto__.call(null,s);
 } else {
 var m__4431__auto__ = (cats.protocols._mempty["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(s) : m__4431__auto__.call(null,s));
+return m__4431__auto__.call(null,s);
 } else {
-throw cljs.core.missing_protocol("Monoid.-mempty",s);
+throw cljs.core.missing_protocol.call(null,"Monoid.-mempty",s);
 }
 }
 }
@@ -148,13 +147,13 @@ return mv.cats$protocols$Extract$_extract$arity$1(mv);
 var x__4433__auto__ = (((mv == null))?null:mv);
 var m__4434__auto__ = (cats.protocols._extract[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(mv) : m__4434__auto__.call(null,mv));
+return m__4434__auto__.call(null,mv);
 } else {
 var m__4431__auto__ = (cats.protocols._extract["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(mv) : m__4431__auto__.call(null,mv));
+return m__4431__auto__.call(null,mv);
 } else {
-throw cljs.core.missing_protocol("Extract.-extract",mv);
+throw cljs.core.missing_protocol.call(null,"Extract.-extract",mv);
 }
 }
 }
@@ -177,13 +176,13 @@ return ftor.cats$protocols$Functor$_fmap$arity$3(ftor,f,fv);
 var x__4433__auto__ = (((ftor == null))?null:ftor);
 var m__4434__auto__ = (cats.protocols._fmap[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$3(ftor,f,fv) : m__4434__auto__.call(null,ftor,f,fv));
+return m__4434__auto__.call(null,ftor,f,fv);
 } else {
 var m__4431__auto__ = (cats.protocols._fmap["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$3(ftor,f,fv) : m__4431__auto__.call(null,ftor,f,fv));
+return m__4431__auto__.call(null,ftor,f,fv);
 } else {
-throw cljs.core.missing_protocol("Functor.-fmap",ftor);
+throw cljs.core.missing_protocol.call(null,"Functor.-fmap",ftor);
 }
 }
 }
@@ -206,13 +205,13 @@ return btor.cats$protocols$Bifunctor$_bimap$arity$4(btor,f,g,bv);
 var x__4433__auto__ = (((btor == null))?null:btor);
 var m__4434__auto__ = (cats.protocols._bimap[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$4 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$4(btor,f,g,bv) : m__4434__auto__.call(null,btor,f,g,bv));
+return m__4434__auto__.call(null,btor,f,g,bv);
 } else {
 var m__4431__auto__ = (cats.protocols._bimap["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$4 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$4(btor,f,g,bv) : m__4431__auto__.call(null,btor,f,g,bv));
+return m__4431__auto__.call(null,btor,f,g,bv);
 } else {
-throw cljs.core.missing_protocol("Bifunctor.-bimap",btor);
+throw cljs.core.missing_protocol.call(null,"Bifunctor.-bimap",btor);
 }
 }
 }
@@ -236,13 +235,13 @@ return app.cats$protocols$Applicative$_fapply$arity$3(app,af,av);
 var x__4433__auto__ = (((app == null))?null:app);
 var m__4434__auto__ = (cats.protocols._fapply[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$3(app,af,av) : m__4434__auto__.call(null,app,af,av));
+return m__4434__auto__.call(null,app,af,av);
 } else {
 var m__4431__auto__ = (cats.protocols._fapply["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$3(app,af,av) : m__4431__auto__.call(null,app,af,av));
+return m__4431__auto__.call(null,app,af,av);
 } else {
-throw cljs.core.missing_protocol("Applicative.-fapply",app);
+throw cljs.core.missing_protocol.call(null,"Applicative.-fapply",app);
 }
 }
 }
@@ -259,13 +258,13 @@ return app.cats$protocols$Applicative$_pure$arity$2(app,v);
 var x__4433__auto__ = (((app == null))?null:app);
 var m__4434__auto__ = (cats.protocols._pure[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$2(app,v) : m__4434__auto__.call(null,app,v));
+return m__4434__auto__.call(null,app,v);
 } else {
 var m__4431__auto__ = (cats.protocols._pure["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$2(app,v) : m__4431__auto__.call(null,app,v));
+return m__4431__auto__.call(null,app,v);
 } else {
-throw cljs.core.missing_protocol("Applicative.-pure",app);
+throw cljs.core.missing_protocol.call(null,"Applicative.-pure",app);
 }
 }
 }
@@ -288,13 +287,13 @@ return fctx.cats$protocols$Foldable$_foldl$arity$4(fctx,f,z,xs);
 var x__4433__auto__ = (((fctx == null))?null:fctx);
 var m__4434__auto__ = (cats.protocols._foldl[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$4 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$4(fctx,f,z,xs) : m__4434__auto__.call(null,fctx,f,z,xs));
+return m__4434__auto__.call(null,fctx,f,z,xs);
 } else {
 var m__4431__auto__ = (cats.protocols._foldl["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$4 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$4(fctx,f,z,xs) : m__4431__auto__.call(null,fctx,f,z,xs));
+return m__4431__auto__.call(null,fctx,f,z,xs);
 } else {
-throw cljs.core.missing_protocol("Foldable.-foldl",fctx);
+throw cljs.core.missing_protocol.call(null,"Foldable.-foldl",fctx);
 }
 }
 }
@@ -310,13 +309,13 @@ return fctx.cats$protocols$Foldable$_foldr$arity$4(fctx,f,z,xs);
 var x__4433__auto__ = (((fctx == null))?null:fctx);
 var m__4434__auto__ = (cats.protocols._foldr[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$4 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$4(fctx,f,z,xs) : m__4434__auto__.call(null,fctx,f,z,xs));
+return m__4434__auto__.call(null,fctx,f,z,xs);
 } else {
 var m__4431__auto__ = (cats.protocols._foldr["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$4 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$4(fctx,f,z,xs) : m__4431__auto__.call(null,fctx,f,z,xs));
+return m__4431__auto__.call(null,fctx,f,z,xs);
 } else {
-throw cljs.core.missing_protocol("Foldable.-foldr",fctx);
+throw cljs.core.missing_protocol.call(null,"Foldable.-foldr",fctx);
 }
 }
 }
@@ -341,13 +340,13 @@ return tctx.cats$protocols$Traversable$_traverse$arity$3(tctx,f,tv);
 var x__4433__auto__ = (((tctx == null))?null:tctx);
 var m__4434__auto__ = (cats.protocols._traverse[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$3(tctx,f,tv) : m__4434__auto__.call(null,tctx,f,tv));
+return m__4434__auto__.call(null,tctx,f,tv);
 } else {
 var m__4431__auto__ = (cats.protocols._traverse["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$3(tctx,f,tv) : m__4431__auto__.call(null,tctx,f,tv));
+return m__4431__auto__.call(null,tctx,f,tv);
 } else {
-throw cljs.core.missing_protocol("Traversable.-traverse",tctx);
+throw cljs.core.missing_protocol.call(null,"Traversable.-traverse",tctx);
 }
 }
 }
@@ -367,13 +366,13 @@ return m.cats$protocols$Monad$_mreturn$arity$2(m,v);
 var x__4433__auto__ = (((m == null))?null:m);
 var m__4434__auto__ = (cats.protocols._mreturn[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$2(m,v) : m__4434__auto__.call(null,m,v));
+return m__4434__auto__.call(null,m,v);
 } else {
 var m__4431__auto__ = (cats.protocols._mreturn["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$2(m,v) : m__4431__auto__.call(null,m,v));
+return m__4431__auto__.call(null,m,v);
 } else {
-throw cljs.core.missing_protocol("Monad.-mreturn",m);
+throw cljs.core.missing_protocol.call(null,"Monad.-mreturn",m);
 }
 }
 }
@@ -386,13 +385,13 @@ return m.cats$protocols$Monad$_mbind$arity$3(m,mv,f);
 var x__4433__auto__ = (((m == null))?null:m);
 var m__4434__auto__ = (cats.protocols._mbind[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$3(m,mv,f) : m__4434__auto__.call(null,m,mv,f));
+return m__4434__auto__.call(null,m,mv,f);
 } else {
 var m__4431__auto__ = (cats.protocols._mbind["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$3(m,mv,f) : m__4431__auto__.call(null,m,mv,f));
+return m__4431__auto__.call(null,m,mv,f);
 } else {
-throw cljs.core.missing_protocol("Monad.-mbind",m);
+throw cljs.core.missing_protocol.call(null,"Monad.-mbind",m);
 }
 }
 }
@@ -416,13 +415,13 @@ return m.cats$protocols$MonadZero$_mzero$arity$1(m);
 var x__4433__auto__ = (((m == null))?null:m);
 var m__4434__auto__ = (cats.protocols._mzero[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(m) : m__4434__auto__.call(null,m));
+return m__4434__auto__.call(null,m);
 } else {
 var m__4431__auto__ = (cats.protocols._mzero["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(m) : m__4431__auto__.call(null,m));
+return m__4431__auto__.call(null,m);
 } else {
-throw cljs.core.missing_protocol("MonadZero.-mzero",m);
+throw cljs.core.missing_protocol.call(null,"MonadZero.-mzero",m);
 }
 }
 }
@@ -446,15 +445,17 @@ return m.cats$protocols$MonadPlus$_mplus$arity$3(m,mv,mv_SINGLEQUOTE_);
 var x__4433__auto__ = (((m == null))?null:m);
 var m__4434__auto__ = (cats.protocols._mplus[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$3(m,mv,mv_SINGLEQUOTE_) : m__4434__auto__.call(null,m,mv,mv_SINGLEQUOTE_));
+return m__4434__auto__.call(null,m,mv,mv_SINGLEQUOTE_);
 } else {
 var m__4431__auto__ = (cats.protocols._mplus["_"]);
 if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$3 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$3(m,mv,mv_SINGLEQUOTE_) : m__4431__auto__.call(null,m,mv,mv_SINGLEQUOTE_));
+return m__4431__auto__.call(null,m,mv,mv_SINGLEQUOTE_);
 } else {
-throw cljs.core.missing_protocol("MonadPlus.-mplus",m);
+throw cljs.core.missing_protocol.call(null,"MonadPlus.-mplus",m);
 }
 }
 }
 });
 
+
+//# sourceMappingURL=protocols.js.map

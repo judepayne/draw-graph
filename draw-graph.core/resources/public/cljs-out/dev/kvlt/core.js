@@ -1,7 +1,6 @@
-// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
+// Compiled by ClojureScript 1.10.520 {}
 goog.provide('kvlt.core');
 goog.require('cljs.core');
-goog.require('cljs.core.constants');
 goog.require('kvlt.platform.http');
 goog.require('kvlt.platform.websocket');
 goog.require('kvlt.platform.event_source');
@@ -9,14 +8,14 @@ goog.require('kvlt.middleware');
 goog.require('kvlt.middleware.params');
 goog.require('taoensso.timbre');
 kvlt.core.default_middleware = new cljs.core.PersistentVector(null, 20, 5, cljs.core.PersistentVector.EMPTY_NODE, [kvlt.middleware.decompress,kvlt.middleware.as,kvlt.middleware.params.form,kvlt.middleware.params.short_form,kvlt.middleware.params.query,kvlt.middleware.params.short_query,kvlt.middleware.port,kvlt.middleware.method,kvlt.middleware.default_method,kvlt.middleware.accept,kvlt.middleware.accept_encoding,kvlt.middleware.keyword_headers,kvlt.middleware.lower_case_headers,kvlt.middleware.content_type,kvlt.middleware.default_content_type,kvlt.middleware.body_type_hint,kvlt.middleware.basic_auth,kvlt.middleware.oauth_token,kvlt.middleware.url,kvlt.middleware.error], null);
-kvlt.core.request_STAR_ = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p1__41896_SHARP_,p2__41895_SHARP_){
-return (p2__41895_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p2__41895_SHARP_.cljs$core$IFn$_invoke$arity$1(p1__41896_SHARP_) : p2__41895_SHARP_.call(null,p1__41896_SHARP_));
+kvlt.core.request_STAR_ = cljs.core.reduce.call(null,(function (p1__38110_SHARP_,p2__38109_SHARP_){
+return p2__38109_SHARP_.call(null,p1__38110_SHARP_);
 }),kvlt.platform.http.request_BANG_,kvlt.core.default_middleware);
 /**
  * Disable request/response logging
  */
 kvlt.core.quiet_BANG_ = (function kvlt$core$quiet_BANG_(){
-return taoensso.timbre.merge_config_BANG_(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$ns_DASH_blacklist,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["kvlt.*"], null)], null));
+return taoensso.timbre.merge_config_BANG_.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"ns-blacklist","ns-blacklist",1957763142),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["kvlt.*"], null)], null));
 });
 /**
  * Issues the HTTP request described by the given map, returning a
@@ -31,7 +30,7 @@ return taoensso.timbre.merge_config_BANG_(new cljs.core.PersistentArrayMap(null,
  *   the response.
  */
 kvlt.core.request_BANG_ = (function kvlt$core$request_BANG_(req){
-return (kvlt.core.request_STAR_.cljs$core$IFn$_invoke$arity$1 ? kvlt.core.request_STAR_.cljs$core$IFn$_invoke$arity$1(req) : kvlt.core.request_STAR_.call(null,req));
+return kvlt.core.request_STAR_.call(null,req);
 });
 /**
  * Initiates a websocket connection with the given "ws:" or "wss:"
@@ -54,14 +53,14 @@ return (kvlt.core.request_STAR_.cljs$core$IFn$_invoke$arity$1 ? kvlt.core.reques
  */
 kvlt.core.websocket_BANG_ = (function kvlt$core$websocket_BANG_(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___41905 = arguments.length;
-var i__4731__auto___41906 = (0);
+var len__4730__auto___38119 = arguments.length;
+var i__4731__auto___38120 = (0);
 while(true){
-if((i__4731__auto___41906 < len__4730__auto___41905)){
-args__4736__auto__.push((arguments[i__4731__auto___41906]));
+if((i__4731__auto___38120 < len__4730__auto___38119)){
+args__4736__auto__.push((arguments[i__4731__auto___38120]));
 
-var G__41907 = (i__4731__auto___41906 + (1));
-i__4731__auto___41906 = G__41907;
+var G__38121 = (i__4731__auto___38120 + (1));
+i__4731__auto___38120 = G__38121;
 continue;
 } else {
 }
@@ -72,26 +71,26 @@ var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.I
 return kvlt.core.websocket_BANG_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
 });
 
-kvlt.core.websocket_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__41899){
-var vec__41900 = p__41899;
-var map__41903 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__41900,(0),null);
-var map__41903__$1 = (((((!((map__41903 == null))))?(((((map__41903.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__41903.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__41903):map__41903);
-var opts = map__41903__$1;
-var read_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41903__$1,cljs.core.cst$kw$read_DASH_chan);
-var write_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41903__$1,cljs.core.cst$kw$write_DASH_chan);
-var close_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41903__$1,cljs.core.cst$kw$close_QMARK_);
-var format = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41903__$1,cljs.core.cst$kw$format);
-return kvlt.platform.websocket.request_BANG_.cljs$core$IFn$_invoke$arity$variadic(url,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([opts], 0));
+kvlt.core.websocket_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__38113){
+var vec__38114 = p__38113;
+var map__38117 = cljs.core.nth.call(null,vec__38114,(0),null);
+var map__38117__$1 = (((((!((map__38117 == null))))?(((((map__38117.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__38117.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__38117):map__38117);
+var opts = map__38117__$1;
+var read_chan = cljs.core.get.call(null,map__38117__$1,new cljs.core.Keyword(null,"read-chan","read-chan",-311487928));
+var write_chan = cljs.core.get.call(null,map__38117__$1,new cljs.core.Keyword(null,"write-chan","write-chan",-1022958832));
+var close_QMARK_ = cljs.core.get.call(null,map__38117__$1,new cljs.core.Keyword(null,"close?","close?",1600185693));
+var format = cljs.core.get.call(null,map__38117__$1,new cljs.core.Keyword(null,"format","format",-1306924766));
+return kvlt.platform.websocket.request_BANG_.call(null,url,opts);
 });
 
 kvlt.core.websocket_BANG_.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-kvlt.core.websocket_BANG_.cljs$lang$applyTo = (function (seq41897){
-var G__41898 = cljs.core.first(seq41897);
-var seq41897__$1 = cljs.core.next(seq41897);
+kvlt.core.websocket_BANG_.cljs$lang$applyTo = (function (seq38111){
+var G__38112 = cljs.core.first.call(null,seq38111);
+var seq38111__$1 = cljs.core.next.call(null,seq38111);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__41898,seq41897__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38112,seq38111__$1);
 });
 
 /**
@@ -117,14 +116,14 @@ return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__41898,seq41897
  */
 kvlt.core.event_source_BANG_ = (function kvlt$core$event_source_BANG_(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___41916 = arguments.length;
-var i__4731__auto___41917 = (0);
+var len__4730__auto___38130 = arguments.length;
+var i__4731__auto___38131 = (0);
 while(true){
-if((i__4731__auto___41917 < len__4730__auto___41916)){
-args__4736__auto__.push((arguments[i__4731__auto___41917]));
+if((i__4731__auto___38131 < len__4730__auto___38130)){
+args__4736__auto__.push((arguments[i__4731__auto___38131]));
 
-var G__41918 = (i__4731__auto___41917 + (1));
-i__4731__auto___41917 = G__41918;
+var G__38132 = (i__4731__auto___38131 + (1));
+i__4731__auto___38131 = G__38132;
 continue;
 } else {
 }
@@ -135,24 +134,26 @@ var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.I
 return kvlt.core.event_source_BANG_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
 });
 
-kvlt.core.event_source_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__41910){
-var vec__41911 = p__41910;
-var map__41914 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__41911,(0),null);
-var map__41914__$1 = (((((!((map__41914 == null))))?(((((map__41914.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__41914.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__41914):map__41914);
-var events = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__41914__$1,cljs.core.cst$kw$events,new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$message,null], null), null));
-var as = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__41914__$1,cljs.core.cst$kw$as,cljs.core.cst$kw$string);
-var chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41914__$1,cljs.core.cst$kw$chan);
-var close_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__41914__$1,cljs.core.cst$kw$close_QMARK_,true);
-return kvlt.platform.event_source.request_BANG_.cljs$core$IFn$_invoke$arity$variadic(url,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$events,events,cljs.core.cst$kw$format,as,cljs.core.cst$kw$chan,chan,cljs.core.cst$kw$close_QMARK_,close_QMARK_], null)], 0));
+kvlt.core.event_source_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__38124){
+var vec__38125 = p__38124;
+var map__38128 = cljs.core.nth.call(null,vec__38125,(0),null);
+var map__38128__$1 = (((((!((map__38128 == null))))?(((((map__38128.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__38128.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__38128):map__38128);
+var events = cljs.core.get.call(null,map__38128__$1,new cljs.core.Keyword(null,"events","events",1792552201),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"message","message",-406056002),null], null), null));
+var as = cljs.core.get.call(null,map__38128__$1,new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"string","string",-1989541586));
+var chan = cljs.core.get.call(null,map__38128__$1,new cljs.core.Keyword(null,"chan","chan",-2103021695));
+var close_QMARK_ = cljs.core.get.call(null,map__38128__$1,new cljs.core.Keyword(null,"close?","close?",1600185693),true);
+return kvlt.platform.event_source.request_BANG_.call(null,url,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"events","events",1792552201),events,new cljs.core.Keyword(null,"format","format",-1306924766),as,new cljs.core.Keyword(null,"chan","chan",-2103021695),chan,new cljs.core.Keyword(null,"close?","close?",1600185693),close_QMARK_], null));
 });
 
 kvlt.core.event_source_BANG_.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-kvlt.core.event_source_BANG_.cljs$lang$applyTo = (function (seq41908){
-var G__41909 = cljs.core.first(seq41908);
-var seq41908__$1 = cljs.core.next(seq41908);
+kvlt.core.event_source_BANG_.cljs$lang$applyTo = (function (seq38122){
+var G__38123 = cljs.core.first.call(null,seq38122);
+var seq38122__$1 = cljs.core.next.call(null,seq38122);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__41909,seq41908__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38123,seq38122__$1);
 });
 
+
+//# sourceMappingURL=core.js.map
