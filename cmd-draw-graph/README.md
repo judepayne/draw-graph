@@ -53,6 +53,7 @@ Here is that list and draw-graph options:
 and of graphviz options that draw-graph also accepts (put these in the same map of options)
 
 | option | type | description |
+|--------|------|-------------|
 | **layout** | string | **not optional** the graphviz layout algorithm to use |
 | rankdir| string | the rank direction of the (dot) graph |
 | shape | string | node shape. one of the graphviz permitted values. *not all shapes are guaranteed work with post-processing* stick to the list in the drop down on draw-graph.com for those guaranteed to work (although most should) |
@@ -70,6 +71,7 @@ and of graphviz options that draw-graph also accepts (put these in the same map 
 and a few additional options that are not exposed through the draw-graph.com gui
 
 | option | type | description |
+|--------|------|-------------|
 | fix-ranks? | boolean | (draw-graph option) makes a dot graph rigorously lay out according to rank |
 | dpi | integer | (graphviz) dpi. 72 is the default |
 | ratio | string/ double | graphviz ratio attribute |
