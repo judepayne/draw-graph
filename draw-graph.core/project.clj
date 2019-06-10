@@ -15,7 +15,8 @@
                  [io.nervous/kvlt "0.1.4"]
                  [hickory "0.7.1"]
                  [lib-draw-graph "0.1.0"]
-                 [viz-cljc "0.1.3"]]
+                 [viz-cljc "0.1.3"]
+                 [cljsjs/ace "1.4.2-0"]]
 
   :source-paths ["src"]
 

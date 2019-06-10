@@ -15,7 +15,7 @@
 (declare page)
 
 (defn current-page []
-  [:div
+  [:div.core
        [:header
         [:p [:a {:on-click #(accountant/navigate! "/")} "Home"] " | "
          [:a {:on-click #(accountant/navigate! "/help")} "help"] " | "

@@ -978,7 +978,7 @@ cs,Current State|bgcolor:#f0f2da:color:#49c1e5:margin:6:labeljust:r"
            :constraint "false"
            :fixedsize "false"
            :num-cluster-edges "5"
-           :concentrate true
+           :concentrate "true"
            :edge-label "volume"
            })})
 

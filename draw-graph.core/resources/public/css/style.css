@@ -319,18 +319,22 @@ select {
 /* process button */ 
 .item9 {
   grid-column: 1 / 2;
-  grid-row: 3 / 4;
+  grid-row: 7 / 8;
 }
 
 /* save button */ 
 .item10 {
   grid-column: 2 / 3;
-  grid-row: 3 / 4;
+  grid-row: 7 / 8;
 }
 
 .item11 {
   grid-column: 1 / 4;
   grid-row: 7 / 8;
+}
+
+#editor{
+  border: 1px solid lightgray;
 }
 
 
@@ -340,10 +344,13 @@ select {
   }  
   .wrapper {
     grid-template-columns: 200px 200px 230px 20px auto;
-    grid-template-rows: 50px 420px 40px 30px 340px 270px;
+    grid-template-rows: 55px 520px 5px 30px 340px 270px 40px;
   }
   .wrapper-collapsed {
-    grid-template-rows: 50px 420px 40px 30px 30px 20px;
+    grid-template-rows: 55px 520px 5px 30px 7px 7px 40px;
+  }
+  #tweak-box{
+    height: 500px;
   }
   .item11 {
     grid-column: 5 / 6;
@@ -423,4 +430,3 @@ select {
   transition-delay: 2.0s;
   opacity: 0.7;
 }
-

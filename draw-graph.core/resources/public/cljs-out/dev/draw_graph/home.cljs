@@ -1,6 +1,6 @@
 (ns draw-graph.home
   (:require
-   [reagent.core             :refer [atom cursor]]
+   [reagent.core             :refer [atom cursor create-class dom-node]]
    [reagent.ratom            :refer [reaction make-reaction]]
    [cljs.core.async          :refer [put! chan <! >!]]
    [accountant.core          :as accountant]
@@ -17,6 +17,7 @@
    [clojure.data.xml         :as xml]
    [lib-draw-graph.svg       :as svg]
    [viz.core                 :as viz]
+   [cljsjs.ace]
    )
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
@@ -49,7 +50,12 @@
 ;; -------------------------
 ;; Initialise the file reader
 
-(file/file-reader-listen (fn [e] (swap! local-state merge e)))
+(declare update-ace)
+
+
+(file/file-reader-listen (fn [e] 
+                           (do (swap! local-state merge e)
+                               (update-ace))))
 
 
 ;; -------------------------
@@ -254,6 +260,35 @@
 
 ;; ---- Main inputs
 
+(def myace (atom nil))
+
+
+(defn ace-editor [value]
+  (create-class
+   {:display-name "ace editor"
+
+    :component-did-mount
+    (fn [this]
+      (js/console.log "mounted")
+      (let [node (dom-node this)
+            ace-instance (.edit js/ace "editor")]
+        (reset! myace ace-instance)
+        (.. ace-instance
+            (on "change" #(swap! value assoc :data (.getValue ace-instance))))))
+
+    :reagent-render
+    (fn []
+      [:div {:id "editor"} ])}))
+
+
+(defn update-ace []
+  (let [ace-instance @myace
+        cursor (.getCursorPositionScreen ace-instance)]
+    (.setValue ace-instance (:data @local-state) cursor)))
+
+
+
+
 (defn load-example-data [ex-fn]
   (let [example (invoke ex-fn)]
     (swap! local-state assoc :options (:options example))
@@ -262,7 +297,8 @@
 
 (defn example-dropdown []
   [:select {:tabIndex 1
-            :on-change #(load-example-data (.. % -target -value))}  
+            :on-change #(do (load-example-data (.. % -target -value))
+                            (update-ace))}  
    [:option {:value nil} "-"]  
    [:option {:value "draw-graph.examples/example1"} "Friendship graph"]
    [:option {:value "draw-graph.examples/example2"} "Two facing trees"]
@@ -295,13 +331,13 @@
             :on-change file/file-reader-put}]])
 
 
-(defn data-input [value]  
+(defn data-input [value]
   [:div
    [:textarea {
                :id "tweak-box"
                :tabIndex 3
                :rows 20
-   ;            :cols 42
+  ;            :cols 42
                :wrap "soft"
                :spellCheck "false"
                :autoComplete "on"
@@ -647,7 +683,9 @@
       [:div [load-button]]
       [:div "or enter the data"]]
      [:div.item4 [:label {:id "file-name"} (:data-filename @local-state)]]
-     [:div.item5 [data-input local-state]]
+     [:div.item5 {:id "editor"}
+      [ace-editor local-state]
+      ] ;;need to get id editor in earlier .getDomNode current node perhaps
      [disp-opts-hdr state]
      [left-disp-opts1 state]
      [middle-disp-opts1 state]
@@ -679,14 +717,17 @@
 ;; -------------------------
 ;; Page
 
+
+
 (defn home-page []
-  [:div
+  [:div.page
    [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" :rel "stylesheet"}]
    [:div.wrapper-banner
     [:div.site-banner.banner1 "draw-graph" [local-remote local-remote-state]]
     [:div.banner2.controls "Examples  " [example-dropdown]]]
    ;[:p {:font-size "0.9em;"} "Network diagrams from csv files"]
-   ;(:options @local-state)
+   ;(:data @local-state)
    [:div.main [controls disp-opts-state]]
    [:div.warn @warn]
-   [:div.error @error]])
+   [:div.error @error]]
+  )
