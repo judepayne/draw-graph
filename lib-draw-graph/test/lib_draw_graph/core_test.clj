@@ -23,7 +23,7 @@
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "application&owner"
-   :edge-label "format"
+   :edge-label "type"
    :shape "rect"
    :nodesep 0.4
    ;:ranksep 0
@@ -40,7 +40,7 @@
    :num-cluster-edges "4"
  ;  :elide "0"
    :constraint true
-   :show-constraints? true
+   :show-constraints? false
    :fix-ranks? true
  ;  :filter-graph "application=sysTicket or function=Reporting"
  ;  :filter-graph "type=[trades/clients/books/products/instruments/employees]"

@@ -135,22 +135,22 @@
 
 
 (defn first-label
-  "Gets the first valid label for the node."
-  [lbls n]
+  "Gets the first valid label from the metadata, which can be a node or edge metadata."
+  [lbls metadata]
   (let [lbls (str/split lbls #"/")
-        lbl (some #(let [v ((keyword %) n)]
+        lbl (some #(let [v ((keyword %) metadata)]
                      (if (= "" v) false v)) lbls)]
     (if (nil? lbl) "" lbl)))
 
 
 (defn composite-label
-  "Gets the first valid label for the node."
-  [lbls n]
+  "Gets the composite label from the metadata, which can be a node or edge metadata."
+  [lbls metadata]
   (let [lbls (str/split lbls #"&")
         lbl (apply str
                    (interpose "\n"
                               (map
-                               (fn [x] (get n (keyword x)))
+                               (fn [x] (get metadata (keyword x)))
                                lbls)))]
     (if (nil? lbl) "" lbl)))
 
@@ -227,10 +227,13 @@
 
 
 (defn edge-label
-  "Returns the label for the node n in g given options."
+  "Returns the label for the edge n1 n2 in g given options."
   [g opts n1 n2]
-  (when (-> opts :edge :edge-label)
-    (get (loom.attr/attr g n1 n2 :meta) (keyword (-> opts :edge :edge-label)))))
+  (when-let [lbls (-> opts :edge :edge-label)]
+    (let [metadata (loom.attr/attr g n1 n2 :meta)]
+      (if (str/includes? lbls "/")
+        (first-label lbls metadata)
+        (composite-label lbls metadata)))))
 
 
 (defn constraints

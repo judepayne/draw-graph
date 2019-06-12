@@ -17,7 +17,7 @@
    [clojure.data.xml         :as xml]
    [lib-draw-graph.svg       :as svg]
    [viz.core                 :as viz]
-   [cljsjs.ace]
+;   [cljsjs.ace]
    )
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
@@ -566,7 +566,8 @@
                     (toggle state :lbl "show" "hide")
                     (toggle state :local-class "hidden" "visible")
                     (toggle state :wrapper-class "wrapper controls wrapper-collapsed"
-                            "wrapper controls"))}
+                            "wrapper controls")
+                    (update-ace))}
       "Options" [:a.lbl.show-hide (:lbl @state)]]]))
 
 

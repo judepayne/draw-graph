@@ -335,6 +335,13 @@ select {
 
 #editor{
   border: 1px solid lightgray;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.ace_gutter {
+  background: #F8F8F8 !important;
+  color: #777 !important;
 }
 
 
@@ -343,11 +350,11 @@ select {
     padding-top: 50px;
   }  
   .wrapper {
-    grid-template-columns: 200px 200px 230px 20px auto;
-    grid-template-rows: 55px 520px 5px 30px 340px 270px 40px;
+    grid-template-columns: 200px 200px 260px 20px auto;
+    grid-template-rows: 55px 30vh 5px 30px 340px 270px 40px;
   }
   .wrapper-collapsed {
-    grid-template-rows: 55px 520px 5px 30px 7px 7px 40px;
+    grid-template-rows: 55px 72vh 5px 30px 7px 7px 40px;
   }
   #tweak-box{
     height: 500px;
