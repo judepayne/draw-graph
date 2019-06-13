@@ -1,54 +1,62 @@
-// Compiled by ClojureScript 1.10.520 {}
+// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
 goog.provide('markdown.tables');
 goog.require('cljs.core');
+goog.require('cljs.core.constants');
 goog.require('clojure.string');
 markdown.tables.parse_table_row = (function markdown$tables$parse_table_row(text){
-return cljs.core.map.call(null,(function (p1__10253_SHARP_){
-return cljs.core.identity.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"text","text",-1790561697),p1__10253_SHARP_], null));
-}),cljs.core.map.call(null,clojure.string.trim,(function (p1__10252_SHARP_){
-return clojure.string.split.call(null,p1__10252_SHARP_,/\|/);
-}).call(null,clojure.string.trim.call(null,(function (p1__10251_SHARP_){
-if(cljs.core._EQ_.call(null,cljs.core.first.call(null,p1__10251_SHARP_),"|")){
-return cljs.core.apply.call(null,cljs.core.str,cljs.core.rest.call(null,p1__10251_SHARP_));
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__12208_SHARP_){
+return cljs.core.identity(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$text,p1__12208_SHARP_], null));
+}),cljs.core.map.cljs$core$IFn$_invoke$arity$2(clojure.string.trim,(function (){var G__12210 = clojure.string.trim((function (){var fexpr__12211 = (function (p1__12206_SHARP_){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.first(p1__12206_SHARP_),"|")){
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.rest(p1__12206_SHARP_));
 } else {
-return p1__10251_SHARP_;
+return p1__12206_SHARP_;
 }
-}).call(null,text)))));
+});
+return fexpr__12211(text);
+})());
+var fexpr__12209 = ((function (G__12210){
+return (function (p1__12207_SHARP_){
+return clojure.string.split.cljs$core$IFn$_invoke$arity$2(p1__12207_SHARP_,/\|/);
+});})(G__12210))
+;
+return fexpr__12209(G__12210);
+})()));
 });
 markdown.tables.table_row__GT_str = (function markdown$tables$table_row__GT_str(row_data,is_header_QMARK_){
-return cljs.core.reduce.call(null,(function (row,col){
-var alignment_str = (cljs.core.truth_(new cljs.core.Keyword(null,"alignment","alignment",1040093386).cljs$core$IFn$_invoke$arity$1(col))?[" align='",cljs.core.name.call(null,new cljs.core.Keyword(null,"alignment","alignment",1040093386).cljs$core$IFn$_invoke$arity$1(col)),"'"].join(''):null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (row,col){
+var alignment_str = (cljs.core.truth_(cljs.core.cst$kw$alignment.cljs$core$IFn$_invoke$arity$1(col))?[" align='",cljs.core.name(cljs.core.cst$kw$alignment.cljs$core$IFn$_invoke$arity$1(col)),"'"].join(''):null);
 if(cljs.core.truth_(is_header_QMARK_)){
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(row),"<th",alignment_str,">",cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(col)),"</th>"].join('');
+return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(row),"<th",alignment_str,">",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(col)),"</th>"].join('');
 } else {
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(row),"<td",alignment_str,">",cljs.core.str.cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(col)),"</td>"].join('');
+return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(row),"<td",alignment_str,">",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(col)),"</td>"].join('');
 }
 }),"",row_data);
 });
 markdown.tables.table__GT_str = (function markdown$tables$table__GT_str(table){
-var table_data = cljs.core.map_indexed.call(null,cljs.core.vector,new cljs.core.Keyword(null,"data","data",-232669377).cljs$core$IFn$_invoke$arity$1(table));
-var alignment_seq = new cljs.core.Keyword(null,"alignment-seq","alignment-seq",1587946543).cljs$core$IFn$_invoke$arity$1(table);
-return ["<table>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.reduce.call(null,((function (table_data,alignment_seq){
+var table_data = cljs.core.map_indexed.cljs$core$IFn$_invoke$arity$2(cljs.core.vector,cljs.core.cst$kw$data.cljs$core$IFn$_invoke$arity$1(table));
+var alignment_seq = cljs.core.cst$kw$alignment_DASH_seq.cljs$core$IFn$_invoke$arity$1(table);
+return ["<table>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (table_data,alignment_seq){
 return (function (table_acc,row){
-var row_idx = cljs.core.first.call(null,row);
-var row_data = cljs.core.mapv.call(null,cljs.core.merge,cljs.core.second.call(null,row),alignment_seq);
-var is_header_QMARK_ = cljs.core._EQ_.call(null,row_idx,(0));
-var is_first_row_QMARK_ = cljs.core._EQ_.call(null,row_idx,(1));
-var is_last_row_QMARK_ = cljs.core._EQ_.call(null,row_idx,(cljs.core.count.call(null,table_data) - (1)));
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(table_acc),((is_header_QMARK_)?"<thead>":((is_first_row_QMARK_)?"<tbody>":null)),"<tr>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(markdown.tables.table_row__GT_str.call(null,row_data,is_header_QMARK_)),"</tr>",((is_header_QMARK_)?"</thead>":((is_last_row_QMARK_)?"</tbody>":null))].join('');
+var row_idx = cljs.core.first(row);
+var row_data = cljs.core.mapv.cljs$core$IFn$_invoke$arity$3(cljs.core.merge,cljs.core.second(row),alignment_seq);
+var is_header_QMARK_ = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(row_idx,(0));
+var is_first_row_QMARK_ = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(row_idx,(1));
+var is_last_row_QMARK_ = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(row_idx,(cljs.core.count(table_data) - (1)));
+return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(table_acc),((is_header_QMARK_)?"<thead>":((is_first_row_QMARK_)?"<tbody>":null)),"<tr>",cljs.core.str.cljs$core$IFn$_invoke$arity$1(markdown.tables.table_row__GT_str(row_data,is_header_QMARK_)),"</tr>",((is_header_QMARK_)?"</thead>":((is_last_row_QMARK_)?"</tbody>":null))].join('');
 });})(table_data,alignment_seq))
 ,"",table_data)),"</table>"].join('');
 });
 markdown.tables.divider_seq__GT_alignment = (function markdown$tables$divider_seq__GT_alignment(divider_seq){
-return cljs.core.mapv.call(null,(function (divider){
-if(cljs.core._EQ_.call(null,cljs.core.re_find.call(null,/^:-+/,new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(divider)),new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(divider))){
-return cljs.core.identity.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"alignment","alignment",1040093386),new cljs.core.Keyword(null,"left","left",-399115937)], null));
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (divider){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.re_find(/^:-+/,cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(divider)),cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(divider))){
+return cljs.core.identity(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$alignment,cljs.core.cst$kw$left], null));
 } else {
-if(cljs.core._EQ_.call(null,cljs.core.re_find.call(null,/^-+:/,new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(divider)),new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(divider))){
-return cljs.core.identity.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"alignment","alignment",1040093386),new cljs.core.Keyword(null,"right","right",-452581833)], null));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.re_find(/^-+:/,cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(divider)),cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(divider))){
+return cljs.core.identity(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$alignment,cljs.core.cst$kw$right], null));
 } else {
-if(cljs.core._EQ_.call(null,cljs.core.re_find.call(null,/^:-+:/,new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(divider)),new cljs.core.Keyword(null,"text","text",-1790561697).cljs$core$IFn$_invoke$arity$1(divider))){
-return cljs.core.identity.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"alignment","alignment",1040093386),new cljs.core.Keyword(null,"center","center",-748944368)], null));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.re_find(/^:-+:/,cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(divider)),cljs.core.cst$kw$text.cljs$core$IFn$_invoke$arity$1(divider))){
+return cljs.core.identity(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$alignment,cljs.core.cst$kw$center], null));
 } else {
 return null;
 
@@ -58,15 +66,15 @@ return null;
 }),divider_seq);
 });
 markdown.tables.table = (function markdown$tables$table(text,state){
-var table_row_re = cljs.core.re_find.call(null,/\|(?: [\S ]+ \|)+/,text);
-var table_divider_re = cljs.core.re_find.call(null,/\|(?: :?-+:? \|)+/,text);
-var is_table_row_QMARK_ = cljs.core._EQ_.call(null,table_row_re,text);
-var is_table_header_QMARK_ = ((is_table_row_QMARK_) && (cljs.core.not.call(null,cljs.core.get_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"in-table-body?","in-table-body?",-136773915)], null)))));
-var is_table_divider_QMARK_ = (function (){var and__4120__auto__ = cljs.core._EQ_.call(null,table_divider_re,text);
+var table_row_re = cljs.core.re_find(/\|(?: [\S ]+ \|)+/,text);
+var table_divider_re = cljs.core.re_find(/\|(?: :?-+:? \|)+/,text);
+var is_table_row_QMARK_ = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(table_row_re,text);
+var is_table_header_QMARK_ = ((is_table_row_QMARK_) && (cljs.core.not(cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$in_DASH_table_DASH_body_QMARK_], null)))));
+var is_table_divider_QMARK_ = (function (){var and__4120__auto__ = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(table_divider_re,text);
 if(and__4120__auto__){
-var and__4120__auto____$1 = cljs.core.get_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"in-table-body?","in-table-body?",-136773915)], null));
+var and__4120__auto____$1 = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$in_DASH_table_DASH_body_QMARK_], null));
 if(cljs.core.truth_(and__4120__auto____$1)){
-return cljs.core.get_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"is-prev-header?","is-prev-header?",-1637281701)], null));
+return cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$is_DASH_prev_DASH_header_QMARK_], null));
 } else {
 return and__4120__auto____$1;
 }
@@ -75,23 +83,21 @@ return and__4120__auto__;
 }
 })();
 if(is_table_header_QMARK_){
-var header_seq = markdown.tables.parse_table_row.call(null,text);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",cljs.core.update_in.call(null,cljs.core.assoc_in.call(null,cljs.core.assoc_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"is-prev-header?","is-prev-header?",-1637281701)], null),true),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"in-table-body?","in-table-body?",-136773915)], null),true),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"data","data",-232669377)], null),cljs.core.fnil.call(null,cljs.core.conj,cljs.core.PersistentVector.EMPTY),cljs.core.vec.call(null,header_seq))], null);
+var header_seq = markdown.tables.parse_table_row(text);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(cljs.core.assoc_in(cljs.core.assoc_in(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$is_DASH_prev_DASH_header_QMARK_], null),true),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$in_DASH_table_DASH_body_QMARK_], null),true),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$data], null),cljs.core.fnil.cljs$core$IFn$_invoke$arity$2(cljs.core.conj,cljs.core.PersistentVector.EMPTY),cljs.core.vec(header_seq))], null);
 } else {
 if(cljs.core.truth_(is_table_divider_QMARK_)){
-var divider_seq = markdown.tables.parse_table_row.call(null,text);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",cljs.core.assoc_in.call(null,cljs.core.assoc_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"is-prev-header?","is-prev-header?",-1637281701)], null),false),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"alignment-seq","alignment-seq",1587946543)], null),markdown.tables.divider_seq__GT_alignment.call(null,divider_seq))], null);
+var divider_seq = markdown.tables.parse_table_row(text);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",cljs.core.assoc_in(cljs.core.assoc_in(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$is_DASH_prev_DASH_header_QMARK_], null),false),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$alignment_DASH_seq], null),markdown.tables.divider_seq__GT_alignment(divider_seq))], null);
 } else {
 if(is_table_row_QMARK_){
-var row_seq = markdown.tables.parse_table_row.call(null,text);
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",cljs.core.update_in.call(null,cljs.core.assoc_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"is-prev-header?","is-prev-header?",-1637281701)], null),false),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"data","data",-232669377)], null),cljs.core.fnil.call(null,cljs.core.conj,cljs.core.PersistentVector.EMPTY),cljs.core.vec.call(null,row_seq))], null);
+var row_seq = markdown.tables.parse_table_row(text);
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["",cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(cljs.core.assoc_in(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$is_DASH_prev_DASH_header_QMARK_], null),false),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$data], null),cljs.core.fnil.cljs$core$IFn$_invoke$arity$2(cljs.core.conj,cljs.core.PersistentVector.EMPTY),cljs.core.vec(row_seq))], null);
 } else {
-var out = ((cljs.core.empty_QMARK_.call(null,cljs.core.get_in.call(null,state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table","table",-564943036),new cljs.core.Keyword(null,"data","data",-232669377)], null))))?text:[markdown.tables.table__GT_str.call(null,new cljs.core.Keyword(null,"table","table",-564943036).cljs$core$IFn$_invoke$arity$1(state)),cljs.core.str.cljs$core$IFn$_invoke$arity$1(text)].join(''));
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [out,cljs.core.dissoc.call(null,state,new cljs.core.Keyword(null,"table","table",-564943036))], null);
+var out = ((cljs.core.empty_QMARK_(cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(state,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$table,cljs.core.cst$kw$data], null))))?text:[markdown.tables.table__GT_str(cljs.core.cst$kw$table.cljs$core$IFn$_invoke$arity$1(state)),cljs.core.str.cljs$core$IFn$_invoke$arity$1(text)].join(''));
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [out,cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(state,cljs.core.cst$kw$table)], null);
 
 }
 }
 }
 });
-
-//# sourceMappingURL=tables.js.map

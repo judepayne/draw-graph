@@ -20,7 +20,7 @@ var DgcsvHighlightRules = function() {
                 token : "constant.numeric", 
                 regex : "\\|(.*?)(,(?=[a-zA-Z]))", //non-greedy regex
             },{
-                token : "variable",
+                token : "constant.numeric",
                 regex : "\\|(.*)$",
             }
         ]

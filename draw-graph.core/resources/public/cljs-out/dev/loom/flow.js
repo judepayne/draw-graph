@@ -1,6 +1,7 @@
-// Compiled by ClojureScript 1.10.520 {}
+// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
 goog.provide('loom.flow');
 goog.require('cljs.core');
+goog.require('cljs.core.constants');
 goog.require('loom.alg_generic');
 /**
  * Computes the residual capacity between nodes v1 and v2. Capacity
@@ -9,19 +10,19 @@ goog.require('loom.alg_generic');
  * represents the current flow in the network.
  */
 loom.flow.residual_capacity = (function loom$flow$residual_capacity(capacity,flow,v1,v2){
-return ((function (){var or__4131__auto__ = cljs.core.get_in.call(null,flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [v2,v1], null));
+return ((function (){var or__4131__auto__ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [v2,v1], null));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
-})() + ((function (){var or__4131__auto__ = capacity.call(null,v1,v2);
+})() + ((function (){var or__4131__auto__ = (capacity.cljs$core$IFn$_invoke$arity$2 ? capacity.cljs$core$IFn$_invoke$arity$2(v1,v2) : capacity.call(null,v1,v2));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
-})() - (function (){var or__4131__auto__ = cljs.core.get_in.call(null,flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [v1,v2], null));
+})() - (function (){var or__4131__auto__ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [v1,v2], null));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
@@ -35,22 +36,22 @@ return (0);
 loom.flow.flow_balance = (function loom$flow$flow_balance(flow){
 var out = cljs.core.PersistentArrayMap.EMPTY;
 var in$ = cljs.core.PersistentArrayMap.EMPTY;
-var adj_list = cljs.core.seq.call(null,flow);
+var adj_list = cljs.core.seq(flow);
 while(true){
-var temp__5718__auto__ = cljs.core.first.call(null,adj_list);
+var temp__5718__auto__ = cljs.core.first(adj_list);
 if(cljs.core.truth_(temp__5718__auto__)){
-var vec__38520 = temp__5718__auto__;
-var node = cljs.core.nth.call(null,vec__38520,(0),null);
-var neighbours = cljs.core.nth.call(null,vec__38520,(1),null);
-var G__38523 = cljs.core.assoc.call(null,out,node,(- cljs.core.reduce.call(null,cljs.core._PLUS_,cljs.core.vals.call(null,neighbours))));
-var G__38524 = cljs.core.merge_with.call(null,cljs.core._PLUS_,in$,neighbours);
-var G__38525 = cljs.core.next.call(null,adj_list);
-out = G__38523;
-in$ = G__38524;
-adj_list = G__38525;
+var vec__42320 = temp__5718__auto__;
+var node = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42320,(0),null);
+var neighbours = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42320,(1),null);
+var G__42323 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(out,node,(- cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.core.vals(neighbours))));
+var G__42324 = cljs.core.merge_with.cljs$core$IFn$_invoke$arity$variadic(cljs.core._PLUS_,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([in$,neighbours], 0));
+var G__42325 = cljs.core.next(adj_list);
+out = G__42323;
+in$ = G__42324;
+adj_list = G__42325;
 continue;
 } else {
-return cljs.core.merge_with.call(null,cljs.core._PLUS_,out,in$);
+return cljs.core.merge_with.cljs$core$IFn$_invoke$arity$variadic(cljs.core._PLUS_,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([out,in$], 0));
 }
 break;
 }
@@ -62,52 +63,52 @@ break;
  * sink negative, and together they should balance.
  */
 loom.flow.satisfies_mass_balance_QMARK_ = (function loom$flow$satisfies_mass_balance_QMARK_(flow,source,sink){
-var balance = loom.flow.flow_balance.call(null,flow);
-return ((((function (){var or__4131__auto__ = cljs.core.get.call(null,balance,source);
+var balance = loom.flow.flow_balance(flow);
+return ((((function (){var or__4131__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(balance,source);
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
-})() <= (0))) && ((((function (){var or__4131__auto__ = cljs.core.get.call(null,balance,source);
+})() <= (0))) && ((((function (){var or__4131__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(balance,source);
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
-})() + (function (){var or__4131__auto__ = cljs.core.get.call(null,balance,sink);
+})() + (function (){var or__4131__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(balance,sink);
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
-})()) === (0))) && (cljs.core.every_QMARK_.call(null,cljs.core.zero_QMARK_,cljs.core.vals.call(null,cljs.core.dissoc.call(null,balance,source,sink)))));
+})()) === (0))) && (cljs.core.every_QMARK_(cljs.core.zero_QMARK_,cljs.core.vals(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(balance,source,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([sink], 0))))));
 });
 /**
  * Given a flow map, and a capacity function, verifies that the flow
  * on each edge is <= capacity of that edge.
  */
 loom.flow.satisfies_capacity_constraints_QMARK_ = (function loom$flow$satisfies_capacity_constraints_QMARK_(flow,capacity){
-return cljs.core.every_QMARK_.call(null,(function (p__38526){
-var vec__38527 = p__38526;
-var node = cljs.core.nth.call(null,vec__38527,(0),null);
-var flow_to_successors = cljs.core.nth.call(null,vec__38527,(1),null);
-return cljs.core.every_QMARK_.call(null,((function (vec__38527,node,flow_to_successors){
-return (function (p__38530){
-var vec__38531 = p__38530;
-var neighbor = cljs.core.nth.call(null,vec__38531,(0),null);
-var flow_value = cljs.core.nth.call(null,vec__38531,(1),null);
-return (flow_value <= capacity.call(null,node,neighbor));
-});})(vec__38527,node,flow_to_successors))
-,cljs.core.seq.call(null,flow_to_successors));
-}),cljs.core.seq.call(null,flow));
+return cljs.core.every_QMARK_((function (p__42326){
+var vec__42327 = p__42326;
+var node = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42327,(0),null);
+var flow_to_successors = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42327,(1),null);
+return cljs.core.every_QMARK_(((function (vec__42327,node,flow_to_successors){
+return (function (p__42330){
+var vec__42331 = p__42330;
+var neighbor = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42331,(0),null);
+var flow_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__42331,(1),null);
+return (flow_value <= (capacity.cljs$core$IFn$_invoke$arity$2 ? capacity.cljs$core$IFn$_invoke$arity$2(node,neighbor) : capacity.call(null,node,neighbor)));
+});})(vec__42327,node,flow_to_successors))
+,cljs.core.seq(flow_to_successors));
+}),cljs.core.seq(flow));
 });
 /**
  * Verifies that a flow satisfies capacity and mass balance
  * constraints. Does verify that a flow is maximum.
  */
 loom.flow.is_admissible_flow_QMARK_ = (function loom$flow$is_admissible_flow_QMARK_(flow,capacity,source,sink){
-return ((loom.flow.satisfies_mass_balance_QMARK_.call(null,flow,source,sink)) && (loom.flow.satisfies_capacity_constraints_QMARK_.call(null,flow,capacity)));
+return ((loom.flow.satisfies_mass_balance_QMARK_(flow,source,sink)) && (loom.flow.satisfies_capacity_constraints_QMARK_(flow,capacity)));
 });
 /**
  * Given a path, represented by a sequence of nodes, and
@@ -115,14 +116,14 @@ return ((loom.flow.satisfies_mass_balance_QMARK_.call(null,flow,source,sink)) &&
  * path. If an edge on the path is missing, returns 0.
  */
 loom.flow.min_weight_along_path = (function loom$flow$min_weight_along_path(path,weight_fn){
-return cljs.core.reduce.call(null,cljs.core.min,cljs.core.map.call(null,(function (p1__38534_SHARP_){
-var or__4131__auto__ = cljs.core.apply.call(null,weight_fn,p1__38534_SHARP_);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core.min,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__42334_SHARP_){
+var or__4131__auto__ = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(weight_fn,p1__42334_SHARP_);
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
-}),cljs.core.partition.call(null,(2),(1),path)));
+}),cljs.core.partition.cljs$core$IFn$_invoke$arity$3((2),(1),path)));
 });
 /**
  * Finds a shortest path in the flow network along which there remains
@@ -135,10 +136,10 @@ return (0);
  * sink.
  */
 loom.flow.bf_find_augmenting_path = (function loom$flow$bf_find_augmenting_path(successors,predecessors,capacity,flow,s,t){
-return loom.alg_generic.bf_path.call(null,(function (vertex){
-return cljs.core.distinct.call(null,cljs.core.filter.call(null,(function (p1__38535_SHARP_){
-return (loom.flow.residual_capacity.call(null,capacity,flow,vertex,p1__38535_SHARP_) > (0));
-}),cljs.core.concat.call(null,successors.call(null,vertex),predecessors.call(null,vertex))));
+return loom.alg_generic.bf_path((function (vertex){
+return cljs.core.distinct.cljs$core$IFn$_invoke$arity$1(cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__42335_SHARP_){
+return (loom.flow.residual_capacity(capacity,flow,vertex,p1__42335_SHARP_) > (0));
+}),cljs.core.concat.cljs$core$IFn$_invoke$arity$2((successors.cljs$core$IFn$_invoke$arity$1 ? successors.cljs$core$IFn$_invoke$arity$1(vertex) : successors.call(null,vertex)),(predecessors.cljs$core$IFn$_invoke$arity$1 ? predecessors.cljs$core$IFn$_invoke$arity$1(vertex) : predecessors.call(null,vertex)))));
 }),s,t);
 });
 /**
@@ -151,23 +152,23 @@ return (loom.flow.residual_capacity.call(null,capacity,flow,vertex,p1__38535_SHA
  */
 loom.flow.augment_along_path = (function loom$flow$augment_along_path(flow,capacity,path,increase){
 while(true){
-var vn0 = cljs.core.first.call(null,path);
-var vn1 = cljs.core.second.call(null,path);
-var forward_flow = (function (){var or__4131__auto__ = cljs.core.get_in.call(null,flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn0,vn1], null));
+var vn0 = cljs.core.first(path);
+var vn1 = cljs.core.second(path);
+var forward_flow = (function (){var or__4131__auto__ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn0,vn1], null));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
 })();
-var forward_capacity = ((function (){var or__4131__auto__ = capacity.call(null,vn0,vn1);
+var forward_capacity = ((function (){var or__4131__auto__ = (capacity.cljs$core$IFn$_invoke$arity$2 ? capacity.cljs$core$IFn$_invoke$arity$2(vn0,vn1) : capacity.call(null,vn0,vn1));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return (0);
 }
 })() - forward_flow);
-var reverse_flow = (function (){var or__4131__auto__ = cljs.core.get_in.call(null,flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn1,vn0], null));
+var reverse_flow = (function (){var or__4131__auto__ = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn1,vn0], null));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
@@ -179,20 +180,20 @@ var y__4223__auto__ = increase;
 return ((x__4222__auto__ < y__4223__auto__) ? x__4222__auto__ : y__4223__auto__);
 })();
 var pushback = (increase - forward_increase);
-var flow_1 = (((forward_increase > (0)))?cljs.core.assoc_in.call(null,flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn0,vn1], null),(forward_flow + forward_increase)):flow);
-var flow_2 = (((pushback > (0)))?cljs.core.assoc_in.call(null,flow_1,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn1,vn0], null),(reverse_flow - pushback)):flow_1);
+var flow_1 = (((forward_increase > (0)))?cljs.core.assoc_in(flow,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn0,vn1], null),(forward_flow + forward_increase)):flow);
+var flow_2 = (((pushback > (0)))?cljs.core.assoc_in(flow_1,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [vn1,vn0], null),(reverse_flow - pushback)):flow_1);
 if((pushback > reverse_flow)){
 throw Object(["Path augmentation failure: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(vn0)," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(vn1)].join(''));
 } else {
-if((cljs.core.count.call(null,path) > (2))){
-var G__38536 = flow_2;
-var G__38537 = capacity;
-var G__38538 = cljs.core.next.call(null,path);
-var G__38539 = increase;
-flow = G__38536;
-capacity = G__38537;
-path = G__38538;
-increase = G__38539;
+if((cljs.core.count(path) > (2))){
+var G__42336 = flow_2;
+var G__42337 = capacity;
+var G__42338 = cljs.core.next(path);
+var G__42339 = increase;
+flow = G__42336;
+capacity = G__42337;
+path = G__42338;
+increase = G__42339;
 continue;
 } else {
 return flow_2;
@@ -216,8 +217,8 @@ break;
  * flow passing from source to sink.
  */
 loom.flow.edmonds_karp = (function loom$flow$edmonds_karp(var_args){
-var G__38541 = arguments.length;
-switch (G__38541) {
+var G__42341 = arguments.length;
+switch (G__42341) {
 case 5:
 return loom.flow.edmonds_karp.cljs$core$IFn$_invoke$arity$5((arguments[(0)]),(arguments[(1)]),(arguments[(2)]),(arguments[(3)]),(arguments[(4)]));
 
@@ -233,29 +234,29 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 });
 
 loom.flow.edmonds_karp.cljs$core$IFn$_invoke$arity$5 = (function (successors,predecessors,capacity,source,sink){
-return loom.flow.edmonds_karp.call(null,successors,predecessors,capacity,source,sink,cljs.core.PersistentArrayMap.EMPTY);
+return loom.flow.edmonds_karp.cljs$core$IFn$_invoke$arity$6(successors,predecessors,capacity,source,sink,cljs.core.PersistentArrayMap.EMPTY);
 });
 
 loom.flow.edmonds_karp.cljs$core$IFn$_invoke$arity$6 = (function (successors,predecessors,capacity,source,sink,flow){
 while(true){
-var temp__5718__auto__ = loom.flow.bf_find_augmenting_path.call(null,successors,predecessors,capacity,flow,source,sink);
+var temp__5718__auto__ = loom.flow.bf_find_augmenting_path(successors,predecessors,capacity,flow,source,sink);
 if(cljs.core.truth_(temp__5718__auto__)){
 var path = temp__5718__auto__;
-var G__38543 = successors;
-var G__38544 = predecessors;
-var G__38545 = capacity;
-var G__38546 = source;
-var G__38547 = sink;
-var G__38548 = loom.flow.augment_along_path.call(null,flow,capacity,path,loom.flow.min_weight_along_path.call(null,path,cljs.core.partial.call(null,loom.flow.residual_capacity,capacity,flow)));
-successors = G__38543;
-predecessors = G__38544;
-capacity = G__38545;
-source = G__38546;
-sink = G__38547;
-flow = G__38548;
+var G__42343 = successors;
+var G__42344 = predecessors;
+var G__42345 = capacity;
+var G__42346 = source;
+var G__42347 = sink;
+var G__42348 = loom.flow.augment_along_path(flow,capacity,path,loom.flow.min_weight_along_path(path,cljs.core.partial.cljs$core$IFn$_invoke$arity$3(loom.flow.residual_capacity,capacity,flow)));
+successors = G__42343;
+predecessors = G__42344;
+capacity = G__42345;
+source = G__42346;
+sink = G__42347;
+flow = G__42348;
 continue;
 } else {
-var value = cljs.core.reduce.call(null,cljs.core._PLUS_,cljs.core.vals.call(null,cljs.core.get.call(null,flow,source)));
+var value = cljs.core.reduce.cljs$core$IFn$_invoke$arity$2(cljs.core._PLUS_,cljs.core.vals(cljs.core.get.cljs$core$IFn$_invoke$arity$2(flow,source)));
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [flow,value], null);
 }
 break;
@@ -264,5 +265,3 @@ break;
 
 loom.flow.edmonds_karp.cljs$lang$maxFixedArity = 6;
 
-
-//# sourceMappingURL=flow.js.map

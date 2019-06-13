@@ -1,6 +1,7 @@
-// Compiled by ClojureScript 1.10.520 {}
+// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
 goog.provide('clojure.data.xml.protocols');
 goog.require('cljs.core');
+goog.require('cljs.core.constants');
 
 /**
  * @interface
@@ -17,13 +18,13 @@ return qname.clojure$data$xml$protocols$AsQName$qname_local$arity$1(qname);
 var x__4433__auto__ = (((qname == null))?null:qname);
 var m__4434__auto__ = (clojure.data.xml.protocols.qname_local[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return m__4434__auto__.call(null,qname);
+return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4434__auto__.call(null,qname));
 } else {
 var m__4431__auto__ = (clojure.data.xml.protocols.qname_local["_"]);
 if((!((m__4431__auto__ == null)))){
-return m__4431__auto__.call(null,qname);
+return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4431__auto__.call(null,qname));
 } else {
-throw cljs.core.missing_protocol.call(null,"AsQName.qname-local",qname);
+throw cljs.core.missing_protocol("AsQName.qname-local",qname);
 }
 }
 }
@@ -39,13 +40,13 @@ return qname.clojure$data$xml$protocols$AsQName$qname_uri$arity$1(qname);
 var x__4433__auto__ = (((qname == null))?null:qname);
 var m__4434__auto__ = (clojure.data.xml.protocols.qname_uri[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return m__4434__auto__.call(null,qname);
+return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4434__auto__.call(null,qname));
 } else {
 var m__4431__auto__ = (clojure.data.xml.protocols.qname_uri["_"]);
 if((!((m__4431__auto__ == null)))){
-return m__4431__auto__.call(null,qname);
+return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4431__auto__.call(null,qname));
 } else {
-throw cljs.core.missing_protocol.call(null,"AsQName.qname-uri",qname);
+throw cljs.core.missing_protocol("AsQName.qname-uri",qname);
 }
 }
 }
@@ -68,13 +69,13 @@ return item.clojure$data$xml$protocols$EventGeneration$gen_event$arity$1(item);
 var x__4433__auto__ = (((item == null))?null:item);
 var m__4434__auto__ = (clojure.data.xml.protocols.gen_event[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return m__4434__auto__.call(null,item);
+return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(item) : m__4434__auto__.call(null,item));
 } else {
 var m__4431__auto__ = (clojure.data.xml.protocols.gen_event["_"]);
 if((!((m__4431__auto__ == null)))){
-return m__4431__auto__.call(null,item);
+return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(item) : m__4431__auto__.call(null,item));
 } else {
-throw cljs.core.missing_protocol.call(null,"EventGeneration.gen-event",item);
+throw cljs.core.missing_protocol("EventGeneration.gen-event",item);
 }
 }
 }
@@ -91,13 +92,13 @@ return item.clojure$data$xml$protocols$EventGeneration$next_events$arity$2(item,
 var x__4433__auto__ = (((item == null))?null:item);
 var m__4434__auto__ = (clojure.data.xml.protocols.next_events[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return m__4434__auto__.call(null,item,next_items);
+return (m__4434__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$2(item,next_items) : m__4434__auto__.call(null,item,next_items));
 } else {
 var m__4431__auto__ = (clojure.data.xml.protocols.next_events["_"]);
 if((!((m__4431__auto__ == null)))){
-return m__4431__auto__.call(null,item,next_items);
+return (m__4431__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$2(item,next_items) : m__4431__auto__.call(null,item,next_items));
 } else {
-throw cljs.core.missing_protocol.call(null,"EventGeneration.next-events",item);
+throw cljs.core.missing_protocol("EventGeneration.next-events",item);
 }
 }
 }
@@ -119,13 +120,13 @@ return expr.clojure$data$xml$protocols$AsElements$as_elements$arity$1(expr);
 var x__4433__auto__ = (((expr == null))?null:expr);
 var m__4434__auto__ = (clojure.data.xml.protocols.as_elements[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return m__4434__auto__.call(null,expr);
+return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(expr) : m__4434__auto__.call(null,expr));
 } else {
 var m__4431__auto__ = (clojure.data.xml.protocols.as_elements["_"]);
 if((!((m__4431__auto__ == null)))){
-return m__4431__auto__.call(null,expr);
+return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(expr) : m__4431__auto__.call(null,expr));
 } else {
-throw cljs.core.missing_protocol.call(null,"AsElements.as-elements",expr);
+throw cljs.core.missing_protocol("AsElements.as-elements",expr);
 }
 }
 }
@@ -147,17 +148,15 @@ return node.clojure$data$xml$protocols$AsXmlString$xml_str$arity$1(node);
 var x__4433__auto__ = (((node == null))?null:node);
 var m__4434__auto__ = (clojure.data.xml.protocols.xml_str[goog.typeOf(x__4433__auto__)]);
 if((!((m__4434__auto__ == null)))){
-return m__4434__auto__.call(null,node);
+return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(node) : m__4434__auto__.call(null,node));
 } else {
 var m__4431__auto__ = (clojure.data.xml.protocols.xml_str["_"]);
 if((!((m__4431__auto__ == null)))){
-return m__4431__auto__.call(null,node);
+return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(node) : m__4431__auto__.call(null,node));
 } else {
-throw cljs.core.missing_protocol.call(null,"AsXmlString.xml-str",node);
+throw cljs.core.missing_protocol("AsXmlString.xml-str",node);
 }
 }
 }
 });
 
-
-//# sourceMappingURL=protocols.js.map

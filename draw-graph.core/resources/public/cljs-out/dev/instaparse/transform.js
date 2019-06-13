@@ -1,29 +1,32 @@
-// Compiled by ClojureScript 1.10.520 {}
+// Compiled by ClojureScript 1.10.520 {:static-fns true, :optimize-constants true}
 goog.provide('instaparse.transform');
 goog.require('cljs.core');
+goog.require('cljs.core.constants');
 goog.require('instaparse.gll');
 goog.require('instaparse.util');
 instaparse.transform.map_preserving_meta = (function instaparse$transform$map_preserving_meta(f,l){
-return cljs.core.with_meta.call(null,cljs.core.map.call(null,f,l),cljs.core.meta.call(null,l));
+return cljs.core.with_meta(cljs.core.map.cljs$core$IFn$_invoke$arity$2(f,l),cljs.core.meta(l));
 });
 /**
  * This variation of the merge-meta in gll does nothing if obj is not
  * something that can have a metamap attached.
  */
 instaparse.transform.merge_meta = (function instaparse$transform$merge_meta(obj,metamap){
-if((((!((obj == null))))?(((((obj.cljs$lang$protocol_mask$partition0$ & (262144))) || ((cljs.core.PROTOCOL_SENTINEL === obj.cljs$core$IWithMeta$))))?true:(((!obj.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_.call(null,cljs.core.IWithMeta,obj):false)):cljs.core.native_satisfies_QMARK_.call(null,cljs.core.IWithMeta,obj))){
-return instaparse.gll.merge_meta.call(null,obj,metamap);
+if((((!((obj == null))))?(((((obj.cljs$lang$protocol_mask$partition0$ & (262144))) || ((cljs.core.PROTOCOL_SENTINEL === obj.cljs$core$IWithMeta$))))?true:(((!obj.cljs$lang$protocol_mask$partition0$))?cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,obj):false)):cljs.core.native_satisfies_QMARK_(cljs.core.IWithMeta,obj))){
+return instaparse.gll.merge_meta(obj,metamap);
 } else {
 return obj;
 }
 });
 instaparse.transform.enlive_transform = (function instaparse$transform$enlive_transform(transform_map,parse_tree){
-var transform = transform_map.call(null,new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(parse_tree));
+var transform = (function (){var G__22357 = cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(parse_tree);
+return (transform_map.cljs$core$IFn$_invoke$arity$1 ? transform_map.cljs$core$IFn$_invoke$arity$1(G__22357) : transform_map.call(null,G__22357));
+})();
 if(cljs.core.truth_(transform)){
-return instaparse.transform.merge_meta.call(null,cljs.core.apply.call(null,transform,cljs.core.map.call(null,cljs.core.partial.call(null,instaparse.transform.enlive_transform,transform_map),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(parse_tree))),cljs.core.meta.call(null,parse_tree));
+return instaparse.transform.merge_meta(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(transform,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(instaparse.transform.enlive_transform,transform_map),cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(parse_tree))),cljs.core.meta(parse_tree));
 } else {
-if(cljs.core.truth_(new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(parse_tree))){
-return cljs.core.assoc.call(null,parse_tree,new cljs.core.Keyword(null,"content","content",15833224),cljs.core.map.call(null,cljs.core.partial.call(null,instaparse.transform.enlive_transform,transform_map),new cljs.core.Keyword(null,"content","content",15833224).cljs$core$IFn$_invoke$arity$1(parse_tree)));
+if(cljs.core.truth_(cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(parse_tree))){
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(parse_tree,cljs.core.cst$kw$content,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(instaparse.transform.enlive_transform,transform_map),cljs.core.cst$kw$content.cljs$core$IFn$_invoke$arity$1(parse_tree)));
 } else {
 return parse_tree;
 
@@ -31,13 +34,15 @@ return parse_tree;
 }
 });
 instaparse.transform.hiccup_transform = (function instaparse$transform$hiccup_transform(transform_map,parse_tree){
-if(((cljs.core.sequential_QMARK_.call(null,parse_tree)) && (cljs.core.seq.call(null,parse_tree)))){
-var temp__5718__auto__ = transform_map.call(null,cljs.core.first.call(null,parse_tree));
+if(((cljs.core.sequential_QMARK_(parse_tree)) && (cljs.core.seq(parse_tree)))){
+var temp__5718__auto__ = (function (){var G__22358 = cljs.core.first(parse_tree);
+return (transform_map.cljs$core$IFn$_invoke$arity$1 ? transform_map.cljs$core$IFn$_invoke$arity$1(G__22358) : transform_map.call(null,G__22358));
+})();
 if(cljs.core.truth_(temp__5718__auto__)){
 var transform = temp__5718__auto__;
-return instaparse.transform.merge_meta.call(null,cljs.core.apply.call(null,transform,cljs.core.map.call(null,cljs.core.partial.call(null,instaparse.transform.hiccup_transform,transform_map),cljs.core.next.call(null,parse_tree))),cljs.core.meta.call(null,parse_tree));
+return instaparse.transform.merge_meta(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(transform,cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(instaparse.transform.hiccup_transform,transform_map),cljs.core.next(parse_tree))),cljs.core.meta(parse_tree));
 } else {
-return cljs.core.with_meta.call(null,cljs.core.into.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.first.call(null,parse_tree)], null),cljs.core.map.call(null,cljs.core.partial.call(null,instaparse.transform.hiccup_transform,transform_map),cljs.core.next.call(null,parse_tree))),cljs.core.meta.call(null,parse_tree));
+return cljs.core.with_meta(cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.first(parse_tree)], null),cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(instaparse.transform.hiccup_transform,transform_map),cljs.core.next(parse_tree))),cljs.core.meta(parse_tree));
 }
 } else {
 return parse_tree;
@@ -55,25 +60,25 @@ instaparse.transform.transform = (function instaparse$transform$transform(transf
 if(typeof parse_tree === 'string'){
 return parse_tree;
 } else {
-if(cljs.core.truth_((function (){var and__4120__auto__ = cljs.core.map_QMARK_.call(null,parse_tree);
+if(cljs.core.truth_((function (){var and__4120__auto__ = cljs.core.map_QMARK_(parse_tree);
 if(and__4120__auto__){
-return new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(parse_tree);
+return cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(parse_tree);
 } else {
 return and__4120__auto__;
 }
 })())){
-return instaparse.transform.enlive_transform.call(null,transform_map,parse_tree);
+return instaparse.transform.enlive_transform(transform_map,parse_tree);
 } else {
-if(((cljs.core.vector_QMARK_.call(null,parse_tree)) && ((cljs.core.first.call(null,parse_tree) instanceof cljs.core.Keyword)))){
-return instaparse.transform.hiccup_transform.call(null,transform_map,parse_tree);
+if(((cljs.core.vector_QMARK_(parse_tree)) && ((cljs.core.first(parse_tree) instanceof cljs.core.Keyword)))){
+return instaparse.transform.hiccup_transform(transform_map,parse_tree);
 } else {
-if(cljs.core.sequential_QMARK_.call(null,parse_tree)){
-return instaparse.transform.map_preserving_meta.call(null,cljs.core.partial.call(null,instaparse.transform.transform,transform_map),parse_tree);
+if(cljs.core.sequential_QMARK_(parse_tree)){
+return instaparse.transform.map_preserving_meta(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(instaparse.transform.transform,transform_map),parse_tree);
 } else {
 if((parse_tree instanceof instaparse.gll.Failure)){
 return parse_tree;
 } else {
-return instaparse.util.throw_illegal_argument_exception.call(null,"Invalid parse-tree, not recognized as either enlive or hiccup format.");
+return instaparse.util.throw_illegal_argument_exception.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2(["Invalid parse-tree, not recognized as either enlive or hiccup format."], 0));
 
 }
 }
@@ -81,5 +86,3 @@ return instaparse.util.throw_illegal_argument_exception.call(null,"Invalid parse
 }
 }
 });
-
-//# sourceMappingURL=transform.js.map

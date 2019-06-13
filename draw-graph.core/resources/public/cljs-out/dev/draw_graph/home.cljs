@@ -17,8 +17,7 @@
    [clojure.data.xml         :as xml]
    [lib-draw-graph.svg       :as svg]
    [viz.core                 :as viz]
-;   [cljsjs.ace]
-   )
+   [draw-graph.ip            :as ip])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
 
@@ -37,7 +36,8 @@
                         :error ""
                         :warn ""
                         :svg default-svg-text
-                        :data ""}))
+                        :data ""
+                        :region nil}))
 ;; various cursors over the atom
 (def options (cursor local-state [:options]))
 (def svg (cursor local-state [:svg]))
@@ -45,7 +45,7 @@
 (def error (cursor local-state [:error]))
 (def warn (cursor local-state [:warn]))
 (def local-dot (cursor local-state [:local-dot]))
-
+(def region (cursor local-state [:region]))
 
 ;; -------------------------
 ;; Initialise the file reader
@@ -65,17 +65,20 @@
 (def ^:dynamic *produce-dot-locally* true)
 
 
-(defn clj->json
-  [ds]
-  (.stringify js/JSON (clj->js ds)))
+(defn find-region []
+  (ip/region (fn [x] (reset! region x))
+             (fn [err] (js/console.log err))))
 
 
-(defn json->clj
-  [ds]
-  (js->clj (.parse js/JSON ds) :keywordize-keys true))
+(def url-Europe "https://0j6kjsk388.execute-api.eu-west-2.amazonaws.com/beta")
+(def url-US "https://u4jlt3tmhe.execute-api.us-east-1.amazonaws.com/beta")
 
-;(def url-lambda-draw-graph "https://0j6kjsk388.execute-api.eu-west-2.amazonaws.com/beta")
-(def url-lambda-draw-graph "https://u4jlt3tmhe.execute-api.us-east-1.amazonaws.com/beta")
+
+(defn lambda-url []
+  (println @region)
+  (case @region
+    "Europe"  url-Europe
+    url-US))
 
 
 (defn remove-empty-strings
@@ -114,7 +117,7 @@
 
 
 (defn ->svg [json-data]
-  ((partial post url-lambda-draw-graph) json-data))
+  ((partial post (lambda-url)) json-data))
 
 
 (defn put-svg [data]
@@ -143,8 +146,8 @@
 
 (defn process-remotely []
   (->> 
-   (->svg (clj->json (->csv1)))
-   (p/map json->clj)
+   (->svg (utils/clj->json (->csv1)))
+   (p/map utils/json->clj)
    (p/map put-result)
    (p/error (fn [error] (put-error (.-message error))))))
 
@@ -168,8 +171,8 @@
 
 (defn lambda-dot->svg [g opts dot]
   ;; use AWS lambda
-  (->> (->svg (clj->json (dot->svg dot)))
-           (p/map json->clj)
+  (->> (->svg (utils/clj->json (dot->svg dot)))
+           (p/map utils/json->clj)
            (p/map :svg)
            (p/map (partial processor/postprocess-svg g opts))
            (p/map put-svg)
@@ -273,6 +276,8 @@
       (let [node (dom-node this)
             ace-instance (.edit js/ace "editor")]
         (reset! myace ace-instance)
+        (.setTheme ace-instance "ace/theme/textmate")
+        (.setMode (.. ace-instance -session) "ace/mode/tcl")
         (.. ace-instance
             (on "change" #(swap! value assoc :data (.getValue ace-instance))))))
 
@@ -721,14 +726,14 @@
 
 
 (defn home-page []
+  (find-region)
   [:div.page
    [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" :rel "stylesheet"}]
    [:div.wrapper-banner
     [:div.site-banner.banner1 "draw-graph" [local-remote local-remote-state]]
     [:div.banner2.controls "Examples  " [example-dropdown]]]
    ;[:p {:font-size "0.9em;"} "Network diagrams from csv files"]
-   ;(:data @local-state)
+   ;(:region @local-state)
    [:div.main [controls disp-opts-state]]
    [:div.warn @warn]
-   [:div.error @error]]
-  )
+   [:div.error @error]])

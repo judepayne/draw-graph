@@ -47,3 +47,13 @@
   (->> markdown
        (md/md->hiccup)
        (md/component)))
+
+
+(defn clj->json
+  [ds]
+  (.stringify js/JSON (clj->js ds)))
+
+
+(defn json->clj
+  [ds]
+  (js->clj (.parse js/JSON ds) :keywordize-keys true))
