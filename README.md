@@ -19,15 +19,17 @@ However, there's is a lot of information either locked up in spreadsheets or can
 
 ## Structure
 
-The draw-graph source comes in three parts which are in the folders above. Each of the folders has an additional README with more information about how to get things up and running.
+The draw-graph source comes in four parts which are in the folders above. Each of the folders has an additional README with more information about how to get things up and running.
 draw-graph is perhaps not intended to be deployed yourself as it stands, but I hope could serve as a useful example for any such similar projects.
-The three parts:
+The four parts:
 
 - draw-graph.core: The front-end website. A simple Clojurescript front end based on Reagent.
 
 - lambda-draw-graph: The code for the Lambda function that has been deployed to Amazon AWS in the EU-West-2 location (London). The Clojure Lambda function calls into a static build of Graphviz which has been mounted as a 'lambda layer'. 
 
 - lib-draw-graph: a library that provides the functionality to convert the input csv format into the dot language and to provide some additional processing on top. This library is in the form of .cljc files to allow me the flexibility to move (some of) the processing between the lambda function on AWS and the Clojurescript front end. 
+
+- cmd-draw-graph: a command line tool for running draw-graph. You'll need Graphviz installed locally.
 
 
 ## Architecture
@@ -36,7 +38,7 @@ The three parts:
 
 ## Acknowledgements
 
-Thanks to Zachery Tellman for his [Rhizome library](https://github.com/ztellman/rhizome) that I have got a lot of use out of over the last couple of years. In the lib-draw-graph folder, in dot.cljc, I have ported a part of his code to run in both Clojure and Clojurescript (the bit that produces the 'dot' format that is the input into Graphviz).
+Thanks to Zachery Tellman for his [Rhizome library](https://github.com/ztellman/rhizome) that I have got a lot of use out of over the last couple of years. In this [fork](https://github.com/judepayne/rhizome), I have tweaked run in both Clojure and Clojurescript (the bit that produces the 'dot' format input for graphviz).
 
 Thanks also to [iamxuxiao](https://github.com/iamxuxiao/mwgraphviz) for providing instructions on how to do a static build of Graphviz and showing how a C binary could be mounted in an AWS Lambda function. (see 'lambda-draw-graph' folder).
 
