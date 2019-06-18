@@ -132,8 +132,8 @@
   such that the child's attributes overwrite the parent's."
   [g cluster sub-key]
   (if-let [parent (cluster-parent g cluster)]
-    (conj  (merged-cluster-attr g parent sub-key)
-           (sub-key (get (-> g :clusters :attr) cluster)))
+    (merge  (merged-cluster-attr g parent sub-key)
+            (sub-key (get (-> g :clusters :attr) cluster)))
     (sub-key (get (-> g :clusters :attr) cluster))))
 
 

@@ -1,13 +1,12 @@
 # cmd-draw-graph
 
-A command line version of draw-graph. You'll need to have graphviz installed locally to run this.
+A command line version of draw-graph. Graphviz does not need to be installed locally as it's bundled as a transpiled-to-javascript version.
 
 ## Usage
 
 Example usage:
 
     java -jar target/cmd-draw-graph-0.1.0-standalone.jar \
-     -p /usr/local/bin/dot \
      -i     '{"data":"h,animal:person\ne,pandas:huxley,pandas:bridget\ne,pandas:bridget,pandas:max",
      "display-options" : {"layout" : "dot", "label" : "person"},
      "format-in" : "csv",
@@ -19,7 +18,6 @@ Run the -h option to see the options, e.g.:
 
     java -jar target/cmd-draw-graph-0.1.0-standalone.jar -h
 
-The -p option is to specify the path to the Graphviz executable installed on your system.
 
 ## Options
 
@@ -88,7 +86,7 @@ Although draw-graph only a few graph level options, as in the list above, it's o
 
 ## Caveats
 
-This command line tool is not the quickest to start up (about a 1s on my system) being based on the JVM and having to load the Clojure language into it each time its run.
+This command line tool is not the quickest to start up (about a 1s on my system) being based on the JVM and having to load the Clojure language each time it's run.
 
 ## License
 

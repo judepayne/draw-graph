@@ -41,7 +41,7 @@
 ;; support for escaped , \n : and  |
 ;; escaped | doesn't work
 (def regex-kvs-esc
-  "#'([/\\+\\w\\d\\s\\n\\.\\(\\)@&:<>\\'#=/-]|(\\\\,)|(\\\\n))*'")
+  "#'([/\\+\\?\\w\\d\\s\\n\\.\\(\\)!@&:\\[\\]\\(\\)<>\\'#=/-]|(\\\\,)|(\\\\n))*'")
 
 
 (def regex-all "#'(.*)'")
@@ -62,7 +62,7 @@
         <'cs,'> Cs 
     <KVs-esc> = " regex-kvs-esc "
     <KVs> = " regex-kvs  "  
-    E = Node <','> Node (<','> Edge-meta? <'|'>Edge-style)?
+    E = Node <','> Node (<','>)? Edge-meta? (<'|'>Edge-style)?
     Edge-style = KVs
     Edge-meta = KVs-esc
     Node = KVs-esc (<'|'> Node-style)?

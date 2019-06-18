@@ -1,0 +1,4 @@
+{"data":"h,animal:person\ne,pandas:huxley,pandas:bridget\ne,pandas:bridget,pandas:max",
+ "display-options" : {"layout" : "dot", "label" : "person"},
+ "format-in" : "csv",
+ "format-out" : "svg"}

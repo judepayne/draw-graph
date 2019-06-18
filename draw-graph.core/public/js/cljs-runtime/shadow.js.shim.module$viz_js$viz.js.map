@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$viz_js$viz.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAAC,QAAA,CAAa,kCAAb,CAAA;AACAD,IAAAC,QAAA,CAAa,yCAAb,CAAA;AACAC,MAAAC,GAAAC,KAAAC,kBAAA,GAAmCC,OAAA,CAAQ,eAAR,CAAnC;AACAC,uCAAAC,QAAA,GAAkDN,MAAAC,GAAAC,KAAAC,kBAAlD;;",
+"sources":["shadow.js.shim.module$viz_js$viz.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$viz_js$viz\");\ngoog.provide(\"module$shadow_js_shim_module$viz_js$viz\");\nshadow.js.shim.module$viz_js$viz = require(\"viz.js/viz.js\");\nmodule$shadow_js_shim_module$viz_js$viz.default = shadow.js.shim.module$viz_js$viz;\n"],
+"names":["goog","provide","shadow","js","shim","module$viz_js$viz","require","module$shadow_js_shim_module$viz_js$viz","default"]
+}

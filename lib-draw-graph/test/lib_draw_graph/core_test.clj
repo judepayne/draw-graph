@@ -22,7 +22,7 @@
    ;:color-on "id"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "application&owner"
+   :label "application"
    :edge-label "type"
    :shape "rect"
    :nodesep 0.4

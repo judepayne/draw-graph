@@ -11,18 +11,25 @@
 
 ;; -----------------
 ;; Simple type to express either an x,y point or translation
-(defprotocol Geom
-  (add [this that]))
-
-
 (deftype xy [^Long x ^Long y]
   Object
   (toString [this]
-    (str x "," y))
+    (str #?(:clj (.x this) :cljs (.-x this))
+         ","
+         #?(:clj (.y this) :cljs (.-y this)))))
+
+
+(defprotocol Geom
+  (add [^xy this ^xy that]))
+
+
+(extend-type xy
   Geom
   (add [this that]
-    (let [x-sum (+ x #?(:clj (.x that) :cljs (.-x that)))
-          y-sum (+ y #?(:clj (.y that) :cljs (.-y that)))]
+    (let [x-sum (+ #?(:clj (.x this) :cljs (.-x this))
+                   #?(:clj (.x that) :cljs (.-x that)))
+          y-sum (+ #?(:clj (.y this) :cljs (.-y this))
+                   #?(:clj (.y that) :cljs (.-y that)))]
       (xy. x-sum y-sum))))
 
 
@@ -220,7 +227,7 @@
 (defn jump 
   "For moving to prev for next locations in a zipper. num-locs
    should be positive for next and negative for previous."
-  [^Integer num-locs loc]
+  [num-locs loc]
   (cond
     (> num-locs 0) (nth (iterate zip/next loc) num-locs)
     (< num-locs 0) (nth (iterate zip/prev loc) (- num-locs))

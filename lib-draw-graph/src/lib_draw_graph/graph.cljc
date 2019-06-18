@@ -276,7 +276,10 @@
 
    :cluster->descriptor
    (fn [n] (merge {:label n}
-                  (clstr/merged-cluster-attr g n :style)))
+                  (let [x (clstr/merged-cluster-attr g n :style)
+                        ;a (println n x)
+                        y (if (nil? x) {} x)]
+                    y)))
 
    :cluster->ranks
    (fn [n]

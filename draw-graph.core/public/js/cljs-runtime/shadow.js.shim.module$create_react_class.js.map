@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$create_react_class.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAAC,QAAA,CAAa,0CAAb,CAAA;AACAD,IAAAC,QAAA,CAAa,iDAAb,CAAA;AACAC,MAAAC,GAAAC,KAAAC,0BAAA,GAA2CC,OAAA,CAAQ,oBAAR,CAA3C;AACAC,+CAAAC,QAAA,GAA0DN,MAAAC,GAAAC,KAAAC,0BAA1D;;",
+"sources":["shadow.js.shim.module$create_react_class.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$create_react_class\");\ngoog.provide(\"module$shadow_js_shim_module$create_react_class\");\nshadow.js.shim.module$create_react_class = require(\"create-react-class\");\nmodule$shadow_js_shim_module$create_react_class.default = shadow.js.shim.module$create_react_class;\n"],
+"names":["goog","provide","shadow","js","shim","module$create_react_class","require","module$shadow_js_shim_module$create_react_class","default"]
+}

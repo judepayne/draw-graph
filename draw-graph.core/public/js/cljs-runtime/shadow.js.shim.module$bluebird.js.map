@@ -1,0 +1,9 @@
+{
+"version":3,
+"file":"shadow.js.shim.module$bluebird.js",
+"lineCount":5,
+"mappings":"AAAAA,IAAAC,QAAA,CAAa,gCAAb,CAAA;AACAD,IAAAC,QAAA,CAAa,uCAAb,CAAA;AACAC,MAAAC,GAAAC,KAAAC,gBAAA,GAAiCC,OAAA,CAAQ,UAAR,CAAjC;AACAC,qCAAAC,QAAA,GAAgDN,MAAAC,GAAAC,KAAAC,gBAAhD;;",
+"sources":["shadow.js.shim.module$bluebird.js"],
+"sourcesContent":["goog.provide(\"shadow.js.shim.module$bluebird\");\ngoog.provide(\"module$shadow_js_shim_module$bluebird\");\nshadow.js.shim.module$bluebird = require(\"bluebird\");\nmodule$shadow_js_shim_module$bluebird.default = shadow.js.shim.module$bluebird;\n"],
+"names":["goog","provide","shadow","js","shim","module$bluebird","require","module$shadow_js_shim_module$bluebird","default"]
+}

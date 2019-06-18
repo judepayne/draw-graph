@@ -4,6 +4,7 @@
             [clojure.string           :as str]
             [clojure.java.io          :as io]
             [clojure.data.json        :as json]
+            [viz.core                 :as viz]
             [clojure.tools.cli        :refer [cli]])
   (:gen-class))
 
@@ -24,12 +25,9 @@
       (repeat "\n"))))
 
 
-(def path-to-dot "/opt/bin/dot_static")
-
-
 (defn dot->svg
   "Takes a string containing a GraphViz dot file, and returns a string containing SVG."
-  [s & {:keys [path] :or {path path-to-dot}}]
+  [s path]
   (let [s' (str/replace s "\\\\n" "\n")     ;; for multi-line labels
         {:keys [out err]} (sh/sh path "-Tsvg" :in s')]
     (or
@@ -37,36 +35,43 @@
       (throw (IllegalArgumentException. ^String (str "Graphviz!: "(format-error s' err)))))))
 
 
+(defn js-dot->svg
+  "js version of the above. requires no local install of graphviz"
+  [s]
+  (viz/image s))
+
+
 (defn- read-input
   [js]
   (json/read-str js :key-fn keyword))
 
 
-
 (defn ->svg
   "Converts csv1 format to svg format. input is json"
-  [js dot-path]
-  (try
-    (let [in (read-input js)
-          svg (case (*format-in* in)
-                "csv" (let [g (processor/csv->g in)
-                            opts (:display-options in)
-                            g' (processor/preprocess-graph g opts)
-                            ;; warning goes here
-                            dot (processor/g->dot in g')
-                            svg (dot->svg dot :path dot-path)]
-                        (processor/postprocess-svg g' (-> in :display-options) svg))
-                "dot" (dot->svg (:data in))
-                (throw (IllegalArgumentException.
-                        "Error: only 'csv' or 'dot' are allowed input formats.")))]
-      (case (*format-out* in)
-        "svg" (println svg)
-        (println "Error: only 'svg' format can be specified as an output.")))
-    (catch Exception e
-      (println (str "Error!: " (.getMessage e))))))
+  ([js] (->svg js nil))
+  ([js dot-path]
+   (try
+     (let [in (read-input js)
+           svg (case (*format-in* in)
+                 "csv" (let [g (processor/csv->g in)
+                             opts (:display-options in)
+                             g' (processor/preprocess-graph g opts)
+                             dot (processor/g->dot in g')
+                             svg (if (nil? dot-path)
+                                   (js-dot->svg dot)
+                                   (dot->svg dot dot-path))]
+                         (processor/postprocess-svg g' (-> in :display-options) svg))
+                 "dot" (dot->svg (:data in))
+                 (throw (IllegalArgumentException.
+                         "Error: only 'csv' or 'dot' are allowed input formats.")))]
+       (case (*format-out* in)
+         "svg" (println svg)
+         (println "Error: only 'svg' format can be specified as an output.")))
+     (catch Exception e
+       (println (str "Error!: " (.getMessage e)))))))
 
 
-(def required-opts #{:path :input})
+(def required-opts #{:input})
 
 
 (defn missing-required?
@@ -83,8 +88,6 @@
   (let [[opts args banner] (cli args
                                 ["-h" "--help" "Print this help"
                                  :default false :flag true]
-                                ["-p" "--path" "Fully qualified path to graphviz executable."
-                                 :default path-to-dot :flag false :parse-fn identity]
                                 ["-i" "--input" "The input string in json format."
                                  :default false :flag false :parse-fn identity]
                                 ["-v" "--version" "The version of this tool."

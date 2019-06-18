@@ -1,0 +1,19 @@
+{:dependencies  [[org.clojure/clojure "1.10.0"]
+                 [org.clojure/clojurescript "1.10.520"]
+                 [reagent "0.8.1"]
+                 [markdown-to-hiccup "0.6.0"]
+                 [venantius/accountant "0.2.4"]
+                 [secretary "1.2.3"]
+                 [io.nervous/kvlt "0.1.4"]
+                 [hickory "0.7.1"]
+                 [lib-draw-graph "0.1.0"]]
+
+ :source-paths ["src/main"]
+
+ :dev-http {9400 "public/"}
+
+ :builds {:app {:target :browser
+                :output-dir "public/js"
+                :asset-path "/js"
+                :modules {:main {:entries [draw-graph.core]}}
+                :compiler-options {:infer-externs :auto}}}}

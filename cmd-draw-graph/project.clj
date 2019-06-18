@@ -4,7 +4,8 @@
   :license {:name "MIT"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [lib-draw-graph "0.1.0"]
-                 [org.clojure/tools.cli "0.4.2"]]
+                 [org.clojure/tools.cli "0.4.2"]
+                 [viz-cljc "0.1.3"]]
   :repl-options {:init-ns cmd-draw-graph.core}
   :main cmd-draw-graph.core
   :aot [cmd-draw-graph.core]

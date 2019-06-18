@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "buffer": "^5.2.1",
+    "create-react-class": "^15.6.3",
+    "process": "^0.11.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "svg-pan-zoom": "^3.6.0"
+  }
+}

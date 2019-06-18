@@ -98,12 +98,13 @@
          gr0 (apply loom.graph/digraph (map #(vector (:src %) (:dst %)) (:edges parsed)))
          ;; add edge attrs: style and meta
          gr1 (reduce (fn [acc cur]
-                       (if (:style cur)
-                         (let [g' (add-attr-map acc [(:src cur) (:dst cur)] (:style cur))]
-                           (if (:meta cur)
-                             (add-meta-map-to-edge g' (:src cur) (:dst cur) (:meta cur))
-                             g'))
-                         acc))
+                       (let [g' (if (:style cur)
+                                  (add-attr-map acc [(:src cur) (:dst cur)] (:style cur))
+                                  acc)
+                             g'' (if (:meta cur)
+                                   (add-meta-map-to-edge g' (:src cur) (:dst cur) (:meta cur))
+                                   g')]
+                         g''))
                      gr0
                      (:edges parsed))
          ;; add node attributes
