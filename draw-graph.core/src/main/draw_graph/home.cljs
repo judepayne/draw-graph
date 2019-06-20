@@ -1,6 +1,6 @@
 (ns draw-graph.home
   (:require
-   [reagent.core             :refer [atom cursor create-class dom-node]]
+   [reagent.core             :refer [atom cursor create-class dom-node force-update]]
    [reagent.ratom            :refer [reaction make-reaction]]
    [cljs.core.async          :refer [put! chan <! >!]]
    [accountant.core          :as accountant]
@@ -280,28 +280,47 @@
 (def myace (atom nil))
 
 
+(defn initialize-ace [value]
+  (let [ace-instance
+        (.edit js/ace "editor"
+               #js {:theme "ace/theme/textmate"
+                    :showGutter true
+                    :mode "ace/mode/tcl"
+                    :autoScrollEditorIntoView true
+                    :vScrollBarAlwaysVisible true
+                    :hScrollBarAlwaysVisible true})]
+        (reset! myace ace-instance)
+        (.. ace-instance
+            (on "change" #(swap! value assoc :data (.getValue ace-instance))))
+        (.setValue ace-instance (:data @local-state) 1)))
+
+
+(def ace-update (atom 0))
+
+
 (defn ace-editor [value]
   (create-class
    {:display-name "ace editor"
 
     :component-did-mount
     (fn [this]
-      (let [node (dom-node this)
-            ace-instance (.edit js/ace "editor")]
-        (reset! myace ace-instance)
-        (.setTheme ace-instance "ace/theme/textmate")
-        (.setMode (.. ace-instance -session) "ace/mode/tcl")
-        (.. ace-instance
-            (on "change" #(swap! value assoc :data (.getValue ace-instance))))))
+      (initialize-ace local-state))
+
+    :component-did-update
+    (fn [this]
+;      @ace-update
+      )
 
     :reagent-render
-    (fn []
-      [:div {:id "editor"} ])}))
+    (fn [this]
+      @ace-update
+      [:div {:id "editor"}])}))
 
 
 (defn update-ace []
   (let [ace-instance @myace]
-    (.setValue ace-instance (:data @local-state) 1)))
+    (.setValue ace-instance (:data @local-state) 1)
+    (swap! ace-update inc)))
 
 
 (defn load-example-data [ex-fn]
@@ -587,7 +606,8 @@
                     (toggle state :local-class "hidden" "visible")
                     (toggle state :wrapper-class "wrapper controls wrapper-collapsed"
                             "wrapper controls")
-                    (update-ace))}
+                    (swap! ace-update inc)
+                    )}
       "Options" [:a.lbl.show-hide (:lbl @state)]]]))
 
 

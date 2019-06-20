@@ -34,11 +34,11 @@
   {:data
 "h,animal:name
 e,pandas:simone,pandas:max
-e,pandas:sharhar,pandas:summer
+e,pandas:shahar,pandas:summer
 e,pandas:nikkai,pandas:isobel
 e,pandas:malakai,pandas:delila
-e,pandas:cristolene,pandas:sharhar
-e,pandas:kacey,pandas:sharhar|shape:rect:fillcolor:blue:fontcolor:white
+e,pandas:cristolene,pandas:shahar,relationship:friend|color:deeppink
+e,pandas:kacey,pandas:shahar|shape:rect:fillcolor:blue:fontcolor:white,relationship:friend
 e,pandas:malakai,pandas:ivy
 e,pandas:max,pandas:Bridget,|color:blue
 e,pandas:ivy,squirrels:huxley,|color:red
@@ -970,7 +970,14 @@ ce,Risk:Reporting
 ce,Reporting:Settlement
 ce,Settlement:Payments
 ce,Payments:Finance
-cs,Current State|bgcolor:#f0f2da:color:#49c1e5:margin:6:labeljust:r"
+cs,Current State|bgcolor:#f0f2da:color:#49c1e5:margin:6:labeljust:r
+cp,Jacob:Owner View:Ruth:Owner View:Simone:Owner View:Paul:Owner View
+cp,John:Alex:Loris:Owner View:Daniel:Alex:Alex:Owner View
+ce,Jacob:Ruth:Ruth:Simone:Simone:Paul:Ruth:John
+cs,Alex|bgcolor:#9ba3c6
+cs,John|style:rounded:bgcolor:#bbc4e8:labeljust:r:margin:4
+cs,Daniel|style:rounded:bgcolor:#bbc4e8:labeljust:r:margin:4
+cs,Owner View|bgcolor:#e6ebf4:color:#a5b3cc:margin:6:labeljust:l"
    :options
    (merge default-options
           {:layout "dot"

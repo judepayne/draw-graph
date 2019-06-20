@@ -24,11 +24,11 @@ return clojure.string.split.cljs$core$IFn$_invoke$arity$3(s,lib_draw_graph.proce
  */
 lib_draw_graph.processor.third = (function lib_draw_graph$processor$third(coll){
 try{return cljs.core.nth.cljs$core$IFn$_invoke$arity$2(coll,(2));
-}catch (e36505){if((e36505 instanceof Object)){
-var e = e36505;
+}catch (e36502){if((e36502 instanceof Object)){
+var e = e36502;
 return null;
 } else {
-throw e36505;
+throw e36502;
 
 }
 }});

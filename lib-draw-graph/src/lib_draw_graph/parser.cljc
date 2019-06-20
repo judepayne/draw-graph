@@ -62,7 +62,7 @@
         <'cs,'> Cs 
     <KVs-esc> = " regex-kvs-esc "
     <KVs> = " regex-kvs  "  
-    E = Node <','> Node (<','>)? Edge-meta? (<'|'>Edge-style)?
+    E = Node <','> Node (<','> Edge-meta? (<'|'> Edge-style)?)?
     Edge-style = KVs
     Edge-meta = KVs-esc
     Node = KVs-esc (<'|'> Node-style)?

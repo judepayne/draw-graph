@@ -18,11 +18,11 @@
 
 (def standard-options
   [:show-roots? false
-   :cluster-on "function"
+   :cluster-on "animal"
    ;:color-on "id"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "application"
+   :label "name"
    :edge-label "type"
    :shape "rect"
    :nodesep 0.4

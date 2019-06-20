@@ -343,6 +343,9 @@ select {
   color: #777 !important;
 }
 
+.ace_scrollbar {
+  display: block;
+}
 
 @media only screen and (min-width: 768px) {
   body {
