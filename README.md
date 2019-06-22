@@ -47,4 +47,6 @@ Thanks to [mdaines](https://github.com/mdaines/viz.js) for his incredible work i
 
 ## License
 
-draw-graph is provided under the [MIT License](https://opensource.org/licenses/MIT)
+Copyright © Jude Payne 2019
+
+draw-graph is provided under the [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html)

@@ -87,7 +87,3 @@ Although draw-graph only a few graph level options, as in the list above, it's o
 ## Caveats
 
 This command line tool is not the quickest to start up (about a 1s on my system) being based on the JVM and having to load the Clojure language each time it's run.
-
-## License
-
-MIT

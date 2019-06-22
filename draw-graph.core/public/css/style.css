@@ -334,9 +334,16 @@ select {
 }
 
 #editor{
-  border: 1px solid lightgray;
-  margin: 2px;
+  border: 1px solid #eee;
+  height: 100%;
+
 }
+
+.CodeMirror {
+  height: 100%;
+
+}
+
 
 .ace_gutter {
   background: #F8F8F8 !important;
@@ -439,3 +446,9 @@ select {
   transition-delay: 2.0s;
   opacity: 0.7;
 }
+
+
+/* styles for editor highlighting  */
+.cm-style1 { color: gray; }
+.cm-style2 { color: #0f53ff; }
+.cm-style3 { color: #471a77; }

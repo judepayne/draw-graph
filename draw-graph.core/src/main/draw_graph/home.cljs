@@ -45,6 +45,7 @@
 (def warn (cursor local-state [:warn]))
 (def local-dot (cursor local-state [:local-dot]))
 (def region (cursor local-state [:region]))
+(def data (cursor local-state [:data]))
 
 ;; -------------------------
 ;; Initialise the file reader
@@ -55,7 +56,8 @@
 
 (file/file-reader-listen (fn [e] 
                            (do (swap! local-state merge e)
-                               (update-ace))))
+                               ;(update-ace)
+                               )))
 
 
 ;; -------------------------
@@ -277,50 +279,59 @@
 
 ;; ---- Main inputs
 
-(def myace (atom nil))
+(defn code-mirror
+  "Create a code-mirror editor. The parameters:
+  value-atom (reagent atom)
+    when this changes, the editor will update to reflect it.
+  options
+  :style (reagent style map)
+    will be applied to the container element
+  :js-cm-opts
+    options passed into the CodeMirror constructor
+  :on-cm-init (fn [cm] -> nil)
+    called with the CodeMirror instance, for whatever extra fiddling you want to do."
+  [value-atom {:keys [style
+                      js-cm-opts
+                      on-cm-init]}]
 
+  (let [cm (atom nil)]
+    (create-class
+     {:component-did-mount
+      (fn [this]
+        (let [el (dom-node this)
+              inst (js/CodeMirror.
+                    el
+                    (clj->js
+                     (merge
+                      {:lineNumbers true
+                       :viewportMargin js/Infinity
+                       :matchBrackets true
+                       :autofocus true
+                       :value @value-atom
+                       :autoCloseBrackets false
+                       :mode "drawgraph"}
+                      js-cm-opts)))]
 
-(defn initialize-ace [value]
-  (let [ace-instance
-        (.edit js/ace "editor"
-               #js {:theme "ace/theme/textmate"
-                    :showGutter true
-                    :mode "ace/mode/tcl"
-                    :autoScrollEditorIntoView true
-                    :vScrollBarAlwaysVisible true
-                    :hScrollBarAlwaysVisible true})]
-        (reset! myace ace-instance)
-        (.. ace-instance
-            (on "change" #(swap! value assoc :data (.getValue ace-instance))))
-        (.setValue ace-instance (:data @local-state) 1)))
+          (reset! cm inst)
+          (.on inst "change"
+               (fn []
+                 (let [value (.getValue inst)]
+                   (when-not (= value @value-atom)
+                     (reset! value-atom value)))))
+          (when on-cm-init
+            (on-cm-init inst))
+          ))
 
+      :component-did-update
+      (fn [this old-argv]
+        (when-not (= @value-atom (.getValue @cm))
+          (.setValue @cm @value-atom)))
 
-(def ace-update (atom 0))
+      :reagent-render
+      (fn [_ _ _]
+        @value-atom
+        [:div.item5 {:id "editor" :style style}])})))
 
-
-(defn ace-editor [value]
-  (create-class
-   {:display-name "ace editor"
-
-    :component-did-mount
-    (fn [this]
-      (initialize-ace local-state))
-
-    :component-did-update
-    (fn [this]
-;      @ace-update
-      )
-
-    :reagent-render
-    (fn [this]
-      @ace-update
-      [:div {:id "editor"}])}))
-
-
-(defn update-ace []
-  (let [ace-instance @myace]
-    (.setValue ace-instance (:data @local-state) 1)
-    (swap! ace-update inc)))
 
 
 (defn load-example-data [ex-fn]
@@ -331,8 +342,7 @@
 
 (defn example-dropdown []
   [:select {:tabIndex 1
-            :on-change #(do (load-example-data (.. % -target -value))
-                            (update-ace))}  
+            :on-change #(do (load-example-data (.. % -target -value)))}  
    [:option {:value nil} "-"]  
    [:option {:value "draw-graph.examples/example1"} "Friendship graph"]
    [:option {:value "draw-graph.examples/example2"} "Two facing trees"]
@@ -605,9 +615,7 @@
                     (toggle state :lbl "show" "hide")
                     (toggle state :local-class "hidden" "visible")
                     (toggle state :wrapper-class "wrapper controls wrapper-collapsed"
-                            "wrapper controls")
-                    (swap! ace-update inc)
-                    )}
+                            "wrapper controls"))}
       "Options" [:a.lbl.show-hide (:lbl @state)]]]))
 
 
@@ -724,9 +732,7 @@
       [:div [load-button]]
       [:div "or enter the data"]]
      [:div.item4 [:label {:id "file-name"} (:data-filename @local-state)]]
-     [:div.item5 {:id "editor"}
-      [ace-editor local-state]
-      ] ;;need to get id editor in earlier .getDomNode current node perhaps
+     [code-mirror data]
      [disp-opts-hdr state]
      [left-disp-opts1 state]
      [middle-disp-opts1 state]
