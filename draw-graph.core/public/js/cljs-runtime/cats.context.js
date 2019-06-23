@@ -29,8 +29,8 @@ return cljs.core.native_satisfies_QMARK_(cats.protocols.Context,v);
  *   is returned as is without any inference operation.
  */
 cats.context.infer = (function cats$context$infer(var_args){
-var G__38994 = arguments.length;
-switch (G__38994) {
+var G__38990 = arguments.length;
+switch (G__38990) {
 case 0:
 return cats.context.infer.cljs$core$IFn$_invoke$arity$0();
 

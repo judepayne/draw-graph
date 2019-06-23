@@ -2,11 +2,11 @@ goog.provide('clojure.data.zip');
 goog.require('cljs.core');
 goog.require('clojure.zip');
 clojure.data.zip.auto = (function clojure$data$zip$auto(v,x){
-return cljs.core.with_meta(x,(function (){var G__50086 = cljs.core.meta(x);
-var G__50087 = new cljs.core.Keyword("zip-filter","no-auto?","zip-filter/no-auto?",1861656504);
-var G__50088 = true;
-var fexpr__50085 = (cljs.core.truth_(v)?cljs.core.dissoc:cljs.core.assoc);
-return (fexpr__50085.cljs$core$IFn$_invoke$arity$3 ? fexpr__50085.cljs$core$IFn$_invoke$arity$3(G__50086,G__50087,G__50088) : fexpr__50085.call(null,G__50086,G__50087,G__50088));
+return cljs.core.with_meta(x,(function (){var G__50153 = cljs.core.meta(x);
+var G__50154 = new cljs.core.Keyword("zip-filter","no-auto?","zip-filter/no-auto?",1861656504);
+var G__50155 = true;
+var fexpr__50152 = (cljs.core.truth_(v)?cljs.core.dissoc:cljs.core.assoc);
+return (fexpr__50152.cljs$core$IFn$_invoke$arity$3 ? fexpr__50152.cljs$core$IFn$_invoke$arity$3(G__50153,G__50154,G__50155) : fexpr__50152.call(null,G__50153,G__50154,G__50155));
 })());
 });
 clojure.data.zip.auto_QMARK_ = (function clojure$data$zip$auto_QMARK_(x){
@@ -18,8 +18,8 @@ return cljs.core.not(new cljs.core.Keyword("zip-filter","no-auto?","zip-filter/n
 clojure.data.zip.right_locs = (function clojure$data$zip$right_locs(loc){
 return (new cljs.core.LazySeq(null,(function (){
 if(cljs.core.truth_(loc)){
-return cljs.core.cons(clojure.data.zip.auto(false,loc),(function (){var G__50089 = clojure.zip.right(loc);
-return (clojure.data.zip.right_locs.cljs$core$IFn$_invoke$arity$1 ? clojure.data.zip.right_locs.cljs$core$IFn$_invoke$arity$1(G__50089) : clojure.data.zip.right_locs.call(null,G__50089));
+return cljs.core.cons(clojure.data.zip.auto(false,loc),(function (){var G__50157 = clojure.zip.right(loc);
+return (clojure.data.zip.right_locs.cljs$core$IFn$_invoke$arity$1 ? clojure.data.zip.right_locs.cljs$core$IFn$_invoke$arity$1(G__50157) : clojure.data.zip.right_locs.call(null,G__50157));
 })());
 } else {
 return null;
@@ -32,8 +32,8 @@ return null;
 clojure.data.zip.left_locs = (function clojure$data$zip$left_locs(loc){
 return (new cljs.core.LazySeq(null,(function (){
 if(cljs.core.truth_(loc)){
-return cljs.core.cons(clojure.data.zip.auto(false,loc),(function (){var G__50091 = clojure.zip.left(loc);
-return (clojure.data.zip.left_locs.cljs$core$IFn$_invoke$arity$1 ? clojure.data.zip.left_locs.cljs$core$IFn$_invoke$arity$1(G__50091) : clojure.data.zip.left_locs.call(null,G__50091));
+return cljs.core.cons(clojure.data.zip.auto(false,loc),(function (){var G__50158 = clojure.zip.left(loc);
+return (clojure.data.zip.left_locs.cljs$core$IFn$_invoke$arity$1 ? clojure.data.zip.left_locs.cljs$core$IFn$_invoke$arity$1(G__50158) : clojure.data.zip.left_locs.call(null,G__50158));
 })());
 } else {
 return null;
@@ -58,8 +58,8 @@ return (clojure.zip.right(loc) == null);
  */
 clojure.data.zip.children = (function clojure$data$zip$children(loc){
 if(cljs.core.truth_(clojure.zip.branch_QMARK_(loc))){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__50092_SHARP_){
-return clojure.data.zip.auto(false,p1__50092_SHARP_);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__50161_SHARP_){
+return clojure.data.zip.auto(false,p1__50161_SHARP_);
 }),clojure.data.zip.right_locs(clojure.zip.down(loc)));
 } else {
 return null;
@@ -71,8 +71,8 @@ return null;
  */
 clojure.data.zip.children_auto = (function clojure$data$zip$children_auto(loc){
 if(cljs.core.truth_(clojure.zip.branch_QMARK_(loc))){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__50093_SHARP_){
-return clojure.data.zip.auto(true,p1__50093_SHARP_);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__50162_SHARP_){
+return clojure.data.zip.auto(true,p1__50162_SHARP_);
 }),clojure.data.zip.right_locs(clojure.zip.down(loc)));
 } else {
 return null;
@@ -95,8 +95,8 @@ return cljs.core.cons(clojure.data.zip.auto(false,loc),cljs.core.mapcat.cljs$cor
 clojure.data.zip.ancestors = (function clojure$data$zip$ancestors(loc){
 return (new cljs.core.LazySeq(null,(function (){
 if(cljs.core.truth_(loc)){
-return cljs.core.cons(clojure.data.zip.auto(false,loc),(function (){var G__50103 = clojure.zip.up(loc);
-return (clojure.data.zip.ancestors.cljs$core$IFn$_invoke$arity$1 ? clojure.data.zip.ancestors.cljs$core$IFn$_invoke$arity$1(G__50103) : clojure.data.zip.ancestors.call(null,G__50103));
+return cljs.core.cons(clojure.data.zip.auto(false,loc),(function (){var G__50165 = clojure.zip.up(loc);
+return (clojure.data.zip.ancestors.cljs$core$IFn$_invoke$arity$1 ? clojure.data.zip.ancestors.cljs$core$IFn$_invoke$arity$1(G__50165) : clojure.data.zip.ancestors.call(null,G__50165));
 })());
 } else {
 return null;
@@ -140,14 +140,14 @@ return (new cljs.core.List(null,rtn,null,(1),null));
 });
 clojure.data.zip.mapcat_chain = (function clojure$data$zip$mapcat_chain(loc,preds,mkpred){
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (prevseq,expr){
-return cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (p1__50110_SHARP_){
+return cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic((function (p1__50169_SHARP_){
 return clojure.data.zip.fixup_apply((function (){var or__4131__auto__ = (mkpred.cljs$core$IFn$_invoke$arity$1 ? mkpred.cljs$core$IFn$_invoke$arity$1(expr) : mkpred.call(null,expr));
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return expr;
 }
-})(),p1__50110_SHARP_);
+})(),p1__50169_SHARP_);
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([prevseq], 0));
 }),(new cljs.core.List(null,cljs.core.with_meta(loc,cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.meta(loc),new cljs.core.Keyword("zip-filter","is-node?","zip-filter/is-node?",-1966970687),true)),null,(1),null)),preds);
 });

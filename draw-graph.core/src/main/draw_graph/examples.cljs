@@ -970,14 +970,7 @@ ce,Risk:Reporting
 ce,Reporting:Settlement
 ce,Settlement:Payments
 ce,Payments:Finance
-cs,Current State|bgcolor:#f0f2da:color:#49c1e5:margin:6:labeljust:r
-cp,Jacob:Owner View:Ruth:Owner View:Simone:Owner View:Paul:Owner View
-cp,John:Alex:Loris:Owner View:Daniel:Alex:Alex:Owner View
-ce,Jacob:Ruth:Ruth:Simone:Simone:Paul:Ruth:John
-cs,Alex|bgcolor:#9ba3c6
-cs,John|style:rounded:bgcolor:#bbc4e8:labeljust:r:margin:4
-cs,Daniel|style:rounded:bgcolor:#bbc4e8:labeljust:r:margin:4
-cs,Owner View|bgcolor:#e6ebf4:color:#a5b3cc:margin:6:labeljust:l"
+cs,Current State|bgcolor:#f0f2da:color:#49c1e5:margin:6:labeljust:r"
    :options
    (merge default-options
           {:layout "dot"

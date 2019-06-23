@@ -28,25 +28,25 @@ var argseq__4737__auto__ = ((((0) < args__4736__auto__.length))?(new cljs.core.I
 return taoensso.timbre.appenders.core.println_appender.cljs$core$IFn$_invoke$arity$variadic(argseq__4737__auto__);
 });
 
-taoensso.timbre.appenders.core.println_appender.cljs$core$IFn$_invoke$arity$variadic = (function (p__40446){
-var vec__40447 = p__40446;
-var _opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__40447,(0),null);
-return new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"enabled?","enabled?",-1376075057),true,new cljs.core.Keyword(null,"async?","async?",1523057758),false,new cljs.core.Keyword(null,"min-level","min-level",1634684919),null,new cljs.core.Keyword(null,"rate-limit","rate-limit",1748082022),null,new cljs.core.Keyword(null,"output-fn","output-fn",1600951539),new cljs.core.Keyword(null,"inherit","inherit",-1840815422),new cljs.core.Keyword(null,"fn","fn",-1175266204),((function (vec__40447,_opts){
+taoensso.timbre.appenders.core.println_appender.cljs$core$IFn$_invoke$arity$variadic = (function (p__40445){
+var vec__40446 = p__40445;
+var _opts = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__40446,(0),null);
+return new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"enabled?","enabled?",-1376075057),true,new cljs.core.Keyword(null,"async?","async?",1523057758),false,new cljs.core.Keyword(null,"min-level","min-level",1634684919),null,new cljs.core.Keyword(null,"rate-limit","rate-limit",1748082022),null,new cljs.core.Keyword(null,"output-fn","output-fn",1600951539),new cljs.core.Keyword(null,"inherit","inherit",-1840815422),new cljs.core.Keyword(null,"fn","fn",-1175266204),((function (vec__40446,_opts){
 return (function (data){
-var map__40450 = data;
-var map__40450__$1 = (((((!((map__40450 == null))))?(((((map__40450.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__40450.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__40450):map__40450);
-var output_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__40450__$1,new cljs.core.Keyword(null,"output_","output_",-36797880));
+var map__40449 = data;
+var map__40449__$1 = (((((!((map__40449 == null))))?(((((map__40449.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__40449.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__40449):map__40449);
+var output_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__40449__$1,new cljs.core.Keyword(null,"output_","output_",-36797880));
 return cljs.core.println.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.force(output_)], 0));
-});})(vec__40447,_opts))
+});})(vec__40446,_opts))
 ], null);
 });
 
 taoensso.timbre.appenders.core.println_appender.cljs$lang$maxFixedArity = (0);
 
 /** @this {Function} */
-taoensso.timbre.appenders.core.println_appender.cljs$lang$applyTo = (function (seq40445){
+taoensso.timbre.appenders.core.println_appender.cljs$lang$applyTo = (function (seq40443){
 var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq40445));
+return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq40443));
 });
 
 /**
@@ -163,9 +163,9 @@ return null;
 taoensso.timbre.appenders.core.console_appender.cljs$lang$maxFixedArity = (0);
 
 /** @this {Function} */
-taoensso.timbre.appenders.core.console_appender.cljs$lang$applyTo = (function (seq40452){
+taoensso.timbre.appenders.core.console_appender.cljs$lang$applyTo = (function (seq40451){
 var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq40452));
+return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq40451));
 });
 
 /**

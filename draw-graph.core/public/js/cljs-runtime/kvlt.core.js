@@ -7,8 +7,8 @@ goog.require('kvlt.middleware');
 goog.require('kvlt.middleware.params');
 goog.require('taoensso.timbre');
 kvlt.core.default_middleware = new cljs.core.PersistentVector(null, 20, 5, cljs.core.PersistentVector.EMPTY_NODE, [kvlt.middleware.decompress,kvlt.middleware.as,kvlt.middleware.params.form,kvlt.middleware.params.short_form,kvlt.middleware.params.query,kvlt.middleware.params.short_query,kvlt.middleware.port,kvlt.middleware.method,kvlt.middleware.default_method,kvlt.middleware.accept,kvlt.middleware.accept_encoding,kvlt.middleware.keyword_headers,kvlt.middleware.lower_case_headers,kvlt.middleware.content_type,kvlt.middleware.default_content_type,kvlt.middleware.body_type_hint,kvlt.middleware.basic_auth,kvlt.middleware.oauth_token,kvlt.middleware.url,kvlt.middleware.error], null);
-kvlt.core.request_STAR_ = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p1__47311_SHARP_,p2__47310_SHARP_){
-return (p2__47310_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p2__47310_SHARP_.cljs$core$IFn$_invoke$arity$1(p1__47311_SHARP_) : p2__47310_SHARP_.call(null,p1__47311_SHARP_));
+kvlt.core.request_STAR_ = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p1__47298_SHARP_,p2__47297_SHARP_){
+return (p2__47297_SHARP_.cljs$core$IFn$_invoke$arity$1 ? p2__47297_SHARP_.cljs$core$IFn$_invoke$arity$1(p1__47298_SHARP_) : p2__47297_SHARP_.call(null,p1__47298_SHARP_));
 }),kvlt.platform.http.request_BANG_,kvlt.core.default_middleware);
 /**
  * Disable request/response logging
@@ -52,14 +52,14 @@ return (kvlt.core.request_STAR_.cljs$core$IFn$_invoke$arity$1 ? kvlt.core.reques
  */
 kvlt.core.websocket_BANG_ = (function kvlt$core$websocket_BANG_(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___47347 = arguments.length;
-var i__4731__auto___47348 = (0);
+var len__4730__auto___47323 = arguments.length;
+var i__4731__auto___47324 = (0);
 while(true){
-if((i__4731__auto___47348 < len__4730__auto___47347)){
-args__4736__auto__.push((arguments[i__4731__auto___47348]));
+if((i__4731__auto___47324 < len__4730__auto___47323)){
+args__4736__auto__.push((arguments[i__4731__auto___47324]));
 
-var G__47349 = (i__4731__auto___47348 + (1));
-i__4731__auto___47348 = G__47349;
+var G__47325 = (i__4731__auto___47324 + (1));
+i__4731__auto___47324 = G__47325;
 continue;
 } else {
 }
@@ -70,26 +70,26 @@ var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.I
 return kvlt.core.websocket_BANG_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
 });
 
-kvlt.core.websocket_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__47315){
-var vec__47318 = p__47315;
-var map__47321 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47318,(0),null);
-var map__47321__$1 = (((((!((map__47321 == null))))?(((((map__47321.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47321.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47321):map__47321);
-var opts = map__47321__$1;
-var read_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47321__$1,new cljs.core.Keyword(null,"read-chan","read-chan",-311487928));
-var write_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47321__$1,new cljs.core.Keyword(null,"write-chan","write-chan",-1022958832));
-var close_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47321__$1,new cljs.core.Keyword(null,"close?","close?",1600185693));
-var format = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47321__$1,new cljs.core.Keyword(null,"format","format",-1306924766));
+kvlt.core.websocket_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__47304){
+var vec__47308 = p__47304;
+var map__47311 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47308,(0),null);
+var map__47311__$1 = (((((!((map__47311 == null))))?(((((map__47311.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47311.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47311):map__47311);
+var opts = map__47311__$1;
+var read_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47311__$1,new cljs.core.Keyword(null,"read-chan","read-chan",-311487928));
+var write_chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47311__$1,new cljs.core.Keyword(null,"write-chan","write-chan",-1022958832));
+var close_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47311__$1,new cljs.core.Keyword(null,"close?","close?",1600185693));
+var format = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47311__$1,new cljs.core.Keyword(null,"format","format",-1306924766));
 return kvlt.platform.websocket.request_BANG_.cljs$core$IFn$_invoke$arity$variadic(url,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([opts], 0));
 });
 
 kvlt.core.websocket_BANG_.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-kvlt.core.websocket_BANG_.cljs$lang$applyTo = (function (seq47312){
-var G__47313 = cljs.core.first(seq47312);
-var seq47312__$1 = cljs.core.next(seq47312);
+kvlt.core.websocket_BANG_.cljs$lang$applyTo = (function (seq47299){
+var G__47301 = cljs.core.first(seq47299);
+var seq47299__$1 = cljs.core.next(seq47299);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47313,seq47312__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47301,seq47299__$1);
 });
 
 /**
@@ -115,14 +115,14 @@ return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47313,seq47312
  */
 kvlt.core.event_source_BANG_ = (function kvlt$core$event_source_BANG_(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___47350 = arguments.length;
-var i__4731__auto___47351 = (0);
+var len__4730__auto___47334 = arguments.length;
+var i__4731__auto___47335 = (0);
 while(true){
-if((i__4731__auto___47351 < len__4730__auto___47350)){
-args__4736__auto__.push((arguments[i__4731__auto___47351]));
+if((i__4731__auto___47335 < len__4730__auto___47334)){
+args__4736__auto__.push((arguments[i__4731__auto___47335]));
 
-var G__47352 = (i__4731__auto___47351 + (1));
-i__4731__auto___47351 = G__47352;
+var G__47336 = (i__4731__auto___47335 + (1));
+i__4731__auto___47335 = G__47336;
 continue;
 } else {
 }
@@ -133,25 +133,25 @@ var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.I
 return kvlt.core.event_source_BANG_.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
 });
 
-kvlt.core.event_source_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__47335){
-var vec__47336 = p__47335;
-var map__47339 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47336,(0),null);
-var map__47339__$1 = (((((!((map__47339 == null))))?(((((map__47339.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47339.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47339):map__47339);
-var events = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47339__$1,new cljs.core.Keyword(null,"events","events",1792552201),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"message","message",-406056002),null], null), null));
-var as = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47339__$1,new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"string","string",-1989541586));
-var chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47339__$1,new cljs.core.Keyword(null,"chan","chan",-2103021695));
-var close_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47339__$1,new cljs.core.Keyword(null,"close?","close?",1600185693),true);
+kvlt.core.event_source_BANG_.cljs$core$IFn$_invoke$arity$variadic = (function (url,p__47315){
+var vec__47317 = p__47315;
+var map__47320 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47317,(0),null);
+var map__47320__$1 = (((((!((map__47320 == null))))?(((((map__47320.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47320.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47320):map__47320);
+var events = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47320__$1,new cljs.core.Keyword(null,"events","events",1792552201),new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"message","message",-406056002),null], null), null));
+var as = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47320__$1,new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"string","string",-1989541586));
+var chan = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47320__$1,new cljs.core.Keyword(null,"chan","chan",-2103021695));
+var close_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47320__$1,new cljs.core.Keyword(null,"close?","close?",1600185693),true);
 return kvlt.platform.event_source.request_BANG_.cljs$core$IFn$_invoke$arity$variadic(url,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"events","events",1792552201),events,new cljs.core.Keyword(null,"format","format",-1306924766),as,new cljs.core.Keyword(null,"chan","chan",-2103021695),chan,new cljs.core.Keyword(null,"close?","close?",1600185693),close_QMARK_], null)], 0));
 });
 
 kvlt.core.event_source_BANG_.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-kvlt.core.event_source_BANG_.cljs$lang$applyTo = (function (seq47326){
-var G__47327 = cljs.core.first(seq47326);
-var seq47326__$1 = cljs.core.next(seq47326);
+kvlt.core.event_source_BANG_.cljs$lang$applyTo = (function (seq47313){
+var G__47314 = cljs.core.first(seq47313);
+var seq47313__$1 = cljs.core.next(seq47313);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47327,seq47326__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__47314,seq47313__$1);
 });
 
 

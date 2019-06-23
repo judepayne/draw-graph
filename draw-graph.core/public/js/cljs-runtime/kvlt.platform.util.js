@@ -3,14 +3,14 @@ goog.require('cljs.core');
 goog.require('clojure.walk');
 kvlt.platform.util.exception__GT_map = (function kvlt$platform$util$exception__GT_map(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___38900 = arguments.length;
-var i__4731__auto___38901 = (0);
+var len__4730__auto___38891 = arguments.length;
+var i__4731__auto___38892 = (0);
 while(true){
-if((i__4731__auto___38901 < len__4730__auto___38900)){
-args__4736__auto__.push((arguments[i__4731__auto___38901]));
+if((i__4731__auto___38892 < len__4730__auto___38891)){
+args__4736__auto__.push((arguments[i__4731__auto___38892]));
 
-var G__38902 = (i__4731__auto___38901 + (1));
-i__4731__auto___38901 = G__38902;
+var G__38893 = (i__4731__auto___38892 + (1));
+i__4731__auto___38892 = G__38893;
 continue;
 } else {
 }

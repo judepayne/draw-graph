@@ -18,11 +18,11 @@
 
 (def standard-options
   [:show-roots? false
-   :cluster-on "animal"
+   :cluster-on "function"
    ;:color-on "id"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "name"
+   :label "application"
    :edge-label "type"
    :shape "rect"
    :nodesep 0.4
@@ -42,16 +42,15 @@
    :constraint true
    :show-constraints? false
    :fix-ranks? true
- ;  :filter-graph "application=sysTicket or function=Reporting"
- ;  :filter-graph "type=[trades/clients/books/products/instruments/employees]"
- ; :filter-graph "function=Capture"
+ ;  :filter-graph "application = sysTicket or function = Reporting"
+ ;  :filter-graph "function not in (Risk)"
  ;  :filter-graph "level<ted"
- ;  :filter-graph "format=legacy"
- ;  :filter-graph "volume>100"
+ ;  :filter-graph "format = legacy"
+ ;  :filter-graph "volume not in (30, 25) and format in (legacy)"
  ;  :filter-graph "animal=pandas"
- ;  :filter-graph "owner=Ruth"
+ ;   :filter-graph "owner = Ruth"
  ;  :filter-graph "id<30"
- ;  :paths "owner:Ruth|owner:Paul"
+   :paths "owner = Ruth|owner = Paul"
  ;  :paths "function:Capture or function:Lifecycle|function:Reporting"
    :post-process? true
    :pp-clusters {:y true :h true :x true :w true}

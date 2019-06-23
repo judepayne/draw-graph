@@ -7,8 +7,8 @@ rhizome.dot.escapable_characters = "\\|{}\"";
  * Escape characters that are significant for the dot format.
  */
 rhizome.dot.escape_string = (function rhizome$dot$escape_string(s){
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p1__47096_SHARP_,p2__47097_SHARP_){
-return clojure.string.replace(p1__47096_SHARP_,cljs.core.str.cljs$core$IFn$_invoke$arity$1(p2__47097_SHARP_),["\\",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p2__47097_SHARP_)].join(''));
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (p1__47134_SHARP_,p2__47135_SHARP_){
+return clojure.string.replace(p1__47134_SHARP_,cljs.core.str.cljs$core$IFn$_invoke$arity$1(p2__47135_SHARP_),["\\",cljs.core.str.cljs$core$IFn$_invoke$arity$1(p2__47135_SHARP_)].join(''));
 }),s,rhizome.dot.escapable_characters);
 });
 rhizome.dot.default_options = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"dpi","dpi",-986162832),(100)], null);
@@ -16,15 +16,15 @@ rhizome.dot.default_node_options = cljs.core.PersistentArrayMap.EMPTY;
 rhizome.dot.default_edge_options = cljs.core.PersistentArrayMap.EMPTY;
 rhizome.dot.option_translations = new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"vertical?","vertical?",-1522630444),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"rankdir","rankdir",-2029540135),new cljs.core.PersistentArrayMap(null, 2, [true,new cljs.core.Keyword(null,"TP","TP",163239233),false,new cljs.core.Keyword(null,"LR","LR",341359911)], null)], null)], null);
 rhizome.dot.translate_options = (function rhizome$dot$translate_options(m){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.nil_QMARK_,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__47103){
-var vec__47104 = p__47103;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47104,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47104,(1),null);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.nil_QMARK_,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__47140){
+var vec__47141 = p__47140;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47141,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47141,(1),null);
 var temp__5718__auto__ = (rhizome.dot.option_translations.cljs$core$IFn$_invoke$arity$1 ? rhizome.dot.option_translations.cljs$core$IFn$_invoke$arity$1(k) : rhizome.dot.option_translations.call(null,k));
 if(cljs.core.truth_(temp__5718__auto__)){
-var vec__47114 = temp__5718__auto__;
-var k_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47114,(0),null);
-var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47114,(1),null);
+var vec__47145 = temp__5718__auto__;
+var k_STAR_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47145,(0),null);
+var f = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47145,(1),null);
 if(cljs.core.contains_QMARK_(m,k_STAR_)){
 return null;
 } else {
@@ -75,8 +75,8 @@ return cljs.core.str.cljs$core$IFn$_invoke$arity$1(v);
 });
 rhizome.dot.format_label = (function rhizome$dot$format_label(label){
 if(cljs.core.sequential_QMARK_(label)){
-return rhizome.dot.__GT_literal(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.interpose.cljs$core$IFn$_invoke$arity$2(" | ",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__47142_SHARP_){
-return ["{ ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.unwrap_literal((rhizome.dot.format_label.cljs$core$IFn$_invoke$arity$1 ? rhizome.dot.format_label.cljs$core$IFn$_invoke$arity$1(p1__47142_SHARP_) : rhizome.dot.format_label.call(null,p1__47142_SHARP_))))," }"].join('');
+return rhizome.dot.__GT_literal(cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.interpose.cljs$core$IFn$_invoke$arity$2(" | ",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__47158_SHARP_){
+return ["{ ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.unwrap_literal((rhizome.dot.format_label.cljs$core$IFn$_invoke$arity$1 ? rhizome.dot.format_label.cljs$core$IFn$_invoke$arity$1(p1__47158_SHARP_) : rhizome.dot.format_label.call(null,p1__47158_SHARP_))))," }"].join('');
 }),label))));
 } else {
 if(typeof label === 'string'){
@@ -92,42 +92,42 @@ return cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.
 }
 });
 rhizome.dot.format_options = (function rhizome$dot$format_options(m,separator){
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.interpose.cljs$core$IFn$_invoke$arity$2(separator,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__47176){
-var vec__47177 = p__47176;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47177,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47177,(1),null);
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.interpose.cljs$core$IFn$_invoke$arity$2(separator,cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p__47164){
+var vec__47165 = p__47164;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47165,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47165,(1),null);
 return [cljs.core.name(k),"=",rhizome.dot.format_options_value(v)].join('');
-}),cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.nil_QMARK_,cljs.core.second),cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(m,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804)], null),(function (p1__47151_SHARP_){
-if(cljs.core.truth_(p1__47151_SHARP_)){
-return rhizome.dot.format_label(p1__47151_SHARP_);
+}),cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cljs$core$IFn$_invoke$arity$2(cljs.core.nil_QMARK_,cljs.core.second),cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(m,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804)], null),(function (p1__47160_SHARP_){
+if(cljs.core.truth_(p1__47160_SHARP_)){
+return rhizome.dot.format_label(p1__47160_SHARP_);
 } else {
 return null;
 }
 }))))));
 });
-rhizome.dot.format_edge = (function rhizome$dot$format_edge(src,dst,p__47184){
-var map__47185 = p__47184;
-var map__47185__$1 = (((((!((map__47185 == null))))?(((((map__47185.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47185.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47185):map__47185);
-var options = map__47185__$1;
-var directed_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47185__$1,new cljs.core.Keyword(null,"directed?","directed?",-323153830));
-var options__$1 = cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(options,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804)], null),((function (map__47185,map__47185__$1,options,directed_QMARK_){
-return (function (p1__47180_SHARP_){
-var or__4131__auto__ = p1__47180_SHARP_;
+rhizome.dot.format_edge = (function rhizome$dot$format_edge(src,dst,p__47172){
+var map__47173 = p__47172;
+var map__47173__$1 = (((((!((map__47173 == null))))?(((((map__47173.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47173.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47173):map__47173);
+var options = map__47173__$1;
+var directed_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47173__$1,new cljs.core.Keyword(null,"directed?","directed?",-323153830));
+var options__$1 = cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(options,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"label","label",1718410804)], null),((function (map__47173,map__47173__$1,options,directed_QMARK_){
+return (function (p1__47171_SHARP_){
+var or__4131__auto__ = p1__47171_SHARP_;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return "";
 }
-});})(map__47185,map__47185__$1,options,directed_QMARK_))
+});})(map__47173,map__47173__$1,options,directed_QMARK_))
 );
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(src),(cljs.core.truth_(directed_QMARK_)?" -> ":" -- "),cljs.core.str.cljs$core$IFn$_invoke$arity$1(dst),"[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$2(options__$1,new cljs.core.Keyword(null,"directed?","directed?",-323153830)),", ")),"]"].join('');
 });
-rhizome.dot.format_node = (function rhizome$dot$format_node(id,p__47198){
-var map__47199 = p__47198;
-var map__47199__$1 = (((((!((map__47199 == null))))?(((((map__47199.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47199.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47199):map__47199);
-var options = map__47199__$1;
-var label = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47199__$1,new cljs.core.Keyword(null,"label","label",1718410804));
-var shape = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47199__$1,new cljs.core.Keyword(null,"shape","shape",1190694006));
+rhizome.dot.format_node = (function rhizome$dot$format_node(id,p__47191){
+var map__47192 = p__47191;
+var map__47192__$1 = (((((!((map__47192 == null))))?(((((map__47192.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47192.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47192):map__47192);
+var options = map__47192__$1;
+var label = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47192__$1,new cljs.core.Keyword(null,"label","label",1718410804));
+var shape = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47192__$1,new cljs.core.Keyword(null,"shape","shape",1190694006));
 var shape__$1 = (function (){var or__4131__auto__ = shape;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
@@ -173,14 +173,14 @@ return cljs.core.merge_with.cljs$core$IFn$_invoke$arity$variadic(clojure.set.uni
  */
 rhizome.dot.graph__GT_dot = (function rhizome$dot$graph__GT_dot(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___47304 = arguments.length;
-var i__4731__auto___47305 = (0);
+var len__4730__auto___47291 = arguments.length;
+var i__4731__auto___47292 = (0);
 while(true){
-if((i__4731__auto___47305 < len__4730__auto___47304)){
-args__4736__auto__.push((arguments[i__4731__auto___47305]));
+if((i__4731__auto___47292 < len__4730__auto___47291)){
+args__4736__auto__.push((arguments[i__4731__auto___47292]));
 
-var G__47306 = (i__4731__auto___47305 + (1));
-i__4731__auto___47305 = G__47306;
+var G__47293 = (i__4731__auto___47292 + (1));
+i__4731__auto___47292 = G__47293;
 continue;
 } else {
 }
@@ -191,46 +191,46 @@ var argseq__4737__auto__ = ((((2) < args__4736__auto__.length))?(new cljs.core.I
 return rhizome.dot.graph__GT_dot.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),(arguments[(1)]),argseq__4737__auto__);
 });
 
-rhizome.dot.graph__GT_dot.cljs$core$IFn$_invoke$arity$variadic = (function (nodes,adjacent,p__47228){
-var map__47229 = p__47228;
-var map__47229__$1 = (((((!((map__47229 == null))))?(((((map__47229.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47229.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47229):map__47229);
-var graph_descriptor = map__47229__$1;
-var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47229__$1,new cljs.core.Keyword(null,"options","options",99638489));
-var directed_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"directed?","directed?",-323153830),true);
-var cluster__GT_descriptor = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"cluster->descriptor","cluster->descriptor",-1433685113),cljs.core.constantly(null));
-var cluster__GT_ranks = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"cluster->ranks","cluster->ranks",296694829),cljs.core.constantly(null));
-var edge__GT_descriptor = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"edge->descriptor","edge->descriptor",-2146285457),cljs.core.constantly(null));
-var cluster__GT_parent = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"cluster->parent","cluster->parent",1941927856),cljs.core.constantly(null));
-var node__GT_descriptor = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"node->descriptor","node->descriptor",-1696154479),cljs.core.constantly(null));
-var vertical_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"vertical?","vertical?",-1522630444),true);
-var node__GT_clusters = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47229__$1,new cljs.core.Keyword(null,"node->clusters","node->clusters",-265377067),cljs.core.constantly(null));
-var _STAR_node__GT_id_STAR__orig_val__47231 = rhizome.dot._STAR_node__GT_id_STAR_;
-var _STAR_cluster__GT_id_STAR__orig_val__47232 = rhizome.dot._STAR_cluster__GT_id_STAR_;
-var _STAR_node__GT_id_STAR__temp_val__47233 = (function (){var or__4131__auto__ = rhizome.dot._STAR_node__GT_id_STAR_;
+rhizome.dot.graph__GT_dot.cljs$core$IFn$_invoke$arity$variadic = (function (nodes,adjacent,p__47232){
+var map__47233 = p__47232;
+var map__47233__$1 = (((((!((map__47233 == null))))?(((((map__47233.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47233.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47233):map__47233);
+var graph_descriptor = map__47233__$1;
+var options = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47233__$1,new cljs.core.Keyword(null,"options","options",99638489));
+var directed_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"directed?","directed?",-323153830),true);
+var cluster__GT_descriptor = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"cluster->descriptor","cluster->descriptor",-1433685113),cljs.core.constantly(null));
+var cluster__GT_ranks = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"cluster->ranks","cluster->ranks",296694829),cljs.core.constantly(null));
+var edge__GT_descriptor = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"edge->descriptor","edge->descriptor",-2146285457),cljs.core.constantly(null));
+var cluster__GT_parent = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"cluster->parent","cluster->parent",1941927856),cljs.core.constantly(null));
+var node__GT_descriptor = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"node->descriptor","node->descriptor",-1696154479),cljs.core.constantly(null));
+var vertical_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"vertical?","vertical?",-1522630444),true);
+var node__GT_clusters = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__47233__$1,new cljs.core.Keyword(null,"node->clusters","node->clusters",-265377067),cljs.core.constantly(null));
+var _STAR_node__GT_id_STAR__orig_val__47237 = rhizome.dot._STAR_node__GT_id_STAR_;
+var _STAR_cluster__GT_id_STAR__orig_val__47238 = rhizome.dot._STAR_cluster__GT_id_STAR_;
+var _STAR_node__GT_id_STAR__temp_val__47239 = (function (){var or__4131__auto__ = rhizome.dot._STAR_node__GT_id_STAR_;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
-return cljs.core.memoize(((function (or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return cljs.core.memoize(((function (or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
 return (function (_){
 return cljs.core.gensym.cljs$core$IFn$_invoke$arity$1("node");
-});})(or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+});})(or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
 );
 }
 })();
-var _STAR_cluster__GT_id_STAR__temp_val__47234 = (function (){var or__4131__auto__ = rhizome.dot._STAR_cluster__GT_id_STAR_;
+var _STAR_cluster__GT_id_STAR__temp_val__47240 = (function (){var or__4131__auto__ = rhizome.dot._STAR_cluster__GT_id_STAR_;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
-return cljs.core.memoize(((function (or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return cljs.core.memoize(((function (or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
 return (function (_){
 return cljs.core.gensym.cljs$core$IFn$_invoke$arity$1("cluster");
-});})(or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+});})(or__4131__auto__,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
 );
 }
 })();
-rhizome.dot._STAR_node__GT_id_STAR_ = _STAR_node__GT_id_STAR__temp_val__47233;
+rhizome.dot._STAR_node__GT_id_STAR_ = _STAR_node__GT_id_STAR__temp_val__47239;
 
-rhizome.dot._STAR_cluster__GT_id_STAR_ = _STAR_cluster__GT_id_STAR__temp_val__47234;
+rhizome.dot._STAR_cluster__GT_id_STAR_ = _STAR_cluster__GT_id_STAR__temp_val__47240;
 
 try{var current_cluster = new cljs.core.Keyword("rhizome.dot","cluster","rhizome.dot/cluster",-748815582).cljs$core$IFn$_invoke$arity$1(graph_descriptor);
 var subgraph_QMARK_ = cljs.core.boolean$(current_cluster);
@@ -240,9 +240,9 @@ var node_QMARK_ = cljs.core.set(nodes);
 var ranks = (cluster__GT_ranks.cljs$core$IFn$_invoke$arity$1 ? cluster__GT_ranks.cljs$core$IFn$_invoke$arity$1(current_cluster) : cluster__GT_ranks.call(null,current_cluster));
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$5(cljs.core.str,(cljs.core.truth_(current_cluster)?["subgraph ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.cluster__GT_id(current_cluster))].join(''):(cljs.core.truth_(directed_QMARK_)?"digraph":"graph"))," {\n",(function (){var edge_options = new cljs.core.Keyword(null,"edge","edge",919909153).cljs$core$IFn$_invoke$arity$1(options);
 var node_options = new cljs.core.Keyword(null,"node","node",581201198).cljs$core$IFn$_invoke$arity$1(options);
-return ["graph[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(rhizome.dot.translate_options(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([rhizome.dot.default_options,options], 0)),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"fontname","fontname",-1891838675)], null),((function (edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47213_SHARP_){
-var or__4131__auto__ = p1__47213_SHARP_;
+return ["graph[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(rhizome.dot.translate_options(cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([rhizome.dot.default_options,options], 0)),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"fontname","fontname",-1891838675)], null),((function (edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47210_SHARP_){
+var or__4131__auto__ = p1__47210_SHARP_;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
@@ -252,90 +252,90 @@ return "Monospace";
 return null;
 }
 }
-});})(edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-),new cljs.core.Keyword(null,"vertical?","vertical?",-1522630444),vertical_QMARK_),new cljs.core.Keyword(null,"edge","edge",919909153),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"node","node",581201198)], 0))),", ")),"]\n","node[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(rhizome.dot.translate_options(cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(node_options,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"fontname","fontname",-1891838675)], null),((function (edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47214_SHARP_){
-var or__4131__auto__ = p1__47214_SHARP_;
+});})(edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+),new cljs.core.Keyword(null,"vertical?","vertical?",-1522630444),vertical_QMARK_),new cljs.core.Keyword(null,"edge","edge",919909153),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"node","node",581201198)], 0))),", ")),"]\n","node[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(rhizome.dot.translate_options(cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(node_options,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"fontname","fontname",-1891838675)], null),((function (edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47211_SHARP_){
+var or__4131__auto__ = p1__47211_SHARP_;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return "Monospace";
 }
-});})(edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-)),", ")),"]\n","edge[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(rhizome.dot.translate_options(cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(edge_options,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"fontname","fontname",-1891838675)], null),((function (edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47215_SHARP_){
-var or__4131__auto__ = p1__47215_SHARP_;
+});})(edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+)),", ")),"]\n","edge[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rhizome.dot.format_options(rhizome.dot.translate_options(cljs.core.update_in.cljs$core$IFn$_invoke$arity$3(edge_options,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"fontname","fontname",-1891838675)], null),((function (edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47212_SHARP_){
+var or__4131__auto__ = p1__47212_SHARP_;
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
 } else {
 return "Monospace";
 }
-});})(edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+});})(edge_options,node_options,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
 )),", ")),"]\n\n"].join('');
-})(),cljs.core.interpose.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47217_SHARP_){
-return rhizome.dot.format_node(rhizome.dot.node__GT_id(p1__47217_SHARP_),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([rhizome.dot.default_node_options,(node__GT_descriptor.cljs$core$IFn$_invoke$arity$1 ? node__GT_descriptor.cljs$core$IFn$_invoke$arity$1(p1__47217_SHARP_) : node__GT_descriptor.call(null,p1__47217_SHARP_))], 0)));
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-,cljs.core.remove.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47216_SHARP_){
+})(),cljs.core.interpose.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47214_SHARP_){
+return rhizome.dot.format_node(rhizome.dot.node__GT_id(p1__47214_SHARP_),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([rhizome.dot.default_node_options,(node__GT_descriptor.cljs$core$IFn$_invoke$arity$1 ? node__GT_descriptor.cljs$core$IFn$_invoke$arity$1(p1__47214_SHARP_) : node__GT_descriptor.call(null,p1__47214_SHARP_))], 0)));
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+,cljs.core.remove.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47213_SHARP_){
 if(cljs.core.truth_(current_cluster)){
-return (!(cljs.core.contains_QMARK_((node__GT_clusters.cljs$core$IFn$_invoke$arity$1 ? node__GT_clusters.cljs$core$IFn$_invoke$arity$1(p1__47216_SHARP_) : node__GT_clusters.call(null,p1__47216_SHARP_)),current_cluster)));
+return (!(cljs.core.contains_QMARK_((node__GT_clusters.cljs$core$IFn$_invoke$arity$1 ? node__GT_clusters.cljs$core$IFn$_invoke$arity$1(p1__47213_SHARP_) : node__GT_clusters.call(null,p1__47213_SHARP_)),current_cluster)));
 } else {
 return false;
 }
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-,nodes)),cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+,nodes)),cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
 return (function (r){
 return rhizome.dot.format_rank(cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(rhizome.dot._STAR_node__GT_id_STAR_,r));
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-,ranks),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47219_SHARP_){
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$4(rhizome.dot.graph__GT_dot,nodes,adjacent,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(graph_descriptor,new cljs.core.Keyword("rhizome.dot","cluster","rhizome.dot/cluster",-748815582),p1__47219_SHARP_,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"options","options",99638489),(cluster__GT_descriptor.cljs$core$IFn$_invoke$arity$1 ? cluster__GT_descriptor.cljs$core$IFn$_invoke$arity$1(p1__47219_SHARP_) : cluster__GT_descriptor.call(null,p1__47219_SHARP_))], 0))));
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-,cljs.core.remove.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47218_SHARP_){
-return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(current_cluster,(cluster__GT_parent.cljs$core$IFn$_invoke$arity$1 ? cluster__GT_parent.cljs$core$IFn$_invoke$arity$1(p1__47218_SHARP_) : cluster__GT_parent.call(null,p1__47218_SHARP_)));
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-,cljs.core.keys(cluster__GT_nodes))),((subgraph_QMARK_)?null:cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p__47265){
-var vec__47266 = p__47265;
-var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47266,(0),null);
-var vec__47269 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47266,(1),null);
-var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47269,(0),null);
-var b = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47269,(1),null);
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+,ranks),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47216_SHARP_){
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$4(rhizome.dot.graph__GT_dot,nodes,adjacent,cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.concat,cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(graph_descriptor,new cljs.core.Keyword("rhizome.dot","cluster","rhizome.dot/cluster",-748815582),p1__47216_SHARP_,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"options","options",99638489),(cluster__GT_descriptor.cljs$core$IFn$_invoke$arity$1 ? cluster__GT_descriptor.cljs$core$IFn$_invoke$arity$1(p1__47216_SHARP_) : cluster__GT_descriptor.call(null,p1__47216_SHARP_))], 0))));
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+,cljs.core.remove.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47215_SHARP_){
+return cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(current_cluster,(cluster__GT_parent.cljs$core$IFn$_invoke$arity$1 ? cluster__GT_parent.cljs$core$IFn$_invoke$arity$1(p1__47215_SHARP_) : cluster__GT_parent.call(null,p1__47215_SHARP_)));
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+,cljs.core.keys(cluster__GT_nodes))),((subgraph_QMARK_)?null:cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p__47256){
+var vec__47257 = p__47256;
+var a = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47257,(0),null);
+var vec__47260 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47257,(1),null);
+var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47260,(0),null);
+var b = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__47260,(1),null);
 var descriptor = (edge__GT_descriptor.cljs$core$IFn$_invoke$arity$2 ? edge__GT_descriptor.cljs$core$IFn$_invoke$arity$2(a,b) : edge__GT_descriptor.call(null,a,b));
-var format = ((function (descriptor,vec__47266,a,vec__47269,type,b,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47221_SHARP_){
-return rhizome.dot.format_edge(rhizome.dot.node__GT_id(a),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"node","node",581201198),type))?rhizome.dot.node__GT_id(b):rhizome.dot.cluster__GT_id(b)),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([rhizome.dot.default_edge_options,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"directed?","directed?",-323153830),directed_QMARK_], null),p1__47221_SHARP_], 0)));
-});})(descriptor,vec__47266,a,vec__47269,type,b,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+var format = ((function (descriptor,vec__47257,a,vec__47260,type,b,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47218_SHARP_){
+return rhizome.dot.format_edge(rhizome.dot.node__GT_id(a),((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(new cljs.core.Keyword(null,"node","node",581201198),type))?rhizome.dot.node__GT_id(b):rhizome.dot.cluster__GT_id(b)),cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([rhizome.dot.default_edge_options,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"directed?","directed?",-323153830),directed_QMARK_], null),p1__47218_SHARP_], 0)));
+});})(descriptor,vec__47257,a,vec__47260,type,b,current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
 ;
 if(cljs.core.vector_QMARK_(descriptor)){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.interpose.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.map.cljs$core$IFn$_invoke$arity$2(format,descriptor)));
 } else {
 return format(descriptor);
 }
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
-,cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+,cljs.core.mapcat.cljs$core$IFn$_invoke$arity$variadic(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
 return (function (node){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$3(cljs.core.vector,cljs.core.repeat.cljs$core$IFn$_invoke$arity$1(node),cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.nil_QMARK_,cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
-return (function (p1__47220_SHARP_){
-if(cljs.core.truth_((node_QMARK_.cljs$core$IFn$_invoke$arity$1 ? node_QMARK_.cljs$core$IFn$_invoke$arity$1(p1__47220_SHARP_) : node_QMARK_.call(null,p1__47220_SHARP_)))){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"node","node",581201198),p1__47220_SHARP_], null);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$3(cljs.core.vector,cljs.core.repeat.cljs$core$IFn$_invoke$arity$1(node),cljs.core.remove.cljs$core$IFn$_invoke$arity$2(cljs.core.nil_QMARK_,cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters){
+return (function (p1__47217_SHARP_){
+if(cljs.core.truth_((node_QMARK_.cljs$core$IFn$_invoke$arity$1 ? node_QMARK_.cljs$core$IFn$_invoke$arity$1(p1__47217_SHARP_) : node_QMARK_.call(null,p1__47217_SHARP_)))){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"node","node",581201198),p1__47217_SHARP_], null);
 } else {
-if(cljs.core.truth_((cluster_QMARK_.cljs$core$IFn$_invoke$arity$1 ? cluster_QMARK_.cljs$core$IFn$_invoke$arity$1(p1__47220_SHARP_) : cluster_QMARK_.call(null,p1__47220_SHARP_)))){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"cluster","cluster",535175621),p1__47220_SHARP_], null);
+if(cljs.core.truth_((cluster_QMARK_.cljs$core$IFn$_invoke$arity$1 ? cluster_QMARK_.cljs$core$IFn$_invoke$arity$1(p1__47217_SHARP_) : cluster_QMARK_.call(null,p1__47217_SHARP_)))){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"cluster","cluster",535175621),p1__47217_SHARP_], null);
 } else {
 return null;
 
 }
 }
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
 ,(adjacent.cljs$core$IFn$_invoke$arity$1 ? adjacent.cljs$core$IFn$_invoke$arity$1(node) : adjacent.call(null,node)))));
-});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47231,_STAR_cluster__GT_id_STAR__orig_val__47232,_STAR_node__GT_id_STAR__temp_val__47233,_STAR_cluster__GT_id_STAR__temp_val__47234,map__47229,map__47229__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
+});})(current_cluster,subgraph_QMARK_,cluster__GT_nodes,cluster_QMARK_,node_QMARK_,ranks,_STAR_node__GT_id_STAR__orig_val__47237,_STAR_cluster__GT_id_STAR__orig_val__47238,_STAR_node__GT_id_STAR__temp_val__47239,_STAR_cluster__GT_id_STAR__temp_val__47240,map__47233,map__47233__$1,graph_descriptor,options,directed_QMARK_,cluster__GT_descriptor,cluster__GT_ranks,edge__GT_descriptor,cluster__GT_parent,node__GT_descriptor,vertical_QMARK_,node__GT_clusters))
 ,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([nodes], 0)))),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["}\n"], null)], 0))));
-}finally {rhizome.dot._STAR_cluster__GT_id_STAR_ = _STAR_cluster__GT_id_STAR__orig_val__47232;
+}finally {rhizome.dot._STAR_cluster__GT_id_STAR_ = _STAR_cluster__GT_id_STAR__orig_val__47238;
 
-rhizome.dot._STAR_node__GT_id_STAR_ = _STAR_node__GT_id_STAR__orig_val__47231;
+rhizome.dot._STAR_node__GT_id_STAR_ = _STAR_node__GT_id_STAR__orig_val__47237;
 }});
 
 rhizome.dot.graph__GT_dot.cljs$lang$maxFixedArity = (2);

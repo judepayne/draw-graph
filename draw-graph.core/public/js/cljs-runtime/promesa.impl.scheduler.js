@@ -99,7 +99,7 @@ return (new promesa.impl.scheduler.t_promesa$impl$scheduler38858(cur__$1,done_QM
 return (new promesa.impl.scheduler.t_promesa$impl$scheduler38858(cur,done_QMARK_,cancelled,cljs.core.PersistentArrayMap.EMPTY));
 });
 promesa.impl.scheduler.scheduler = (function promesa$impl$scheduler$scheduler(){
-if((typeof promesa !== 'undefined') && (typeof promesa.impl !== 'undefined') && (typeof promesa.impl.scheduler !== 'undefined') && (typeof promesa.impl.scheduler.t_promesa$impl$scheduler38878 !== 'undefined')){
+if((typeof promesa !== 'undefined') && (typeof promesa.impl !== 'undefined') && (typeof promesa.impl.scheduler !== 'undefined') && (typeof promesa.impl.scheduler.t_promesa$impl$scheduler38884 !== 'undefined')){
 } else {
 
 /**
@@ -108,26 +108,26 @@ if((typeof promesa !== 'undefined') && (typeof promesa.impl !== 'undefined') && 
  * @implements {promesa.impl.proto.IScheduler}
  * @implements {cljs.core.IWithMeta}
 */
-promesa.impl.scheduler.t_promesa$impl$scheduler38878 = (function (meta38879){
-this.meta38879 = meta38879;
+promesa.impl.scheduler.t_promesa$impl$scheduler38884 = (function (meta38885){
+this.meta38885 = meta38885;
 this.cljs$lang$protocol_mask$partition0$ = 393216;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_38880,meta38879__$1){
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (_38886,meta38885__$1){
 var self__ = this;
-var _38880__$1 = this;
-return (new promesa.impl.scheduler.t_promesa$impl$scheduler38878(meta38879__$1));
+var _38886__$1 = this;
+return (new promesa.impl.scheduler.t_promesa$impl$scheduler38884(meta38885__$1));
 });
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_38880){
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.prototype.cljs$core$IMeta$_meta$arity$1 = (function (_38886){
 var self__ = this;
-var _38880__$1 = this;
-return self__.meta38879;
+var _38886__$1 = this;
+return self__.meta38885;
 });
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.prototype.promesa$impl$proto$IScheduler$ = cljs.core.PROTOCOL_SENTINEL;
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.prototype.promesa$impl$proto$IScheduler$ = cljs.core.PROTOCOL_SENTINEL;
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.prototype.promesa$impl$proto$IScheduler$_schedule$arity$3 = (function (_,ms,func){
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.prototype.promesa$impl$proto$IScheduler$_schedule$arity$3 = (function (_,ms,func){
 var self__ = this;
 var ___$1 = this;
 var done_QMARK_ = cljs.core.volatile_BANG_(false);
@@ -141,28 +141,28 @@ var cur = setTimeout(task,ms);
 return promesa.impl.scheduler.scheduled_task(cur,done_QMARK_);
 });
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"meta38879","meta38879",-1890943772,null)], null);
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"meta38885","meta38885",816189359,null)], null);
 });
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.cljs$lang$type = true;
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.cljs$lang$type = true;
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.cljs$lang$ctorStr = "promesa.impl.scheduler/t_promesa$impl$scheduler38878";
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.cljs$lang$ctorStr = "promesa.impl.scheduler/t_promesa$impl$scheduler38884";
 
-promesa.impl.scheduler.t_promesa$impl$scheduler38878.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
-return cljs.core._write(writer__4375__auto__,"promesa.impl.scheduler/t_promesa$impl$scheduler38878");
+promesa.impl.scheduler.t_promesa$impl$scheduler38884.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
+return cljs.core._write(writer__4375__auto__,"promesa.impl.scheduler/t_promesa$impl$scheduler38884");
 });
 
 /**
- * Positional factory function for promesa.impl.scheduler/t_promesa$impl$scheduler38878.
+ * Positional factory function for promesa.impl.scheduler/t_promesa$impl$scheduler38884.
  */
-promesa.impl.scheduler.__GT_t_promesa$impl$scheduler38878 = (function promesa$impl$scheduler$scheduler_$___GT_t_promesa$impl$scheduler38878(meta38879){
-return (new promesa.impl.scheduler.t_promesa$impl$scheduler38878(meta38879));
+promesa.impl.scheduler.__GT_t_promesa$impl$scheduler38884 = (function promesa$impl$scheduler$scheduler_$___GT_t_promesa$impl$scheduler38884(meta38885){
+return (new promesa.impl.scheduler.t_promesa$impl$scheduler38884(meta38885));
 });
 
 }
 
-return (new promesa.impl.scheduler.t_promesa$impl$scheduler38878(cljs.core.PersistentArrayMap.EMPTY));
+return (new promesa.impl.scheduler.t_promesa$impl$scheduler38884(cljs.core.PersistentArrayMap.EMPTY));
 });
 /**
  * A default lazy scheduler instance.

@@ -9,7 +9,8 @@
             [lib-draw-graph.graph           :as graph]
             [clojure.set                    :as set]
             [clojure.string                 :as str]
-            [lib-draw-graph.util            :as util]))
+            [lib-draw-graph.util            :as util]
+            [sqlpred.core                   :as sql]))
 
 
 ;; -----------
@@ -183,6 +184,7 @@
 
 
 (def cluster-edges
+  ;; meta data about cluster edges. Keep. used below
   {16 [4 4]
    12 [4 3]
    9 [3 3]
@@ -342,30 +344,24 @@
 
 (defn filter-graph
   "Returns a filtered graph where nodes where is not a submap are filtered out."
-  [g subs & {:keys [filter-edges?] :or {filter-edges? true}}]
-  (let [subs (str/split subs #"( or )(?![^\[]*\])") ;; don't match or inside []
-        subs (map #(re-seq *part-sep* %) subs)
-        filtered-nodes (filter #(not (reduce
-                                      (fn [acc term] (or acc (sub-matches? term %)))
-                                      false subs))
+  [g sql & {:keys [filter-edges?] :or {filter-edges? true}}]
+  (let [filter-fn (complement
+                   (sql/sql-pred sql
+                                 :keywordize-keys? true
+                                 :skip-missing? true))
+        filtered-nodes (filter filter-fn
                                (loom.graph/nodes g))
         g' (if (clstr/clustered? g)
              (clstr/remove-nodes g filtered-nodes)
              (apply loom.graph/remove-nodes g filtered-nodes))]
      (if filter-edges?
-      (let [filtered-edges (filter
-                            (fn [[src dst]]
-                              (not (reduce
-                                    (fn [acc term]
-                                      (or acc
-                                          (if (= (loom.attr/attr g' src dst :style) "invis")
-                                            true ;; invisible edges are scaffolding. keep them.
-                                            (sub-matches?
-                                             term
-                                             (loom.attr/attr g' src dst :meta)))))
-                                    false
-                                    subs)))
-                            (loom.graph/edges g'))]
+       (let [edges-to-check (filter   ;; don't filter out any invis/ scaffolding edges
+                             (fn [[src dst]] (not= (loom.attr/attr g' src dst :style) "invis"))
+                             (loom.graph/edges g'))
+             filtered-edges  (filter
+                              (fn [[src dst]]
+                                (filter-fn (loom.attr/attr g' src dst :meta)))
+                              edges-to-check)]
         (apply loom.graph/remove-edges g' filtered-edges))
       g')))
 

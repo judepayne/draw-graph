@@ -7,8 +7,8 @@ goog.require('clojure.zip');
  * Returns the xml attribute named attrname, of the xml node at location loc.
  */
 clojure.data.zip.xml.attr = (function clojure$data$zip$xml$attr(var_args){
-var G__50135 = arguments.length;
-switch (G__50135) {
+var G__50207 = arguments.length;
+switch (G__50207) {
 case 1:
 return clojure.data.zip.xml.attr.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -31,8 +31,8 @@ return clojure.data.zip.xml.attr.cljs$core$IFn$_invoke$arity$2(loc,attrname);
 
 clojure.data.zip.xml.attr.cljs$core$IFn$_invoke$arity$2 = (function (loc,attrname){
 if(cljs.core.truth_(clojure.zip.branch_QMARK_(loc))){
-var G__50136 = new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(clojure.zip.node(loc));
-return (attrname.cljs$core$IFn$_invoke$arity$1 ? attrname.cljs$core$IFn$_invoke$arity$1(G__50136) : attrname.call(null,G__50136));
+var G__50216 = new cljs.core.Keyword(null,"attrs","attrs",-2090668713).cljs$core$IFn$_invoke$arity$1(clojure.zip.node(loc));
+return (attrname.cljs$core$IFn$_invoke$arity$1 ? attrname.cljs$core$IFn$_invoke$arity$1(G__50216) : attrname.call(null,G__50216));
 } else {
 return null;
 }
@@ -60,10 +60,10 @@ if(or__4131__auto__){
 return or__4131__auto__;
 } else {
 return cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (or__4131__auto__){
-return (function (p1__50137_SHARP_){
-var and__4120__auto__ = clojure.zip.branch_QMARK_(p1__50137_SHARP_);
+return (function (p1__50217_SHARP_){
+var and__4120__auto__ = clojure.zip.branch_QMARK_(p1__50217_SHARP_);
 if(cljs.core.truth_(and__4120__auto__)){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(tagname,new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(clojure.zip.node(p1__50137_SHARP_)));
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(tagname,new cljs.core.Keyword(null,"tag","tag",-1290361223).cljs$core$IFn$_invoke$arity$1(clojure.zip.node(p1__50217_SHARP_)));
 } else {
 return and__4120__auto__;
 }
@@ -122,14 +122,14 @@ return and__4120__auto__;
  */
 clojure.data.zip.xml.xml__GT_ = (function clojure$data$zip$xml$xml__GT_(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___50166 = arguments.length;
-var i__4731__auto___50167 = (0);
+var len__4730__auto___50257 = arguments.length;
+var i__4731__auto___50258 = (0);
 while(true){
-if((i__4731__auto___50167 < len__4730__auto___50166)){
-args__4736__auto__.push((arguments[i__4731__auto___50167]));
+if((i__4731__auto___50258 < len__4730__auto___50257)){
+args__4736__auto__.push((arguments[i__4731__auto___50258]));
 
-var G__50168 = (i__4731__auto___50167 + (1));
-i__4731__auto___50167 = G__50168;
+var G__50259 = (i__4731__auto___50258 + (1));
+i__4731__auto___50258 = G__50259;
 continue;
 } else {
 }
@@ -141,15 +141,15 @@ return clojure.data.zip.xml.xml__GT_.cljs$core$IFn$_invoke$arity$variadic((argum
 });
 
 clojure.data.zip.xml.xml__GT_.cljs$core$IFn$_invoke$arity$variadic = (function (loc,preds){
-return clojure.data.zip.mapcat_chain(loc,preds,(function (p1__50154_SHARP_){
-if((p1__50154_SHARP_ instanceof cljs.core.Keyword)){
-return clojure.data.zip.xml.tag_EQ_(p1__50154_SHARP_);
+return clojure.data.zip.mapcat_chain(loc,preds,(function (p1__50238_SHARP_){
+if((p1__50238_SHARP_ instanceof cljs.core.Keyword)){
+return clojure.data.zip.xml.tag_EQ_(p1__50238_SHARP_);
 } else {
-if(typeof p1__50154_SHARP_ === 'string'){
-return clojure.data.zip.xml.text_EQ_(p1__50154_SHARP_);
+if(typeof p1__50238_SHARP_ === 'string'){
+return clojure.data.zip.xml.text_EQ_(p1__50238_SHARP_);
 } else {
-if(cljs.core.vector_QMARK_(p1__50154_SHARP_)){
-return clojure.data.zip.xml.seq_test(p1__50154_SHARP_);
+if(cljs.core.vector_QMARK_(p1__50238_SHARP_)){
+return clojure.data.zip.xml.seq_test(p1__50238_SHARP_);
 } else {
 return null;
 }
@@ -161,11 +161,11 @@ return null;
 clojure.data.zip.xml.xml__GT_.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-clojure.data.zip.xml.xml__GT_.cljs$lang$applyTo = (function (seq50158){
-var G__50159 = cljs.core.first(seq50158);
-var seq50158__$1 = cljs.core.next(seq50158);
+clojure.data.zip.xml.xml__GT_.cljs$lang$applyTo = (function (seq50239){
+var G__50240 = cljs.core.first(seq50239);
+var seq50239__$1 = cljs.core.next(seq50239);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50159,seq50158__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50240,seq50239__$1);
 });
 
 /**
@@ -174,14 +174,14 @@ return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50159,seq50158
  */
 clojure.data.zip.xml.xml1__GT_ = (function clojure$data$zip$xml$xml1__GT_(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___50170 = arguments.length;
-var i__4731__auto___50171 = (0);
+var len__4730__auto___50267 = arguments.length;
+var i__4731__auto___50268 = (0);
 while(true){
-if((i__4731__auto___50171 < len__4730__auto___50170)){
-args__4736__auto__.push((arguments[i__4731__auto___50171]));
+if((i__4731__auto___50268 < len__4730__auto___50267)){
+args__4736__auto__.push((arguments[i__4731__auto___50268]));
 
-var G__50172 = (i__4731__auto___50171 + (1));
-i__4731__auto___50171 = G__50172;
+var G__50269 = (i__4731__auto___50268 + (1));
+i__4731__auto___50268 = G__50269;
 continue;
 } else {
 }
@@ -199,11 +199,11 @@ return cljs.core.first(cljs.core.apply.cljs$core$IFn$_invoke$arity$3(clojure.dat
 clojure.data.zip.xml.xml1__GT_.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-clojure.data.zip.xml.xml1__GT_.cljs$lang$applyTo = (function (seq50160){
-var G__50161 = cljs.core.first(seq50160);
-var seq50160__$1 = cljs.core.next(seq50160);
+clojure.data.zip.xml.xml1__GT_.cljs$lang$applyTo = (function (seq50245){
+var G__50246 = cljs.core.first(seq50245);
+var seq50245__$1 = cljs.core.next(seq50245);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50161,seq50160__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__50246,seq50245__$1);
 });
 
 

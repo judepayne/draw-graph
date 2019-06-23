@@ -25,11 +25,11 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 });
 
-kvlt.middleware.header.cljs$core$IFn$_invoke$arity$2 = (function (p__47054,k){
-var map__47057 = p__47054;
-var map__47057__$1 = (((((!((map__47057 == null))))?(((((map__47057.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47057.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47057):map__47057);
-var resp = map__47057__$1;
-var hs = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47057__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
+kvlt.middleware.header.cljs$core$IFn$_invoke$arity$2 = (function (p__47059,k){
+var map__47060 = p__47059;
+var map__47060__$1 = (((((!((map__47060 == null))))?(((((map__47060.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47060.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47060):map__47060);
+var resp = map__47060__$1;
+var hs = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47060__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
 var and__4120__auto__ = hs;
 if(cljs.core.truth_(and__4120__auto__)){
 return cljs.core.some(hs,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k,cljs.core.name(k)], null));
@@ -46,11 +46,11 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.dissoc.cljs$core$
 
 kvlt.middleware.header.cljs$lang$maxFixedArity = 3;
 
-kvlt.middleware.body__GT_string = (function kvlt$middleware$body__GT_string(p__47072){
-var map__47073 = p__47072;
-var map__47073__$1 = (((((!((map__47073 == null))))?(((((map__47073.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47073.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47073):map__47073);
-var resp = map__47073__$1;
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47073__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+kvlt.middleware.body__GT_string = (function kvlt$middleware$body__GT_string(p__47070){
+var map__47071 = p__47070;
+var map__47071__$1 = (((((!((map__47071 == null))))?(((((map__47071.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47071.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47071):map__47071);
+var resp = map__47071__$1;
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47071__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
 return kvlt.platform.util.byte_array__GT_str(body,kvlt.middleware.util.charset(kvlt.middleware.header.cljs$core$IFn$_invoke$arity$2(resp,new cljs.core.Keyword(null,"content-type","content-type",-508222634))));
 });
 if((typeof kvlt !== 'undefined') && (typeof kvlt.middleware !== 'undefined') && (typeof kvlt.middleware.from_content_type !== 'undefined')){
@@ -68,8 +68,8 @@ kvlt.middleware.from_content_type = (function (){var method_table__4613__auto__ 
 var prefer_table__4614__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4615__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4616__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4617__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__47082 = cljs.core.get_global_hierarchy;
-return (fexpr__47082.cljs$core$IFn$_invoke$arity$0 ? fexpr__47082.cljs$core$IFn$_invoke$arity$0() : fexpr__47082.call(null));
+var hierarchy__4617__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__47081 = cljs.core.get_global_hierarchy;
+return (fexpr__47081.cljs$core$IFn$_invoke$arity$0 ? fexpr__47081.cljs$core$IFn$_invoke$arity$0() : fexpr__47081.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("kvlt.middleware","from-content-type"),((function (method_table__4613__auto__,prefer_table__4614__auto__,method_cache__4615__auto__,cached_hierarchy__4616__auto__,hierarchy__4617__auto__){
 return (function (resp){
@@ -84,11 +84,11 @@ return resp;
 kvlt.middleware.from_content_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword("application","edn","application/edn",-63927515),(function (resp){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(resp,new cljs.core.Keyword(null,"body","body",-2049205669),cljs.reader.read_string.cljs$core$IFn$_invoke$arity$1(kvlt.middleware.body__GT_string(resp)));
 }));
-kvlt.middleware.from_content_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword("application","json","application/json",1747896298),(function (p__47092){
-var map__47093 = p__47092;
-var map__47093__$1 = (((((!((map__47093 == null))))?(((((map__47093.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47093.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47093):map__47093);
-var resp = map__47093__$1;
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47093__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+kvlt.middleware.from_content_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword("application","json","application/json",1747896298),(function (p__47089){
+var map__47090 = p__47089;
+var map__47090__$1 = (((((!((map__47090 == null))))?(((((map__47090.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47090.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47090):map__47090);
+var resp = map__47090__$1;
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47090__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(resp,new cljs.core.Keyword(null,"body","body",-2049205669),kvlt.platform.util.parse_json(kvlt.middleware.body__GT_string(resp)));
 }));
 kvlt.middleware.hint__GT_body_type = (function kvlt$middleware$hint__GT_body_type(x){
@@ -103,11 +103,11 @@ return null;
  *   the request's `:type` and `:form-params` keys
  *   accordingly (e.g. `:body ^:kvlt/edn {:x 1}`)
  */
-kvlt.middleware.body_type_hint = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"body-type-hint","body-type-hint",-939145957),cljs.core.with_meta((function (p__47099){
-var map__47100 = p__47099;
-var map__47100__$1 = (((((!((map__47100 == null))))?(((((map__47100.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47100.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47100):map__47100);
-var req = map__47100__$1;
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47100__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+kvlt.middleware.body_type_hint = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"body-type-hint","body-type-hint",-939145957),cljs.core.with_meta((function (p__47111){
+var map__47113 = p__47111;
+var map__47113__$1 = (((((!((map__47113 == null))))?(((((map__47113.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47113.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47113):map__47113);
+var req = map__47113__$1;
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47113__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
 var temp__5718__auto__ = cljs.core.some(kvlt.middleware.hint__GT_body_type,cljs.core.keys(cljs.core.meta(body)));
 if(cljs.core.truth_(temp__5718__auto__)){
 var t = temp__5718__auto__;
@@ -122,28 +122,28 @@ kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware
  * `:character-encoding`, if any, into a "content-type" header & leave
  * top-level `:content-type` key in place. 
  */
-kvlt.middleware.content_type = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"content-type","content-type",-508222634),(function (p__47111){
-var map__47112 = p__47111;
-var map__47112__$1 = (((((!((map__47112 == null))))?(((((map__47112.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47112.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47112):map__47112);
-var req = map__47112__$1;
-var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47112__$1,new cljs.core.Keyword(null,"type","type",1174270348));
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47112__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
-var character_encoding = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47112__$1,new cljs.core.Keyword(null,"character-encoding","character-encoding",-1946080777));
-var map__47144 = (function (){var G__47145 = req;
+kvlt.middleware.content_type = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"content-type","content-type",-508222634),(function (p__47119){
+var map__47120 = p__47119;
+var map__47120__$1 = (((((!((map__47120 == null))))?(((((map__47120.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47120.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47120):map__47120);
+var req = map__47120__$1;
+var type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47120__$1,new cljs.core.Keyword(null,"type","type",1174270348));
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47120__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+var character_encoding = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47120__$1,new cljs.core.Keyword(null,"character-encoding","character-encoding",-1946080777));
+var map__47123 = (function (){var G__47125 = req;
 if(cljs.core.truth_(type)){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__47145,new cljs.core.Keyword(null,"content-type","content-type",-508222634),type);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__47125,new cljs.core.Keyword(null,"content-type","content-type",-508222634),type);
 } else {
-return G__47145;
+return G__47125;
 }
 })();
-var map__47144__$1 = (((((!((map__47144 == null))))?(((((map__47144.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47144.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47144):map__47144);
-var req__$1 = map__47144__$1;
-var content_type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47144__$1,new cljs.core.Keyword(null,"content-type","content-type",-508222634));
-var G__47152 = req__$1;
+var map__47123__$1 = (((((!((map__47123 == null))))?(((((map__47123.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47123.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47123):map__47123);
+var req__$1 = map__47123__$1;
+var content_type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47123__$1,new cljs.core.Keyword(null,"content-type","content-type",-508222634));
+var G__47128 = req__$1;
 if(cljs.core.truth_(content_type)){
-return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(G__47152,new cljs.core.Keyword(null,"content-type","content-type",-508222634),kvlt.middleware.util.__GT_content_type.cljs$core$IFn$_invoke$arity$2(content_type,character_encoding));
+return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(G__47128,new cljs.core.Keyword(null,"content-type","content-type",-508222634),kvlt.middleware.util.__GT_content_type.cljs$core$IFn$_invoke$arity$2(content_type,character_encoding));
 } else {
-return G__47152;
+return G__47128;
 }
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.content_type;},new cljs.core.Symbol("kvlt.middleware","content-type","kvlt.middleware/content-type",-400988246,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"content-type","content-type",1132308893,null),"kvlt/middleware.cljc",20,1,67,67,cljs.core.List.EMPTY,"Turn request's `:content-type` (or `:type`), if any, and\n   `:character-encoding`, if any, into a \"content-type\" header & leave\n   top-level `:content-type` key in place. ",(cljs.core.truth_(kvlt.middleware.content_type)?kvlt.middleware.content_type.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"content-type","content-type",-508222634),"text/html",new cljs.core.Keyword(null,"character-encoding","character-encoding",-1946080777),"US-ASCII"], null),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"headers","headers",-835030129),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"content-type","content-type",-508222634),"text/html; charset=US-ASCII"], null),new cljs.core.Keyword(null,"content-type","content-type",-508222634),"text/html"], null)], null)));
@@ -151,11 +151,11 @@ kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware
  * Turn request's `:accept` value, if any, into an "accept" header &
  *   remove the top-level key.
  */
-kvlt.middleware.accept = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"accept","accept",1874130431),cljs.core.with_meta((function (p__47162){
-var map__47163 = p__47162;
-var map__47163__$1 = (((((!((map__47163 == null))))?(((((map__47163.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47163.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47163):map__47163);
-var req = map__47163__$1;
-var accept = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47163__$1,new cljs.core.Keyword(null,"accept","accept",1874130431));
+kvlt.middleware.accept = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"accept","accept",1874130431),cljs.core.with_meta((function (p__47132){
+var map__47133 = p__47132;
+var map__47133__$1 = (((((!((map__47133 == null))))?(((((map__47133.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47133.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47133):map__47133);
+var req = map__47133__$1;
+var accept = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47133__$1,new cljs.core.Keyword(null,"accept","accept",1874130431));
 return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(req,new cljs.core.Keyword(null,"accept","accept",1874130431),kvlt.middleware.util.__GT_content_type.cljs$core$IFn$_invoke$arity$1(accept));
 }),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"has","has",1466247447),new cljs.core.Keyword(null,"accept","accept",1874130431),new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"accept","accept",1874130431)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.accept;},new cljs.core.Symbol("kvlt.middleware","accept","kvlt.middleware/accept",2047916971,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"accept","accept",-780305338,null),"kvlt/middleware.cljc",14,1,86,86,cljs.core.List.EMPTY,"Turn request's `:accept` value, if any, into an \"accept\" header &\n  remove the top-level key.",(cljs.core.truth_(kvlt.middleware.accept)?kvlt.middleware.accept.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"accept","accept",1874130431),new cljs.core.Keyword(null,"edn","edn",1317840885)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"headers","headers",-835030129),new cljs.core.PersistentArrayMap(null, 1, ["accept","application/edn"], null)], null)], null)));
@@ -168,24 +168,24 @@ kvlt.middleware.as_type = (function (){var method_table__4613__auto__ = cljs.cor
 var prefer_table__4614__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4615__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4616__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4617__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__47168 = cljs.core.get_global_hierarchy;
-return (fexpr__47168.cljs$core$IFn$_invoke$arity$0 ? fexpr__47168.cljs$core$IFn$_invoke$arity$0() : fexpr__47168.call(null));
+var hierarchy__4617__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__47159 = cljs.core.get_global_hierarchy;
+return (fexpr__47159.cljs$core$IFn$_invoke$arity$0 ? fexpr__47159.cljs$core$IFn$_invoke$arity$0() : fexpr__47159.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("kvlt.middleware","as-type"),kvlt.middleware.as_key,new cljs.core.Keyword(null,"default","default",-1987822328),hierarchy__4617__auto__,method_table__4613__auto__,prefer_table__4614__auto__,method_cache__4615__auto__,cached_hierarchy__4616__auto__));
 })();
 }
-kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"string","string",-1989541586),(function (p__47169){
-var map__47170 = p__47169;
-var map__47170__$1 = (((((!((map__47170 == null))))?(((((map__47170.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47170.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47170):map__47170);
-var resp = map__47170__$1;
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47170__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"string","string",-1989541586),(function (p__47161){
+var map__47162 = p__47161;
+var map__47162__$1 = (((((!((map__47162 == null))))?(((((map__47162.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47162.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47162):map__47162);
+var resp = map__47162__$1;
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47162__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
 return resp;
 }));
-kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"byte-array","byte-array",369158537),(function (p__47173){
-var map__47174 = p__47173;
-var map__47174__$1 = (((((!((map__47174 == null))))?(((((map__47174.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47174.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47174):map__47174);
-var resp = map__47174__$1;
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47174__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"byte-array","byte-array",369158537),(function (p__47168){
+var map__47169 = p__47168;
+var map__47169__$1 = (((((!((map__47169 == null))))?(((((map__47169.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47169.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47169):map__47169);
+var resp = map__47169__$1;
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47169__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
 if(kvlt.platform.util.byte_array_QMARK_(body)){
 } else {
 throw (new Error(["Assert failed: ","For platform-specific reasons, :as :byte-array is special-cased in\n  kvlt.platform.http/request","\n","(platform.util/byte-array? body)"].join('')));
@@ -196,25 +196,25 @@ return resp;
 kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"auto","auto",-566279492),(function (resp){
 return (kvlt.middleware.from_content_type.cljs$core$IFn$_invoke$arity$1 ? kvlt.middleware.from_content_type.cljs$core$IFn$_invoke$arity$1(resp) : kvlt.middleware.from_content_type.call(null,resp));
 }));
-kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"default","default",-1987822328),(function (p__47181){
-var map__47182 = p__47181;
-var map__47182__$1 = (((((!((map__47182 == null))))?(((((map__47182.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47182.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47182):map__47182);
-var resp = map__47182__$1;
-var headers = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47182__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
+kvlt.middleware.as_type.cljs$core$IMultiFn$_add_method$arity$3(null,new cljs.core.Keyword(null,"default","default",-1987822328),(function (p__47180){
+var map__47181 = p__47180;
+var map__47181__$1 = (((((!((map__47181 == null))))?(((((map__47181.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47181.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47181):map__47181);
+var resp = map__47181__$1;
+var headers = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47181__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
 var t = kvlt.middleware.header.cljs$core$IFn$_invoke$arity$2(resp,new cljs.core.Keyword(null,"content-type","content-type",-508222634));
 var resp__$1 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(resp,new cljs.core.Keyword(null,"orig-content-type","orig-content-type",-995245643),t);
-var G__47187 = kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(resp__$1,new cljs.core.Keyword(null,"content-type","content-type",-508222634),kvlt.middleware.util.__GT_content_type.cljs$core$IFn$_invoke$arity$1(kvlt.middleware.as_key(resp__$1)));
-return (kvlt.middleware.from_content_type.cljs$core$IFn$_invoke$arity$1 ? kvlt.middleware.from_content_type.cljs$core$IFn$_invoke$arity$1(G__47187) : kvlt.middleware.from_content_type.call(null,G__47187));
+var G__47184 = kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(resp__$1,new cljs.core.Keyword(null,"content-type","content-type",-508222634),kvlt.middleware.util.__GT_content_type.cljs$core$IFn$_invoke$arity$1(kvlt.middleware.as_key(resp__$1)));
+return (kvlt.middleware.from_content_type.cljs$core$IFn$_invoke$arity$1 ? kvlt.middleware.from_content_type.cljs$core$IFn$_invoke$arity$1(G__47184) : kvlt.middleware.from_content_type.call(null,G__47184));
 }));
 kvlt.middleware.parsing_error = (function kvlt$middleware$parsing_error(resp,e){
 var error = kvlt.platform.util.exception__GT_map.cljs$core$IFn$_invoke$arity$variadic(e,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"middleware-error","middleware-error",873820682),new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"middleware-error","middleware-error",873820682)], null)], 0));
-var G__47188 = resp;
-if(cljs.core.not((function (){var G__47189 = new cljs.core.Keyword(null,"error","error",-978969032);
-return (resp.cljs$core$IFn$_invoke$arity$1 ? resp.cljs$core$IFn$_invoke$arity$1(G__47189) : resp.call(null,G__47189));
+var G__47193 = resp;
+if(cljs.core.not((function (){var G__47195 = new cljs.core.Keyword(null,"error","error",-978969032);
+return (resp.cljs$core$IFn$_invoke$arity$1 ? resp.cljs$core$IFn$_invoke$arity$1(G__47195) : resp.call(null,G__47195));
 })())){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__47188,error], 0));
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([G__47193,error], 0));
 } else {
-return G__47188;
+return G__47193;
 }
 });
 /**
@@ -222,15 +222,15 @@ return G__47188;
  * 
  *   See [[from-content-type]] for custom conversions.
  */
-kvlt.middleware.as = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"as","as",1148689641),(function (p1__47190_SHARP_){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"string","string",-1989541586)], null),p1__47190_SHARP_], 0));
+kvlt.middleware.as = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"as","as",1148689641),(function (p1__47196_SHARP_){
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"as","as",1148689641),new cljs.core.Keyword(null,"string","string",-1989541586)], null),p1__47196_SHARP_], 0));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (resp){
 try{return (kvlt.middleware.as_type.cljs$core$IFn$_invoke$arity$1 ? kvlt.middleware.as_type.cljs$core$IFn$_invoke$arity$1(resp) : kvlt.middleware.as_type.call(null,resp));
-}catch (e47191){if((e47191 instanceof Error)){
-var e = e47191;
+}catch (e47200){if((e47200 instanceof Error)){
+var e = e47200;
 return kvlt.middleware.parsing_error(resp,e);
 } else {
-throw e47191;
+throw e47200;
 
 }
 }})], 0));
@@ -241,32 +241,32 @@ throw e47191;
  *   This middleware is not likely to have any effect in a browser
  *   environment.
  */
-kvlt.middleware.accept_encoding = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),cljs.core.with_meta((function (p__47195){
-var map__47196 = p__47195;
-var map__47196__$1 = (((((!((map__47196 == null))))?(((((map__47196.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47196.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47196):map__47196);
-var req = map__47196__$1;
-var v = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47196__$1,new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396));
+kvlt.middleware.accept_encoding = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),cljs.core.with_meta((function (p__47201){
+var map__47202 = p__47201;
+var map__47202__$1 = (((((!((map__47202 == null))))?(((((map__47202.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47202.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47202):map__47202);
+var req = map__47202__$1;
+var v = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47202__$1,new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396));
 return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(req,new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),((cljs.core.coll_QMARK_(v))?clojure.string.join.cljs$core$IFn$_invoke$arity$2(", ",cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.name,v)):cljs.core.name(v)));
 }),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"has","has",1466247447),new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.accept_encoding;},new cljs.core.Symbol("kvlt.middleware","accept-encoding","kvlt.middleware/accept-encoding",-504291282,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"accept-encoding","accept-encoding",1322607131,null),"kvlt/middleware.cljc",23,1,137,137,cljs.core.List.EMPTY,"Convert the `:accept-encoding` option (keyword/str, or collection of) to an\n  acceptable `Accept-Encoding` header.\n\n  This middleware is not likely to have any effect in a browser\n  environment.",(cljs.core.truth_(kvlt.middleware.accept_encoding)?kvlt.middleware.accept_encoding.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),new cljs.core.Keyword(null,"origami","origami",1780950841)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"headers","headers",-835030129),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),"origami"], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"a","a",-2123407586),new cljs.core.Keyword(null,"b","b",1482224470)], null)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"headers","headers",-835030129),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),"a, b"], null)], null)], null)));
 /**
  * Rename request's `:method` key to `:request-method`
  */
-kvlt.middleware.method = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"method","method",55703592),cljs.core.with_meta((function (p__47201){
-var map__47202 = p__47201;
-var map__47202__$1 = (((((!((map__47202 == null))))?(((((map__47202.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47202.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47202):map__47202);
-var req = map__47202__$1;
-var m = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47202__$1,new cljs.core.Keyword(null,"method","method",55703592));
+kvlt.middleware.method = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"method","method",55703592),cljs.core.with_meta((function (p__47204){
+var map__47205 = p__47204;
+var map__47205__$1 = (((((!((map__47205 == null))))?(((((map__47205.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47205.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47205):map__47205);
+var req = map__47205__$1;
+var m = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47205__$1,new cljs.core.Keyword(null,"method","method",55703592));
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(req,new cljs.core.Keyword(null,"request-method","request-method",1764796830),m);
 }),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"has","has",1466247447),new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"method","method",55703592)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 /**
  * Rename request's `:port` key to `:server-port`
  */
-kvlt.middleware.port = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"port","port",1534937262),cljs.core.with_meta((function (p__47204){
-var map__47205 = p__47204;
-var map__47205__$1 = (((((!((map__47205 == null))))?(((((map__47205.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47205.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47205):map__47205);
-var req = map__47205__$1;
-var port = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47205__$1,new cljs.core.Keyword(null,"port","port",1534937262));
+kvlt.middleware.port = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"port","port",1534937262),cljs.core.with_meta((function (p__47207){
+var map__47208 = p__47207;
+var map__47208__$1 = (((((!((map__47208 == null))))?(((((map__47208.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47208.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47208):map__47208);
+var req = map__47208__$1;
+var port = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47208__$1,new cljs.core.Keyword(null,"port","port",1534937262));
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(req,new cljs.core.Keyword(null,"server-port","server-port",663745648),port);
 }),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"has","has",1466247447),new cljs.core.Keyword(null,"port","port",1534937262),new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"port","port",1534937262)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.method;},new cljs.core.Symbol("kvlt.middleware","method","kvlt.middleware/method",-635028478,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"method","method",1696235119,null),"kvlt/middleware.cljc",14,1,158,158,cljs.core.List.EMPTY,"Rename request's `:method` key to `:request-method`",(cljs.core.truth_(kvlt.middleware.method)?kvlt.middleware.method.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"get","get",1683182755)], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"request-method","request-method",1764796830),new cljs.core.Keyword(null,"get","get",1683182755)], null)], null)));
@@ -275,11 +275,11 @@ kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware
  *   `:server-name`, `:server-port`, `:uri`, `:query-string`, and
  *   `:user-info` keys
  */
-kvlt.middleware.url = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"url","url",276297046),cljs.core.with_meta((function (p__47210){
-var map__47211 = p__47210;
-var map__47211__$1 = (((((!((map__47211 == null))))?(((((map__47211.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47211.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47211):map__47211);
-var req = map__47211__$1;
-var url = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47211__$1,new cljs.core.Keyword(null,"url","url",276297046));
+kvlt.middleware.url = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"url","url",276297046),cljs.core.with_meta((function (p__47219){
+var map__47220 = p__47219;
+var map__47220__$1 = (((((!((map__47220 == null))))?(((((map__47220.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47220.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47220):map__47220);
+var req = map__47220__$1;
+var url = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47220__$1,new cljs.core.Keyword(null,"url","url",276297046));
 return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([req,kvlt.middleware.util.parse_url(url)], 0));
 }),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"has","has",1466247447),new cljs.core.Keyword(null,"url","url",276297046),new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"url","url",276297046)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.url;},new cljs.core.Symbol("kvlt.middleware","url","kvlt.middleware/url",-847267414,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"url","url",1916828573,null),"kvlt/middleware.cljc",11,1,173,173,cljs.core.List.EMPTY,"Turn request's `:url` value, if any, into top-level `:scheme`,\n  `:server-name`, `:server-port`, `:uri`, `:query-string`, and\n  `:user-info` keys",(cljs.core.truth_(kvlt.middleware.url)?kvlt.middleware.url.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"url","url",276297046),"ftp://localhost:9/x?x=1"], null),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"scheme","scheme",90199613),new cljs.core.Keyword(null,"ftp","ftp",911215182),new cljs.core.Keyword(null,"server-name","server-name",-1012104295),"localhost",new cljs.core.Keyword(null,"server-port","server-port",663745648),(9),new cljs.core.Keyword(null,"uri","uri",-774711847),"/x",new cljs.core.Keyword(null,"user-info","user-info",-1061909920),null,new cljs.core.Keyword(null,"query-string","query-string",-1018845061),"x=1"], null)], null)));
@@ -289,12 +289,12 @@ kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware
  *   Assumes placement before [[content-type]].
  */
 kvlt.middleware.default_content_type = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"default-content-type","default-content-type",28331753),(function (req){
-if(cljs.core.truth_((function (){var and__4120__auto__ = (function (){var G__47236 = new cljs.core.Keyword(null,"body","body",-2049205669);
-return (req.cljs$core$IFn$_invoke$arity$1 ? req.cljs$core$IFn$_invoke$arity$1(G__47236) : req.call(null,G__47236));
+if(cljs.core.truth_((function (){var and__4120__auto__ = (function (){var G__47229 = new cljs.core.Keyword(null,"body","body",-2049205669);
+return (req.cljs$core$IFn$_invoke$arity$1 ? req.cljs$core$IFn$_invoke$arity$1(G__47229) : req.call(null,G__47229));
 })();
 if(cljs.core.truth_(and__4120__auto__)){
-return cljs.core.not((function (){var or__4131__auto__ = (function (){var G__47238 = new cljs.core.Keyword(null,"content-type","content-type",-508222634);
-return (req.cljs$core$IFn$_invoke$arity$1 ? req.cljs$core$IFn$_invoke$arity$1(G__47238) : req.call(null,G__47238));
+return cljs.core.not((function (){var or__4131__auto__ = (function (){var G__47231 = new cljs.core.Keyword(null,"content-type","content-type",-508222634);
+return (req.cljs$core$IFn$_invoke$arity$1 ? req.cljs$core$IFn$_invoke$arity$1(G__47231) : req.call(null,G__47231));
 })();
 if(cljs.core.truth_(or__4131__auto__)){
 return or__4131__auto__;
@@ -316,12 +316,12 @@ return req;
  * response's `:headers` values to keywords. 
  */
 kvlt.middleware.keyword_headers = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"keyword-headers","keyword-headers",1310589326),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"headers","headers",-835030129),clojure.walk.stringify_keys], null),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"headers","headers",-835030129),clojure.walk.keywordize_keys], null)], 0));
-kvlt.middleware.lower_case = (function kvlt$middleware$lower_case(p1__47239_SHARP_){
-var G__47240 = clojure.string.lower_case(cljs.core.name(p1__47239_SHARP_));
-if((p1__47239_SHARP_ instanceof cljs.core.Keyword)){
-return cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(G__47240);
+kvlt.middleware.lower_case = (function kvlt$middleware$lower_case(p1__47235_SHARP_){
+var G__47236 = clojure.string.lower_case(cljs.core.name(p1__47235_SHARP_));
+if((p1__47235_SHARP_ instanceof cljs.core.Keyword)){
+return cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(G__47236);
 } else {
-return G__47240;
+return G__47236;
 }
 });
 /**
@@ -348,11 +348,11 @@ kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware
 /**
  * Convert `:oauth-token` value into an `:authorization` header
  */
-kvlt.middleware.oauth_token = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191),cljs.core.with_meta((function (p__47246){
-var map__47247 = p__47246;
-var map__47247__$1 = (((((!((map__47247 == null))))?(((((map__47247.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47247.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47247):map__47247);
-var req = map__47247__$1;
-var oauth_token = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47247__$1,new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191));
+kvlt.middleware.oauth_token = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191),cljs.core.with_meta((function (p__47249){
+var map__47250 = p__47249;
+var map__47250__$1 = (((((!((map__47250 == null))))?(((((map__47250.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47250.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47250):map__47250);
+var req = map__47250__$1;
+var oauth_token = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47250__$1,new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191));
 return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(req,new cljs.core.Keyword(null,"authorization","authorization",-166302136),["Bearer ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(oauth_token)].join(''));
 }),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"has","has",1466247447),new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191),new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.oauth_token;},new cljs.core.Symbol("kvlt.middleware","oauth-token","kvlt.middleware/oauth-token",-1556344573,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"oauth-token","oauth-token",1951946718,null),"kvlt/middleware.cljc",19,1,226,226,cljs.core.List.EMPTY,"Convert `:oauth-token` value into an `:authorization` header",(cljs.core.truth_(kvlt.middleware.oauth_token)?kvlt.middleware.oauth_token.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"oauth-token","oauth-token",311415191),"xyz"], null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"headers","headers",-835030129),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"authorization","authorization",-166302136),"Bearer xyz"], null)], null)], null)));
@@ -361,8 +361,8 @@ kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware
  * 
  *   Assumes placement before [[method]].
  */
-kvlt.middleware.default_method = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"default-method","default-method",-616461794),(function (p1__47255_SHARP_){
-return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"get","get",1683182755)], null),p1__47255_SHARP_], 0));
+kvlt.middleware.default_method = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"default-method","default-method",-616461794),(function (p1__47252_SHARP_){
+return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"get","get",1683182755)], null),p1__47252_SHARP_], 0));
 }),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([null], 0));
 kvlt.util.doc_examples_BANG_(new cljs.core.Var(function(){return kvlt.middleware.default_method;},new cljs.core.Symbol("kvlt.middleware","default-method","kvlt.middleware/default-method",-2078157256,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"kvlt.middleware","kvlt.middleware",-1330994476,null),new cljs.core.Symbol(null,"default-method","default-method",1024069733,null),"kvlt/middleware.cljc",22,1,235,235,cljs.core.List.EMPTY,"Merge request map with `{:method :get}`.\n\n  Assumes placement before [[method]].",(cljs.core.truth_(kvlt.middleware.default_method)?kvlt.middleware.default_method.cljs$lang$test:null)])),cljs.core.list(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.PersistentArrayMap.EMPTY,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"method","method",55703592),new cljs.core.Keyword(null,"get","get",1683182755)], null)], null)));
 if((typeof kvlt !== 'undefined') && (typeof kvlt.middleware !== 'undefined') && (typeof kvlt.middleware.decompress_body !== 'undefined')){
@@ -375,8 +375,8 @@ kvlt.middleware.decompress_body = (function (){var method_table__4613__auto__ = 
 var prefer_table__4614__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4615__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4616__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4617__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__47256 = cljs.core.get_global_hierarchy;
-return (fexpr__47256.cljs$core$IFn$_invoke$arity$0 ? fexpr__47256.cljs$core$IFn$_invoke$arity$0() : fexpr__47256.call(null));
+var hierarchy__4617__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"hierarchy","hierarchy",-1053470341),(function (){var fexpr__47263 = cljs.core.get_global_hierarchy;
+return (fexpr__47263.cljs$core$IFn$_invoke$arity$0 ? fexpr__47263.cljs$core$IFn$_invoke$arity$0() : fexpr__47263.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("kvlt.middleware","decompress-body"),((function (method_table__4613__auto__,prefer_table__4614__auto__,method_cache__4615__auto__,cached_hierarchy__4616__auto__,hierarchy__4617__auto__){
 return (function (resp){
@@ -390,20 +390,20 @@ return and__4120__auto__;
 ,new cljs.core.Keyword(null,"default","default",-1987822328),hierarchy__4617__auto__,method_table__4613__auto__,prefer_table__4614__auto__,method_cache__4615__auto__,cached_hierarchy__4616__auto__));
 })();
 }
-kvlt.middleware.lift_content_encoding = (function kvlt$middleware$lift_content_encoding(p__47257){
-var map__47258 = p__47257;
-var map__47258__$1 = (((((!((map__47258 == null))))?(((((map__47258.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47258.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47258):map__47258);
-var resp = map__47258__$1;
-var map__47259 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47258__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
-var map__47259__$1 = (((((!((map__47259 == null))))?(((((map__47259.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47259.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47259):map__47259);
-var content_encoding = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47259__$1,"content-encoding");
+kvlt.middleware.lift_content_encoding = (function kvlt$middleware$lift_content_encoding(p__47264){
+var map__47265 = p__47264;
+var map__47265__$1 = (((((!((map__47265 == null))))?(((((map__47265.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47265.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47265):map__47265);
+var resp = map__47265__$1;
+var map__47266 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47265__$1,new cljs.core.Keyword(null,"headers","headers",-835030129));
+var map__47266__$1 = (((((!((map__47266 == null))))?(((((map__47266.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47266.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47266):map__47266);
+var content_encoding = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47266__$1,"content-encoding");
 return cljs.core.update.cljs$core$IFn$_invoke$arity$4(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(resp,new cljs.core.Keyword(null,"orig-content-encoding","orig-content-encoding",-1642988561),content_encoding),new cljs.core.Keyword(null,"headers","headers",-835030129),cljs.core.dissoc,"content-encoding");
 });
-kvlt.middleware.decompress_body.cljs$core$IMultiFn$_add_method$arity$3(null,"gzip",(function (p__47262){
-var map__47263 = p__47262;
-var map__47263__$1 = (((((!((map__47263 == null))))?(((((map__47263.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47263.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47263):map__47263);
-var resp = map__47263__$1;
-var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47263__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
+kvlt.middleware.decompress_body.cljs$core$IMultiFn$_add_method$arity$3(null,"gzip",(function (p__47269){
+var map__47270 = p__47269;
+var map__47270__$1 = (((((!((map__47270 == null))))?(((((map__47270.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47270.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__47270):map__47270);
+var resp = map__47270__$1;
+var body = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__47270__$1,new cljs.core.Keyword(null,"body","body",-2049205669));
 var body__$1 = kvlt.platform.util.gunzip(body);
 return kvlt.middleware.lift_content_encoding(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(resp,new cljs.core.Keyword(null,"body","body",-2049205669),body__$1));
 }));
@@ -423,13 +423,13 @@ return kvlt.middleware.lift_content_encoding(resp);
  *   Can be disabled per-request via `:decompress-body? false'
  */
 kvlt.middleware.decompress = kvlt.middleware.util.__GT_mw.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"decompress","decompress",1427568636),cljs.core.with_meta((function (req){
-var G__47281 = req;
-if((((!((function (){var G__47283 = new cljs.core.Keyword(null,"decompress-body?","decompress-body?",421693857);
-return (req.cljs$core$IFn$_invoke$arity$1 ? req.cljs$core$IFn$_invoke$arity$1(G__47283) : req.call(null,G__47283));
+var G__47275 = req;
+if((((!((function (){var G__47280 = new cljs.core.Keyword(null,"decompress-body?","decompress-body?",421693857);
+return (req.cljs$core$IFn$_invoke$arity$1 ? req.cljs$core$IFn$_invoke$arity$1(G__47280) : req.call(null,G__47280));
 })() === false))) && (cljs.core.not(kvlt.middleware.header.cljs$core$IFn$_invoke$arity$2(req,new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396)))))){
-return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(G__47281,new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),"gzip, deflate");
+return kvlt.middleware.header.cljs$core$IFn$_invoke$arity$3(G__47275,new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396),"gzip, deflate");
 } else {
-return G__47281;
+return G__47275;
 }
 }),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"removing","removing",1104822312),new cljs.core.Keyword(null,"accept-encoding","accept-encoding",-317924396)], null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(function (resp){
 return resp;
