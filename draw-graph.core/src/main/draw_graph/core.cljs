@@ -12,25 +12,25 @@
 ;; -------------------------
 ;; Current page
 
-(declare page)
-
-(defn current-page []
-  [:div.core
-       [:header
-        [:p [:a {:on-click #(accountant/navigate! "/")} "Home"] " | "
-         [:a {:on-click #(accountant/navigate! "/help")} "help"] " | "
-         [:a {:on-click #(accountant/navigate! "/about")} "about"]]]
-       [page]
-       [:footer
-        [:p
-         [:span.site "draw-graph"] " is a free utility by "
-         [:a {:href "https://github.com/judepayne" :tabIndex "0"}
-          "Jude Payne"] "."]]])
-
 (def selected-page (atom home-page))
 
 (defn page []
   [@selected-page])
+
+
+(defn current-page []
+  [:div.core
+   [:header
+    [:p [:a {:on-click #(accountant/navigate! "/")} "Home"] " | "
+     [:a {:on-click #(accountant/navigate! "/help")} "help"] " | "
+     [:a {:on-click #(accountant/navigate! "/about")} "about"]]]
+   [page]
+   (when (not (= @selected-page home-page))
+     [:footer
+      [:p
+       [:span.site "draw-graph"] " is a free utility by "
+       [:a {:href "https://github.com/judepayne" :tabIndex "0"}
+        "Jude Payne"] "."]])])
 
 ;; -------------------------
 ;; Routes

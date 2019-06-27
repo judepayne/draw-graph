@@ -43,14 +43,14 @@
    :show-constraints? false
    :fix-ranks? true
  ;  :filter-graph "application = sysTicket or function = Reporting"
- ;  :filter-graph "function not in (Risk)"
+   :filter-graph "function not in (Risk)"
  ;  :filter-graph "level<ted"
  ;  :filter-graph "format = legacy"
  ;  :filter-graph "volume not in (30, 25) and format in (legacy)"
  ;  :filter-graph "animal=pandas"
  ;   :filter-graph "owner = Ruth"
  ;  :filter-graph "id<30"
-   :paths "owner = Ruth|owner = Paul"
+ ;  :paths "owner = Ruth|owner = Paul"
  ;  :paths "function:Capture or function:Lifecycle|function:Reporting"
    :post-process? true
    :pp-clusters {:y true :h true :x true :w true}

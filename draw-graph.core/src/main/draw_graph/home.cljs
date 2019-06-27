@@ -16,7 +16,8 @@
    [draw-graph.file          :as file]
    [clojure.data.xml         :as xml]
    [lib-draw-graph.svg       :as svg]
-   [draw-graph.ip            :as ip])
+   [draw-graph.ip            :as ip]
+   [goog.dom                 :as dom])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
 
@@ -122,19 +123,26 @@
   ((partial post (lambda-url)) json-data))
 
 
-(defn get-svg-dom []
-  (nth (into [] (-> js/document (.getElementById "svg") (.-childNodes))) 6))
+(defn get-svg-element []
+  (let [svg (filter #(= "svg" (.-tagName %)) 
+             (-> js/document (.getElementById "svg") (.-childNodes)))]
+    (if (> (count svg) 0) (first svg) nil)))
 
 
 (defn reset-pan-zoom [] 
   (reset! pan-zoom nil)
-  (reset! pan-zoom (js/svgPanZoom. (get-svg-dom))))
+  (let [svg-element (get-svg-element)]
+    (when (not (nil? svg-element))
+      (js/svgPanZoom.
+       (get-svg-element)
+       #js {:controlIconsEnabled true}))))
 
 
 (defn put-svg [data]
   (let [data* (if (= data "null") default-svg-text data)])
   (reset! processing false)
-  (reset! svg data))
+  (reset! svg data)
+  (reset-pan-zoom))
 
 
 (defn put-error [message]
@@ -195,29 +203,18 @@
     (reset! processing true)
     (reset! error "")
     (reset! warn "")
-    (let [in (->csv1)
-          opts (:display-options in)
-          g (try
-              (processor/csv->g in)
-              (catch js/Error e
-                (do
-                  (reset! svg "")
-                  (put-error (str  e)))))
-          g' (try
-               (processor/preprocess-graph g opts)
-               (catch js/Error e
-                (do
-                  (reset! svg "")
-                  (put-error (str  e)))))
-          dot (try
-                (processor/g->dot in g')
-                (catch js/Error e
-                (do
-                  (reset! svg "")
-                  (put-error (str  e)))))]
-      (if @local-dot
-        (local-dot->svg g' opts dot)
-        (lambda-dot->svg g' opts dot)))))
+    (try
+      (let [in (->csv1)
+            opts (:display-options in)
+            g (processor/csv->g in)
+            g' (processor/preprocess-graph g opts)
+            dot (processor/g->dot in g')]
+        (if @local-dot
+          (local-dot->svg g' opts dot)
+          (lambda-dot->svg g' opts dot)))
+      (catch js/Error e
+        (reset! svg default-svg-text)
+        (put-error (str e))))))
 
 
 (defn get-svg []
@@ -722,27 +719,33 @@
        "Save image"]
       [:button {:id "save-button-disabled"} "Save image"])))
 
-;; -------------------------
-;; Controls
 
-(defn controls [state]
-  (fn []
-    [:div {:class (:wrapper-class @state)}
-     [:div.item3
-      [:div [load-button]]
-      [:div "or enter the data"]]
-     [:div.item4 [:label {:id "file-name"} (:data-filename @local-state)]]
-     [code-mirror data]
-     [disp-opts-hdr state]
-     [left-disp-opts1 state]
-     [middle-disp-opts1 state]
-     [right-disp-opts1 state]
-     [left-disp-opts2 state]
-     [middle-disp-opts2 state]
-     [right-disp-opts2 state]
-     [:div.item9 [process-button]]
-     [:div.item10 [save-button]]
-     [:div#svg {:dangerouslySetInnerHTML {:__html @svg}}]]))
+
+;; atom to hold the dimensions of the svg div
+;(def svg-div-rect (atom nil))
+
+
+(defn svg-div
+  ""
+  [value-atom]
+
+  (create-class
+
+   {:component-did-mount
+    (fn [this]
+       )
+
+    :component-did-update
+    (fn [this old-argv]
+      (let [el (get-svg-element)]
+        (when el (.setAttribute el "id" "the-svg"))
+        (reset-pan-zoom)))
+
+
+    :reagent-render
+    (fn [_ _ _]
+      [:div#svg 
+       {:dangerouslySetInnerHTML {:__html @svg}}])}))
 
 
 ;; -------------------------
@@ -761,6 +764,33 @@
                    (toggle local-state :local-dot true false))}
      [:span {:class (:class @state)} (:lbl @state)]]))
 
+
+;; -------------------------
+;; Controls
+
+(defn controls [state]
+  (fn []
+    [:div {:class (:wrapper-class @state)}
+     [:div.site-banner.banner1 "draw-graph" [local-remote local-remote-state]]
+     [:div.banner2.controls "Examples  " [example-dropdown]]
+     [:div.item3
+      [:div [load-button]]
+      [:div "or enter the data"]]
+     [:div.item4 [:label {:id "file-name"} (:data-filename @local-state)]]
+     [code-mirror data]
+     [disp-opts-hdr state]
+     [left-disp-opts1 state]
+     [middle-disp-opts1 state]
+     [right-disp-opts1 state]
+     [left-disp-opts2 state]
+     [middle-disp-opts2 state]
+     [right-disp-opts2 state]
+     [:div.item9 [process-button]]
+     [:div.item10 [save-button]]
+     [svg-div]
+     [:div.warn @warn]
+     [:div.error @error]]))
+
 ;; -------------------------
 ;; Page
 
@@ -770,11 +800,4 @@
   (find-region)
   [:div.page
    [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" :rel "stylesheet"}]
-   [:div.wrapper-banner
-    [:div.site-banner.banner1 "draw-graph" [local-remote local-remote-state]]
-    [:div.banner2.controls "Examples  " [example-dropdown]]]
-   ;[:p {:font-size "0.9em;"} "Network diagrams from csv files"]
-   [:div.main [controls disp-opts-state]]
-;   @local-state
-   [:div.warn @warn]
-   [:div.error @error]])
+   [:div.main [controls disp-opts-state]]])
