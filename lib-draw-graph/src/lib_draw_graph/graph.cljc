@@ -263,7 +263,7 @@
   (group-map opts
              [:graph :dpi :layout :pad :splines :sep :ranksep
               :scale :overlap :nodesep :rankdir :concentrate :ratio]
-             [:node :shape :label :fontsize :style :fixedsize :tooltip :url]
+             [:node :shape :label :fontsize :style :fixedsize :tooltip :url :area]
              [:env :hide-leaves? :show-roots? :color-on :constraint :show-constraints?]
              [:edge :edge-label]))
 

@@ -20,61 +20,61 @@ return accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$1("/help");
 return accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$1("/about");
 })], null),"about"], null)], null)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [draw_graph.core.page], null),(((!(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(draw_graph.core.selected_page),draw_graph.home.home_page))))?new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"footer","footer",1606445390),new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"span.site","span.site",302812633),"draw-graph"], null)," is a free utility by ",new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"a","a",-2123407586),new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"href","href",-793805698),"https://github.com/judepayne",new cljs.core.Keyword(null,"tabIndex","tabIndex",-169286716),"0"], null),"Jude Payne"], null),"."], null)], null):null)], null);
 });
-var action__36386__auto___39386 = (function (params__36387__auto__){
-if(cljs.core.map_QMARK_(params__36387__auto__)){
-var map__39362 = params__36387__auto__;
-var map__39362__$1 = (((((!((map__39362 == null))))?(((((map__39362.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__39362.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__39362):map__39362);
+var action__36037__auto___36085 = (function (params__36038__auto__){
+if(cljs.core.map_QMARK_(params__36038__auto__)){
+var map__36068 = params__36038__auto__;
+var map__36068__$1 = (((((!((map__36068 == null))))?(((((map__36068.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__36068.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__36068):map__36068);
 return cljs.core.reset_BANG_(draw_graph.core.selected_page,draw_graph.home.home_page);
 } else {
-if(cljs.core.vector_QMARK_(params__36387__auto__)){
-var vec__39364 = params__36387__auto__;
+if(cljs.core.vector_QMARK_(params__36038__auto__)){
+var vec__36070 = params__36038__auto__;
 return cljs.core.reset_BANG_(draw_graph.core.selected_page,draw_graph.home.home_page);
 } else {
 return null;
 }
 }
 });
-secretary.core.add_route_BANG_("/",action__36386__auto___39386);
+secretary.core.add_route_BANG_("/",action__36037__auto___36085);
 
-var action__36386__auto___39387 = (function (params__36387__auto__){
-if(cljs.core.map_QMARK_(params__36387__auto__)){
-var map__39367 = params__36387__auto__;
-var map__39367__$1 = (((((!((map__39367 == null))))?(((((map__39367.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__39367.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__39367):map__39367);
+var action__36037__auto___36086 = (function (params__36038__auto__){
+if(cljs.core.map_QMARK_(params__36038__auto__)){
+var map__36073 = params__36038__auto__;
+var map__36073__$1 = (((((!((map__36073 == null))))?(((((map__36073.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__36073.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__36073):map__36073);
 return cljs.core.reset_BANG_(draw_graph.core.selected_page,draw_graph.about.about_page);
 } else {
-if(cljs.core.vector_QMARK_(params__36387__auto__)){
-var vec__39369 = params__36387__auto__;
+if(cljs.core.vector_QMARK_(params__36038__auto__)){
+var vec__36075 = params__36038__auto__;
 return cljs.core.reset_BANG_(draw_graph.core.selected_page,draw_graph.about.about_page);
 } else {
 return null;
 }
 }
 });
-secretary.core.add_route_BANG_("/about",action__36386__auto___39387);
+secretary.core.add_route_BANG_("/about",action__36037__auto___36086);
 
-var action__36386__auto___39388 = (function (params__36387__auto__){
-if(cljs.core.map_QMARK_(params__36387__auto__)){
-var map__39372 = params__36387__auto__;
-var map__39372__$1 = (((((!((map__39372 == null))))?(((((map__39372.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__39372.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__39372):map__39372);
+var action__36037__auto___36087 = (function (params__36038__auto__){
+if(cljs.core.map_QMARK_(params__36038__auto__)){
+var map__36078 = params__36038__auto__;
+var map__36078__$1 = (((((!((map__36078 == null))))?(((((map__36078.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__36078.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__36078):map__36078);
 return cljs.core.reset_BANG_(draw_graph.core.selected_page,draw_graph.help.help_page);
 } else {
-if(cljs.core.vector_QMARK_(params__36387__auto__)){
-var vec__39374 = params__36387__auto__;
+if(cljs.core.vector_QMARK_(params__36038__auto__)){
+var vec__36080 = params__36038__auto__;
 return cljs.core.reset_BANG_(draw_graph.core.selected_page,draw_graph.help.help_page);
 } else {
 return null;
 }
 }
 });
-secretary.core.add_route_BANG_("/help",action__36386__auto___39388);
+secretary.core.add_route_BANG_("/help",action__36037__auto___36087);
 
 draw_graph.core.get_app_element = (function draw_graph$core$get_app_element(){
 return goog.dom.getElement("app");
 });
 draw_graph.core.mount = (function draw_graph$core$mount(el){
-var G__39380 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [draw_graph.core.current_page], null);
-var G__39381 = el;
-return (reagent.core.render_component.cljs$core$IFn$_invoke$arity$2 ? reagent.core.render_component.cljs$core$IFn$_invoke$arity$2(G__39380,G__39381) : reagent.core.render_component.call(null,G__39380,G__39381));
+var G__36083 = new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [draw_graph.core.current_page], null);
+var G__36084 = el;
+return (reagent.core.render_component.cljs$core$IFn$_invoke$arity$2 ? reagent.core.render_component.cljs$core$IFn$_invoke$arity$2(G__36083,G__36084) : reagent.core.render_component.call(null,G__36083,G__36084));
 });
 draw_graph.core.mount_app_element = (function draw_graph$core$mount_app_element(){
 var temp__5720__auto__ = draw_graph.core.get_app_element();

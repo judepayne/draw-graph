@@ -28,12 +28,13 @@
    :nodesep 0.4
    ;:ranksep 0
    ;:sep 1 
+   :fontsize 8
    :splines "ortho"
    :rankdir "TB"
    :fixedsize false
    :tooltip "application&id"
    :url "link"
-   ;:scale 2
+   :scale 2
    :overlap "false"
    :concentrate false
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
@@ -43,7 +44,7 @@
    :show-constraints? false
    :fix-ranks? true
  ;  :filter-graph "application = sysTicket or function = Reporting"
-   :filter-graph "function not in (Risk)"
+ ;  :filter-graph "function not in (Risk)"
  ;  :filter-graph "level<ted"
  ;  :filter-graph "format = legacy"
  ;  :filter-graph "volume not in (30, 25) and format in (legacy)"

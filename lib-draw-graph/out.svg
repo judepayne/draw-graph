@@ -1,58 +1,559 @@
-<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="222pt" height="221pt" viewBox="0.00 0.00 221.80 220.80">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 206.4)">
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="636pt" height="915pt" viewBox="0.00 0.00 635.80 915.30">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 900.9)">
 <title>%3</title>
-<polygon fill="#ffffff" stroke="transparent" points="-14.4,14.4 -14.4,-206.4 207.4,-206.4 207.4,14.4 -14.4,14.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-14.4,14.4 -14.4,-900.9 621.4,-900.9 621.4,14.4 -14.4,14.4"/>
 <g id="clust1" class="cluster">
-<title>cluster12488</title>
-<polygon fill="none" stroke="#000000" points="115,-84 115,-158 185,-158 185,-84 115,-84"/>
-<text text-anchor="middle" x="150" y="-142.8" font-family="sans-serif" font-size="14.00" fill="#000000">&lt;all&gt;</text>
+<title>cluster15484</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-878 8,-8 599,-8 599,-878 8,-878"/>
+<text text-anchor="end" x="589" y="-860" font-family="sans-serif" font-size="14.00" fill="#000000">Current State</text>
 </g>
 <g id="clust2" class="cluster">
-<title>cluster12489</title>
-<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-184 8,-8 107,-8 107,-184 8,-184"/>
-<text text-anchor="end" x="97" y="-166" font-family="sans-serif" font-size="14.00" fill="#000000">Current State</text>
+<title>cluster15485</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-165 8,-89 599,-89 599,-165 8,-165"/>
+<text text-anchor="end" x="589" y="-147" font-family="sans-serif" font-size="14.00" fill="#000000">Payments</text>
 </g>
 <g id="clust3" class="cluster">
-<title>cluster12490</title>
-<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-156 8,-14 107,-14 107,-156 8,-156"/>
-<text text-anchor="end" x="97" y="-138" font-family="sans-serif" font-size="14.00" fill="#000000">Risk</text>
+<title>cluster15486</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-544 8,-395 599,-395 599,-544 8,-544"/>
+<text text-anchor="end" x="589" y="-526" font-family="sans-serif" font-size="14.00" fill="#000000">Risk</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster15487</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-703 8,-624 599,-624 599,-703 8,-703"/>
+<text text-anchor="end" x="589" y="-685" font-family="sans-serif" font-size="14.00" fill="#000000">Capture</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster15488</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-850 8,-703 599,-703 599,-850 8,-850"/>
+<text text-anchor="end" x="589" y="-832" font-family="sans-serif" font-size="14.00" fill="#000000">Golden Sources</text>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster15489</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-624 8,-544 599,-544 599,-624 8,-624"/>
+<text text-anchor="end" x="589" y="-606" font-family="sans-serif" font-size="14.00" fill="#000000">Lifecycle</text>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster15490</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-313 8,-165 599,-165 599,-313 8,-313"/>
+<text text-anchor="end" x="589" y="-295" font-family="sans-serif" font-size="14.00" fill="#000000">Settlement</text>
+</g>
+<g id="clust14" class="cluster">
+<title>cluster15491</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-395 8,-313 599,-313 599,-395 8,-395"/>
+<text text-anchor="end" x="589" y="-377" font-family="sans-serif" font-size="14.00" fill="#000000">Reporting</text>
+</g>
+<g id="clust15" class="cluster">
+<title>cluster15492</title>
+<polygon fill="#f0f2da" stroke="#49c1e5" points="8,-89 8,-8 597,-8 597,-89 8,-89"/>
+<text text-anchor="end" x="587" y="-71" font-family="sans-serif" font-size="14.00" fill="#000000">Finance</text>
 </g>
 
 <g id="node1" class="node">
-<title>node12485</title>
-<g id="a_node1"><a xlink:title="application: GRIMACE
+<title>node15456</title>
+<g id="a_node1"><a xlink:title="application: War
 id: PTN-" target="_blank">
-<polygon fill="#e8eef7" stroke="#000000" points="87.1708,-56 26.8292,-56 26.8292,-20 87.1708,-20 87.1708,-56"/>
-<text text-anchor="middle" x="57" y="-35" font-family="sans-serif" font-size="10.00" fill="#000000">GRIMACE</text>
+<polygon fill="#c6ddf2" stroke="#000000" points="186,-670 132,-670 132,-634 186,-634 186,-670"/>
+<text text-anchor="middle" x="159" y="-649.6" font-family="sans-serif" font-size="8.00" fill="#000000">War</text>
 </a>
 </g>
+</g>
+
+<g id="node5" class="node">
+<title>node15460</title>
+<g id="a_node5"><a xlink:title="application: CONFIRMATIONS
+Writer
+Doc
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="331.021,-592 250.979,-592 250.979,-554 331.021,-554 331.021,-592"/>
+<text text-anchor="middle" x="291" y="-578.6" font-family="sans-serif" font-size="8.00" fill="#000000">CONFIRMATIONS</text>
+<text text-anchor="middle" x="291" y="-570.6" font-family="sans-serif" font-size="8.00" fill="#000000">Writer</text>
+<text text-anchor="middle" x="291" y="-562.6" font-family="sans-serif" font-size="8.00" fill="#000000">Doc</text>
+</a>
+</g>
+</g>
+
+
+<g id="node12" class="node">
+<title>node15467</title>
+<g id="a_node12"><a xlink:title="application: Fidelity Plus
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="417.6251,-591 360.3749,-591 360.3749,-555 417.6251,-555 417.6251,-591"/>
+<text text-anchor="middle" x="389" y="-570.6" font-family="sans-serif" font-size="8.00" fill="#000000">Fidelity Plus</text>
+</a>
+</g>
+</g>
+
+
+<g id="node14" class="node">
+<title>node15469</title>
+<g id="a_node14"><a xlink:title="application: ADH
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="237,-284 183,-284 183,-248 237,-248 237,-284"/>
+<text text-anchor="middle" x="210" y="-263.6" font-family="sans-serif" font-size="8.00" fill="#000000">ADH</text>
+</a>
+</g>
+</g>
+
+<g id="edge3" class="edge">
+<title>node15456-&gt;node15469</title>
+<path fill="none" stroke="#a6a8e0" d="M141.7448,-633.9001C141.7448,-557.5865 141.7448,-266 141.7448,-266 141.7448,-266 172.6313,-266 172.6313,-266"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="172.6313,-269.5001 182.6313,-266 172.6312,-262.5001 172.6313,-269.5001"/>
+<text text-anchor="middle" x="127.8483" y="-436.5068" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="node20" class="node">
+<title>node15475</title>
+<g id="a_node20"><a xlink:title="application: BAD Image
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="221.4063,-591 166.5937,-591 166.5937,-555 221.4063,-555 221.4063,-591"/>
+<text text-anchor="middle" x="194" y="-570.6" font-family="sans-serif" font-size="8.00" fill="#000000">BAD Image</text>
+</a>
+</g>
+</g>
+
+<g id="edge4" class="edge">
+<title>node15456-&gt;node15475</title>
+<path fill="none" stroke="#a6a8e0" d="M181.1367,-633.6772C181.1367,-633.6772 181.1367,-601.2234 181.1367,-601.2234"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="184.6368,-601.2234 181.1367,-591.2234 177.6368,-601.2234 184.6368,-601.2234"/>
+<text text-anchor="middle" x="167.2402" y="-619.4503" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="node22" class="node">
+<title>node15477</title>
+<g id="a_node22"><a xlink:title="application: noShock
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="223,-362 169,-362 169,-326 223,-326 223,-362"/>
+<text text-anchor="middle" x="196" y="-341.6" font-family="sans-serif" font-size="8.00" fill="#000000">noShock</text>
+</a>
+</g>
+</g>
+
+<g id="edge5" class="edge">
+<title>node15456-&gt;node15477</title>
+<path fill="none" stroke="#a6a8e0" d="M146.6172,-633.6556C146.6172,-567.3489 146.6172,-344 146.6172,-344 146.6172,-344 158.9968,-344 158.9968,-344"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="158.9968,-347.5001 168.9968,-344 158.9968,-340.5001 158.9968,-347.5001"/>
+<text text-anchor="middle" x="132.7207" y="-484.638" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
 </g>
 
 <g id="node2" class="node">
-<title>node12486</title>
-<g id="a_node2"><a xlink:title="application: Kuiper
+<title>node15457</title>
+<g id="a_node2"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: InstHub
 id: PTN-" target="_blank">
-<polygon fill="#e8eef7" stroke="#000000" points="177,-128 123,-128 123,-92 177,-92 177,-128"/>
-<text text-anchor="middle" x="150" y="-107" font-family="sans-serif" font-size="10.00" fill="#000000">Kuiper</text>
+<polygon fill="#e8eef7" stroke="#000000" points="197,-748 143,-748 143,-712 197,-712 197,-748"/>
+<text text-anchor="middle" x="170" y="-727.6" font-family="sans-serif" font-size="8.00" fill="#000000">InstHub</text>
 </a>
 </g>
 </g>
+
+
+<g id="node7" class="node">
+<title>node15462</title>
+<g id="a_node7"><a xlink:title="application: HCB
+id: PTN-" target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="457,-670 403,-670 403,-634 457,-634 457,-670"/>
+<text text-anchor="middle" x="430" y="-649.6" font-family="sans-serif" font-size="8.00" fill="#000000">HCB</text>
+</a>
+</g>
+</g>
+
 
 <g id="node3" class="node">
-<title>node12487</title>
-<g id="a_node3"><a xlink:title="application: Guerilla Risk
+<title>node15458</title>
+<g id="a_node3"><a xlink:title="application: GRIMACE
 id: PTN-" target="_blank">
-<polygon fill="#e8eef7" stroke="#000000" points="92.1804,-128 21.8196,-128 21.8196,-92 92.1804,-92 92.1804,-128"/>
-<text text-anchor="middle" x="57" y="-107" font-family="sans-serif" font-size="10.00" fill="#000000">Guerilla Risk</text>
+<polygon fill="#e8eef7" stroke="#000000" points="283,-440 229,-440 229,-404 283,-404 283,-440"/>
+<text text-anchor="middle" x="256" y="-419.6" font-family="sans-serif" font-size="8.00" fill="#000000">GRIMACE</text>
 </a>
 </g>
 </g>
 
-<g id="edge1" class="edge">
-<title>node12487-&gt;node12485</title>
-<path fill="none" stroke="#267a17" d="M57,-91.8314C57,-91.8314 57,-66.4133 57,-66.4133"/>
-<polygon fill="#267a17" stroke="#267a17" points="60.5001,-66.4132 57,-56.4133 53.5001,-66.4133 60.5001,-66.4132"/>
-<text text-anchor="middle" x="43.6675" y="-81.1223" font-family="sans-serif" font-size="10.00" fill="#000000">pl-risk</text>
+<g id="node10" class="node">
+<title>node15465</title>
+<g id="a_node10"><a xlink:title="application: 1-Charge
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="306,-362 252,-362 252,-326 306,-326 306,-362"/>
+<text text-anchor="middle" x="279" y="-341.6" font-family="sans-serif" font-size="8.00" fill="#000000">1-Charge</text>
+</a>
+</g>
+</g>
+
+
+<g id="node13" class="node">
+<title>node15468</title>
+<g id="a_node13"><a xlink:title="application: hePikes
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="320,-284 266,-284 266,-248 320,-248 320,-284"/>
+<text text-anchor="middle" x="293" y="-263.6" font-family="sans-serif" font-size="8.00" fill="#000000">hePikes</text>
+</a>
+</g>
+</g>
+
+<g id="edge9" class="edge">
+<title>node15458-&gt;node15468</title>
+<path fill="none" stroke="#296640" d="M241.2,-403.9065C241.2,-364.0111 241.2,-272 241.2,-272 241.2,-272 255.8863,-272 255.8863,-272"/>
+<polygon fill="#296640" stroke="#296640" points="255.8864,-275.5001 265.8863,-272 255.8863,-268.5001 255.8864,-275.5001"/>
+<text text-anchor="middle" x="241.2" y="-322.6101" font-family="sans-serif" font-size="10.00" fill="#000000">cash</text>
+</g>
+
+<g id="node15" class="node">
+<title>node15470</title>
+<g id="a_node15"><a xlink:title="application: SIP-local
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="132,-56 78,-56 78,-20 132,-20 132,-56"/>
+<text text-anchor="middle" x="105" y="-35.6" font-family="sans-serif" font-size="8.00" fill="#000000">SIP-local</text>
+</a>
+</g>
+</g>
+
+<g id="edge10" class="edge">
+<title>node15458-&gt;node15470</title>
+<path fill="none" stroke="#296640" d="M228.9819,-422C182.5101,-422 92.3828,-422 92.3828,-422 92.3828,-422 92.3828,-66.0061 92.3828,-66.0061"/>
+<polygon fill="#296640" stroke="#296640" points="95.8829,-66.006 92.3828,-56.0061 88.8829,-66.0061 95.8829,-66.006"/>
+<text text-anchor="middle" x="79.0503" y="-314.3026" font-family="sans-serif" font-size="10.00" fill="#000000">pl-risk</text>
+</g>
+
+
+<g id="node4" class="node">
+<title>node15459</title>
+<g id="a_node4"><a xlink:title="application: Guerilla Risk
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="288.8448,-512 229.1552,-512 229.1552,-476 288.8448,-476 288.8448,-512"/>
+<text text-anchor="middle" x="259" y="-491.6" font-family="sans-serif" font-size="8.00" fill="#000000">Guerilla Risk</text>
+</a>
+</g>
+</g>
+
+<g id="edge12" class="edge">
+<title>node15459-&gt;node15458</title>
+<path fill="none" stroke="#267a17" d="M256.1641,-475.8314C256.1641,-475.8314 256.1641,-450.4133 256.1641,-450.4133"/>
+<polygon fill="#267a17" stroke="#267a17" points="259.6642,-450.4132 256.1641,-440.4133 252.6642,-450.4133 259.6642,-450.4132"/>
+<text text-anchor="middle" x="242.8315" y="-465.1223" font-family="sans-serif" font-size="10.00" fill="#000000">pl-risk</text>
+</g>
+
+
+<g id="node11" class="node">
+<title>node15466</title>
+<g id="a_node11"><a xlink:title="application: TradeDepo
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="408.5968,-362 335.4032,-362 335.4032,-326 408.5968,-326 408.5968,-362"/>
+<text text-anchor="middle" x="372" y="-340.4" font-family="sans-serif" font-size="12.00" fill="#000000">TradeDepo</text>
+</a>
+</g>
+</g>
+
+<g id="edge14" class="edge">
+<title>node15459-&gt;node15466</title>
+<path fill="none" stroke="#296640" d="M289.07,-494C313.3904,-494 343.6139,-494 343.6139,-494 343.6139,-494 343.6139,-372.0935 343.6139,-372.0935"/>
+<polygon fill="#296640" stroke="#296640" points="347.114,-372.0935 343.6139,-362.0935 340.114,-372.0935 347.114,-372.0935"/>
+<text text-anchor="middle" x="330.2814" y="-462.3187" font-family="sans-serif" font-size="10.00" fill="#000000">pl-risk</text>
+</g>
+
+
+
+
+<g id="node24" class="node">
+<title>node15479</title>
+<g id="a_node24"><a xlink:title="application: i-Assert(CZH)
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="500.3829,-362 437.6171,-362 437.6171,-326 500.3829,-326 500.3829,-362"/>
+<text text-anchor="middle" x="469" y="-341.6" font-family="sans-serif" font-size="8.00" fill="#000000">i-Assert(CZH)</text>
+</a>
+</g>
+</g>
+
+<g id="edge18" class="edge">
+<title>node15460-&gt;node15479</title>
+<path fill="none" stroke="#dd809e" d="M325.6299,-553.8833C325.6299,-540.8711 325.6299,-526 325.6299,-526 325.6299,-526 447.2793,-526 447.2793,-526 447.2793,-526 447.2793,-372.1162 447.2793,-372.1162"/>
+<polygon fill="#dd809e" stroke="#dd809e" points="450.7794,-372.1162 447.2793,-362.1162 443.7794,-372.1163 450.7794,-372.1162"/>
+<text text-anchor="middle" x="428.3877" y="-525.8245" font-family="sans-serif" font-size="10.00" fill="#000000">confirms</text>
+</g>
+
+<g id="node6" class="node">
+<title>node15461</title>
+<g id="a_node6"><a xlink:title="application: ECN
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="301,-212 247,-212 247,-176 301,-176 301,-212"/>
+<text text-anchor="middle" x="274" y="-191.6" font-family="sans-serif" font-size="8.00" fill="#000000">ECN</text>
+</a>
+</g>
+</g>
+
+<g id="node9" class="node">
+<title>node15464</title>
+<g id="a_node9"><a xlink:title="application: eFermi
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="244,-134 190,-134 190,-98 244,-98 244,-134"/>
+<text text-anchor="middle" x="217" y="-113.6" font-family="sans-serif" font-size="8.00" fill="#000000">eFermi</text>
+</a>
+</g>
+</g>
+
+
+<g id="edge20" class="edge">
+<title>node15461-&gt;node15470</title>
+<path fill="none" stroke="#ba521a" d="M274,-175.957C274,-134.1129 274,-34 274,-34 274,-34 142.1528,-34 142.1528,-34"/>
+<polygon fill="#ba521a" stroke="#ba521a" points="142.1528,-30.5001 132.1528,-34 142.1527,-37.5001 142.1528,-30.5001"/>
+<text text-anchor="middle" x="260.1035" y="-41.0549" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="node19" class="node">
+<title>node15474</title>
+<g id="a_node19"><a xlink:title="application: Kuiper
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="161.4708,-134 106.5292,-134 106.5292,-98 161.4708,-98 161.4708,-134"/>
+<text text-anchor="middle" x="134" y="-111.8" font-family="sans-serif" font-size="14.00" fill="#000000">Kuiper</text>
+</a>
+</g>
+</g>
+
+
+
+<g id="edge23" class="edge">
+<title>node15462-&gt;node15461</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M430.8932,-633.7632C430.8932,-548.5807 430.8932,-194 430.8932,-194 430.8932,-194 311.3287,-194 311.3287,-194"/>
+<polygon fill="#000000" stroke="#000000" points="311.3287,-190.5001 301.3287,-194 311.3287,-197.5001 311.3287,-190.5001"/>
+<text text-anchor="middle" x="423.945" y="-346.0994" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+
+<g id="edge25" class="edge">
+<title>node15462-&gt;node15468</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M424.2279,-633.9001C424.2279,-557.5865 424.2279,-266 424.2279,-266 424.2279,-266 330.1905,-266 330.1905,-266"/>
+<polygon fill="#000000" stroke="#000000" points="330.1905,-262.5001 320.1905,-266 330.1905,-269.5001 330.1905,-262.5001"/>
+<text text-anchor="middle" x="410.3314" y="-404.9314" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="edge26" class="edge">
+<title>node15462-&gt;node15475</title>
+<path fill="none" stroke="#a6a8e0" d="M406.6406,-633.7566C406.6406,-626.5703 406.6406,-620 406.6406,-620 406.6406,-620 210.8296,-620 210.8296,-620 210.8296,-620 210.8296,-601.037 210.8296,-601.037"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="214.3297,-601.037 210.8296,-591.037 207.3297,-601.037 214.3297,-601.037"/>
+<text text-anchor="middle" x="292.2354" y="-622" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="node8" class="node">
+<title>node15463</title>
+<g id="a_node8"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Books
+id: PTN-1234" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M557,-817.9773C557,-819.7831 544.8982,-821.25 530,-821.25 515.1018,-821.25 503,-819.7831 503,-817.9773 503,-817.9773 503,-788.5227 503,-788.5227 503,-786.7169 515.1018,-785.25 530,-785.25 544.8982,-785.25 557,-786.7169 557,-788.5227 557,-788.5227 557,-817.9773 557,-817.9773"/>
+<path fill="none" stroke="#000000" d="M557,-817.9773C557,-816.1714 544.8982,-814.7045 530,-814.7045 515.1018,-814.7045 503,-816.1714 503,-817.9773"/>
+<text text-anchor="middle" x="530" y="-800.85" font-family="sans-serif" font-size="8.00" fill="#000000">Books</text>
+</a>
+</g>
+</g>
+
+
+
+
+
+
+
+
+
+<g id="edge35" class="edge">
+<title>node15467-&gt;node15479</title>
+<g id="a_edge35"><a xlink:href="http://www.google.com" xlink:title="Fidelity-&gt;i-Assert(CZH)" target="_blank">
+<path fill="none" stroke="#dd809e" stroke-width="2" d="M413.1802,-554.6471C413.1802,-500.3062 413.1802,-344 413.1802,-344 413.1802,-344 427.5012,-344 427.5012,-344"/>
+<polygon fill="#dd809e" stroke="#dd809e" stroke-width="2" points="427.5012,-347.5001 437.5012,-344 427.5011,-340.5001 427.5012,-347.5001"/>
+</a>
+</g>
+<g id="a_edge35-label"><a xlink:href="http://www.google.com" xlink:title="Fidelity-&gt;i-Assert(CZH)" target="_blank">
+<text text-anchor="middle" x="399.2837" y="-444.163" font-family="sans-serif" font-size="10.00" fill="#0000ff">trades</text>
+</a>
+</g>
+</g>
+
+<g id="edge36" class="edge">
+<title>node15468-&gt;node15461</title>
+<path fill="none" stroke="#9e5919" d="M289.3333,-247.8314C289.3333,-247.8314 289.3333,-222.4133 289.3333,-222.4133"/>
+<polygon fill="#9e5919" stroke="#9e5919" points="292.8334,-222.4132 289.3333,-212.4133 285.8334,-222.4133 292.8334,-222.4132"/>
+<text text-anchor="middle" x="264.0452" y="-237.1223" font-family="sans-serif" font-size="10.00" fill="#000000">instructions</text>
+</g>
+
+<g id="edge37" class="edge">
+<title>node15468-&gt;node15464</title>
+<path fill="none" stroke="#81648c" d="M265.7766,-260C252.6876,-260 239.8,-260 239.8,-260 239.8,-260 239.8,-144.2377 239.8,-144.2377"/>
+<polygon fill="#81648c" stroke="#81648c" points="243.3001,-144.2377 239.8,-134.2377 236.3001,-144.2377 243.3001,-144.2377"/>
+<text text-anchor="middle" x="214.5119" y="-217.1072" font-family="sans-serif" font-size="10.00" fill="#000000">instructions</text>
+</g>
+
+<g id="edge38" class="edge">
+<title>node15468-&gt;node15470</title>
+<path fill="none" stroke="#ba521a" d="M310.5,-247.6429C310.5,-191.6781 310.5,-27 310.5,-27 310.5,-27 142.2888,-27 142.2888,-27"/>
+<polygon fill="#ba521a" stroke="#ba521a" points="142.2888,-23.5001 132.2888,-27 142.2888,-30.5001 142.2888,-23.5001"/>
+<text text-anchor="middle" x="296.6035" y="-55.2159" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+
+<g id="edge40" class="edge">
+<title>node15469-&gt;node15470</title>
+<path fill="none" stroke="#ba521a" d="M186.5,-247.7884C186.5,-195.3943 186.5,-48 186.5,-48 186.5,-48 142.1383,-48 142.1383,-48"/>
+<polygon fill="#ba521a" stroke="#ba521a" points="142.1384,-44.5001 132.1383,-48 142.1383,-51.5001 142.1384,-44.5001"/>
+<text text-anchor="middle" x="172.6035" y="-127.7134" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="node16" class="node">
+<title>node15471</title>
+<g id="a_node16"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Affinity
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="280,-748 226,-748 226,-712 280,-712 280,-748"/>
+<text text-anchor="middle" x="253" y="-727.6" font-family="sans-serif" font-size="8.00" fill="#000000">Affinity</text>
+</a>
+</g>
+</g>
+
+
+
+<g id="node17" class="node">
+<title>node15472</title>
+<g id="a_node17"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: P-RAM
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="461,-748 407,-748 407,-712 461,-712 461,-748"/>
+<text text-anchor="middle" x="434" y="-727.6" font-family="sans-serif" font-size="8.00" fill="#000000">P-RAM</text>
+</a>
+</g>
+</g>
+
+<g id="node18" class="node">
+<title>node15473</title>
+<g id="a_node18"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Instrument
+id: PTN-2345" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M474.1378,-818.7981C474.1378,-820.7046 456.1474,-822.2532 434,-822.2532 411.8526,-822.2532 393.8622,-820.7046 393.8622,-818.7981 393.8622,-818.7981 393.8622,-787.7019 393.8622,-787.7019 393.8622,-785.7954 411.8526,-784.2468 434,-784.2468 456.1474,-784.2468 474.1378,-785.7954 474.1378,-787.7019 474.1378,-787.7019 474.1378,-818.7981 474.1378,-818.7981"/>
+<path fill="none" stroke="#000000" d="M474.1378,-818.7981C474.1378,-816.8916 456.1474,-815.3429 434,-815.3429 411.8526,-815.3429 393.8622,-816.8916 393.8622,-818.7981"/>
+<text text-anchor="middle" x="434" y="-799.05" font-family="sans-serif" font-size="14.00" fill="#000000">Instrument</text>
+</a>
+</g>
+</g>
+
+
+
+<g id="edge45" class="edge">
+<title>node15475-&gt;node15459</title>
+<path fill="none" stroke="#267a17" d="M221.5756,-573C231.3796,-573 240.0342,-573 240.0342,-573 240.0342,-573 240.0342,-522.3228 240.0342,-522.3228"/>
+<polygon fill="#267a17" stroke="#267a17" points="243.5343,-522.3227 240.0342,-512.3228 236.5343,-522.3228 243.5343,-522.3227"/>
+<g id="a_edge45-label"><a xlink:title="BAD Image-&gt;Guerilla Risk">
+<text text-anchor="middle" x="230.1672" y="-548.8907" font-family="sans-serif" font-size="10.00" fill="#ff0000">positions</text>
+</a>
+</g>
+</g>
+
+<g id="edge46" class="edge">
+<title>node15475-&gt;node15464</title>
+<path fill="none" stroke="#81648c" d="M179.4906,-554.8198C179.4906,-506.0508 179.4906,-376 179.4906,-376 179.4906,-376 238.4,-376 238.4,-376 238.4,-376 238.4,-144.2827 238.4,-144.2827"/>
+<polygon fill="#81648c" stroke="#81648c" points="241.9001,-144.2827 238.4,-134.2827 234.9001,-144.2827 241.9001,-144.2827"/>
+<text text-anchor="middle" x="215.6602" y="-378" font-family="sans-serif" font-size="10.00" fill="#000000">positions</text>
+</g>
+
+<g id="edge47" class="edge">
+<title>node15475-&gt;node15465</title>
+<path fill="none" stroke="#267a17" d="M189.9813,-554.7842C189.9813,-508.4965 189.9813,-390 189.9813,-390 189.9813,-390 262.3333,-390 262.3333,-390 262.3333,-390 262.3333,-372.1804 262.3333,-372.1804"/>
+<polygon fill="#267a17" stroke="#267a17" points="265.8334,-372.1804 262.3333,-362.1804 258.8334,-372.1805 265.8334,-372.1804"/>
+<g id="a_edge47-label"><a xlink:title="BAD Image-&gt;1-Charge">
+<text text-anchor="middle" x="170.2474" y="-429.3063" font-family="sans-serif" font-size="10.00" fill="#ff0000">positions</text>
+</a>
+</g>
+</g>
+
+<g id="edge48" class="edge">
+<title>node15475-&gt;node15468</title>
+<path fill="none" stroke="#81648c" d="M200.4719,-554.9551C200.4719,-547.251 200.4719,-540 200.4719,-540 200.4719,-540 310.6667,-540 310.6667,-540 310.6667,-540 310.6667,-294.4034 310.6667,-294.4034"/>
+<polygon fill="#81648c" stroke="#81648c" points="314.1668,-294.4033 310.6667,-284.4034 307.1668,-294.4034 314.1668,-294.4033"/>
+<text text-anchor="middle" x="330.4006" y="-481.7767" font-family="sans-serif" font-size="10.00" fill="#000000">positions</text>
+</g>
+
+<g id="edge49" class="edge">
+<title>node15475-&gt;node15474</title>
+<path fill="none" stroke="#81648c" d="M166.4402,-573C151.8316,-573 136.8724,-573 136.8724,-573 136.8724,-573 136.8724,-144.197 136.8724,-144.197"/>
+<polygon fill="#81648c" stroke="#81648c" points="140.3725,-144.1969 136.8724,-134.197 133.3725,-144.197 140.3725,-144.1969"/>
+<text text-anchor="middle" x="117.1385" y="-375.3824" font-family="sans-serif" font-size="10.00" fill="#000000">positions</text>
+</g>
+
+<g id="node21" class="node">
+<title>node15476</title>
+<g id="a_node21"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Clients
+id: PTN-675664" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M365.2933,-818.7981C365.2933,-820.7046 352.6118,-822.2532 337,-822.2532 321.3882,-822.2532 308.7067,-820.7046 308.7067,-818.7981 308.7067,-818.7981 308.7067,-787.7019 308.7067,-787.7019 308.7067,-785.7954 321.3882,-784.2468 337,-784.2468 352.6118,-784.2468 365.2933,-785.7954 365.2933,-787.7019 365.2933,-787.7019 365.2933,-818.7981 365.2933,-818.7981"/>
+<path fill="none" stroke="#000000" d="M365.2933,-818.7981C365.2933,-816.8916 352.6118,-815.3429 337,-815.3429 321.3882,-815.3429 308.7067,-816.8916 308.7067,-818.7981"/>
+<text text-anchor="middle" x="337" y="-799.05" font-family="sans-serif" font-size="14.00" fill="#000000">Clients</text>
+</a>
+</g>
+</g>
+
+<g id="node23" class="node">
+<title>node15478</title>
+<g id="a_node23"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: ERP
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="364,-748 310,-748 310,-712 364,-712 364,-748"/>
+<text text-anchor="middle" x="337" y="-727.6" font-family="sans-serif" font-size="8.00" fill="#000000">ERP</text>
+</a>
+</g>
+</g>
+
+
+<g id="node25" class="node">
+<title>node15480</title>
+<g id="a_node25"><a xlink:title="application: FORPS-bus
+id: PTN-" target="_blank">
+<polygon fill="#c6ddf2" stroke="#000000" points="272.6212,-670 215.3788,-670 215.3788,-634 272.6212,-634 272.6212,-670"/>
+<text text-anchor="middle" x="244" y="-649.6" font-family="sans-serif" font-size="8.00" fill="#000000">FORPS-bus</text>
+</a>
+</g>
+</g>
+
+
+
+<g id="node26" class="node">
+<title>node15481</title>
+<g id="a_node26"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Employee
+id: PTN-23" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M280,-817.9773C280,-819.7831 267.8982,-821.25 253,-821.25 238.1018,-821.25 226,-819.7831 226,-817.9773 226,-817.9773 226,-788.5227 226,-788.5227 226,-786.7169 238.1018,-785.25 253,-785.25 267.8982,-785.25 280,-786.7169 280,-788.5227 280,-788.5227 280,-817.9773 280,-817.9773"/>
+<path fill="none" stroke="#000000" d="M280,-817.9773C280,-816.1714 267.8982,-814.7045 253,-814.7045 238.1018,-814.7045 226,-816.1714 226,-817.9773"/>
+<text text-anchor="middle" x="253" y="-800.85" font-family="sans-serif" font-size="8.00" fill="#000000">Employee</text>
+</a>
+</g>
+</g>
+
+
+<g id="node27" class="node">
+<title>node15482</title>
+<g id="a_node27"><a xlink:href="https://en.wikipedia.org/wiki/Reference_data" xlink:title="application: Products
+id: PTN-6538" target="_blank">
+<path fill="#eebd1b" stroke="#000000" d="M197,-817.9773C197,-819.7831 184.8982,-821.25 170,-821.25 155.1018,-821.25 143,-819.7831 143,-817.9773 143,-817.9773 143,-788.5227 143,-788.5227 143,-786.7169 155.1018,-785.25 170,-785.25 184.8982,-785.25 197,-786.7169 197,-788.5227 197,-788.5227 197,-817.9773 197,-817.9773"/>
+<path fill="none" stroke="#000000" d="M197,-817.9773C197,-816.1714 184.8982,-814.7045 170,-814.7045 155.1018,-814.7045 143,-816.1714 143,-817.9773"/>
+<text text-anchor="middle" x="170" y="-800.85" font-family="sans-serif" font-size="8.00" fill="#000000">Products</text>
+</a>
+</g>
+</g>
+
+
+<g id="node28" class="node">
+<title>node15483</title>
+<g id="a_node28"><a xlink:title="application: sysTicket
+id: PTN-" target="_blank">
+<polygon fill="#e8eef7" stroke="#000000" points="374,-670 320,-670 320,-634 374,-634 374,-670"/>
+<text text-anchor="middle" x="347" y="-649.6" font-family="sans-serif" font-size="8.00" fill="#000000">sysTicket</text>
+</a>
+</g>
+</g>
+
+<g id="edge55" class="edge">
+<title>node15483-&gt;node15460</title>
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M323.7533,-633.6772C323.7533,-633.6772 323.7533,-602.0482 323.7533,-602.0482"/>
+<polygon fill="#000000" stroke="#000000" points="327.2534,-602.0481 323.7533,-592.0482 320.2534,-602.0482 327.2534,-602.0481"/>
+<text text-anchor="middle" x="309.8568" y="-609.8627" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="edge56" class="edge">
+<title>node15483-&gt;node15466</title>
+<path fill="none" stroke="#a6a8e0" d="M352.0257,-633.6556C352.0257,-633.6556 352.0257,-372.2483 352.0257,-372.2483"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="355.5258,-372.2483 352.0257,-362.2483 348.5258,-372.2483 355.5258,-372.2483"/>
+<text text-anchor="middle" x="338.1292" y="-504.9519" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
+</g>
+
+<g id="edge57" class="edge">
+<title>node15483-&gt;node15467</title>
+<path fill="none" stroke="#a6a8e0" d="M369.4792,-633.6772C369.4792,-633.6772 369.4792,-601.2234 369.4792,-601.2234"/>
+<polygon fill="#a6a8e0" stroke="#a6a8e0" points="372.9793,-601.2234 369.4792,-591.2234 365.9793,-601.2234 372.9793,-601.2234"/>
+<text text-anchor="middle" x="355.5827" y="-619.4503" font-family="sans-serif" font-size="10.00" fill="#000000">trades</text>
 </g>
 </g>
 </svg>

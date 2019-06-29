@@ -91,10 +91,58 @@
   (loom.attr/add-attr-to-edges g :meta m [[src dst]]))
 
 
+(defn- replace-synonyms-edges
+  "Replaces nodes synonyms in edges."
+  [parsed]
+  (let [synonyms (:synonyms parsed)
+        syn->node (fn [syn]
+                    (if-let [node (get synonyms syn)]
+                      node
+                      (throw (util/err (str "synonym " syn " in edge can't be found.") ))))]
+    (update-in parsed [:edges]
+               (fn [edges]
+                 (map
+                  #(let [edge %
+                         edge'  (let [src (:src edge)]
+                                  (if (parser/synonym? src)
+                                    (assoc edge :src (syn->node src))
+                                    edge))
+                         edge'' (let [dst (:dst edge')]
+                                  (if (parser/synonym? dst)
+                                    (assoc edge' :dst (syn->node dst))
+                                    edge'))]
+                     edge'')
+                  edges)))))
+
+
+(defn- replace-synonyms-nodes
+  [parsed]
+  (let [synonyms (:synonyms parsed)
+        syn->node (fn [syn]
+                    (if-let [node (get synonyms syn)]
+                      node
+                      (throw (util/err (str "synonym " syn " in edge can't be found.") ))))]
+    (update-in parsed [:nodes]
+               (fn [nodes]
+                 (reduce
+                  (fn [m [k v]]
+                    (if (parser/synonym? k)
+                      (merge-with merge
+                                  (dissoc m k)
+                                  {(syn->node k) v})
+                      m))
+                  nodes
+                  nodes)))))
+
+
 (defn loom-graph
   ([s] (loom-graph s nil))
   ([s cluster-on]
-   (let [parsed (parser/parse-lines (str/split-lines s))
+   (let [parsed0 (parser/parse-lines (str/split-lines s))
+         ;; process synonyms out of the parsed result
+         parsed1 (replace-synonyms-edges parsed0)                   
+         parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)
+         ;; construct the initial graph
          gr0 (apply loom.graph/digraph (map #(vector (:src %) (:dst %)) (:edges parsed)))
          ;; add edge attrs: style and meta
          gr1 (reduce (fn [acc cur]
@@ -110,7 +158,7 @@
          ;; add node attributes
          gr2 (reduce (fn [acc [nd attrs]]
                        (add-attr-map acc nd attrs))
-                     gr1 (:node-styles parsed))]
+                     gr1 (:nodes parsed))]
      (if (and cluster-on
               (some #{(keyword cluster-on)} (:header parsed))) ;; check to prevent stack-overflow
        (let [;; add cluster styles
@@ -196,7 +244,7 @@
   (if (-> opts :post-process?)
     (let [svg' (if (and (not-blank (-> opts :cluster-on))
                         (some-dims? (-> opts :pp-clusters))
-                        (= "dot" (-> opts :layout)))
+                        (or  (= "dot" (-> opts :layout))))
                  ;; do cluster optimization
                  (postprocessor/optimize-clusters
                   svg

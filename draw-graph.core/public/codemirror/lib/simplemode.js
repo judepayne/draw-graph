@@ -11,7 +11,7 @@
             	  stream.skipToEnd();
                 return "style2";
                 
-            } else if (stream.sol() && stream.match(/h,|e,|cs,|ce,|cp/) ) {
+            } else if (stream.sol() && stream.match(/h,|n,|e,|cs,|ce,|cp/) ) {
                 return "style3";
                 
             } else if (stream.match(/\|/) ) {

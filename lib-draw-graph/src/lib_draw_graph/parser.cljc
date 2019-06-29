@@ -56,6 +56,7 @@
   (str
    "S = <';'>  Cmt |
         <'h,'> H   |
+        <'n,'> N   |
         <'e,'> E   |
         <'ce,'> Ce |
         <'cp,'> Cp |
@@ -65,7 +66,9 @@
     E = Node <','> Node (<','> Edge-meta? (<'|'> Edge-style)?)?
     Edge-style = KVs
     Edge-meta = KVs-esc
-    Node = KVs-esc (<'|'> Node-style)?
+    N = (Synonym <','>)? KVs-esc <'|'> Node-style
+    Synonym = #'node[0-9a-zA-Z]*'
+    Node = Synonym | KVs-esc (<'|'> Node-style)?
     Node-style = KVs
     H = " regex-kvs "
     Ce = KVs
@@ -88,7 +91,8 @@
 
 
 (defn attribute-map [s & {:keys [meta?] :or {meta? false}}]
-  (let [args (if meta? (split-parts-meta s) (split-parts s))
+  (let [s' (str/trim s)
+        args (if meta? (split-parts-meta s') (split-parts s'))
         n (count args)]
     (cond
       (= "" (first args)) nil
@@ -146,14 +150,45 @@
    [:src :dst :meta]))
 
 
+(defn synonym?
+  [s]
+  (if
+      (and
+       (string? s)
+       (re-matches #"node[0-9a-zA-Z]*" s))
+    true
+    false))
+
+
+(defn parse-node [state s]
+  (let [nd (insta/transform
+            {:Node-style attribute-map
+             :Synonym (fn [arg] arg)
+             :N (fn [& args]
+                  (cond
+                    (= 2 (count args))
+                    {:nodes {:node (zipmap (:header state) (split-parts-meta (unesc (first args))))
+                             :style (second args)}}
+                    (= 3 (count args))
+                    (let [node (zipmap (:header state) (split-parts-meta (unesc (second args))))]
+                      {:synonyms {(first args) node}
+                       :nodes {node (nth args 2)}})
+                    ))}
+            s)]
+    (util/deep-merge state nd)))
+
+
 (defn parse-edge [state s]
   (let [nk (keyword (gensym "node"))
         sk (keyword (gensym "style"))
         edge (insta/transform
               {:Node-style attribute-map
                :Node (fn [& args]
-                       {nk (zipmap (:header state) (split-parts-meta (unesc (first args))))
-                        sk (if (some? (second args)) (second args))})
+                       (if (synonym? (first args))
+                         {nk (first args)
+                          sk (if (some? (second args)) (second args))}
+                         {nk (zipmap (:header state) (split-parts-meta (unesc (first args))))
+                          sk (if (some? (second args)) (second args))}))
                :Edge-meta (fn [& args]
                             {:edge-meta (attribute-map (first args) :meta? true)})
                :Edge-style (fn [& args]
@@ -172,14 +207,14 @@
                                     (if (sk c)
                                       (assoc a (nk c) (sk c)) a))
                                   nil edge')]
-                      (if styles (merge edge {:node-styles styles}) edge))]
+                      (if styles (merge edge {:nodes styles}) edge))]
     (if (nil? (:edges state))
       (let [s1 (assoc-in state [:edges] (list (:edges with-styles)))]
-        (if (:node-styles with-styles)
+        (if (:nodes with-styles)
           (merge-with merge s1 (dissoc with-styles :edges))
           s1))
       (let [s1 (merge-with conj state {:edges (:edges edge)})]
-        (if (:node-styles with-styles)
+        (if (:nodes with-styles)
           (util/deep-merge s1 (dissoc with-styles :edges))
           s1)))))
 
@@ -213,21 +248,23 @@
 
 
 (defn parse-lines [lines]
-  (let [line-num (atom 0)]
-    (reduce
-     (fn [acc cur]
-       (swap! line-num inc)
-       (let [p (csv-line-parser cur)]
-         (if (insta/failure? p)
-           (throw (util/err (str "Parsing error with line number " @line-num " >> " cur)))
-           (let [line (second p)]
-             (case (first line)
-               :H  (parse-header acc line)
-               :E  (parse-edge acc line)
-               :Cs (parse-cluster-style acc line)
-               :Cp (parse-cluster-parent acc line)
-               :Ce (parse-cluster-edge acc line)
-               :Cmt (parse-comments acc line)
-               (throw (util/err (str "No parser for line " @line-num " >> " cur))))))))
-     {}
-     lines)))
+  (let [line-num (atom 0)
+        m (reduce
+           (fn [acc cur]
+             (swap! line-num inc)
+             (let [p (csv-line-parser cur)]
+               (if (insta/failure? p)
+                 (throw (util/err (str "Parsing error with line number " @line-num " >> " cur)))
+                 (let [line (second p)]
+                   (case (first line)
+                     :H  (parse-header acc line)
+                     :N  (parse-node acc line)
+                     :E  (parse-edge acc line)
+                     :Cs (parse-cluster-style acc line)
+                     :Cp (parse-cluster-parent acc line)
+                     :Ce (parse-cluster-edge acc line)
+                     :Cmt (parse-comments acc line)
+                     (throw (util/err (str "No parser for line " @line-num " >> " cur))))))))
+           {}
+           lines)]
+    m))

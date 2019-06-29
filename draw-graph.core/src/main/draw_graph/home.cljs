@@ -208,7 +208,7 @@
             opts (:display-options in)
             g (processor/csv->g in)
             g' (processor/preprocess-graph g opts)
-            dot (processor/g->dot in g')]
+            dot (processor/g->dot in g')]       
         (if @local-dot
           (local-dot->svg g' opts dot)
           (lambda-dot->svg g' opts dot)))
@@ -536,7 +536,7 @@
 
 
 (defn layout [] (fixed-select [:options :layout] local-state 24
-                              "dot" "neato" "fdp" "circo" "twopi"))
+                              "dot" "neato" "fdp" "circo" "twopi" "patchwork"))
 
 (defn rankdir [] (fixed-select [:options :rankdir] local-state 25 "LR" "TB" "RL" "BT"))
 
