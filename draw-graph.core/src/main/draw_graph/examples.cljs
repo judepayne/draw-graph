@@ -59,7 +59,38 @@ cs,squirrels|bgcolor:pink:style:rounded:margin:15"
            :overlap "false"
            :rankdir "TB"})})
 
-(def ex1 (example1))
+
+(defn ^:export example1b []
+  {:data
+"h,animal:name
+n,node123,pandas:shar\\nhar|shape:rect:fillcolor:blue:fontcolor:white
+n,node_max,pandas:max
+e,pandas:simone,node_max
+e,node123,pandas:summer
+e,pandas:nikkai,pandas:isobel
+e,pandas:malakai,pandas:delila
+e,pandas:cristolene,node123|penwidth:2,relationship:friend|color:deeppink
+e,pandas:kacey,node123,relationship:friend
+e,pandas:malakai,pandas:ivy
+e,node_max,pandas:Bridget,|color:blue
+e,pandas:ivy,squirrels:huxley,|color:red
+e,pandas:kacey,brownbears:cosmo,|color:deeppink
+e,brownbears:cosmo|shape:septagon:style:filled,brownbears:eliza,|color:deeppink
+e,pandas:simone,pandas:ivy,|color:green2
+e,pandas:simone,pandas:summer,|color:green2
+cs,pandas|bgcolor:cornsilk1:style:rounded
+cs,brownbears|bgcolor:palegreen:color:limegreen:margin:20
+cs,squirrels|bgcolor:pink:style:rounded:margin:15"
+   :options
+   (merge default-options
+          {:layout "dot"
+           :cluster-on "animal"
+           :label "name"
+           :shape "ellipse"
+           :splines "line"
+           :overlap "false"
+           :rankdir "TB"})})
+
 
 
 ;; ------------------

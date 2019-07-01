@@ -72,7 +72,7 @@
     E = Node <','> Node (<','> Edge-meta? (<'|'> Edge-style)?)?
     Edge-style = KVs
     Edge-meta = KVs-esc
-    N = (Synonym <','>)? KVs-esc <'|'> Node-style
+    N = (Synonym <','>)? KVs-esc (<'|'> Node-style)?
     Synonym = #'node[_0-9a-zA-Z]*'
     Node = Synonym | KVs-esc (<'|'> Node-style)?
     Node-style = KVs
@@ -172,6 +172,9 @@
              :Synonym (fn [arg] arg)
              :N (fn [& args]
                   (cond
+                    (and (= 2 (count args)) (synonym? (first args)))
+                    (let [node (zipmap (:header state) (split-parts-meta (unesc (second args))))]
+                      {:synonyms {(first args) node}})                    
                     (= 2 (count args))
                     {:nodes {:node (zipmap (:header state) (split-parts-meta (unesc (first args))))
                              :style (second args)}}
@@ -347,10 +350,8 @@
           :json (parse-json s)
           :csv  (parse-csv s)
           (throw (util/err "format should be either :json or :csv")))
-         parsed1 (replace-synonyms-edges parsed0)                   
-         parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)]
-    (comment #?(:clj (spit "test/ex/tmp.json" (json/write-str parsed))
-                :cljs (js/console.log (clj->js parsed))))
+        parsed1 (replace-synonyms-edges parsed0)                   
+        parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)]
     parsed))
 
 

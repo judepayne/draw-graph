@@ -13,7 +13,8 @@
             [lib-draw-graph.anneal                :refer :all]
             [lib-draw-graph.preprocessor          :refer :all]
             [lib-draw-graph.postprocessor         :refer :all]
-            [lib-draw-graph.processor             :refer :all]))
+            [lib-draw-graph.processor             :refer :all]
+            [lib-draw-graph.util                  :refer :all]))
 
 
 (def standard-options

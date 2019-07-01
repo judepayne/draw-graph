@@ -330,7 +330,6 @@
         [:div.item5 {:id "editor" :style style}])})))
 
 
-
 (defn load-example-data [ex-fn]
   (let [example (invoke ex-fn)]
     (swap! local-state assoc :options (:options example))
@@ -342,6 +341,7 @@
             :on-change #(do (load-example-data (.. % -target -value)))}  
    [:option {:value nil} "-"]  
    [:option {:value "draw-graph.examples/example1"} "Friendship graph"]
+   [:option {:value "draw-graph.examples/example1b"} "Friendship graph with synonyms"]
    [:option {:value "draw-graph.examples/example2"} "Two facing trees"]
    [:option {:value "draw-graph.examples/example3"} "Two trees"]
    [:option {:value "draw-graph.examples/example4"} "CERN email connections"]
