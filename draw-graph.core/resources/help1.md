@@ -40,7 +40,7 @@ As well as styling clusters, you can specify how they relate to each other to co
 Please use the **'Examples'** drop down on the main page to see what is achievable with draw-graph and see how the data specification of the graph is used to do that.
 
 
-As previousyly mentioned, Nodes in draw-graph are each specified as a map of key value pairs, but to avoid you having to write down the keys over and over, keys are only specified once, in the header row. This works because, in draw-graph, *every node in a graph must have exactly the same keys* (even if for some nodes, a particular key doesn't have a value, so it's left blank).
+As previously mentioned, nodes in draw-graph are each specified as a map of key value pairs, but to avoid you having to write down the keys over and over, keys are only specified once, in the header row. This works because, in draw-graph, *every node in a graph must have exactly the same keys* (even if for some nodes, a particular key doesn't have a value, so it's left blank).
 
 
 ####Working up the data
@@ -94,7 +94,6 @@ The header row is a list of the keys in each node, separated by the colon charac
 is a valid header row where the subsequent definition of each row should be a colon separated list of the values for `class`, `name` and `id`. The only character not allowed within each key itself is a comma.
 
 The header row should always come first in the csv file you upload or data you type in to draw-graph's text entry box.
-
 
 ####2) Edges rows
 
@@ -186,8 +185,42 @@ Useful common ones include `label` (a text label for the edge), `style` (e.g. se
 If you specify any attributes here that can also be set globally by a draw-graph option, for example the label, the per-edge setting specified the data will win out over the default specified in the options.
 
 
+####3) Node rows
 
-####3) Cluster Style rows
+Nodes rows are entirely optional in draw-graph but are a convenience that allow you to specify edge rows (see below) a bit more concisely.
+
+The overall format of a node row is:
+
+    n,<node synonym>,<node/ node meta data>|<node styles>
+
+The `|<node styles>` part is optional.
+
+A node row should always be started with `n,` to tell draw-graph what type of row it is.
+
+The node synonym is a short name for the node that is useful in specifying edges more concisely and readably.
+For example, given two node rows of
+
+    n,node_max,pandas:max
+    n,node_sim,pandas:simone|fillcolor:blue
+    
+you can specify an edge as
+
+    e,node_max,node_sim
+    
+instead of
+
+    e,pandas:max,pandas:simone|fillcolor:blue
+
+A node synonym must always start with 'node' followed by any sequence of alphanumeric and underscore characters.
+Any of the following is a valid node synonym:
+
+    node_1
+    node1
+    node_A1
+    node_a_thing_that_bit_me_2
+
+
+####4) Cluster Style rows
 
 Cluster Style rows are not used to specify if/ how nodes should be put into clusters in the graph, but they are used just for styling the clusters. A cluster style row is always started with a `cs,`.
 
