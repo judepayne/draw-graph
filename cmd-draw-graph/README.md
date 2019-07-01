@@ -7,6 +7,7 @@ A command line version of draw-graph. Graphviz needs to be installed locally.
 Example usage:
 
     java -jar target/cmd-draw-graph-0.2.0-standalone.jar \
+     -p '/usr/local/bin/dot' \
      -i     '{"data":"h,animal:person\ne,pandas:huxley,pandas:bridget\ne,pandas:bridget,pandas:max",
      "display-options" : {"layout" : "dot", "label" : "person"},
      "format-in" : "csv",
