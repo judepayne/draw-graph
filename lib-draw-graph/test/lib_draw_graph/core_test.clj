@@ -132,6 +132,15 @@
                 & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
   (process-to-svg (csv->csv1 filename opts) dot->svg))
 
+(defn json->svg [filename
+                 & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
+  (process-to-svg
+   {:data (slurp filename)
+   :display-options opts
+   :format-in "json"
+   :format-out "svg"}
+   dot->svg))
+
 
 (defn js->svg [js]
   (dot->svg (js->dot js)))

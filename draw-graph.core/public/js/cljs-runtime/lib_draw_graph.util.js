@@ -11,14 +11,14 @@ return (new Error(error_string));
  */
 lib_draw_graph.util.deep_merge = (function lib_draw_graph$util$deep_merge(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___34207 = arguments.length;
-var i__4731__auto___34208 = (0);
+var len__4730__auto___34662 = arguments.length;
+var i__4731__auto___34663 = (0);
 while(true){
-if((i__4731__auto___34208 < len__4730__auto___34207)){
-args__4736__auto__.push((arguments[i__4731__auto___34208]));
+if((i__4731__auto___34663 < len__4730__auto___34662)){
+args__4736__auto__.push((arguments[i__4731__auto___34663]));
 
-var G__34212 = (i__4731__auto___34208 + (1));
-i__4731__auto___34208 = G__34212;
+var G__34664 = (i__4731__auto___34663 + (1));
+i__4731__auto___34663 = G__34664;
 continue;
 } else {
 }
@@ -40,9 +40,9 @@ return cljs.core.last(maps);
 lib_draw_graph.util.deep_merge.cljs$lang$maxFixedArity = (0);
 
 /** @this {Function} */
-lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq34186){
+lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq34661){
 var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq34186));
+return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq34661));
 });
 
 

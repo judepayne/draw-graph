@@ -1,12 +1,12 @@
 # cmd-draw-graph
 
-A command line version of draw-graph. Graphviz does not need to be installed locally as it's bundled as a transpiled-to-javascript version.
+A command line version of draw-graph. Graphviz needs to be installed locally.
 
 ## Usage
 
 Example usage:
 
-    java -jar target/cmd-draw-graph-0.1.0-standalone.jar \
+    java -jar target/cmd-draw-graph-0.2.0-standalone.jar \
      -i     '{"data":"h,animal:person\ne,pandas:huxley,pandas:bridget\ne,pandas:bridget,pandas:max",
      "display-options" : {"layout" : "dot", "label" : "person"},
      "format-in" : "csv",
@@ -16,12 +16,13 @@ Download the 'standalone' .jar file (e.g. cmd-draw-graph-0.1.0-standalone.jar) i
 
 Run the -h option to see the options, e.g.:
 
-    java -jar target/cmd-draw-graph-0.1.0-standalone.jar -h
+    java -jar target/cmd-draw-graph-0.2.0-standalone.jar -h
 
 
 ## Options
 
 In the -i the input data that you pass into this took, the format of the "data" part is well described on the draw-graph.com's help page.
+The -p option is for specifying a fully qualified path to the Graphviz binary on your system.
 
 Although the display options and what each does is also described on the help page, it's not an exhaustive list with the correct names required for programmatic usage of draw-graph (e.g. this tool).
 

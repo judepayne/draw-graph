@@ -3,8 +3,14 @@
   lib-draw-graph.parser
   (:require [clojure.string          :as str]
             [lib-draw-graph.util     :as util]
+            #?(:clj [clojure.data.json        :as json])
             #?(:clj [instaparse.core :as insta :refer [defparser]]
                :cljs [instaparse.core :as insta :refer-macros [defparser]])))
+
+
+;; ----------------------
+;; CSV format parsser
+
 
 (defn- third
   "Returns third element of coll, or nil."
@@ -67,7 +73,7 @@
     Edge-style = KVs
     Edge-meta = KVs-esc
     N = (Synonym <','>)? KVs-esc <'|'> Node-style
-    Synonym = #'node[0-9a-zA-Z]*'
+    Synonym = #'node[_0-9a-zA-Z]*'
     Node = Synonym | KVs-esc (<'|'> Node-style)?
     Node-style = KVs
     H = " regex-kvs "
@@ -155,7 +161,7 @@
   (if
       (and
        (string? s)
-       (re-matches #"node[0-9a-zA-Z]*" s))
+       (re-matches #"node[_0-9a-zA-Z]*" s))
     true
     false))
 
@@ -268,3 +274,83 @@
            {}
            lines)]
     m))
+
+
+(defn parse-csv
+  "Parses a csv format string"
+  [s]
+  (parse-lines (str/split-lines s)))
+
+
+;; ----------------------
+;; JSON format parser
+
+(defn parse-json
+  "parses a json format string"
+  [s]
+  #?(:clj (json/read-str s)
+     :cljs (js->clj s)))
+
+
+;; ----------------------
+;; Main api
+
+(defn- replace-synonyms-edges
+  "Replaces nodes synonyms in edges."
+  [parsed]
+  (let [synonyms (:synonyms parsed)
+        syn->node (fn [syn]
+                    (if-let [node (get synonyms syn)]
+                      node
+                      (throw (util/err (str "synonym " syn " in edge can't be found.") ))))]
+    (update-in parsed [:edges]
+               (fn [edges]
+                 (map
+                  #(let [edge %
+                         edge'  (let [src (:src edge)]
+                                  (if (synonym? src)
+                                    (assoc edge :src (syn->node src))
+                                    edge))
+                         edge'' (let [dst (:dst edge')]
+                                  (if (synonym? dst)
+                                    (assoc edge' :dst (syn->node dst))
+                                    edge'))]
+                     edge'')
+                  edges)))))
+
+
+(defn- replace-synonyms-nodes
+  [parsed]
+  (let [synonyms (:synonyms parsed)
+        syn->node (fn [syn]
+                    (if-let [node (get synonyms syn)]
+                      node
+                      (throw (util/err (str "synonym " syn " in edge can't be found.") ))))]
+    (update-in parsed [:nodes]
+               (fn [nodes]
+                 (reduce
+                  (fn [m [k v]]
+                    (if (synonym? k)
+                      (merge-with merge
+                                  (dissoc m k)
+                                  {(syn->node k) v})
+                      m))
+                  nodes
+                  nodes)))))
+
+
+
+(defn parse-csv-or-json
+  [s fmt]
+  (let [parsed0
+        (case fmt
+          :json (parse-json s)
+          :csv  (parse-csv s)
+          (throw (util/err "format should be either :json or :csv")))
+         parsed1 (replace-synonyms-edges parsed0)                   
+         parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)]
+    (comment #?(:clj (spit "test/ex/tmp.json" (json/write-str parsed))
+                :cljs (js/console.log (clj->js parsed))))
+    parsed))
+
+

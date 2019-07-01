@@ -1,4 +1,4 @@
-(defproject cmd-draw-graph "0.1.0"
+(defproject cmd-draw-graph "0.2.0"
   :description "runs draw-graph from the command line"
   :url "https://github.com/judepayne/draw-graph"
   :license {:name "MIT"}

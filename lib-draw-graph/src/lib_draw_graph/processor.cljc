@@ -91,58 +91,11 @@
   (loom.attr/add-attr-to-edges g :meta m [[src dst]]))
 
 
-(defn- replace-synonyms-edges
-  "Replaces nodes synonyms in edges."
-  [parsed]
-  (let [synonyms (:synonyms parsed)
-        syn->node (fn [syn]
-                    (if-let [node (get synonyms syn)]
-                      node
-                      (throw (util/err (str "synonym " syn " in edge can't be found.") ))))]
-    (update-in parsed [:edges]
-               (fn [edges]
-                 (map
-                  #(let [edge %
-                         edge'  (let [src (:src edge)]
-                                  (if (parser/synonym? src)
-                                    (assoc edge :src (syn->node src))
-                                    edge))
-                         edge'' (let [dst (:dst edge')]
-                                  (if (parser/synonym? dst)
-                                    (assoc edge' :dst (syn->node dst))
-                                    edge'))]
-                     edge'')
-                  edges)))))
-
-
-(defn- replace-synonyms-nodes
-  [parsed]
-  (let [synonyms (:synonyms parsed)
-        syn->node (fn [syn]
-                    (if-let [node (get synonyms syn)]
-                      node
-                      (throw (util/err (str "synonym " syn " in edge can't be found.") ))))]
-    (update-in parsed [:nodes]
-               (fn [nodes]
-                 (reduce
-                  (fn [m [k v]]
-                    (if (parser/synonym? k)
-                      (merge-with merge
-                                  (dissoc m k)
-                                  {(syn->node k) v})
-                      m))
-                  nodes
-                  nodes)))))
-
 
 (defn loom-graph
-  ([s] (loom-graph s nil))
-  ([s cluster-on]
-   (let [parsed0 (parser/parse-lines (str/split-lines s))
-         ;; process synonyms out of the parsed result
-         parsed1 (replace-synonyms-edges parsed0)                   
-         parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)
-         ;; construct the initial graph
+  ([parsed] (loom-graph parsed nil))
+  ([parsed cluster-on]
+   (let [;; construct the initial graph
          gr0 (apply loom.graph/digraph (map #(vector (:src %) (:dst %)) (:edges parsed)))
          ;; add edge attrs: style and meta
          gr1 (reduce (fn [acc cur]
@@ -208,11 +161,6 @@
       g')))
 
 
-;; -----------
-;; Tests
-
-
-
 
 ;; -----------
 ;; public interface functions
@@ -231,6 +179,20 @@
   (if (or (= "" s) nil)
     nil
     s))
+
+
+(defn detect-format
+  "detects the format of the data string."
+  [s]
+  (try
+    (cond
+      (= (subs s 0 1) "{")       :json
+      (= (subs s 0 2) "h,")      :csv
+      (= (subs s 0 5) "graph")   :dot
+      (= (subs s 0 7) "digraph") :dot
+      :else                      nil)
+    #?(:clj (catch Exception e nil)
+       :cljs (catch js/Error e nil))))
 
 
 (defn preprocess-graph [graph opts]
@@ -273,10 +235,14 @@
 
 
 (defn csv->g [in]
-  (let [cluster-on (not-blank (-> in :display-options :cluster-on))]
+  (let [cluster-on (not-blank (-> in :display-options :cluster-on))
+        parsed (parser/parse-csv-or-json
+                (:data in)
+                (keyword (:format-in in)))]
+   ; (println parsed)
     (if cluster-on
-      (loom-graph (:data in) cluster-on)
-      (loom-graph (:data in)))))
+      (loom-graph parsed cluster-on)
+      (loom-graph parsed))))
 
 
 (defn g->dot [in g]
@@ -289,12 +255,13 @@
 
     "dot" (dot->svg (:data in)) ;; we can't do any post-processing
 
-    "csv" (let [g (csv->g in)
-                opts (:display-options in)
-                preproc-g (preprocess-graph g opts)
-                dot (g/process-graph preproc-g opts)
-                svg (dot->svg dot)]
-            (postprocess-svg preproc-g opts svg))
+    ("csv" "json") (let [g (csv->g in)
+                         opts (:display-options in)
+                         preproc-g (preprocess-graph g opts)
+                         dot (g/process-graph preproc-g opts)
+                         svg (dot->svg dot)]
+                     (postprocess-svg preproc-g opts svg))
 
     (throw (util/err "Error: only 'csv' or 'dot' are allowed input formats."))))
+
 
