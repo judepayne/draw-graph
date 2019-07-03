@@ -295,6 +295,11 @@ Another example in the drop down list - Friendship cluster layout - shows a more
 Use a semi-colon ';' or a double semi-colon ';;' at the beginning or any line in the input data, apart from the header line which must always be present, to have draw-graph ignore the line. This is often useful while you're working.
 
 
+####JSON support
+
+draw-graph also supports json as an input format and there are a couple of examples in the drop down. For fuller details of the format please see the [github page](https://github.com/judepayne/draw-graph/tree/master/cmd-draw-graph) of the command line tool version of draw-graph. 
+
+
 ### Options<div id=“options” />
 
 We’ve already covered how the styling of nodes, edges and clusters is embedded in the data definition itself. Options is for globally controlling either styling aspects for the whole graph, or for performing operations (e.g. filtering) on the whole graph.
@@ -362,11 +367,11 @@ Each term in the filter expression is applied to every node and every edge is th
 
 For example, say every node in your graph had the keys:
 
-   view:function:application:id:level
+    view:function:application:id:level
    
 and every edge the keys:
 
-   volume:format:level
+    volume:format:level
    
 A filter term based on 'function' say would end up only being applied to nodes. A term based on 'volume' only to edges, but a term based on 'level' would be applied to both nodes and edges. You could use this to, for example, nest different levels of detail within a single graph description and effectively zoom in and out, as you zoomed out seeing summary level nodes and edges for example.
 

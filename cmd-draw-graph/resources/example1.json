@@ -1,0 +1,203 @@
+{
+  "header": [
+    "animal",
+    "name"
+  ],
+  "synonyms": {
+    "node123": {
+      "animal": "pandas",
+      "name": "shar\\nhar"
+    },
+    "node456": {
+      "animal": "pandas",
+      "name": "max"
+    },
+    "node909": {
+      "animal": "pandas",
+      "name": "kacey"
+    }
+  },
+  "nodes": [
+    {
+      "node": {
+        "animal": "pandas",
+        "name": "shar\\nhar"
+      },
+      "style": {
+        "shape": "rect",
+        "fillcolor": "blue",
+        "fontcolor": "white"
+      }
+    },
+    {
+      "node": "node123",
+      "style": {
+        "penwidth": "2"
+      }
+    },
+    {
+      "node": {
+        "animal": "brownbears",
+        "name": "cosmo"
+      },
+      "style": {
+        "shape": "septagon",
+        "style": "filled"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "simone"
+      },
+      "dst": {
+        "animal": "pandas",
+        "name": "summer"
+      },
+      "style": {
+        "color": "green2"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "simone"
+      },
+      "dst": {
+        "animal": "pandas",
+        "name": "ivy"
+      },
+      "style": {
+        "color": "green2"
+      }
+    },
+    {
+      "src": {
+        "animal": "brownbears",
+        "name": "cosmo"
+      },
+      "dst": {
+        "animal": "brownbears",
+        "name": "eliza"
+      },
+      "style": {
+        "color": "deeppink"
+      }
+    },
+    {
+      "src": "node909",
+      "dst": {
+        "animal": "brownbears",
+        "name": "cosmo"
+      },
+      "style": {
+        "color": "deeppink"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "ivy"
+      },
+      "dst": {
+        "animal": "squirrels",
+        "name": "huxley"
+      },
+      "style": {
+        "color": "red"
+      }
+    },
+    {
+      "src": "node456",
+      "dst": {
+        "animal": "pandas",
+        "name": "Bridget"
+      },
+      "style": {
+        "color": "blue"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "malakai"
+      },
+      "dst": {
+        "animal": "pandas",
+        "name": "ivy"
+      }
+    },
+    {
+      "src": "node909",
+      "dst": "node123",
+      "meta": {
+        "relationship": "friend"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "cristolene"
+      },
+      "dst": "node123",
+      "meta": {
+        "relationship": "friend"
+      },
+      "style": {
+        "color": "deeppink"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "malakai"
+      },
+      "dst": {
+        "animal": "pandas",
+        "name": "delila"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "nikkai"
+      },
+      "dst": {
+        "animal": "pandas",
+        "name": "isobel"
+      }
+    },
+    {
+      "src": "node123",
+      "dst": {
+        "animal": "pandas",
+        "name": "summer"
+      }
+    },
+    {
+      "src": {
+        "animal": "pandas",
+        "name": "simone"
+      },
+      "dst": "node456"
+    }
+  ],
+  "cluster-styles": {
+    "pandas": {
+      "bgcolor": "cornsilk1",
+      "style": "rounded"
+    },
+    "brownbears": {
+      "bgcolor": "palegreen",
+      "color": "limegreen",
+      "margin": "20"
+    },
+    "squirrels": {
+      "bgcolor": "pink",
+      "style": "rounded",
+      "margin": "15"
+    }
+  }
+}

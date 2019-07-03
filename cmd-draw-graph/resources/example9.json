@@ -1,0 +1,1427 @@
+{
+  "header": [
+    "view",
+    "function",
+    "application",
+    "id",
+    "level",
+    "link",
+    "owner"
+  ],
+  "edges": [
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ECN",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Finance",
+        "application": "SIP-local",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Daniel"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "205",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#ba521a",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ADH",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Finance",
+        "application": "SIP-local",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Daniel"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "90",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#ba521a",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Finance",
+        "application": "SIP-local",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Daniel"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "147",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#ba521a",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Payments",
+        "application": "eFermi",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Loris"
+      },
+      "meta": {
+        "type": "instructions",
+        "volume": "5",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#81648c",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ECN",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "meta": {
+        "type": "instructions",
+        "volume": "90",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#9e5919",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "GRIMACE",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "meta": {
+        "type": "cash",
+        "volume": "82",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#296640",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "GRIMACE",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Finance",
+        "application": "SIP-local",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Daniel"
+      },
+      "meta": {
+        "type": "pl-risk",
+        "volume": "60",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#296640",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "Guerilla Risk",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "TradeDepo",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "meta": {
+        "type": "pl-risk",
+        "volume": "60",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#296640",
+        "fontsize": "10",
+        "constraint": "true"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "Guerilla Risk",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "GRIMACE",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "meta": {
+        "type": "pl-risk",
+        "volume": "45",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#267a17",
+        "fontsize": "10",
+        "constraint": "true"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "Fidelity Plus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "i-Assert(CZH)",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "10",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#dd809e",
+        "URL": "http://www.google.com",
+        "labeltooltip": "Fidelity->i-Assert(CZH)",
+        "edgetooltip": "Fidelity->i-Assert(CZH)",
+        "fontcolor": "blue",
+        "fontsize": "10",
+        "penwidth": "2",
+        "target": "_blank"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "CONFIRMATIONS\\nWriter\\nDoc",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "i-Assert(CZH)",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "meta": {
+        "type": "confirms",
+        "volume": "40",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#dd809e",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "meta": {
+        "type": "positions",
+        "volume": "45",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#81648c",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Payments",
+        "application": "Kuiper",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Loris"
+      },
+      "meta": {
+        "type": "positions",
+        "volume": "8",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#81648c",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Payments",
+        "application": "eFermi",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Loris"
+      },
+      "meta": {
+        "type": "positions",
+        "volume": "114",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#81648c",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "1-Charge",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "meta": {
+        "type": "positions",
+        "volume": "114",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#267a17",
+        "fontcolor": "red",
+        "fontsize": "10",
+        "labeltooltip": "BAD Image->1-Charge"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "Guerilla Risk",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "meta": {
+        "type": "positions",
+        "volume": "34",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#267a17",
+        "fontcolor": "red",
+        "fontsize": "10",
+        "labeltooltip": "BAD Image->Guerilla Risk"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "FORPS-bus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "202",
+        "format": "strategic"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "FORPS-bus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "FORPS-bus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "12",
+        "format": "strategic"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "sysTicket",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "CONFIRMATIONS\\nWriter\\nDoc",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "370",
+        "format": "strategic"
+      },
+      "style": {
+        "style": "dotted",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "sysTicket",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "TradeDepo",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "245",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#a6a8e0",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "sysTicket",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "Fidelity Plus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "190",
+        "format": "legacy"
+      },
+      "style": {
+        "color": "#a6a8e0",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "War",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "101",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#a6a8e0",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "HCB",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "45",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#a6a8e0",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "War",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "noShock",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "37",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#a6a8e0",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "War",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ADH",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "34",
+        "format": "strategic"
+      },
+      "style": {
+        "color": "#a6a8e0",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "HCB",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ECN",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "105",
+        "format": "legacy"
+      },
+      "style": {
+        "style": "dotted",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "HCB",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "meta": {
+        "type": "trades",
+        "volume": "102",
+        "format": "legacy"
+      },
+      "style": {
+        "style": "dotted",
+        "fontsize": "10"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Clients",
+        "id": "PTN-675664",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "ERP",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "meta": {
+        "type": "clients",
+        "format": "strategic"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10",
+        "constraint": "true"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Employee",
+        "id": "PTN-23",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Affinity",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "meta": {
+        "type": "employees",
+        "format": "legacy"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10",
+        "constraint": "true"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Instrument",
+        "id": "PTN-2345",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "P-RAM",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "meta": {
+        "type": "instruments",
+        "format": "strategic"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10",
+        "constraint": "true"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Products",
+        "id": "PTN-6538",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Instrument+Hub",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "meta": {
+        "type": "products",
+        "format": "legacy"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10",
+        "constraint": "true"
+      }
+    },
+    {
+      "src": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Books",
+        "id": "PTN-1234",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "dst": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Books",
+        "id": "PTN-1234",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "meta": {
+        "type": "books",
+        "format": "legacy"
+      },
+      "style": {
+        "style": "invis",
+        "fontsize": "10"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "War",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#c6ddf2",
+        "shape": "box"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "GRIMACE",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Risk",
+        "application": "Guerilla Risk",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Simone"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "CONFIRMATIONS\\nWriter\\nDoc",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7",
+        "shape": "box"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ECN",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "HCB",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#c6ddf2",
+        "shape": "box"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Books",
+        "id": "PTN-1234",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#EEBD1B",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Payments",
+        "application": "eFermi",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Loris"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Instrument+Hub",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "1-Charge",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "TradeDepo",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "Fidelity Plus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "hePikes",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Settlement",
+        "application": "ADH",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "John"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Finance",
+        "application": "SIP-local",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Daniel"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Affinity",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "P-RAM",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Instrument",
+        "id": "PTN-2345",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#EEBD1B",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Payments",
+        "application": "Kuiper",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Loris"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Lifecycle",
+        "application": "BAD Image",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Clients",
+        "id": "PTN-675664",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#EEBD1B",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "noShock",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "ERP",
+        "id": "PTN-",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Reporting",
+        "application": "i-Assert(CZH)",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Paul"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "FORPS-bus",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#c6ddf2",
+        "shape": "box"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Employee",
+        "id": "PTN-23",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#EEBD1B",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Golden Sources",
+        "application": "Products",
+        "id": "PTN-6538",
+        "level": "1",
+        "link": "https://en.wikipedia.org/wiki/Reference_data",
+        "owner": "Jacob"
+      },
+      "style": {
+        "fillcolor": "#EEBD1B",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "node": {
+        "view": "Current State",
+        "function": "Capture",
+        "application": "sysTicket",
+        "id": "PTN-",
+        "level": "1",
+        "link": "",
+        "owner": "Ruth"
+      },
+      "style": {
+        "fillcolor": "#E8EEF7"
+      }
+    }
+  ],
+  "cluster-parents": [
+    [
+      "Golden Sources",
+      "Current State"
+    ],
+    [
+      "Capture",
+      "Current State"
+    ],
+    [
+      "Lifecycle",
+      "Current State"
+    ],
+    [
+      "Reporting",
+      "Current State"
+    ],
+    [
+      "Settlement",
+      "Current State"
+    ],
+    [
+      "Risk",
+      "Current State"
+    ],
+    [
+      "Payments",
+      "Current State"
+    ],
+    [
+      "Finance",
+      "Current State"
+    ]
+  ],
+  "cluster-edges": [
+    [
+      "Golden Sources",
+      "Capture"
+    ],
+    [
+      "Capture",
+      "Lifecycle"
+    ],
+    [
+      "Lifecycle",
+      "Risk"
+    ],
+    [
+      "Risk",
+      "Reporting"
+    ],
+    [
+      "Reporting",
+      "Settlement"
+    ],
+    [
+      "Settlement",
+      "Payments"
+    ],
+    [
+      "Payments",
+      "Finance"
+    ]
+  ],
+  "cluster-styles": {
+    "Current State": {
+      "bgcolor": "#f0f2da",
+      "color": "#49c1e5",
+      "margin": "6",
+      "labeljust": "r"
+    }
+  }
+}

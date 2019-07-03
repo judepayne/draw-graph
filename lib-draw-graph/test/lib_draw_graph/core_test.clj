@@ -64,20 +64,20 @@
 
 (defn options [] (apply hash-map standard-options))
 
-(defn s->csv1 [s opts]
+(defn s->in [s opts]
   {:data s
    :display-options opts
-   :format-in "csv"
+   :format-in (name (detect-format s))
    :format-out "svg"})
 
 
-(defn csv->csv1 [filename opts]
-  (s->csv1 (slurp filename) opts))
+(defn file->in [filename opts]
+  (s->in (slurp filename) opts))
 
 
-(defn csv->graph [filename
+(defn file->graph [filename
                   & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
-  (let [in (csv->csv1 filename opts)
+  (let [in (file->in filename opts)
         g (loom-graph (:data in) (:cluster-on opts))]
     (-> g
         (preprocess-graph (options)))))
@@ -90,7 +90,7 @@
 
 (defn csv->dot [filename
                 & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
-  (-> (csv->csv1 filename opts)
+  (-> (file->in filename opts)
       process-to-dot))
 
 
@@ -129,18 +129,9 @@
      (throw (IllegalArgumentException. ^String (format-error s' err))))))
 
 
-(defn csv->svg [filename
+(defn file->svg [filename
                 & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
-  (process-to-svg (csv->csv1 filename opts) dot->svg))
-
-(defn json->svg [filename
-                 & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
-  (process-to-svg
-   {:data (slurp filename)
-   :display-options opts
-   :format-in "json"
-   :format-out "svg"}
-   dot->svg))
+  (process-to-svg (file->in filename opts) dot->svg))
 
 
 (defn js->svg [js]
@@ -182,7 +173,7 @@
                      :label "name"
                      :rankdir "TB"})]
     (is (nil?
-         (spit "test/ex-out/1-1.svg" (csv->svg "test/ex/example1.csv"
+         (spit "test/ex-out/1-1.svg" (file->svg "test/ex/example1.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -191,7 +182,7 @@
                      :label "name"
                      :rankdir "TB"})]
     (is (nil?
-         (spit "test/ex-out/1-2.svg" (csv->svg "test/ex/example1.csv"
+         (spit "test/ex-out/1-2.svg" (file->svg "test/ex/example1.csv"
                                                :opts opts))))))
 
 
@@ -206,7 +197,7 @@
                      :overlap "false"}
                     )]
     (is (nil?
-         (spit "test/ex-out/2-1.svg" (csv->svg "test/ex/example2.csv"
+         (spit "test/ex-out/2-1.svg" (file->svg "test/ex/example2.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -218,7 +209,7 @@
                      :overlap "false"}
                     )]
     (is (nil?
-         (spit "test/ex-out/2-2 cluster-on.svg" (csv->svg "test/ex/example2.csv"
+         (spit "test/ex-out/2-2 cluster-on.svg" (file->svg "test/ex/example2.csv"
                                                :opts opts))))))
 
 (deftest example-4
@@ -230,7 +221,7 @@
                      :overlap "false"
                      :filter-graph "id<30"})]
     (is (nil?
-         (spit "test/ex-out/4-1-filter to 30.svg" (csv->svg "test/ex/example4.csv"
+         (spit "test/ex-out/4-1-filter to 30.svg" (file->svg "test/ex/example4.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -240,7 +231,7 @@
                      :overlap "false"
                      :filter-graph "id<40"})]
     (is (nil?
-         (spit "test/ex-out/4-2 filter to 40 & polyline.svg" (csv->svg "test/ex/example4.csv"
+         (spit "test/ex-out/4-2 filter to 40 & polyline.svg" (file->svg "test/ex/example4.csv"
                                                :opts opts))))))
 
 
@@ -256,7 +247,7 @@
                      :color-on "id"
                      })]
     (is (nil?
-         (spit "test/ex-out/5-1.svg" (csv->svg "test/ex/example5.csv"
+         (spit "test/ex-out/5-1.svg" (file->svg "test/ex/example5.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "neato"
@@ -270,7 +261,7 @@
                      :elide "1"
                      })]
     (is (nil?
-         (spit "test/ex-out/5-2-elide & color-on.svg" (csv->svg "test/ex/example5.csv"
+         (spit "test/ex-out/5-2-elide & color-on.svg" (file->svg "test/ex/example5.csv"
                                                :opts opts))))))
 
 
@@ -284,7 +275,7 @@
                      :url "link"
                      })]
     (is (nil?
-         (spit "test/ex-out/6-1.svg" (csv->svg "test/ex/example6.csv"
+         (spit "test/ex-out/6-1.svg" (file->svg "test/ex/example6.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -296,7 +287,7 @@
                      :post-process? "true"
                      })]
     (is (nil?
-         (spit "test/ex-out/6-2 post process.svg" (csv->svg "test/ex/example6.csv"
+         (spit "test/ex-out/6-2 post process.svg" (file->svg "test/ex/example6.csv"
                                                :opts opts))))))
 
 (deftest example-7
@@ -309,7 +300,7 @@
                      :url "link"
                      })]
     (is (nil?
-         (spit "test/ex-out/7-1.svg" (csv->svg "test/ex/example7.csv"
+         (spit "test/ex-out/7-1.svg" (file->svg "test/ex/example7.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -322,7 +313,7 @@
                      :pp-cluster-sep "4"
                      })]
     (is (nil?
-         (spit "test/ex-out/7-2 post process cluster sep.svg" (csv->svg "test/ex/example7.csv"
+         (spit "test/ex-out/7-2 post process cluster sep.svg" (file->svg "test/ex/example7.csv"
                                                :opts opts))))))
 
 
@@ -337,7 +328,7 @@
                      :shape "cylinder"
                      })]
     (is (nil?
-         (spit "test/ex-out/8-1.svg" (csv->svg "test/ex/example8.csv"
+         (spit "test/ex-out/8-1.svg" (file->svg "test/ex/example8.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -353,7 +344,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/8-2 post process shape ranksep edge labels.svg"
-               (csv->svg "test/ex/example8.csv"
+               (file->svg "test/ex/example8.csv"
                          :opts opts))))))
 
 
@@ -369,7 +360,7 @@
                      :constraint "false"
                      })]
     (is (nil?
-         (spit "test/ex-out/9-1.svg" (csv->svg "test/ex/example9.csv"
+         (spit "test/ex-out/9-1.svg" (file->svg "test/ex/example9.csv"
                                                :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -388,7 +379,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-2 post process shape ranksep nodesep.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -408,7 +399,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-3 edge-label volume.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -428,7 +419,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-4 edge-label format.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -449,7 +440,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-5 node label filter vol>100.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -470,7 +461,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-6 filter function.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -491,7 +482,7 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-7 filter function clause.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts)))))
   (let [opts (merge default-options
                     {:layout "dot"
@@ -512,5 +503,5 @@
                      })]
     (is (nil?
          (spit "test/ex-out/9-8 paths.svg"
-               (csv->svg "test/ex/example9.csv"
+               (file->svg "test/ex/example9.csv"
                          :opts opts))))))

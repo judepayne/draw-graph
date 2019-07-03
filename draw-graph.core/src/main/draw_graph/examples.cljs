@@ -64,17 +64,18 @@ cs,squirrels|bgcolor:pink:style:rounded:margin:15"
   {:data
 "h,animal:name
 n,node123,pandas:shar\\nhar|shape:rect:fillcolor:blue:fontcolor:white
-n,node_max,pandas:max
-e,pandas:simone,node_max
+n,node456,pandas:max
+n,node909,pandas:kacey
+e,pandas:simone,node456
 e,node123,pandas:summer
 e,pandas:nikkai,pandas:isobel
 e,pandas:malakai,pandas:delila
 e,pandas:cristolene,node123|penwidth:2,relationship:friend|color:deeppink
-e,pandas:kacey,node123,relationship:friend
+e,node909,node123,relationship:friend
 e,pandas:malakai,pandas:ivy
-e,node_max,pandas:Bridget,|color:blue
+e,node456,pandas:Bridget,|color:blue
 e,pandas:ivy,squirrels:huxley,|color:red
-e,pandas:kacey,brownbears:cosmo,|color:deeppink
+e,node909,brownbears:cosmo,|color:deeppink
 e,brownbears:cosmo|shape:septagon:style:filled,brownbears:eliza,|color:deeppink
 e,pandas:simone,pandas:ivy,|color:green2
 e,pandas:simone,pandas:summer,|color:green2
@@ -91,6 +92,19 @@ cs,squirrels|bgcolor:pink:style:rounded:margin:15"
            :overlap "false"
            :rankdir "TB"})})
 
+
+(defn ^:export example1c []
+  {:data
+"{\n\t\"header\": [\"animal\", \"name\"],\n\t\"synonyms\": {\n\t\t\"node123\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"shar\\\\nhar\"\n\t\t},\n\t\t\"node456\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"max\"\n\t\t},\n\t\t\"node909\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"kacey\"\n\t\t}\n\t},\n\t\"nodes\": [{\n\t\t\"node\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"shar\\\\nhar\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"shape\": \"rect\",\n\t\t\t\"fillcolor\": \"blue\",\n\t\t\t\"fontcolor\": \"white\"\n\t\t}\n\t}, {\n\t\t\"node\": \"node123\",\n\t\t\"style\": {\n\t\t\t\"penwidth\": \"2\"\n\t\t}\n\t}, {\n\t\t\"node\": {\n\t\t\t\"animal\": \"brownbears\",\n\t\t\t\"name\": \"cosmo\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"shape\": \"septagon\",\n\t\t\t\"style\": \"filled\"\n\t\t}\n\t}],\n\t\"edges\": [{\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"simone\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"summer\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"green2\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"simone\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"ivy\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"green2\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"brownbears\",\n\t\t\t\"name\": \"cosmo\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"brownbears\",\n\t\t\t\"name\": \"eliza\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"deeppink\"\n\t\t}\n\t}, {\n\t\t\"src\": \"node909\",\n\t\t\"dst\": {\n\t\t\t\"animal\": \"brownbears\",\n\t\t\t\"name\": \"cosmo\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"deeppink\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"ivy\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"squirrels\",\n\t\t\t\"name\": \"huxley\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"red\"\n\t\t}\n\t}, {\n\t\t\"src\": \"node456\",\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"Bridget\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"blue\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"malakai\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"ivy\"\n\t\t}\n\t}, {\n\t\t\"src\": \"node909\",\n\t\t\"dst\": \"node123\",\n\t\t\"meta\": {\n\t\t\t\"relationship\": \"friend\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"cristolene\"\n\t\t},\n\t\t\"dst\": \"node123\",\n\t\t\"meta\": {\n\t\t\t\"relationship\": \"friend\"\n\t\t},\n\t\t\"style\": {\n\t\t\t\"color\": \"deeppink\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"malakai\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"delila\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"nikkai\"\n\t\t},\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"isobel\"\n\t\t}\n\t}, {\n\t\t\"src\": \"node123\",\n\t\t\"dst\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"summer\"\n\t\t}\n\t}, {\n\t\t\"src\": {\n\t\t\t\"animal\": \"pandas\",\n\t\t\t\"name\": \"simone\"\n\t\t},\n\t\t\"dst\": \"node456\"\n\t}],\n\t\"cluster-styles\": {\n\t\t\"pandas\": {\n\t\t\t\"bgcolor\": \"cornsilk1\",\n\t\t\t\"style\": \"rounded\"\n\t\t},\n\t\t\"brownbears\": {\n\t\t\t\"bgcolor\": \"palegreen\",\n\t\t\t\"color\": \"limegreen\",\n\t\t\t\"margin\": \"20\"\n\t\t},\n\t\t\"squirrels\": {\n\t\t\t\"bgcolor\": \"pink\",\n\t\t\t\"style\": \"rounded\",\n\t\t\t\"margin\": \"15\"\n\t\t}\n\t}\n}"
+   :options
+   (merge default-options
+          {:layout "dot"
+           :cluster-on "animal"
+           :label "name"
+           :shape "ellipse"
+           :splines "line"
+           :overlap "false"
+           :rankdir "TB"})})
 
 
 ;; ------------------
@@ -978,4 +992,1459 @@ cs,Current State|bgcolor:#fdfdff:color:#49c1e5:margin:8:labeljust:r"
            :edge-label "volume"
            })})
 
-(def ex9 (example9))
+
+(defn ^:export example9b []
+  {:data
+"{
+  \"header\": [
+    \"view\",
+    \"function\",
+    \"application\",
+    \"id\",
+    \"level\",
+    \"link\",
+    \"owner\"
+  ],
+  \"edges\": [
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ECN\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Finance\",
+        \"application\": \"SIP-local\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Daniel\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"205\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#ba521a\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ADH\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Finance\",
+        \"application\": \"SIP-local\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Daniel\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"90\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#ba521a\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Finance\",
+        \"application\": \"SIP-local\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Daniel\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"147\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#ba521a\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Payments\",
+        \"application\": \"eFermi\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Loris\"
+      },
+      \"meta\": {
+        \"type\": \"instructions\",
+        \"volume\": \"5\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#81648c\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ECN\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"meta\": {
+        \"type\": \"instructions\",
+        \"volume\": \"90\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#9e5919\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"GRIMACE\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"meta\": {
+        \"type\": \"cash\",
+        \"volume\": \"82\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#296640\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"GRIMACE\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Finance\",
+        \"application\": \"SIP-local\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Daniel\"
+      },
+      \"meta\": {
+        \"type\": \"pl-risk\",
+        \"volume\": \"60\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#296640\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"Guerilla Risk\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"TradeDepo\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"meta\": {
+        \"type\": \"pl-risk\",
+        \"volume\": \"60\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#296640\",
+        \"fontsize\": \"10\",
+        \"constraint\": \"true\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"Guerilla Risk\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"GRIMACE\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"meta\": {
+        \"type\": \"pl-risk\",
+        \"volume\": \"45\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#267a17\",
+        \"fontsize\": \"10\",
+        \"constraint\": \"true\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"Fidelity Plus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"i-Assert(CZH)\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"10\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#dd809e\",
+        \"URL\": \"http://www.google.com\",
+        \"labeltooltip\": \"Fidelity->i-Assert(CZH)\",
+        \"edgetooltip\": \"Fidelity->i-Assert(CZH)\",
+        \"fontcolor\": \"blue\",
+        \"fontsize\": \"10\",
+        \"penwidth\": \"2\",
+        \"target\": \"_blank\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"CONFIRMATIONS\\nWriter\\nDoc\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"i-Assert(CZH)\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"meta\": {
+        \"type\": \"confirms\",
+        \"volume\": \"40\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#dd809e\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"meta\": {
+        \"type\": \"positions\",
+        \"volume\": \"45\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#81648c\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Payments\",
+        \"application\": \"Kuiper\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Loris\"
+      },
+      \"meta\": {
+        \"type\": \"positions\",
+        \"volume\": \"8\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#81648c\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Payments\",
+        \"application\": \"eFermi\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Loris\"
+      },
+      \"meta\": {
+        \"type\": \"positions\",
+        \"volume\": \"114\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#81648c\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"1-Charge\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"meta\": {
+        \"type\": \"positions\",
+        \"volume\": \"114\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#267a17\",
+        \"fontcolor\": \"red\",
+        \"fontsize\": \"10\",
+        \"labeltooltip\": \"BAD Image->1-Charge\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"Guerilla Risk\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"meta\": {
+        \"type\": \"positions\",
+        \"volume\": \"34\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#267a17\",
+        \"fontcolor\": \"red\",
+        \"fontsize\": \"10\",
+        \"labeltooltip\": \"BAD Image->Guerilla Risk\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"FORPS-bus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"202\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"FORPS-bus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"FORPS-bus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"12\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"sysTicket\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"CONFIRMATIONS\\nWriter\\nDoc\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"370\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"style\": \"dotted\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"sysTicket\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"TradeDepo\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"245\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#a6a8e0\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"sysTicket\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"Fidelity Plus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"190\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"color\": \"#a6a8e0\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"War\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"101\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#a6a8e0\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"HCB\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"45\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#a6a8e0\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"War\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"noShock\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"37\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#a6a8e0\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"War\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ADH\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"34\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"color\": \"#a6a8e0\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"HCB\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ECN\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"105\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"style\": \"dotted\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"HCB\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"meta\": {
+        \"type\": \"trades\",
+        \"volume\": \"102\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"style\": \"dotted\",
+        \"fontsize\": \"10\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Clients\",
+        \"id\": \"PTN-675664\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"ERP\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"meta\": {
+        \"type\": \"clients\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\",
+        \"constraint\": \"true\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Employee\",
+        \"id\": \"PTN-23\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Affinity\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"meta\": {
+        \"type\": \"employees\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\",
+        \"constraint\": \"true\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Instrument\",
+        \"id\": \"PTN-2345\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"P-RAM\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"meta\": {
+        \"type\": \"instruments\",
+        \"format\": \"strategic\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\",
+        \"constraint\": \"true\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Products\",
+        \"id\": \"PTN-6538\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Instrument+Hub\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"meta\": {
+        \"type\": \"products\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\",
+        \"constraint\": \"true\"
+      }
+    },
+    {
+      \"src\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Books\",
+        \"id\": \"PTN-1234\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"dst\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Books\",
+        \"id\": \"PTN-1234\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"meta\": {
+        \"type\": \"books\",
+        \"format\": \"legacy\"
+      },
+      \"style\": {
+        \"style\": \"invis\",
+        \"fontsize\": \"10\"
+      }
+    }
+  ],
+  \"nodes\": [
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"War\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#c6ddf2\",
+        \"shape\": \"box\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"GRIMACE\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Risk\",
+        \"application\": \"Guerilla Risk\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Simone\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"CONFIRMATIONS\\nWriter\\nDoc\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\",
+        \"shape\": \"box\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ECN\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"HCB\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#c6ddf2\",
+        \"shape\": \"box\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Books\",
+        \"id\": \"PTN-1234\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#EEBD1B\",
+        \"shape\": \"cylinder\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Payments\",
+        \"application\": \"eFermi\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Loris\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Instrument+Hub\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"1-Charge\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"TradeDepo\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"Fidelity Plus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"hePikes\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Settlement\",
+        \"application\": \"ADH\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"John\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Finance\",
+        \"application\": \"SIP-local\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Daniel\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Affinity\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"P-RAM\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Instrument\",
+        \"id\": \"PTN-2345\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#EEBD1B\",
+        \"shape\": \"cylinder\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Payments\",
+        \"application\": \"Kuiper\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Loris\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Lifecycle\",
+        \"application\": \"BAD Image\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Clients\",
+        \"id\": \"PTN-675664\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#EEBD1B\",
+        \"shape\": \"cylinder\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"noShock\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"ERP\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Reporting\",
+        \"application\": \"i-Assert(CZH)\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Paul\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"FORPS-bus\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#c6ddf2\",
+        \"shape\": \"box\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Employee\",
+        \"id\": \"PTN-23\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#EEBD1B\",
+        \"shape\": \"cylinder\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Golden Sources\",
+        \"application\": \"Products\",
+        \"id\": \"PTN-6538\",
+        \"level\": \"1\",
+        \"link\": \"https://en.wikipedia.org/wiki/Reference_data\",
+        \"owner\": \"Jacob\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#EEBD1B\",
+        \"shape\": \"cylinder\"
+      }
+    },
+    {
+      \"node\": {
+        \"view\": \"Current State\",
+        \"function\": \"Capture\",
+        \"application\": \"sysTicket\",
+        \"id\": \"PTN-\",
+        \"level\": \"1\",
+        \"link\": \"\",
+        \"owner\": \"Ruth\"
+      },
+      \"style\": {
+        \"fillcolor\": \"#E8EEF7\"
+      }
+    }
+  ],
+  \"cluster-parents\": [
+    [
+      \"Golden Sources\",
+      \"Current State\"
+    ],
+    [
+      \"Capture\",
+      \"Current State\"
+    ],
+    [
+      \"Lifecycle\",
+      \"Current State\"
+    ],
+    [
+      \"Reporting\",
+      \"Current State\"
+    ],
+    [
+      \"Settlement\",
+      \"Current State\"
+    ],
+    [
+      \"Risk\",
+      \"Current State\"
+    ],
+    [
+      \"Payments\",
+      \"Current State\"
+    ],
+    [
+      \"Finance\",
+      \"Current State\"
+    ]
+  ],
+  \"cluster-edges\": [
+    [
+      \"Golden Sources\",
+      \"Capture\"
+    ],
+    [
+      \"Capture\",
+      \"Lifecycle\"
+    ],
+    [
+      \"Lifecycle\",
+      \"Risk\"
+    ],
+    [
+      \"Risk\",
+      \"Reporting\"
+    ],
+    [
+      \"Reporting\",
+      \"Settlement\"
+    ],
+    [
+      \"Settlement\",
+      \"Payments\"
+    ],
+    [
+      \"Payments\",
+      \"Finance\"
+    ]
+  ],
+  \"cluster-styles\": {
+    \"Current State\": {
+      \"bgcolor\": \"#f0f2da\",
+      \"color\": \"#49c1e5\",
+      \"margin\": \"6\",
+      \"labeljust\": \"r\"
+    }
+  }
+}
+"
+   :options
+   (merge default-options
+          {:layout "dot"
+           :label "application&owner"
+           :shape "rect"
+           :splines "ortho"
+           :cluster-on "function"
+           :rankdir "TB"
+           :nodesep 0.7
+           :fontsize 8
+           :post-process? true
+           :pp-clusters {:y true :h true :x true :w true}
+           :pp-anneal-bias "6"
+           :pp-font "sans-serif"
+           :pp-cluster-sep "0"
+           :tooltip "application&id"
+           :url "link"
+           :constraint "false"
+           :fixedsize "false"
+           :num-cluster-edges "5"
+           :concentrate "true"
+           :edge-label "volume"
+           })})
+
+

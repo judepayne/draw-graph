@@ -89,3 +89,54 @@ Although draw-graph only a few graph level options, as in the list above, it's o
 ## Caveats
 
 This command line tool is not the quickest to start up (about a 1s on my system) being based on the JVM and having to load the Clojure language each time it's run.
+
+
+### JSON format
+
+In the resources folder, you'll find a couple of examples of the alternative JSON input format.
+To use this, set the format-in flag (see example usage at the top) to "json" like so:
+
+     "format-in" : "json",
+     
+The format of the json closely follows the format of draw-graphs' csv format section by section. Here's a brief explanation.
+
+The header. Details the keys in every node in the graph.
+    
+    "header": [ <list of quoted keys> ]
+    
+Node Synonyms. Define these here and use them as shortcuts in the sets of edges
+
+    "synonyms": {"node123": {<map of keys and values making up this node>}, "node234": etc  }
+    
+Nodes. Styling information for the nodes
+    
+    "nodes": [ {"node": {<node map>}, "style": {<style map>}} {"node":..... ]
+    
+Edges.
+
+    "edges": [ {"src": {<node map>}, "dst": {<node map>},
+    (& optional..) "meta": {<edge meta data map>}, "style": {<edge style map>}} .......]
+    
+Cluster styles. A map of cluster names to the map of each one's style. e.g.
+
+    "cluster-styles": {
+        "pandas": {
+          "bgcolor": "cornsilk1",
+          "style": "rounded"
+        }, ......}
+        
+And the cluster structural information
+
+    "cluster-edges": [
+        [
+         "Golden Sources",
+         "Capture"
+        ], .... ]
+        
+ and
+ 
+    "cluster-parents": [
+        [
+         "Golden Sources",
+         "Current State"
+        ], .... ]

@@ -20,18 +20,24 @@
     (last maps)))
 
 
-(defn update-keys-below
-  "Updates the keys immediately below the level specified in ks."
-  ([m ks f & args]
-     (let [alter (fn [m1 f args]
-                   (reduce
-                    (fn [m0 [k v]]
-                      (assoc m0 (apply f k args) v))
-                    {}
-                    m1))
-           up (fn up [m ks f args]
-                (let [[k & ks] ks]
-                  (if ks
-                    (assoc m k (up (get m k) ks f args))
-                    (assoc m k (alter (get m k) f args)))))]
-       (up m ks f args))))
+(defn update-keys
+  "Walks a nested map m recursively updating all keys with the supplied
+   key-fn where the supplied predicate update? fn for the key is true.
+   key-fn should have one parameter; the key.
+   update? should accept two parameters; the key and the parent key."
+  [m update? key-fn]
+  (let [down (fn f [x p]
+               (cond
+                 (map-entry? x)   (let [[k v] x]
+                                    (if (nil? v) nil   ;;prunes where v is nil
+                                        (first {(f k p)
+                                                (if (coll? v)
+                                                  (f v k)
+                                                  v)})))
+                 
+                 (seq? x)         (map #(f % p) x)
+
+                 (coll? x)        (into (empty x) (map #(f % p) x))
+
+                 :else            (if (update? x p) (key-fn x) x)))]
+     (down m nil)))

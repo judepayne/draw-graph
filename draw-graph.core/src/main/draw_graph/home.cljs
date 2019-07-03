@@ -93,7 +93,7 @@
 (defn ->csv1 []
   {:display-options (remove-empty-strings (:options @local-state))
    :data (:data @local-state)
-   :format-in "csv"
+   :format-in (name (processor/detect-format (:data @local-state)))
    :format-out "svg"})
 
 
@@ -342,6 +342,7 @@
    [:option {:value nil} "-"]  
    [:option {:value "draw-graph.examples/example1"} "Friendship graph"]
    [:option {:value "draw-graph.examples/example1b"} "Friendship graph with synonyms"]
+   [:option {:value "draw-graph.examples/example1c"} "Friendship graph with synonyms json"]
    [:option {:value "draw-graph.examples/example2"} "Two facing trees"]
    [:option {:value "draw-graph.examples/example3"} "Two trees"]
    [:option {:value "draw-graph.examples/example4"} "CERN email connections"]
@@ -349,7 +350,8 @@
    [:option {:value "draw-graph.examples/example6"} "cluster layout"]
    [:option {:value "draw-graph.examples/example7"} "complex cluster layout"]
    [:option {:value "draw-graph.examples/example8"} "Architecture diagram"]
-   [:option {:value "draw-graph.examples/example9"} "Complex architecture diagram"]]) 
+   [:option {:value "draw-graph.examples/example9"} "Complex architecture diagram"]
+   [:option {:value "draw-graph.examples/example9b"} "Complex architecture diagram json"]]) 
 
 
 (defn get-position []

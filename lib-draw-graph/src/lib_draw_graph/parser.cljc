@@ -210,7 +210,6 @@
                :dst (nk (second edge'))
                :meta (extract :edge-meta (drop 2 edge'))
                :style (extract :edge-style (drop 2 edge'))}}
-      ;  edge (unescape-edge edge)
         with-styles (let [styles 
                           (reduce (fn [a c]
                                     (if (sk c)
@@ -288,12 +287,82 @@
 ;; ----------------------
 ;; JSON format parser
 
-(defn parse-json
-  "parses a json format string"
+(defn- nodes->seq
+  "Update the :nodes section as json doesn't allow maps as keys"
+  [parsed]
+  (let [new-nodes 
+        (reduce
+         (fn [m [k v]]
+           (conj m {:node k :style v}))
+         []
+         (:nodes parsed))]
+    (assoc parsed :nodes new-nodes)))
+
+
+(defn- nodes-from-seq
+  "Update the :nodes section as json doesn't allow maps as keys"
+  [js]
+  (let [new-nodes 
+        (reduce
+         (fn [m cur]
+           (assoc m (get cur :node) (get cur :style)))
+         {}
+         (get js :nodes))]
+    (assoc js :nodes new-nodes)))
+
+
+(defn- stringify-keys
+  "Converts the keys in the parse map to string, ready to be 
+   transformed into json."
+  [m]
+  (util/update-keys m (fn [k p] true) name))
+
+
+(defn- keywordize-keys
+  "Converts json into a parse map"
+  [js]
+  (util/update-keys
+   js
+   (fn [k p]
+     (cond
+       (= p "cluster-styles")             false
+       (= p "synonyms")                   false
+       (= p "cluster-parents")            false
+       (= p "cluster-edges")              false
+       :else true))
+   keyword))
+
+
+(defn- json->clj
+  "converts a json string into a clojure map"
   [s]
   #?(:clj (json/read-str s)
-     :cljs (js->clj s)))
+     :cljs (js->clj (.parse js/JSON s))))
 
+
+(defn- clj->json
+  "converts a clojure map to json"
+  [m]
+  #?(:clj (json/write-str m)
+     :cljs (.stringify js/JSON (clj->js m))))
+
+
+(defn parsed->json
+  "takes a parse map and converts properly to a json string"
+  [parsed]
+  (-> parsed
+      nodes->seq
+      stringify-keys
+      clj->json))
+
+
+(defn json->parsed
+  "takes in json and outputs a parse map as produced by parse-lines."
+  [js]
+  (-> js
+      json->clj
+      keywordize-keys
+      nodes-from-seq))
 
 ;; ----------------------
 ;; Main api
@@ -342,16 +411,16 @@
                   nodes)))))
 
 
-
 (defn parse-csv-or-json
   [s fmt]
   (let [parsed0
         (case fmt
-          :json (parse-json s)
+          :json (json->parsed s)
           :csv  (parse-csv s)
           (throw (util/err "format should be either :json or :csv")))
         parsed1 (replace-synonyms-edges parsed0)                   
         parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)]
+    (spit "../cmd-draw-graph/resources/example1.json" (parsed->json parsed0))
     parsed))
 
 
