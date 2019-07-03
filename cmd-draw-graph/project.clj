@@ -3,7 +3,7 @@
   :url "https://github.com/judepayne/draw-graph"
   :license {:name "MIT"}
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [lib-draw-graph "0.1.0"]
+                 [lib-draw-graph "0.1.3"]
                  [org.clojure/tools.cli "0.4.2"]
                  [viz-cljc "0.1.3"]]
   :repl-options {:init-ns cmd-draw-graph.core}

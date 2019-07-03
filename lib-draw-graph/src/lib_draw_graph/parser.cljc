@@ -420,7 +420,6 @@
           (throw (util/err "format should be either :json or :csv")))
         parsed1 (replace-synonyms-edges parsed0)                   
         parsed (dissoc (replace-synonyms-nodes parsed1) :synonyms)]
-    (spit "../cmd-draw-graph/resources/example1.json" (parsed->json parsed0))
     parsed))
 
 
