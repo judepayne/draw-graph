@@ -5,6 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [rhizome-cljc "0.1.2"]
+                 ;[rhizome "0.2.9"]
                  [aysylu/loom "1.0.2"]
                  [org.clojure/data.xml "0.2.0-alpha6"]
                  [org.clojure/data.zip "0.1.2"]

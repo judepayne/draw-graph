@@ -165,6 +165,20 @@
     true
     false))
 
+(defn maybe-synonym?
+  [s]
+  (if
+      (and
+       (string? s)
+       (re-matches #"node.*" s))
+    true
+    false))
+
+
+(defn bad-synonym?
+  [s]
+  (and (maybe-synonym? s) (not (synonym? s))))
+
 
 (defn parse-node [state s]
   (let [nd (insta/transform
@@ -196,8 +210,12 @@
                        (if (synonym? (first args))
                          {nk (first args)
                           sk (if (some? (second args)) (second args))}
-                         {nk (zipmap (:header state) (split-parts-meta (unesc (first args))))
-                          sk (if (some? (second args)) (second args))}))
+                         (if (bad-synonym? (first args))
+                           (throw (util/err (str "bad synonym:  "
+                                                 (first args)
+                                                 "  See help for rules on allowed synonym formats.")))
+                           {nk (zipmap (:header state) (split-parts-meta (unesc (first args))))
+                                 sk (if (some? (second args)) (second args))})))
                :Edge-meta (fn [& args]
                             {:edge-meta (attribute-map (first args) :meta? true)})
                :Edge-style (fn [& args]

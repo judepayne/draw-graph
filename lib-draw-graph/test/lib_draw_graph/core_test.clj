@@ -20,14 +20,14 @@
 (def standard-options
   [:show-roots? false
    :cluster-on "function"
-   ;:color-on "id"
+   :color-on "application"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "application"
    :edge-label "type"
    :shape "rect"
-   :nodesep 0.4
-   ;:ranksep 0
+   :nodesep 0.5
+   :ranksep 0.8
    ;:sep 1 
    :fontsize 8
    :splines "ortho"
@@ -37,11 +37,11 @@
    :url "link"
    :scale 2
    :overlap "false"
-   :concentrate false
+   :concentrate true
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
    :num-cluster-edges "4"
  ;  :elide "0"
-   :constraint true
+   :constraint false
    :show-constraints? false
    :fix-ranks? true
  ;  :filter-graph "application = sysTicket or function = Reporting"
@@ -57,7 +57,7 @@
    :post-process? true
    :pp-clusters {:y true :h true :x true :w true}
 ;   :pp-clusters {:y false :h false :x false :w false}
-   :pp-anneal-bias "5"
+   :pp-anneal-bias "3"
    :pp-cluster-sep "0"
    :pp-font "sans-serif"
 ])

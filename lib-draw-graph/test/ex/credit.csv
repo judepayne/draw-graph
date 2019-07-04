@@ -1,0 +1,201 @@
+h,application:function
+n,node_cRDS,cRDS:Ref Data|shape:cylinder
+n,node_Paragon,Paragon:Ref Data|shape:cylinder
+n,node_iRDS,iRDS:Ref Data|shape:cylinder
+n,node_FDR,FDR:Ref Data|shape:cylinder
+n,node_3dStatic,3dStatic:Ref Data|shape:cylinder
+n,node_bRDS,bRDS:Ref Data|shape:cylinder
+n,node_pRDS,pRDS:Ref Data|shape:cylinder
+n,node_Partnerdata,Partnerdata DE:Ref Data|shape:cylinder
+n,node_iTrac,iTrac:Trade Capture
+n,node_GRETL,GRETL:Trade Capture
+n,node_FO3DG,FO3DG:Trade Capture
+n,node_Summit,Summit:Trade Capture|penwidth:2:fontsize:12:fillcolor:gold
+n,node_QTE,QTE:Trade Capture
+n,node_RMS,RMS:Trade Capture|penwidth:2:fontsize:12:fillcolor:gold
+n,node_Galileo,Galileo:Payments
+n,node_DEM,DEM:Lifecycle
+n,node_TPM,TPM:Trade Capture
+n,node_DocEngine,DocEngine:Lifecycle
+n,node_dbMargin,dbMargin:Margin
+n,node_dbRAT,dbRAT:Risk
+n,node_RiskEngine,Risk Engine:Risk
+n,node_Kannon,Kannon:Risk
+n,node_MIS3,MIS3:Subledger
+n,node_3DCash,3DCash:Settlement
+n,node_iFaces,iFaces:Settlement
+n,node_dbTradeStore,dbTradeStore:Reg Reporting
+n,node_SAPBW,SAP - BW:General Ledger
+n,node_FDW,FDW:General Ledger
+n,node_Collat,Collat:Margin
+n,node_PES,Payment Execution Services:Payments
+n,node_FMSGB,FMS GB:Payments
+n,node_Computron,Computron:Subledger
+n,node_dbInternetDE,db-Internet DE:Payments
+n,node_CMDW,CMDW:Margin
+n,node_LegacyACS,Legacy ACS:Subledger
+n,node_dbRiskStore,dbRiskStore:Subledger
+n,node_Concentrix,Concentrix:Subledger
+n,node_MOAR,MOAR:Subledger
+n,node_dbPalace,dbPalace:Subledger
+n,node_StrategicACS,Strategic ACS:Subledger
+n,node_SAPGlobal,SAP - Global (0110):General Ledger
+n,node_FCL,FCL:General Ledger
+n,node_TDH,TDH:Treasury
+n,node_LIMA,LIMA:Treasury
+n,node_Hotscan,Hotscan:Compliance
+n,node_Mantas,Mantas:Compliance
+n,node_CEM,CEM:Lifecycle
+n,node_DSMatch,DSMatch:Lifecycle
+n,node_Actimize,Actimize:Compliance
+n,node_TDW,TDW:Reg Reporting
+n,node_Calico,Calico:Subledger
+n,node_DBPRO,DB PRO:Subledger
+n,node_dbMole,dbMole:Lifecycle
+n,node_Kondor,Kondor:Lifecycle
+n,node_Magellan,Magellan:Lifecycle
+n,node_EnterpriseRisk,Enterprise Risk:Risk
+n,node_DMIST,DMIST:Settlement
+n,node_dbWorm,dbWorm:Settlement
+n,node_DTCC,DTCC:Settlement
+n,node_GCMS,GCMS:Treasury
+n,node_TaxEngine,Tax Engine:Reg Reporting
+n,node_Liberyse,Liberyse:Reg Reporting
+n,node_Abacus,Abacus:Reg Reporting
+n,node_dbVolt,dbVolt:Reg Reporting
+n,node_Matplan,Matplan:Reg Reporting
+n,node_FMSEA,FMS EA:Payments
+n,node_MCConHub,MC Connectivity Hub:Margin
+n,node_dbCORE,dbCORE:Margin
+n,node_MERIT,MERIT:Subledger
+n,node_SAPBCS,SAP  - BCS:General Ledger
+n,node_TIP,TIP:Treasury
+n,node_Saturn,Saturn:Treasury
+n,node_Liqui,Liqui+:Treasury
+n,node_Smaragd,Smaragd:Compliance
+e,node_cRDS,node_cRDS,|style:invis
+e,node_Paragon,node_Paragon,|style:invis
+e,node_cRDS,node_cRDS,|style:invis
+e,node_iRDS,node_iRDS,|style:invis
+e,node_FDR,node_FDR,|style:invis
+e,node_3dStatic,node_3dStatic,|style:invis
+e,node_bRDS,node_bRDS,|style:invis
+e,node_Partnerdata,node_Partnerdata,|style:invis
+e,node_pRDS,node_pRDS,|style:invis
+e,node_iTrac,node_Summit,|constraint:true
+e,node_GRETL,node_Summit,|constraint:true
+e,node_FO3DG,node_Summit,|constraint:true
+e,node_Summit,node_TPM,|constraint:true:color:blue:penwidth:2
+e,node_iTrac,node_QTE
+e,node_GRETL,node_QTE
+e,node_FO3DG,node_QTE
+e,node_iTrac,node_LIMA
+e,node_GRETL,node_LIMA
+e,node_FO3DG,node_LIMA
+e,node_QTE,node_Summit,|constraint:true
+e,node_RMS,node_SAPGlobal,|color:red:style:dashed
+e,node_Galileo,node_Hotscan
+e,node_RMS,node_LIMA,|color:red:style:dashed
+e,node_QTE,node_DocEngine
+e,node_QTE,node_DEM
+e,node_QTE,node_CEM
+e,node_DEM,node_DSMatch
+e,node_DEM,node_DocEngine
+e,node_TPM,node_Actimize,|color:#4287f5
+e,node_TPM,node_TDW,|color:#4287f5
+e,node_TPM,node_dbTradeStore,|color:#4287f5
+e,node_TPM,node_Calico,|color:#4287f5
+e,node_TPM,node_DBPRO,|color:#4287f5
+e,node_TPM,node_LIMA,|color:#4287f5
+e,node_TPM,node_DocEngine,|color:#4287f5
+e,node_DocEngine,node_TDW
+e,node_TPM,node_dbMole,|color:#4287f5
+e,node_dbMargin,node_Kondor
+e,node_dbMargin,node_Magellan
+e,node_TPM,node_EnterpriseRisk,|color:#4287f5
+e,node_dbRAT,node_EnterpriseRisk
+e,node_RiskEngine,node_EnterpriseRisk
+e,node_Kannon,node_EnterpriseRisk
+e,node_MIS3,node_EnterpriseRisk
+e,node_TPM,node_iFaces,|color:#4287f5
+e,node_3DCash,node_DMIST
+e,node_3DCash,node_dbWorm
+e,node_3DCash,node_DTCC
+e,node_iFaces,node_3DCash
+e,node_3DCash,node_Computron
+e,node_3DCash,node_GCMS
+e,node_3DCash,node_MOAR
+e,node_3DCash,node_LegacyACS
+e,node_3DCash,node_TaxEngine
+e,node_3DCash,node_FMSGB
+e,node_3DCash,node_Liberyse
+e,node_dbTradeStore,node_TDW
+e,node_dbTradeStore,node_Actimize
+e,node_3DCash,node_Abacus
+e,node_RMS,node_dbVolt,|color:red:style:dashed
+e,node_MIS3,node_dbVolt
+e,node_SAPBW,node_Matplan
+e,node_FDW,node_Matplan
+e,node_Collat,node_PES
+e,node_PES,node_Galileo
+e,node_Galileo,node_dbInternetDE
+e,node_Galileo,node_FMSEA
+e,node_FMSGB,node_FMSEA
+e,node_Computron,node_dbInternetDE
+e,node_dbInternetDE,node_SAPGlobal
+e,node_TPM,node_CMDW,|color:#4287f5
+e,node_CMDW,node_dbMargin
+e,node_dbMargin,node_Collat
+e,node_Collat,node_MCConHub
+e,node_Collat,node_dbCORE
+e,node_Collat,node_PES
+e,node_Computron,node_SAPGlobal
+e,node_StrategicACS,node_SAPGlobal
+e,node_MIS3,node_dbPalace
+e,node_MIS3,node_MOAR
+e,node_MIS3,node_FCL
+e,node_dbRiskStore,node_dbPalace
+e,node_dbRiskStore,node_MOAR
+e,node_dbRiskStore,node_FCL
+e,node_Concentrix,node_MOAR
+e,node_MOAR,node_SAPGlobal
+e,node_MOAR,node_MERIT
+e,node_RMS,node_dbPalace,|color:red:style:dashed
+e,node_dbPalace,node_StrategicACS
+e,node_RMS,node_StrategicACS,|color:red:style:dashed
+e,node_StrategicACS,node_SAPGlobal
+e,node_SAPGlobal,node_SAPBW,|constraint:true
+e,node_SAPBW,node_SAPBCS,|constraint:true
+e,node_FCL,node_FDW
+e,node_FDW,node_TDH
+e,node_FDW,node_TIP
+e,node_RMS,node_GCMS,|color:red:style:dashed
+e,node_RMS,node_TDH,|color:red:style:dashed
+e,node_TDH,node_Saturn
+e,node_LIMA,node_Liqui
+e,node_Hotscan,node_Mantas
+e,node_Mantas,node_Smaragd
+cp,Ref Data:Credit Current State
+cp,Trade Capture:Credit Current State
+cp,Lifecycle:Credit Current State
+cp,Risk:Credit Current State
+cp,Payments:Credit Current State
+cp,Settlement:Credit Current State
+cp,Reg Reporting:Credit Current State
+cp,Margin:Credit Current State
+cp,Subledger:Credit Current State
+cp,General Ledger:Credit Current State
+cp,Compliance:Credit Current State
+cp,Treasury:Credit Current State
+ce,Ref Data:Trade Capture
+ce,Trade Capture:Lifecycle
+ce,Lifecycle:Risk
+ce,Risk:Settlement
+ce,Settlement:Reg Reporting
+ce,Reg Reporting:Payments
+ce,Payments:Margin
+ce,Margin:Subledger
+ce,Subledger:General Ledger
+ce,General Ledger:Compliance
+ce,Compliance:Treasury
+cs,Credit Current State|bgcolor:#f0f2da:color:#49c1e5:margin:6:labeljust:r

@@ -274,6 +274,9 @@
    :node->clusters
    (fn [n] ((partial clstr/node->clusters g (clstr/cluster-key g)) n))
 
+;   :node->cluster
+;   (fn [n] (get n (clstr/cluster-key g)))
+
    :cluster->descriptor
    (fn [n] (merge {:label n}
                   (let [x (clstr/merged-cluster-attr g n :style)

@@ -11,14 +11,14 @@ return (new Error(error_string));
  */
 lib_draw_graph.util.deep_merge = (function lib_draw_graph$util$deep_merge(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___34222 = arguments.length;
-var i__4731__auto___34223 = (0);
+var len__4730__auto___34241 = arguments.length;
+var i__4731__auto___34244 = (0);
 while(true){
-if((i__4731__auto___34223 < len__4730__auto___34222)){
-args__4736__auto__.push((arguments[i__4731__auto___34223]));
+if((i__4731__auto___34244 < len__4730__auto___34241)){
+args__4736__auto__.push((arguments[i__4731__auto___34244]));
 
-var G__34227 = (i__4731__auto___34223 + (1));
-i__4731__auto___34223 = G__34227;
+var G__34258 = (i__4731__auto___34244 + (1));
+i__4731__auto___34244 = G__34258;
 continue;
 } else {
 }
@@ -40,9 +40,9 @@ return cljs.core.last(maps);
 lib_draw_graph.util.deep_merge.cljs$lang$maxFixedArity = (0);
 
 /** @this {Function} */
-lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq34186){
+lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq34190){
 var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq34186));
+return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq34190));
 });
 
 /**
@@ -54,9 +54,9 @@ return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
 lib_draw_graph.util.update_keys = (function lib_draw_graph$util$update_keys(m,update_QMARK_,key_fn){
 var down = (function lib_draw_graph$util$update_keys_$_f(x,p){
 if(cljs.core.map_entry_QMARK_(x)){
-var vec__34202 = x;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34202,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34202,(1),null);
+var vec__34208 = x;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34208,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34208,(1),null);
 if((v == null)){
 return null;
 } else {
@@ -64,13 +64,13 @@ return cljs.core.first(cljs.core.PersistentArrayMap.createAsIfByAssoc([lib_draw_
 }
 } else {
 if(cljs.core.seq_QMARK_(x)){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__34200_SHARP_){
-return lib_draw_graph$util$update_keys_$_f(p1__34200_SHARP_,p);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__34202_SHARP_){
+return lib_draw_graph$util$update_keys_$_f(p1__34202_SHARP_,p);
 }),x);
 } else {
 if(cljs.core.coll_QMARK_(x)){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.empty(x),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__34201_SHARP_){
-return lib_draw_graph$util$update_keys_$_f(p1__34201_SHARP_,p);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.empty(x),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__34203_SHARP_){
+return lib_draw_graph$util$update_keys_$_f(p1__34203_SHARP_,p);
 }),x));
 } else {
 if(cljs.core.truth_((update_QMARK_.cljs$core$IFn$_invoke$arity$2 ? update_QMARK_.cljs$core$IFn$_invoke$arity$2(x,p) : update_QMARK_.call(null,x,p)))){

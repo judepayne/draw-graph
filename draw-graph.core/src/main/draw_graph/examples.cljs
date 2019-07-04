@@ -13,7 +13,7 @@
    :elide "0"
    :splines "splines"
    :overlap "false"
-   :concentrate "false"
+   :concentrate false
    :post-process? false
    :pp-clusters {:y true :h true :x true :w true}
    :pp-anneal-bias "3"
@@ -21,10 +21,10 @@
    :pp-cluster-sep ""
    :num-cluster-edges "4"
    :tooltip ""
-   :constraint "true"
+   :constraint false
    :show-constraints? false
    :url ""
-   :fix-ranks? false})
+   :fix-ranks? true})
 
 
 ;; ------------------

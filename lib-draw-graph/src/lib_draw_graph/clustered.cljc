@@ -177,6 +177,7 @@
   ([g n] (node->clusters g (cluster-key g) n))
   ([g cluster-on n]
    (letfn [(ancestor [acc]
+             ;(when (nil? acc) (println n acc))
              (if-let [new-ancestor (cluster-parent g (first acc))]
                (ancestor (cons new-ancestor acc))
                acc))]

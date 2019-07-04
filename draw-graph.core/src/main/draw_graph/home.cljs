@@ -61,6 +61,7 @@
                                )))
 
 
+
 ;; -------------------------
 ;; Processing
 
@@ -562,8 +563,13 @@
 (defn ranksep [] (text-input [:options :ranksep] local-state 30))
 
 
-(defn concentrate [] (fixed-select [:options :concentrate] local-state 31
-                                   "false" "true"))
+(defn concentrate []
+  [:input {:type :checkbox :id :concentrate
+           :checked (:concentrate @options)
+           :tabIndex 31
+           :on-change #(swap! local-state update-in [:options :concentrate] not)}])
+
+;(defn concentrate [] (fixed-select [:options :concentrate] local-state 31 "false" "true"))
 
 
 (defn overlap [] (fixed-select [:options :overlap] local-state 32
@@ -574,7 +580,12 @@
 (defn scale [] (text-input [:options :scale] local-state 33))
 
 
-(defn constraint [] (fixed-select [:options :constraint] local-state 34 "true" "false"))
+(defn constraint []
+  [:input {:type :checkbox :id :constraint?
+           :checked (:constraint @options)
+           :tabIndex 34
+           :on-change #(swap! local-state update-in [:options :constraint] not)}])
+;(defn constraint [] (fixed-select [:options :constraint] local-state 34 "true" "false"))
 
 
 
@@ -802,4 +813,5 @@
   (find-region)
   [:div.page
    [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" :rel "stylesheet"}]
+;   @options
    [:div.main [controls disp-opts-state]]])
