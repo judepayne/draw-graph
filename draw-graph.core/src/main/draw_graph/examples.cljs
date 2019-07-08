@@ -21,7 +21,7 @@
    :pp-cluster-sep ""
    :num-cluster-edges "4"
    :tooltip ""
-   :constraint false
+   :constraint true
    :show-constraints? false
    :url ""
    :fix-ranks? true})
@@ -55,7 +55,6 @@ cs,squirrels|bgcolor:pink:style:rounded:margin:15"
            :cluster-on "animal"
            :label "name"
            :shape "ellipse"
-           :splines "line"
            :overlap "false"
            :rankdir "TB"})})
 
@@ -88,7 +87,6 @@ cs,squirrels|bgcolor:pink:style:rounded:margin:15"
            :cluster-on "animal"
            :label "name"
            :shape "ellipse"
-           :splines "line"
            :overlap "false"
            :rankdir "TB"})})
 
@@ -102,7 +100,6 @@ cs,squirrels|bgcolor:pink:style:rounded:margin:15"
            :cluster-on "animal"
            :label "name"
            :shape "ellipse"
-           :splines "line"
            :overlap "false"
            :rankdir "TB"})})
 
@@ -988,7 +985,7 @@ cs,Current State|bgcolor:#fdfdff:color:#49c1e5:margin:8:labeljust:r"
            :constraint "false"
            :fixedsize "false"
            :num-cluster-edges "5"
-           :concentrate "true"
+           :concentrate true
            :edge-label "volume"
            })})
 
@@ -2443,7 +2440,7 @@ cs,Current State|bgcolor:#fdfdff:color:#49c1e5:margin:8:labeljust:r"
            :constraint "false"
            :fixedsize "false"
            :num-cluster-edges "5"
-           :concentrate "true"
+           :concentrate true
            :edge-label "volume"
            })})
 

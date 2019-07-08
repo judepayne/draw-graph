@@ -1,0 +1,545 @@
+(ns ^{:doc "Post process the svg."
+      :author "Jude Payne"}
+  lib-draw-graph.postprocessor
+  (:require [lib-draw-graph.svg :as svg]
+            [lib-draw-graph.anneal :as anneal]
+            [lib-draw-graph.clustered :as clstr]
+            [lib-draw-graph.geometry :as g]
+            [lib-draw-graph.util :as util]
+            [clojure.data :as dat]
+            [clojure.set :as s]))
+
+
+(defn free-clusters
+  "Returns clusters that (a) contain clusters (b) contain no nodes directly."
+  ;; TODO: remove the (b) restriction by parsing all svg nodes and adding
+  ;; 'obstacles' into the annealing routine.
+  [g]
+  (let [clstrs (clstr/clusters g)
+        ;with-nodes (into #{} (keys (nodes-by-cluster g)))
+        has-chdn (filter #(some? (clstr/cluster-children g %)) clstrs)]
+    ;(s/difference clstrs with-nodes)
+    (into #{} has-chdn)))
+
+
+;;Kahn sort - topological sort of a graph
+;; https://github.com/cloverage/cloverage/blob/HEAD/cloverage/src/cloverage/kahn.clj#L30
+(defn without
+  "Returns set s with x removed."
+  [s x] (s/difference s #{x}))
+
+
+(defn take-1
+  "Returns the pair [element, s'] where s' is set s with element removed."
+  [s] {:pre [(not (empty? s))]}
+  (let [item (first s)]
+    [item (without s item)]))
+
+
+(defn no-incoming
+  "Returns the set of nodes in graph g for which there are no incoming
+  edges, where g is a map of nodes to sets of nodes."
+  [g]
+  (let [nodes (set (keys g))
+        have-incoming (apply s/union (vals g))]
+    (s/difference nodes have-incoming)))
+
+
+(defn normalize
+  "Returns g with empty outgoing edges added for nodes with incoming
+  edges only.  Example: {:a #{:b}} => {:a #{:b}, :b #{}}"
+  [g]
+  (let [have-incoming (apply s/union (vals g))]
+    (reduce #(if (get % %2) % (assoc % %2 #{})) g have-incoming)))
+
+
+(defn kahn-sort
+  "Proposes a topological sort for directed graph g using Kahn's
+  algorithm, where g is a map of nodes to sets of nodes. If g is
+  cyclic, returns nil."
+  ([g]
+   (kahn-sort (normalize g) [] (no-incoming g)))
+  ([g l s]
+   (if (empty? s)
+     (when (every? empty? (vals g)) l)
+     (let [[n s'] (take-1 s)
+           m (g n)
+           g' (reduce #(update-in % [n] without %2) g m)]
+       (recur g' (conj l n) (s/union s' (s/intersection (no-incoming g') m)))))))
+
+
+(defn sorted-free-clusters
+  "Kahn sorted free clusters"
+  [g]
+  (filter (free-clusters g) (kahn-sort (clstr/cluster-graph g))))
+
+
+(defn with-chdn
+  "Returns a vec of clusters with their children."
+  [g clstrs]
+  (mapv #(vector % (clstr/cluster-children g %)) clstrs))
+
+
+(defn free-clusters-with-children
+  "Provides the targets for annealing in the graph."
+  [g]
+  (->> (sorted-free-clusters g)
+       (with-chdn g)))
+
+;; Now we need to set up the annealing jobs by reading in the svg
+;; Since graphviz labels clusters at the top, we'll use the top
+;; of the uppermost sibling as the top boundary (taking into account
+;; the SEP) otherwise the bounding box of the containing cluster.
+;; we'll calculate SEP for each annealing job by finding the minimum
+;; distance between a children cluster's bounding box (LRB) and the boundary.
+
+
+(defn svg->zipper [svg]
+  (svg/->zipper (svg/parse-svg svg)))
+
+
+(defn clusters->boxes
+  "Get the bounding boxes for the clusters from the zipper over the svg."
+  [z clstrs]
+  (reduce 
+   (fn [a c] (assoc a c (svg/cluster->rect z c)))
+   {}
+   clstrs))
+
+
+(defn tasks->clusters 
+  "Converts anneal-tasks to a set of clusters"
+  [tasks]
+  (reduce (fn [a c]
+            (-> a
+                (conj (first c))
+                (clojure.set/union (second c))))
+          #{}
+          tasks))
+
+
+(defn sep
+  "Returns the separation map between the bounding"
+  [bounding & rects]
+  {:l (- (apply min (map :x rects)) (:x bounding))
+   :t (- (apply min (map :y rects)) (:y bounding))
+   :r (- (+ (:x bounding) (:w bounding))
+         (apply max (map (fn [o] (+ (:x o) (:w o))) rects)))
+   :b (- (+ (:y bounding) (:h bounding))
+         (apply max (map (fn [o] (+ (:y o) (:h o))) rects)))})
+
+
+(def collision-sep 8)
+
+
+(defn adjust-sep
+  "takes a sep, preserves the top but adjusts other seps to minimum."
+  ([sep & {:keys [cluster-sep BT?] :or {cluster-sep nil BT? false}}]
+   (if (not BT?)
+     (if cluster-sep
+       (assoc sep :l cluster-sep :r cluster-sep :b cluster-sep)
+       (let [min-lrb (min (:l sep) (:r sep) (:b sep))]
+         (assoc sep :l min-lrb :r min-lrb :b min-lrb)))
+     ;; Bottom Top layout. Need to constraint differently
+     (if cluster-sep
+       (assoc sep :l cluster-sep :r cluster-sep :t cluster-sep)
+       (let [min-lrt (min (:l sep) (:r sep) (:t sep))]
+         (assoc sep :l min-lrt :r min-lrt :t min-lrt))))))
+
+
+(defn parse-int [s]
+  #?(:clj (Integer/parseInt s)
+     :cljs (js/parseInt s)))
+
+
+(defn str->int [cs error-msg]
+  (if (integer? cs)
+    cs
+    (try
+      (parse-int cs)
+      #?(:clj (catch Exception e (throw (util/err error-msg)))
+         :cljs (catch js/Error e (throw (util/err error-msg)))))))
+
+
+(defn env
+  "Constructs a nested map which parameters required for annealing
+   from a zipper, a graph and the key clustered on in the graph."
+  [z g opts node-label-fn]
+  (let [cluster-sep (when (-> opts :pp-cluster-sep)
+                      (str->int  (-> opts :pp-cluster-sep) "cluster separation should be an integer"))
+        BT? (= (-> opts :rankdir) "BT")
+        tasks (free-clusters-with-children g)
+        clstrs (tasks->clusters tasks)
+        rects (clusters->boxes z clstrs)]
+    (reduce
+     (fn [a [prnt chdn]]
+       (let [p-rect (get rects prnt)
+             c-rects (map #(get rects %) chdn)
+             sep (if cluster-sep
+                   (adjust-sep (apply sep p-rect c-rects) :cluster-sep cluster-sep :BT? BT?)
+                   (adjust-sep (apply sep p-rect c-rects) :BT? BT?))
+             boundary (assoc (g/inner-rect sep p-rect) :boundary true)
+             state (merge (into {} (map #(vector % (get rects %)) chdn)) {prnt boundary}) 
+             constr {:boundary true
+                     :grow true
+                     :collision (if cluster-sep
+                                  cluster-sep
+                                  collision-sep)
+                     :obstacles (reduce
+                                 (fn [acc cur]
+                                   (assoc acc
+                                          (node-label-fn cur)
+                                          (svg/node->rect z (node-label-fn cur))))
+                                 {}
+                                 (clstr/cluster->nodes g prnt))}]
+         (-> a
+             (assoc-in [prnt :constraints] constr)
+             (assoc-in [prnt :state] state)
+             (assoc-in [prnt :boundary-sep] sep)
+             ;(assoc-in [prnt :rect] p-rect)
+             )))
+     {}
+     tasks)))
+
+
+(defn env->map
+  "Flattens an environment back rectangles"
+  [env]
+  ;(clojure.pprint/pprint env)
+  (reduce
+   (fn [a [k v]]
+     (-> a
+         (assoc k (-> v :rect))
+         (merge (-> v :state))))
+   {}
+   env))
+
+
+(def max-move-factor 50)  ;; max move defined by size of primary annealing dimension / this
+
+
+(defn update-env
+  "updates environment with new state, for each <cluster, new-st> pair
+  in new-st updating to the new rect and boundary."
+  [env k new-st]
+  (let [new-env1 (assoc-in env [k :state] new-st)]
+    (reduce (fn [acc [k' v]]
+              (assoc-in acc [k' :state k'] (assoc v :boundary true)))
+            new-env1
+            (dissoc new-st k))))
+
+
+(defn do-annealing
+  [z g opts label-fn]
+  (let [env (env z g opts label-fn)
+      ;  a (clojure.pprint/pprint env)
+      ;  b (println " ")
+        rankdir (-> opts :rankdir)
+        y-retard (if (or (= "TB" rankdir) (= "BT" rankdir))
+                   (str->int (-> opts :pp-anneal-bias) "anneal bias should be an integer") nil)
+        x-retard (if (or (= "LR" rankdir) (= "RL" rankdir))
+                   (str->int (-> opts :pp-anneal-bias) "anneal bias should be an integer") nil)
+        dims (if (-> opts :pp-clusters)
+               (reduce-kv (fn [m k v] (if v (conj m k) m))
+                                        []
+                                        (-> opts :pp-clusters))
+               [:x :w :y :h])
+        boundary (fn ^{:doc "returns the boundary from state"}
+                   [k state]
+                   (get (-> state :state) k))
+        new-env (reduce (fn [a [k v]]
+                          (let [new-st (anneal/annealing (-> v :state)
+                                                         20
+                                                         0
+                                                         (-> (get a k) :constraints)
+                                                         anneal/neighbor-fn
+                                                         anneal/cost-fn
+                                                         anneal/p-fn
+                                                         anneal/temp-fn
+                                                         :terminate-early? true
+                                                         :dims dims
+                                                         :x-retard x-retard
+                                                         :y-retard y-retard
+                                                         :max-move (if (or (= "TB" rankdir) (= "BT" rankdir))
+                                                                     (quot
+                                                                      (-> (boundary k v) :w)
+                                                                      max-move-factor)
+                                                                     (quot
+                                                                      (-> (boundary k v) :h)
+                                                                      max-move-factor)))
+                                adj-env (update-env a k new-st)]
+                            (-> adj-env (assoc-in [k :state] new-st))))
+                        env
+                        env)]
+    (let [old-an (get env "animals")
+          an (get new-env "animals")]
+      (println (dat/diff old-an an)))
+    new-env))
+
+
+(defn editor-rects [env clstr node]
+  (if-let [edited (get env clstr)]
+    (let [ps (svg/rect->svg edited)]
+      (assoc-in node [:attrs (first ps)] (second ps)))
+    node))
+
+
+(defn edit-cluster-rects [z env]
+  (svg/tree-edit z
+                 svg/all-clusters
+                 7
+                 (fn [n] (first (:content n)))
+                 5
+                 (partial editor-rects env)))
+
+
+;; Section on moving text around (cluster labels)
+
+(def x-label-spacer 10) ;; x dist insider bounding rect
+(def y-label-spacer 18) ;; y dist below bounding rect's top
+(def y-label-spacer-BT 10)
+
+
+(defn editor-label-posn [env g opts clstr node]
+  ;; repositions cluster label
+  (let [BT? (= "BT" (-> opts :rankdir))]
+    (if (not BT?)
+      (if-let [edited (get env clstr)]
+        (case (-> (clstr/merged-cluster-attr g clstr :style) :labeljust)
+          
+          "l" (-> node
+                  (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
+                  (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))
+                  (assoc-in [:attrs :text-anchor] "start"))
+
+          "r" (-> node
+                  (assoc-in [:attrs :x] (- (+ (:x edited) (:w edited)) x-label-spacer))
+                  (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))
+                  (assoc-in [:attrs :text-anchor] "end"))
+
+          (-> node
+              (assoc-in [:attrs :x] (+ (:x edited) (/ (:w edited) 2)))
+              (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))))
+        node)
+
+      ;; Bottom Top layout. position labels at bottom
+      (if-let [edited (get env clstr)]
+        (case (-> (clstr/merged-cluster-attr g clstr :style) :labeljust)
+          
+          "l" (-> node
+                  (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
+                  (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))
+                  (assoc-in [:attrs :text-anchor] "start"))
+
+          "r" (-> node
+                  (assoc-in [:attrs :x] (- (+ (:x edited) (:w edited)) x-label-spacer))
+                  (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))
+                  (assoc-in [:attrs :text-anchor] "end"))
+
+          (-> node
+              (assoc-in [:attrs :x] (+ (:x edited) (/ (:w edited) 2)))
+              (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))))
+        node))))
+
+
+(defn edit-cluster-labels [z g opts env]
+  (svg/tree-edit z
+                 svg/all-clusters
+                 7
+                 (fn [n] (first (:content n)))
+                 7
+                 (partial editor-label-posn env g opts)))
+
+
+(defn optimize-clusters
+  "Anneals free clusters in z & g.
+   z is a zipper over the svg and g the underlying graph.
+   Returns svg."
+  [svg g label-fn opts]
+  (let [z (svg->zipper svg)
+        env-out (env->map (do-annealing z g opts label-fn))]
+    (-> (edit-cluster-rects z env-out)
+        svg/->zipper
+        (edit-cluster-labels g opts env-out)
+        svg/->xml)))
+
+
+
+
+
+
+(ns ^{:doc "Simulated annealing for cluster layout."
+      :author "Jude Payne"}
+  lib-draw-graph.anneal
+  (:require [lib-draw-graph.geometry :refer [overlaps? inside? outside? bigger? area]]
+            [lib-draw-graph.util     :as util]))
+
+
+#?(:clj (import [java.lang Math]))
+
+
+;; Annealing constants
+
+(def ^:const max-move-default 14)         ;; default move amount +/- dim can be changed by
+(def ^:const PEN 1000000)                ;; Penalty cost amount
+
+
+;; From Clojure data analysis cookbook
+(defn annealing
+
+  ([initial          ;; the initial state of the system
+    max-iter         ;; maximum numbers of iterations
+    min-cost         ;; the target minimum cost of the system
+    constraints      ;; constraints that a new state must satisfy
+    neighbor-fn      ;; the 'next-step' function
+    cost-fn          ;; the cost function
+    p-fn             ;; the probability of a move function
+    temp-fn          ;; the temperature of the system
+    & {:keys [dims terminate-early? x-retard y-retard max-move]
+       :or {dims [:x :y :w :h] terminate-early? false
+            x-retard nil y-retard nil
+            max-move max-move-default}}]
+   (let [cost (cost-fn constraints initial)
+         last-cost (atom cost)]
+     (println cost)
+     (loop [state initial
+            cost cost
+            k 1]
+       ;; check every 500 reps that cost has changed more than 0.01%
+       (if (and (= 0 (rem k 500))
+                terminate-early?
+                (> 0.0001 (let [lc @last-cost
+                              del-cost (/ (- lc cost) cost)]
+                            (reset! last-cost cost)
+                            del-cost)))
+         state
+
+         ;; if it hasn't, loop the annealing function
+         (if (and (< k max-iter)
+                  (> cost min-cost))
+           (let [t (temp-fn (/ k max-iter))
+                 next-state (neighbor-fn state dims x-retard y-retard max-move)
+                 next-cost (cost-fn constraints state
+                                    (second next-state) (first next-state))]
+             (if (> (p-fn cost next-cost t) (rand))
+               (recur (second next-state) next-cost (inc k))
+               (recur state cost (inc k))))
+           state))))))
+
+
+(defn random-move
+  [max-move]
+  "Returns a random +/- amount less than max-move. Every so often, we
+   throw in small amounts to help fine tuning at the end of annealing."
+  (let [small-move-prob 3      ;; i.e. 1 in n chance
+        small-move 5
+        mm (if (> (inc (rand-int small-move-prob)) (dec small-move-prob))
+             small-move
+             max-move)]
+    (- (rand-int (* 2 mm)) mm)))
+
+
+(defn- vary-rect
+  "When a rectangle/ polygon is defined with a point, width and height
+  (as opposed to two points), when varying the x or y of the point, it
+  is necessary to adjust the width or height as well to be consistent
+  with a rectangle/ polygon specified as two x,y points."
+  [rect dims x-retard y-retard max-move]
+  (let [dim (rand-nth dims)
+        delta (random-move max-move)]
+    (case dim
+      :x (if (and x-retard (not (zero? x-retard)))
+           (-> rect
+               (assoc :x (+ (:x rect) (quot delta x-retard))) 
+               (assoc :w (- (:w rect) (quot delta x-retard))))
+           (-> rect
+               (assoc :x (+ (:x rect) delta)) 
+               (assoc :w (- (:w rect) delta))))
+      :y (if (and y-retard (not (zero? y-retard)))
+           (-> rect
+               (assoc :y (+ (:y rect) (quot delta y-retard)))
+               (assoc :h (- (:h rect) (quot delta y-retard))))
+           (-> rect
+               (assoc :y (+ (:y rect) delta))
+               (assoc :h (- (:h rect) delta))))
+      :w (if (and x-retard (not (zero? x-retard)))
+           (-> rect
+               (assoc :w (+ (:w rect) (quot delta x-retard))))
+           (-> rect
+               (assoc :w (+ (:w rect) delta))))
+      (if (and y-retard (not (zero? y-retard)))
+        (-> rect (assoc :h (+ (:h rect) (quot delta y-retard))))
+        (-> rect (assoc :h (+ (:h rect) delta)))))))
+
+
+(defn neighbor-fn
+  "Varies a random item from state and returns the new state
+  after checking that the new state passes constraints."
+  [state dims x-retard y-retard max-move]
+  (let [k (rand-nth (keys state))
+        next (vary-rect (get state k) dims x-retard y-retard max-move)]
+    [k (assoc state k next)]))
+
+
+(defn- passes-constraints?
+  "Checks that the new (proposed) state item satisfies constraints."
+  [constraints state next-state varied]
+  (let [prev-item (get state varied)
+        item (get next-state varied)
+        boundary (filter :boundary (vals (dissoc next-state varied)))
+        others (filter (complement :boundary) (vals (dissoc next-state varied)))
+        sep (:collision constraints)]
+    (reduce
+     (fn [a [k v]]
+       (and a
+            (case k
+              :grow      (if (:boundary item)
+                           (when (not (bigger? prev-item item)) true)
+                           (when v (bigger? prev-item item) true))
+              :boundary  (if v
+                           (if (:booundary item)
+                             (every? #(outside? % item) others)
+                             (inside? boundary item))
+                           true)
+              :collision (if sep (not-any? #(overlaps? sep item %) others) true)
+              :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) (vals v)) true))))
+     true
+     constraints)))
+
+
+(defn state->boundary [state]
+  (second (first (filter (fn [[k v]] (:boundary v)) state))))
+
+
+(defn cost-fn
+  "Calculates cost, which is total bounded area minus sum of current areas.
+  For the initial call to calculate the system's cost, requires only constraints and state.
+  Subsequent calls require the state, next-state and k, the key of the entry that has
+  changed between them."
+  ([constraints state]
+   (let [boundary (state->boundary state)]
+     (if (empty? boundary)
+       (throw (util/err "no boundary condition!"))
+       (let [bounded-area (area boundary)]
+         (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals state)))))))
+
+  ([constraints state next-state k]
+   (let [bounded-area (area (state->boundary next-state))
+         cost (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals next-state)))
+         a (println (passes-constraints? constraints state next-state k))
+         penalty (if (passes-constraints? constraints state next-state k) 0 PEN)]
+     (+ cost penalty))))
+
+
+(defn temp-fn
+  "the temperature. r should be between 0 and 1"
+  [r]
+  (- 1.0 (float r)))
+
+
+(defn p-fn  "the probability of a move function, using Boltzmann"
+  [c0 c1 t]
+  (let [diff (- c1 c0)]
+    (if (< c1 c0)
+      1
+      (Math/exp (* -1 (/ diff t))))))

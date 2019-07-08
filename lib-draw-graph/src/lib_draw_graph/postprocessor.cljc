@@ -3,6 +3,7 @@
   lib-draw-graph.postprocessor
   (:require [lib-draw-graph.svg :as svg]
             [lib-draw-graph.anneal :as anneal]
+            [loom.graph            :as loom.graph]
             [lib-draw-graph.clustered :as clstr]
             [lib-draw-graph.geometry :as g]
             [lib-draw-graph.util :as util]
@@ -85,6 +86,7 @@
   (->> (sorted-free-clusters g)
        (with-chdn g)))
 
+
 ;; Now we need to set up the annealing jobs by reading in the svg
 ;; Since graphviz labels clusters at the top, we'll use the top
 ;; of the uppermost sibling as the top boundary (taking into account
@@ -100,19 +102,19 @@
 (defn clusters->boxes
   "Get the bounding boxes for the clusters from the zipper over the svg."
   [z clstrs]
-  (reduce 
+  (reduce
    (fn [a c] (assoc a c (svg/cluster->rect z c)))
    {}
    clstrs))
 
 
-(defn tasks->clusters 
+(defn tasks->clusters
   "Converts anneal-tasks to a set of clusters"
   [tasks]
-  (reduce (fn [a c]
+  (reduce (fn [a [k v]]
             (-> a
-                (conj (first c))
-                (clojure.set/union (second c))))
+                (conj k)
+                (clojure.set/union v)))
           #{}
           tasks))
 
@@ -167,36 +169,44 @@
   (let [cluster-sep (when (-> opts :pp-cluster-sep)
                       (str->int  (-> opts :pp-cluster-sep) "cluster separation should be an integer"))
         BT? (= (-> opts :rankdir) "BT")
-        tasks (free-clusters-with-children g)
+        tasks (into {} (free-clusters-with-children g))
         clstrs (tasks->clusters tasks)
-        rects (clusters->boxes z clstrs)]
-    (reduce
-     (fn [a [prnt chdn]]
-       (let [p-rect (get rects prnt)
-             c-rects (map #(get rects %) chdn)
-             sep (if cluster-sep
-                   (adjust-sep (apply sep p-rect c-rects) :cluster-sep cluster-sep :BT? BT?)
-                   (adjust-sep (apply sep p-rect c-rects) :BT? BT?))
-             state (into {} (map #(vector % (get rects %)) chdn))
-             constr {:boundary (g/inner-rect sep p-rect)
-                     :grow true
-                     :collision (if cluster-sep
-                                  cluster-sep
-                                  collision-sep)
-                     :obstacles (reduce
-                                 (fn [acc cur]
-                                   (assoc acc
-                                          (node-label-fn cur)
-                                          (svg/node->rect z (node-label-fn cur))))
-                                 {}
-                                 (clstr/cluster->nodes g prnt))}]
-         (-> a
-             (assoc-in [prnt :constraints] constr)
-             (assoc-in [prnt :state] state)
-             (assoc-in [prnt :boundary-sep] sep)
-             (assoc-in [prnt :rect] p-rect))))
-     {}
-     tasks)))
+        rects (clusters->boxes z clstrs)
+        seps (reduce
+              (fn [a [k v]]
+                (let [s (apply sep (get rects k) (map #(get rects %) v))
+                      adj-s (if cluster-sep
+                              (adjust-sep s :cluster-sep cluster-sep :BT? BT?)
+                              (adjust-sep s :BT? BT?))]
+                  (assoc a k adj-s)))
+              {} tasks)
+        inner-rects (reduce (fn [a [k v]] (assoc a k (g/inner-rect v (get rects k)))) {} seps)
+        e (reduce
+           (fn [a [prnt chdn]]
+             (let [state {;; boundary is the inner-rect
+                          :boundary (get inner-rects prnt)
+                          ;; but object within the boundary are outers (true rects) not inners
+                          :objects (map #(get rects %) (get tasks prnt))}
+                   constr {:boundary true
+                           :grow true
+                           :collision (if cluster-sep
+                                        cluster-sep
+                                        collision-sep)
+                           :obstacles (reduce
+                                       (fn [acc cur]
+                                         (assoc acc
+                                                (node-label-fn cur)
+                                                (svg/node->rect z (node-label-fn cur))))
+                                       {}
+                                       (clstr/cluster->nodes g prnt))}]
+               (-> a
+                   (assoc-in [prnt :constraints] constr)
+                   (assoc-in [prnt :state] state)
+                   (assoc-in [prnt :boundary-sep] (get seps prnt)))))
+           {}
+           tasks)]
+    e))
+
 
 
 (defn env->map
@@ -204,9 +214,13 @@
   [env]
   (reduce
    (fn [a [k v]]
-     (-> a
-         (assoc k (-> v :rect))
-         (merge (-> v :state))))
+     (let [sep (:boundary-sep v)
+           bdry (-> v :state :boundary)
+           rect (if sep (g/outer-rect sep bdry) bdry)
+           others (reduce (fn [a' c'] (assoc a' (:name c') c')) {} (-> v :state :objects))]
+       (-> a
+           (assoc k rect)
+           (merge others))))
    {}
    env))
 
@@ -214,9 +228,30 @@
 (def max-move-factor 50)  ;; max move defined by size of primary annealing dimension / this
 
 
+
+(defn update-env
+  "updates environment with new state, for each <cluster, new-st> pair
+  in new-st updating to the new rect and boundary."
+  [env k new-st]
+  (let [env1 (assoc-in env [k :state] new-st)
+        objects (reduce (fn [acc c] (assoc acc (:name c) c)) {} (:objects new-st))]
+    (reduce (fn [acc [k v]]
+              (if (some? (get acc k))
+                (let [sep (get-in acc [k :boundary-sep])]
+                  ;; Annealing is done outside in (for nested cluster hierarchies).
+                  ;; after each round of annealing we need to take objects from the previous
+                  ;; round and set them - adjusted to inner-rects - for the next round.
+                  (assoc-in acc [k :state :boundary] (g/inner-rect sep v)))
+                acc))
+            env1
+            objects)))
+
+
 (defn do-annealing
   [z g opts label-fn]
   (let [env (env z g opts label-fn)
+        ;b (println env)
+        ;b (reduce (fn [a [k v]] (println k (-> :state :boundary) (-> v :state :objects))) {} env)
         rankdir (-> opts :rankdir)
         y-retard (if (or (= "TB" rankdir) (= "BT" rankdir))
                    (str->int (-> opts :pp-anneal-bias) "anneal bias should be an integer") nil)
@@ -228,10 +263,13 @@
                                         (-> opts :pp-clusters))
                [:x :w :y :h])]
     (reduce (fn [a [k v]]
-              (let [new-st (anneal/annealing (-> v :state)
-                                      10000
+              ;(println "loop " k (get a k))
+              (let [cur (get a k)
+                    ;z (println cur)
+                    new-st (anneal/annealing (:state cur)
+                                      15000
                                       0
-                                      (-> (get a k) :constraints)
+                                      (:constraints cur)
                                       anneal/neighbor-fn
                                       anneal/cost-fn
                                       anneal/p-fn
@@ -240,27 +278,11 @@
                                       :dims dims
                                       :x-retard x-retard
                                       :y-retard y-retard
-                                      :max-move (if (or (= "TB" rankdir) (= "BT" rankdir))
-                                                  (quot
-                                                   (-> (get a k) :constraints :boundary :w)
-                                                   max-move-factor)
-                                                  (quot
-                                                   (-> (get a k) :constraints :boundary :h)
-                                                   max-move-factor)))
-                    adj-env (reduce
-                             (fn [acc [k' v']]
-                               (if (some?  (get acc k'))
-                                 (-> acc
-                                     (assoc-in [k' :rect] v')
-                                     (assoc-in [k' :constraints :boundary]
-                                               (g/inner-rect
-                                                (-> (get acc k') :boundary-sep)
-                                                v')))
-                                 acc))
-                             a
-                             new-st)]
-                (-> adj-env
-                    (assoc-in [k :state] new-st))))
+                                      :max-move (let [bdry (-> cur :state :boundary)]
+                                                  (if (or (= "TB" rankdir) (= "BT" rankdir))
+                                                    (quot (:w bdry) max-move-factor)
+                                                    (quot (:h bdry) max-move-factor))))]
+                (update-env a k new-st)))
             env
             env)))
 
@@ -294,7 +316,7 @@
     (if (not BT?)
       (if-let [edited (get env clstr)]
         (case (-> (clstr/merged-cluster-attr g clstr :style) :labeljust)
-          
+
           "l" (-> node
                   (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
                   (assoc-in [:attrs :y] (+ (:y edited) y-label-spacer))
@@ -313,7 +335,7 @@
       ;; Bottom Top layout. position labels at bottom
       (if-let [edited (get env clstr)]
         (case (-> (clstr/merged-cluster-attr g clstr :style) :labeljust)
-          
+
           "l" (-> node
                   (assoc-in [:attrs :x] (+ (:x edited) x-label-spacer))
                   (assoc-in [:attrs :y] (- (+ (:y edited) (:h edited)) y-label-spacer-BT))
@@ -350,4 +372,3 @@
         svg/->zipper
         (edit-cluster-labels g opts env-out)
         svg/->xml)))
-

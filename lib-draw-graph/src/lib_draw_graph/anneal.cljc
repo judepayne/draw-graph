@@ -48,10 +48,9 @@
                   (> cost min-cost))
            (let [t (temp-fn (/ k max-iter))
                  next-state (neighbor-fn state dims x-retard y-retard max-move)
-                 next-cost (cost-fn constraints state
-                                    (second next-state) (first next-state))]
+                 next-cost (cost-fn constraints state next-state)]
              (if (> (p-fn cost next-cost t) (rand))
-               (recur (second next-state) next-cost (inc k))
+               (recur (:next-state next-state) next-cost (inc k))
                (recur state cost (inc k))))
            state))))))
 
@@ -101,34 +100,61 @@
         (-> rect (assoc :h (+ (:h rect) delta)))))))
 
 
+(defn state->boundary [state]
+  (first (filter (fn [item] (:boundary item)) state)))
+
+
+(defn state->objects [state]
+  (filter (fn [item] (not (:boundary item))) state))
+
+
 (defn neighbor-fn
+;; this function will change when boundaries can move it
   "Varies a random item from state and returns the new state
   after checking that the new state passes constraints."
   [state dims x-retard y-retard max-move]
-  (let [k (rand-nth (keys state))
-        next (vary-rect (get state k) dims x-retard y-retard max-move)]
-    [k (assoc state k next)]))
+  (let [state' (:objects state)
+        item (rand-nth state')
+        next (vary-rect item dims x-retard y-retard max-move)
+        next-state (assoc state :objects (conj (remove #(= item %) state') next))]
+    {:path [:next-state :objects]
+     :name (:name next)
+     :next-state next-state}))
+
+
+(defn find-first
+  [pred coll]
+  (some #(when (pred %) %) coll))
+
+
+(defn ->varied
+  "returns the varied item when passed a neighbor-fn output map"
+  [m]
+  (if-let [nm (:name m)]
+    (->> (get-in m (:path m))
+         (find-first (fn [n] (= nm (:name n)))))
+    (get-in m (:path m))))
 
 
 (defn- passes-constraints?
   "Checks that the new (proposed) state item satisfies constraints."
-  [constraints state next-state varied]
-  (let [prev-item (get state varied)
-        item (get next-state varied)
-        others (vals (dissoc next-state varied))
-        sep (:collision constraints)]
+  [constraints state next-state]
+  (let [nm (:name next-state)
+        item (->varied next-state)
+        prev-item (find-first #(= nm (:name %)) (:objects state))
+        sep (:collision constraints)
+        bdry (get-in next-state [:next-state :boundary])
+        others (remove #(= (:name %) nm) (:objects state))]
     (reduce
      (fn [a [k v]]
        (and a
             (case k
               :grow      (if v (bigger? prev-item item) true)
-              :boundary  (inside? v item)
+              :boundary  (if v (inside? bdry item) true)
               :collision (if sep (not-any? #(overlaps? sep item %) others) true)
               :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) (vals v)) true))))
      true
      constraints)))
-
-
 
 
 (defn cost-fn
@@ -137,16 +163,19 @@
   Subsequent calls require the state, next-state and k, the key of the entry that has
   changed between them."
   ([constraints state]
-   (let [boundary (:boundary constraints)]
+   (let [boundary (:boundary state)]
      (if (empty? boundary)
        (throw (util/err "no boundary condition!"))
        (let [bounded-area (area boundary)]
-         (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals state)))))))
+         (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (:objects state)))))))
 
-  ([constraints state next-state k]
-   (let [bounded-area (area (:boundary constraints))
-         cost (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (vals next-state)))
-         penalty (if (passes-constraints? constraints state next-state k) 0 PEN)]
+  ([constraints state next-state]
+   (let [bounded-area (area (-> next-state :next-state :boundary))
+         cost (- bounded-area (reduce (fn [a c] (+ a (area c))) 0 (-> next-state :next-state :objects)))
+         valid-move? (passes-constraints? constraints state next-state)
+         penalty (if valid-move? 0 PEN)
+;         z (println (-> next-state :next-state :boundary :name) (:name next-state) " " valid-move? penalty)
+         ]
      (+ cost penalty))))
 
 

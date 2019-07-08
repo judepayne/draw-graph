@@ -207,7 +207,7 @@
     (try
       (let [in (->csv1)
             opts (:display-options in)
-            g (processor/csv->g in)
+            g (processor/in->g in)
             g' (processor/preprocess-graph g opts)
             dot (processor/g->dot in g')]       
         (if @local-dot
@@ -228,8 +228,9 @@
 ;; Controls input
 
 ;; ---- Utility functions
+;; thanks:
+;; https://stackoverflow.com/questions/23345663/call-a-clojurescript-function-by-string-name/30892955#30892955
 
-;; thanks: https://stackoverflow.com/questions/23345663/call-a-clojurescript-function-by-string-name/30892955#30892955
 (defn ->js [var-name]
       (-> var-name
           (string/replace #"/" ".")
@@ -402,13 +403,32 @@
 ;; For the dynamic dropdowns
 
 ;; -- Cluster-on dropdown needs to be more dynamic--
+
+(defn format
+  "detects the format of :data in the state atom."
+  [data]
+  (try
+    (processor/detect-format data)
+    (catch js/Error e nil)))
+
+
 (defn first-line [s]
   (js->clj (.split (subs (aget (.split s "\n") 0) 2) ":")))
 
 
+(defn get-headers [data]
+  (let [fmt (format data)]
+    (case fmt
+      :json (try ;; we might not be able to parse the json
+              (:header (parser/parse-csv-or-json data :json))
+              (catch js/Error e nil))
+      :csv  (first-line data)
+      nil)))
+
+
 ;; a reaction to capture the headers in the data file
 (def headers
-  (reaction (first-line (:data @local-state))))
+  (reaction (get-headers (:data @local-state))))
 
 
 ;; ----end----- For the dynamic dropdowns
@@ -426,6 +446,7 @@
     :tabIndex 5
     :on-change #(swap! local-state update-in [:options :cluster-on]
                        (fn [e] (-> % .-target .-value)))}
+
    (if (= "" (first @headers))
      [:option {:key "none" :value ""} "-"]
      (cons [:option {:key "none" :value ""} "-"]

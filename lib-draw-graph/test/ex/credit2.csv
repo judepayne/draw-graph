@@ -1,0 +1,194 @@
+h,application:narid:function:division
+n,node_3DCash,3DCash:29656-1:Settlements:other|fillcolor:#E8EEF7:fontcolor:black
+n,node_3dStatic,3dStatic:29548-1:Reference Data:common|fillcolor:#020202:fontcolor:white
+n,node_Abacus,Abacus:30266-1:Regulatory Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Actimize,Actimize:38810-1:Compliance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_bRDS,bRDS:47564-2:Reference Data:common|fillcolor:#020202:fontcolor:white
+n,node_Calico,Calico:1684-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_CEM,CEM:44824-1:Position Management:cib|fillcolor:#552583:fontcolor:white
+n,node_CMDW,CMDW:15061-1:Margin Collateral:cib|fillcolor:#552583:fontcolor:white
+n,node_Collat,Collat:110435-1:Margin Collateral:cib|fillcolor:#552583:fontcolor:white
+n,node_Computron,Computron:1154-2:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_cRDS,cRDS:59248-1:Reference Data:common|fillcolor:#020202:fontcolor:white
+n,node_dbCORE,dbCORE:88893-1:Payments:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_dbInternetDE,db-Internet DE:222-23:Payments:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_dbMargin,dbMargin:52686-1:Margin Collateral:cib|fillcolor:#552583:fontcolor:white
+n,node_dbMole,dbMole:45109-1:Position Management:cib|fillcolor:#552583:fontcolor:white
+n,node_dbPalace,dbPalace:63607-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_dbRAT,dbRAT:35518-1:Risk:cib|fillcolor:#552583:fontcolor:white
+n,node_dbTradeStore,dbTradeStore:35518-1:Regulatory Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_dbVolt,dbVolt:73273-1:Regulatory Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_DEM,DEM:36610-1:Position Management:cib|fillcolor:#552583:fontcolor:white
+n,node_DMIST,DMIST:35969-1:Settlements:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_DocEngine,DocEngine:48606-2:Position Management:cib|fillcolor:#552583:fontcolor:white
+n,node_DSMatch,DSMatch:29612-1:Position Management:cib|fillcolor:#552583:fontcolor:white
+n,node_DSMatch,DSMatch:29612-1:Settlements:cib|fillcolor:#552583:fontcolor:white
+n,node_DTCC,DTCC:28112-2:Settlements:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_EnterpriseRisk,Enterprise Risk:various:Risk:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_FDW,FDW:35530-1:Financial Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_FMSEA,FMS EA:71413-1:Payments:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_FMSGB,FMS GB:71413-2:Payments:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_FO3DG,FO3DG:36475-1:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_Galileo,Galileo:91413-1:Payments:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_GCMS,GCMS:15011-1:Treasury:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_GRETL,GRETL:98215-1:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_Hotscan,Hotscan:26877-2:Compliance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_iFaces,iFaces:29656-5:Settlements:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_iRDS,iRDS:54588-2:Reference Data:common|fillcolor:#020202:fontcolor:white
+n,node_iTrac,iTrac:53748-2:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_Kannon,Kannon:109103-1:Risk:cib|fillcolor:#552583:fontcolor:white
+n,node_Kondor,Kondor:4006-1:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_Liberyse,Liberyse:90573-1:Regulatory Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_LIMA,LIMA:22778-1:Treasury:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Magellan,Magellan:15085-2:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_Mantas,Mantas:35844-2:Compliance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Matplan,Matplan:21567-1:Financial Reporting:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_MIS3,MIS3:29397-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_MOAR,MOAR:25927-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Paragon,Paragon:26401-1:Reference Data:common|fillcolor:#020202:fontcolor:white
+n,node_PES,Payment Execution Services:129695-1:Payments:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_pRDS,pRDS:54588-4:Reference Data:common|fillcolor:#020202:fontcolor:white
+n,node_QTE,QTE:51246-1:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_RiskEngine,RiskEngine:26551-1:Risk:cib|fillcolor:#552583:fontcolor:white
+n,node_RMS,RMS:15116-9:Trade Capture:cib|fillcolor:#DB6C34:fontcolor:black
+n,node_SAPBW,SAP - BW:23529-1:Financial Reporting:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_SAPGlobal,SAP - Global:22060-3:Financial Reporting:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_Saturn,Saturn:107934-1:Compliance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Smaragd,Smaragd:29871-1:Compliance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_StrategicACS,Strategic ACS:35094-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Summit,Summit:15131-7:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_TaxEngine,Tax Engine:50529-1:Regulatory Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_TDH,Treasury Data Hub:94595-1:Treasury:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_TDW,TDW:47647-1:Regulatory Reporting:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_TIP,Treasury Interactive Pricer:94573-1:Treasury:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_TPM,TPM:39630-1:Trade Capture:cib|fillcolor:#552583:fontcolor:white
+n,node_Liqui,Liqui+:68994-1:Treasury:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_FCL,FCL:43192-1:Financial Reporting:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_SAPBCS,SAP BCS:35280-1:Financial Reporting:cib|fillcolor:#E8EEF7:fontcolor:black
+n,node_MERIT,MERIT:65694-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Concentrix,Concentrix:16221-1:Margin Collateral:cib|fillcolor:#552583:fontcolor:white
+n,node_dbRiskStore,dbRiskStore:71293-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_LegacyACS,LegacyACS:35094-1:Business Finance:infra|fillcolor:#E8EEF7:fontcolor:black
+n,node_Partnerdata,Partnerdata:1145-1:Reference Data:cib|fillcolor:#E8EEF7:fontcolor:black
+e,node_cRDS,node_cRDS,|style:invis
+e,node_Paragon,node_Paragon,|style:invis
+e,node_cRDS,node_cRDS,|style:invis
+e,node_iRDS,node_iRDS,|style:invis
+e,node_3dStatic,node_3dStatic,|style:invis
+e,node_bRDS,node_bRDS,|style:invis
+e,node_Partnerdata,node_Partnerdata,|style:invis
+e,node_pRDS,node_pRDS,|style:invis
+e,node_iTrac,node_Summit,|constraint:true
+e,node_GRETL,node_Summit,|constraint:true
+e,node_FO3DG,node_Summit,|constraint:true
+e,node_Summit,node_TPM,|constraint:true:color:blue:penwidth:2
+e,node_iTrac,node_QTE
+e,node_GRETL,node_QTE
+e,node_FO3DG,node_QTE
+e,node_iTrac,node_LIMA
+e,node_GRETL,node_LIMA
+e,node_FO3DG,node_LIMA
+e,node_QTE,node_Summit,|constraint:true
+e,node_RMS,node_SAPGlobal,|color:red:style:dashed
+e,node_Galileo,node_Hotscan
+e,node_RMS,node_LIMA,|color:red:style:dashed
+e,node_QTE,node_DocEngine
+e,node_QTE,node_DEM
+e,node_QTE,node_CEM
+e,node_DEM,node_DSMatch
+e,node_DEM,node_DocEngine
+e,node_TPM,node_Actimize,|color:#4287f5
+e,node_TPM,node_TDW,|color:#4287f5
+e,node_TPM,node_dbTradeStore,|color:#4287f5
+e,node_TPM,node_Calico,|color:#4287f5
+e,node_TPM,node_LIMA,|color:#4287f5
+e,node_TPM,node_DocEngine,|color:#4287f5
+e,node_DocEngine,node_TDW
+e,node_TPM,node_dbMole,|color:#4287f5
+e,node_dbMargin,node_Kondor
+e,node_dbMargin,node_Magellan
+e,node_TPM,node_EnterpriseRisk,|color:#4287f5
+e,node_dbRAT,node_EnterpriseRisk
+e,node_RiskEngine,node_EnterpriseRisk
+e,node_Kannon,node_EnterpriseRisk
+e,node_MIS3,node_EnterpriseRisk
+e,node_TPM,node_iFaces,|color:#4287f5
+e,node_3DCash,node_DMIST,|color:#0f5e05
+e,node_3DCash,node_DTCC,|color:#127506
+e,node_iFaces,node_3DCash,|color:#127506
+e,node_3DCash,node_Computron,|color:#127506
+e,node_3DCash,node_GCMS,|color:#127506
+e,node_3DCash,node_MOAR,|color:#127506
+e,node_3DCash,node_LegacyACS,|color:#127506
+e,node_3DCash,node_TaxEngine,|color:#127506
+e,node_3DCash,node_FMSGB,|color:#127506
+e,node_3DCash,node_Liberyse,|color:#127506
+e,node_dbTradeStore,node_TDW
+e,node_dbTradeStore,node_Actimize
+e,node_3DCash,node_Abacus,|color:#127506
+e,node_RMS,node_dbVolt,|color:red:style:dashed
+e,node_MIS3,node_dbVolt
+e,node_SAPBW,node_Matplan
+e,node_FDW,node_Matplan
+e,node_Collat,node_PES
+e,node_PES,node_Galileo
+e,node_Galileo,node_dbInternetDE
+e,node_Galileo,node_FMSEA
+e,node_FMSGB,node_FMSEA
+e,node_Computron,node_dbInternetDE
+e,node_dbInternetDE,node_SAPGlobal
+e,node_TPM,node_CMDW,|color:#4287f5
+e,node_CMDW,node_dbMargin
+e,node_dbMargin,node_Collat
+e,node_Collat,node_dbCORE
+e,node_Collat,node_PES
+e,node_Computron,node_SAPGlobal
+e,node_StrategicACS,node_SAPGlobal
+e,node_MIS3,node_dbPalace
+e,node_MIS3,node_MOAR
+e,node_MIS3,node_FCL
+e,node_dbRiskStore,node_dbPalace
+e,node_dbRiskStore,node_MOAR
+e,node_dbRiskStore,node_FCL
+e,node_Concentrix,node_MOAR
+e,node_MOAR,node_SAPGlobal
+e,node_MOAR,node_MERIT
+e,node_RMS,node_dbPalace,|color:red:style:dashed
+e,node_dbPalace,node_StrategicACS
+e,node_RMS,node_StrategicACS,|color:red:style:dashed
+e,node_StrategicACS,node_SAPGlobal
+e,node_SAPGlobal,node_SAPBW,|constraint:true
+e,node_SAPBW,node_SAPBCS,|constraint:true
+e,node_FCL,node_FDW
+e,node_FDW,node_TDH
+e,node_FDW,node_TIP
+e,node_RMS,node_GCMS,|color:red:style:dashed
+e,node_RMS,node_TDH,|color:red:style:dashed
+e,node_TDH,node_Saturn
+e,node_LIMA,node_Liqui
+e,node_Hotscan,node_Mantas
+e,node_Mantas,node_Smaragd
+cp,Reference Data:Flow Derivatives Current State
+cp,Trade Capture:Flow Derivatives Current State
+cp,Position Management:Flow Derivatives Current State
+cp,Risk:Flow Derivatives Current State
+cp,Margin Collateral:Flow Derivatives Current State
+cp,Settlements:Flow Derivatives Current State
+cp,Business Finance:Flow Derivatives Current State
+cp,Payments:Flow Derivatives Current State
+cp,Treasury:Flow Derivatives Current State
+cp,Regulatory Reporting:Flow Derivatives Current State
+cp,Compliance:Flow Derivatives Current State
+cp,Financial Reporting:Flow Derivatives Current State
+ce,Reference Data:Trade Capture
+ce,Trade Capture:Position Management
+ce,Position Management:Risk
+ce,Risk:Margin Collateral
+ce,Margin Collateral:Settlements
+ce,Settlements:Business Finance
+ce,Business Finance:Payments
+ce,Payments:Treasury
+ce,Treasury:Regulatory Reporting
+ce,Regulatory Reporting:Compliance
+ce,Compliance:Financial Reporting
+cs,Flow Derivatives Current State|bgcolor:#f0f2da:color:#49c1e5:margin:10:labeljust:r

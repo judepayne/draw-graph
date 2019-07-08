@@ -49,7 +49,7 @@
   (try
     (let [in (read-input js)
           svg (case (*format-in* in)
-                "csv" (let [g (processor/csv->g in)
+                "csv" (let [g (processor/in->g in)
                             opts (:display-options in)
                             g' (processor/preprocess-graph g opts)
                             ;; warning goes here

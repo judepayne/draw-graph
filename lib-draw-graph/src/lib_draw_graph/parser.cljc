@@ -278,7 +278,7 @@
         m (reduce
            (fn [acc cur]
              (swap! line-num inc)
-             (let [p (csv-line-parser cur)]
+             (let [p (csv-line-parser (str/trim cur))]
                (if (insta/failure? p)
                  (throw (util/err (str "Parsing error with line number " @line-num " >> " cur)))
                  (let [line (second p)]

@@ -1,5 +1,6 @@
 goog.provide('lib_draw_graph.util');
 goog.require('cljs.core');
+goog.require('loom.graph');
 /**
  * Creates an exception object with error-string.
  */
@@ -11,14 +12,14 @@ return (new Error(error_string));
  */
 lib_draw_graph.util.deep_merge = (function lib_draw_graph$util$deep_merge(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___34241 = arguments.length;
-var i__4731__auto___34244 = (0);
+var len__4730__auto___35448 = arguments.length;
+var i__4731__auto___35449 = (0);
 while(true){
-if((i__4731__auto___34244 < len__4730__auto___34241)){
-args__4736__auto__.push((arguments[i__4731__auto___34244]));
+if((i__4731__auto___35449 < len__4730__auto___35448)){
+args__4736__auto__.push((arguments[i__4731__auto___35449]));
 
-var G__34258 = (i__4731__auto___34244 + (1));
-i__4731__auto___34244 = G__34258;
+var G__35453 = (i__4731__auto___35449 + (1));
+i__4731__auto___35449 = G__35453;
 continue;
 } else {
 }
@@ -40,9 +41,9 @@ return cljs.core.last(maps);
 lib_draw_graph.util.deep_merge.cljs$lang$maxFixedArity = (0);
 
 /** @this {Function} */
-lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq34190){
+lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq35366){
 var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq34190));
+return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq35366));
 });
 
 /**
@@ -54,9 +55,9 @@ return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
 lib_draw_graph.util.update_keys = (function lib_draw_graph$util$update_keys(m,update_QMARK_,key_fn){
 var down = (function lib_draw_graph$util$update_keys_$_f(x,p){
 if(cljs.core.map_entry_QMARK_(x)){
-var vec__34208 = x;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34208,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__34208,(1),null);
+var vec__35376 = x;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35376,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35376,(1),null);
 if((v == null)){
 return null;
 } else {
@@ -64,13 +65,13 @@ return cljs.core.first(cljs.core.PersistentArrayMap.createAsIfByAssoc([lib_draw_
 }
 } else {
 if(cljs.core.seq_QMARK_(x)){
-return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__34202_SHARP_){
-return lib_draw_graph$util$update_keys_$_f(p1__34202_SHARP_,p);
+return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__35370_SHARP_){
+return lib_draw_graph$util$update_keys_$_f(p1__35370_SHARP_,p);
 }),x);
 } else {
 if(cljs.core.coll_QMARK_(x)){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.empty(x),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__34203_SHARP_){
-return lib_draw_graph$util$update_keys_$_f(p1__34203_SHARP_,p);
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.empty(x),cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__35371_SHARP_){
+return lib_draw_graph$util$update_keys_$_f(p1__35371_SHARP_,p);
 }),x));
 } else {
 if(cljs.core.truth_((update_QMARK_.cljs$core$IFn$_invoke$arity$2 ? update_QMARK_.cljs$core$IFn$_invoke$arity$2(x,p) : update_QMARK_.call(null,x,p)))){
@@ -84,6 +85,42 @@ return x;
 }
 });
 return down(m,null);
+});
+/**
+ * Returns predecessors not including self
+ */
+lib_draw_graph.util.predecessors_not_self = (function lib_draw_graph$util$predecessors_not_self(g,n){
+var predec = loom.graph.predecessors_STAR_(g,n);
+return cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (predec){
+return (function (p1__35398_SHARP_){
+return (!(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(n,p1__35398_SHARP_)));
+});})(predec))
+,predec);
+});
+/**
+ * Returns successors not including self
+ */
+lib_draw_graph.util.successors_not_self = (function lib_draw_graph$util$successors_not_self(g,n){
+var succs = loom.graph.successors_STAR_(g,n);
+return cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (succs){
+return (function (p1__35411_SHARP_){
+return (!(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(n,p1__35411_SHARP_)));
+});})(succs))
+,succs);
+});
+/**
+ * Predicate for whether the node in the graph is a root.
+ */
+lib_draw_graph.util.root_QMARK_ = (function lib_draw_graph$util$root_QMARK_(g,n){
+return cljs.core.empty_QMARK_(lib_draw_graph.util.predecessors_not_self(g,n));
+});
+/**
+ * Returns the roots from the graph.
+ */
+lib_draw_graph.util.roots = (function lib_draw_graph$util$roots(g){
+return cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__35435_SHARP_){
+return lib_draw_graph.util.root_QMARK_(g,p1__35435_SHARP_);
+}),loom.graph.nodes(g));
 });
 
 //# sourceMappingURL=lib_draw_graph.util.js.map

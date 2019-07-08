@@ -234,7 +234,7 @@
         (g/process-graph (:display-options in)))))
 
 
-(defn csv->g [in]
+(defn in->g [in]
   (let [cluster-on (not-blank (-> in :display-options :cluster-on))
         parsed (parser/parse-csv-or-json
                 (:data in)
@@ -255,7 +255,7 @@
 
     "dot" (dot->svg (:data in)) ;; we can't do any post-processing
 
-    ("csv" "json") (let [g (csv->g in)
+    ("csv" "json") (let [g (in->g in)
                          opts (:display-options in)
                          preproc-g (preprocess-graph g opts)
                          dot (g/process-graph preproc-g opts)

@@ -113,32 +113,18 @@
     (mx (get state next) (inc (get state node)))))
 
 
-(defn predecessors-not-self
-  "Returns predecessors not including self"
-  [g n]
-  (let [predec (loom.graph/predecessors* g n)]
-    (filter #(not (= n %)) predec)))
-
-
-(defn successors-not-self
-  "Returns successors not including self"
-  [g n]
-  (let [succs (loom.graph/successors* g n)]
-    (filter #(not (= n %)) succs)))
-
 
 (defn ranks
   "Returns ranks for each node in g. 0-indexed."
   [g]
-  (let [root? #(empty? (predecessors-not-self g %))
-        roots (filter root? (loom.graph/nodes g))
+  (let [roots (util/roots g)
         init (zipmap roots (repeat 0))]
     ;; we need to use successors-not-self or the dfs will incorrectly increase the rank of
     ;; nodes that have edges to themselves, causing them to have a rank one higher
     ;; than other nodes and leading to an incorrect set of cluster edges.
     (reduce
      (fn [acc cur]
-       (eager-stateful-dfs (partial successors-not-self g)
+       (eager-stateful-dfs (partial util/successors-not-self g)
                            cur
                            update-rank
                            acc))
@@ -200,13 +186,14 @@
    are returned marked with :constraint"
   [g info ce-uppers ce-lowers clstr1 clstr2]
   (let [edges (loom.graph/edges g)
-        clstr1s (clstr/cluster-descendants g clstr1)
-        clstr2s (clstr/cluster-descendants g clstr2)
+        clstr1s (clstr/cluster-descendants g (str/trim clstr1))
+        clstr2s (clstr/cluster-descendants g (str/trim clstr2))
         clstr1s-mins (mapcat #(max-ranked-nodes info % ce-uppers) clstr1s)
-        clstr2s-maxs (mapcat #(min-ranked-nodes info % ce-lowers) clstr2s)]
-    (for [x clstr1s-mins
-          y clstr2s-maxs]
-      [x y (if (some #{[x y]} edges) :constraint)])))
+        clstr2s-maxs (mapcat #(min-ranked-nodes info % ce-lowers) clstr2s)
+        clstr-edges (for [x clstr1s-mins
+                          y clstr2s-maxs]
+                      [x y (if (some #{[x y]} edges) :constraint)])]
+    clstr-edges))
 
 
 (defn get-rank-info
@@ -286,60 +273,6 @@
                                (clstr/add-cluster-edge c1 c2)))
             (clstr/delete-edge-graph g)
             new-edges)))
-
-
-(def ^:dynamic *part-sep* #"[^=:<>(<=)(>=)]+|[=:<>(<=)(>=)]")   
-(defn split-parts [s] (str/split s *part-sep* -1)) ;; -1 to catch trailing empties
-
-(def ^:dynamic *group* #"\[.*\]")
-
-
-(defn remove-first-and-last [s]
-  (subs s 1 (dec (count s))))
-
-
-(defn equality-match?
-  "takes a term key and term value (which may represent a choice in the form
-   [a or b or c] and assesses whether the key and value (or one of the values) is a
-   submap of item."
-  [term-k term-v item]
-  (let [choice? (some? (re-matches *group* term-v))]
-    (if (not choice?)
-      (submap? {term-k term-v} item)
-      (let [opts (str/split (remove-first-and-last term-v) #" or ")]
-        (reduce 
-         (fn [acc cur] (or acc (submap? {term-k cur} item)))
-         false
-         opts)))))
-
-
-(defn inequality-match?
-  "takes a term key, an op and term value and assessing whether the value of the
-   key in the item matches the condition."
-  [term-k op term-v item]
-  (let [v (parse-num term-v)
-        v-item (parse-num (term-k item))]
-    (when (not (number? v-item)) (throw (util/err "internal oops!")))
-    (case op
-      ">" (> v-item v)
-      "<" (< v-item v)
-      ">=" (>= v-item v)
-      "<=" (<= v-item v)
-      (throw (util/err (str op " is not a valid comparison operator."))))))
-
-
-(defn sub-matches?
-  [term item]
-  (if (not (contains? item (keyword (first term))))
-    true
-    (let [op (second term)]
-      (cond
-        (or (= "=" op) (= ":" op)) (equality-match? (keyword (first term)) (nth term 2) item)
-        (or (= ">" op)
-            (= "<" op)
-            (= ">=" op)
-            (= "<=" op)) (inequality-match? (keyword (first term)) (second term) (nth term 2) item)
-        :else (throw (util/err (str op " is not a valid comparison operator.")))))))
 
 
 (defn filter-graph

@@ -8,6 +8,7 @@
             [loom.alg                             :as loom.alg]
             [loom.attr                            :as attr]
             [lib-draw-graph.graph                 :as g]
+            [lib-draw-graph.geometry              :as geom]
             [lib-draw-graph.clustered             :refer :all]
             [lib-draw-graph.svg                   :refer :all]
             [lib-draw-graph.anneal                :refer :all]
@@ -20,7 +21,7 @@
 (def standard-options
   [:show-roots? false
    :cluster-on "function"
-   :color-on "application"
+  ; :color-on "application"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "application"
@@ -29,7 +30,7 @@
    :nodesep 0.5
    :ranksep 0.8
    ;:sep 1 
-   :fontsize 8
+;   :fontsize 9
    :splines "ortho"
    :rankdir "TB"
    :fixedsize false
@@ -39,11 +40,11 @@
    :overlap "false"
    :concentrate true
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
-   :num-cluster-edges "4"
+   :num-cluster-edges "9"
  ;  :elide "0"
    :constraint false
    :show-constraints? false
-   :fix-ranks? true
+   :fix-ranks? false
  ;  :filter-graph "application = sysTicket or function = Reporting"
  ;  :filter-graph "function not in (Risk)"
  ;  :filter-graph "level<ted"
@@ -77,10 +78,8 @@
 
 (defn file->graph [filename
                   & {:keys [opts] :or {opts (apply hash-map standard-options)}}]
-  (let [in (file->in filename opts)
-        g (loom-graph (:data in) (:cluster-on opts))]
-    (-> g
-        (preprocess-graph (options)))))
+  (let [in (file->in filename opts)]
+    (in->g in)))
 
 
 (defn graph->dot [g
@@ -126,7 +125,7 @@
         {:keys [out err]} (sh/sh path "-Tsvg" :in s')]
     (or
       out
-     (throw (IllegalArgumentException. ^String (format-error s' err))))))
+     (throw (IllegalArgumentException. ^String err)))))
 
 
 (defn file->svg [filename
@@ -505,3 +504,51 @@
          (spit "test/ex-out/9-8 paths.svg"
                (file->svg "test/ex/example9.csv"
                          :opts opts))))))
+
+
+(def test-env
+  {"animals"   {:constraints {:boundary true, :grow true, :collision 0, :obstacles {}}
+                :state {:state [{:radius 12, :name "carnivores", :x 16, :y -746, :w 658, :h 583}
+                                {:name "rodents", :x 536, :y -155, :w 118, :h 126}]
+                        :boundary {:name "animals", :x 8, :y -746, :w 773, :h 725}}
+                :boundary-sep {:l 0, :t 30, :r 0, :b 0}}
+   "plantae"   {:constraints {:boundary true, :grow true, :collision 0, :obstacles {}}
+                :state {:objects [{:radius 12, :name "flora", :x 797, :y -661, :w 204, :h 645}]
+                        :boundary {:radius 12, :name "plantae", :x 789, :y -661, :w 220, :h 653}}
+                :boundary-sep {:l 0, :t 30, :r 0, :b 0}}
+   "carnivores" {:constraints {:boundary true, :grow true, :collision 0, :obstacles {}}
+                 :state {:objects [{:radius 12, :name "bears", :x 31, :y -709, :w 621, :h 341}
+                                   {:radius 12, :name "wolves", :x 314, :y -360, :w 174, :h 182}]
+                         :boundary {:radius 12, :name "carnivores", :x 16, :y -709, :w 658, :h 546}}
+                 :boundary-sep {:l 0, :t 37, :r 0, :b 0}}
+   "bears"      {:constraints {:boundary true, :grow true, :collision 0, :obstacles {}}
+                 :state {:objects [{:radius 12, :name "pandas", :x 46, :y -672, :w 482, :h 284}
+                                   {:radius 12, :name "brownbears", :x 543, :y -575, :w 94, :h 192}]
+                         :boundary {:radius 12, :name "bears", :x 31, :y -672, :w 621, :h 304}}
+                 :boundary-sep {:l 0, :t 37, :r 0, :b 0}}
+   "rodents"    {:constraints {:boundary true, :grow true, :collision 0, :obstacles {}}
+                 :state {:objects [{:radius 12, :name "squirrels", :x 544, :y -125, :w 102, :h 88}]
+                         :boundary {:name "rodents", :x 536, :y -125, :w 118, :h 96}}
+                 :boundary-sep {:l 0, :t 30, :r 0, :b 0}}})
+
+
+(def new-st
+  ^{:doc "same as test except inners shifted out by 1 in all dimension and outer in by 1."}
+  {:objects [{:radius 12, :name "carnivores", :x 15, :y -745, :w 660, :h 585}
+             {:name "rodents", :x 535, :y -156, :w 120, :h 128}]
+   :boundary {:name "animals", :x 9, :y -747, :w 771, :h 723, :boundary true}})
+
+
+(defn ^{:doc "updates environment with new state, for each <cluster, new-st> pair
+  in new-st updating to the new rect and boundary."}
+  test-update-env
+  [env k new-st]
+  (let [env1 (assoc-in env [k :state] new-st)
+        objects (reduce (fn [acc c] (assoc acc (:name c) c)) {} (:objects new-st))]
+    (reduce (fn [acc [k v]]
+              (assoc-in acc [k :state :boundary] v))
+            env1
+            objects)))
+
+
+;(clojure.data/diff test-env (test-update-env test-env "animals" new-st))

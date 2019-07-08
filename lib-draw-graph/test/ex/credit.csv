@@ -41,8 +41,8 @@ n,node_dbPalace,dbPalace:Subledger
 n,node_StrategicACS,Strategic ACS:Subledger
 n,node_SAPGlobal,SAP - Global (0110):General Ledger
 n,node_FCL,FCL:General Ledger
-n,node_TDH,TDH:Treasury
-n,node_LIMA,LIMA:Treasury
+n,node_TDH,TDH:Treasury|fillcolor:#E8EEF7
+n,node_LIMA,LIMA:Treasury|fillcolor:#E8EEF7
 n,node_Hotscan,Hotscan:Compliance
 n,node_Mantas,Mantas:Compliance
 n,node_CEM,CEM:Lifecycle
@@ -58,7 +58,7 @@ n,node_EnterpriseRisk,Enterprise Risk:Risk
 n,node_DMIST,DMIST:Settlement
 n,node_dbWorm,dbWorm:Settlement
 n,node_DTCC,DTCC:Settlement
-n,node_GCMS,GCMS:Treasury
+n,node_GCMS,GCMS:Treasury|fillcolor:#E8EEF7
 n,node_TaxEngine,Tax Engine:Reg Reporting
 n,node_Liberyse,Liberyse:Reg Reporting
 n,node_Abacus,Abacus:Reg Reporting
@@ -69,9 +69,9 @@ n,node_MCConHub,MC Connectivity Hub:Margin
 n,node_dbCORE,dbCORE:Margin
 n,node_MERIT,MERIT:Subledger
 n,node_SAPBCS,SAP  - BCS:General Ledger
-n,node_TIP,TIP:Treasury
-n,node_Saturn,Saturn:Treasury
-n,node_Liqui,Liqui+:Treasury
+n,node_TIP,TIP:Treasury|fillcolor:#E8EEF7
+n,node_Saturn,Saturn:Treasury|fillcolor:#E8EEF7
+n,node_Liqui,Liqui+:Treasury|fillcolor:#E8EEF7
 n,node_Smaragd,Smaragd:Compliance
 e,node_cRDS,node_cRDS,|style:invis
 e,node_Paragon,node_Paragon,|style:invis
@@ -118,20 +118,20 @@ e,node_RiskEngine,node_EnterpriseRisk
 e,node_Kannon,node_EnterpriseRisk
 e,node_MIS3,node_EnterpriseRisk
 e,node_TPM,node_iFaces,|color:#4287f5
-e,node_3DCash,node_DMIST
-e,node_3DCash,node_dbWorm
-e,node_3DCash,node_DTCC
-e,node_iFaces,node_3DCash
-e,node_3DCash,node_Computron
-e,node_3DCash,node_GCMS
-e,node_3DCash,node_MOAR
-e,node_3DCash,node_LegacyACS
-e,node_3DCash,node_TaxEngine
-e,node_3DCash,node_FMSGB
-e,node_3DCash,node_Liberyse
+e,node_3DCash,node_DMIST,|color:#0f5e05
+e,node_3DCash,node_dbWorm,|color:#127506
+e,node_3DCash,node_DTCC,|color:#127506
+e,node_iFaces,node_3DCash,|color:#127506
+e,node_3DCash,node_Computron,|color:#127506
+e,node_3DCash,node_GCMS,|color:#127506
+e,node_3DCash,node_MOAR,|color:#127506
+e,node_3DCash,node_LegacyACS,|color:#127506
+e,node_3DCash,node_TaxEngine,|color:#127506
+e,node_3DCash,node_FMSGB,|color:#127506
+e,node_3DCash,node_Liberyse,|color:#127506
 e,node_dbTradeStore,node_TDW
 e,node_dbTradeStore,node_Actimize
-e,node_3DCash,node_Abacus
+e,node_3DCash,node_Abacus,|color:#127506
 e,node_RMS,node_dbVolt,|color:red:style:dashed
 e,node_MIS3,node_dbVolt
 e,node_SAPBW,node_Matplan

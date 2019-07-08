@@ -22,6 +22,11 @@
        (<= (+ (:y m) (:h m)) (+ (:y m1) (:h m1)))))
 
 
+(def outside?
+  ^{:doc "Return true is m is completely outside m1"}
+  (complement inside?))
+
+
 (defn inner-rect
   "Returns rect where the boundary is shifted inwards by the sep (separation).
    sep is either a single integer or is a map of individual :l :r :t :b
@@ -35,6 +40,19 @@
              :h (- (:h rect) (:b sep) (:t sep)))))
 
 
+(defn outer-rect
+  "Returns rect where the boundary is shifted outwards by the sep (separation).
+   sep is either a single integer or is a map of individual :l :r :t :b
+   (left right top bottom) separation distances that should used in the shift."
+  [sep rect]
+  (if (number? sep) (outer-rect {:l sep :r sep :t sep :b sep} rect)
+      (assoc rect
+             :x (- (:x rect) (:l sep))
+             :y (- (:y rect) (:t sep))
+             :w (+ (:w rect) (:r sep) (:l sep))
+             :h (+ (:h rect) (:b sep) (:t sep)))))
+
+
 (defn bigger?
   "Returns true if m2 has grown from m1"
   [m1 m2]
@@ -45,6 +63,3 @@
 
 
 (def area (fn [m] (* (:w m) (:h m))))
-
-
-
