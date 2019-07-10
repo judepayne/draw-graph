@@ -3,5 +3,5 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [com.amazonaws/aws-lambda-java-core "1.1.0"]
                  [org.clojure/data.json "0.2.6"]
-                 [lib-draw-graph "0.1.4"]]
+                 [lib-draw-graph "0.1.5"]]
   :aot :all)

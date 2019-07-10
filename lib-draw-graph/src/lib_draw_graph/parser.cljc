@@ -197,7 +197,10 @@
                       {:synonyms {(first args) node}
                        :nodes {node (nth args 2)}})
                     ))}
-            s)]
+            s)
+        syn-key (first (keys (:synonyms nd)))]
+    (when (not (nil? (get (:synonyms state) syn-key)))
+      (throw (util/err (str "can't have duplicate synonym:  " syn-key))))
     (util/deep-merge state nd)))
 
 

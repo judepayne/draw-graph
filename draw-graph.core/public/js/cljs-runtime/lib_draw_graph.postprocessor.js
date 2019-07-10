@@ -13,8 +13,8 @@ goog.require('clojure.set');
 lib_draw_graph.postprocessor.free_clusters = (function lib_draw_graph$postprocessor$free_clusters(g){
 var clstrs = lib_draw_graph.clustered.clusters(g);
 var has_chdn = cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (clstrs){
-return (function (p1__36488_SHARP_){
-return (!((lib_draw_graph.clustered.cluster_children(g,p1__36488_SHARP_) == null)));
+return (function (p1__36423_SHARP_){
+return (!((lib_draw_graph.clustered.cluster_children(g,p1__36423_SHARP_) == null)));
 });})(clstrs))
 ,clstrs);
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentHashSet.EMPTY,has_chdn);
@@ -53,11 +53,11 @@ return clojure.set.difference.cljs$core$IFn$_invoke$arity$2(nodes,have_incoming)
 lib_draw_graph.postprocessor.normalize = (function lib_draw_graph$postprocessor$normalize(g){
 var have_incoming = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(clojure.set.union,cljs.core.vals(g));
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (have_incoming){
-return (function (p1__36493_SHARP_,p2__36494_SHARP_){
-if(cljs.core.truth_(cljs.core.get.cljs$core$IFn$_invoke$arity$2(p1__36493_SHARP_,p2__36494_SHARP_))){
-return p1__36493_SHARP_;
+return (function (p1__36425_SHARP_,p2__36426_SHARP_){
+if(cljs.core.truth_(cljs.core.get.cljs$core$IFn$_invoke$arity$2(p1__36425_SHARP_,p2__36426_SHARP_))){
+return p1__36425_SHARP_;
 } else {
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__36493_SHARP_,p2__36494_SHARP_,cljs.core.PersistentHashSet.EMPTY);
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__36425_SHARP_,p2__36426_SHARP_,cljs.core.PersistentHashSet.EMPTY);
 }
 });})(have_incoming))
 ,g,have_incoming);
@@ -68,8 +68,8 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(p1__36493_SHARP_,p2__36494_
  *   cyclic, returns nil.
  */
 lib_draw_graph.postprocessor.kahn_sort = (function lib_draw_graph$postprocessor$kahn_sort(var_args){
-var G__36499 = arguments.length;
-switch (G__36499) {
+var G__36432 = arguments.length;
+switch (G__36432) {
 case 1:
 return lib_draw_graph.postprocessor.kahn_sort.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -97,21 +97,21 @@ return l;
 return null;
 }
 } else {
-var vec__36501 = lib_draw_graph.postprocessor.take_1(s);
-var n = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36501,(0),null);
-var s_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36501,(1),null);
+var vec__36435 = lib_draw_graph.postprocessor.take_1(s);
+var n = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36435,(0),null);
+var s_SINGLEQUOTE_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36435,(1),null);
 var m = (g.cljs$core$IFn$_invoke$arity$1 ? g.cljs$core$IFn$_invoke$arity$1(n) : g.call(null,n));
-var g_SINGLEQUOTE_ = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (g,l,s,vec__36501,n,s_SINGLEQUOTE_,m){
-return (function (p1__36496_SHARP_,p2__36497_SHARP_){
-return cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(p1__36496_SHARP_,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [n], null),lib_draw_graph.postprocessor.without,p2__36497_SHARP_);
-});})(g,l,s,vec__36501,n,s_SINGLEQUOTE_,m))
+var g_SINGLEQUOTE_ = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (g,l,s,vec__36435,n,s_SINGLEQUOTE_,m){
+return (function (p1__36429_SHARP_,p2__36430_SHARP_){
+return cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(p1__36429_SHARP_,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [n], null),lib_draw_graph.postprocessor.without,p2__36430_SHARP_);
+});})(g,l,s,vec__36435,n,s_SINGLEQUOTE_,m))
 ,g,m);
-var G__36566 = g_SINGLEQUOTE_;
-var G__36567 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(l,n);
-var G__36568 = clojure.set.union.cljs$core$IFn$_invoke$arity$2(s_SINGLEQUOTE_,clojure.set.intersection.cljs$core$IFn$_invoke$arity$2(lib_draw_graph.postprocessor.no_incoming(g_SINGLEQUOTE_),m));
-g = G__36566;
-l = G__36567;
-s = G__36568;
+var G__36537 = g_SINGLEQUOTE_;
+var G__36538 = cljs.core.conj.cljs$core$IFn$_invoke$arity$2(l,n);
+var G__36539 = clojure.set.union.cljs$core$IFn$_invoke$arity$2(s_SINGLEQUOTE_,clojure.set.intersection.cljs$core$IFn$_invoke$arity$2(lib_draw_graph.postprocessor.no_incoming(g_SINGLEQUOTE_),m));
+g = G__36537;
+l = G__36538;
+s = G__36539;
 continue;
 }
 break;
@@ -130,8 +130,8 @@ return cljs.core.filter.cljs$core$IFn$_invoke$arity$2(lib_draw_graph.postprocess
  * Returns a vec of clusters with their children.
  */
 lib_draw_graph.postprocessor.with_chdn = (function lib_draw_graph$postprocessor$with_chdn(g,clstrs){
-return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__36508_SHARP_){
-return (new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[p1__36508_SHARP_,lib_draw_graph.clustered.cluster_children(g,p1__36508_SHARP_)],null));
+return cljs.core.mapv.cljs$core$IFn$_invoke$arity$2((function (p1__36439_SHARP_){
+return (new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[p1__36439_SHARP_,lib_draw_graph.clustered.cluster_children(g,p1__36439_SHARP_)],null));
 }),clstrs);
 });
 /**
@@ -155,10 +155,10 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(a,c,lib_draw_graph.svg.clus
  * Converts anneal-tasks to a set of clusters
  */
 lib_draw_graph.postprocessor.tasks__GT_clusters = (function lib_draw_graph$postprocessor$tasks__GT_clusters(tasks){
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (a,p__36510){
-var vec__36511 = p__36510;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36511,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36511,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (a,p__36454){
+var vec__36455 = p__36454;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36455,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36455,(1),null);
 return clojure.set.union.cljs$core$IFn$_invoke$arity$2(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(a,k),v);
 }),cljs.core.PersistentHashSet.EMPTY,tasks);
 });
@@ -167,14 +167,14 @@ return clojure.set.union.cljs$core$IFn$_invoke$arity$2(cljs.core.conj.cljs$core$
  */
 lib_draw_graph.postprocessor.sep = (function lib_draw_graph$postprocessor$sep(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___36569 = arguments.length;
-var i__4731__auto___36570 = (0);
+var len__4730__auto___36541 = arguments.length;
+var i__4731__auto___36542 = (0);
 while(true){
-if((i__4731__auto___36570 < len__4730__auto___36569)){
-args__4736__auto__.push((arguments[i__4731__auto___36570]));
+if((i__4731__auto___36542 < len__4730__auto___36541)){
+args__4736__auto__.push((arguments[i__4731__auto___36542]));
 
-var G__36571 = (i__4731__auto___36570 + (1));
-i__4731__auto___36570 = G__36571;
+var G__36543 = (i__4731__auto___36542 + (1));
+i__4731__auto___36542 = G__36543;
 continue;
 } else {
 }
@@ -196,11 +196,11 @@ return (new cljs.core.Keyword(null,"y","y",-1757859776).cljs$core$IFn$_invoke$ar
 lib_draw_graph.postprocessor.sep.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-lib_draw_graph.postprocessor.sep.cljs$lang$applyTo = (function (seq36514){
-var G__36515 = cljs.core.first(seq36514);
-var seq36514__$1 = cljs.core.next(seq36514);
+lib_draw_graph.postprocessor.sep.cljs$lang$applyTo = (function (seq36462){
+var G__36463 = cljs.core.first(seq36462);
+var seq36462__$1 = cljs.core.next(seq36462);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__36515,seq36514__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__36463,seq36462__$1);
 });
 
 lib_draw_graph.postprocessor.collision_sep = (8);
@@ -209,14 +209,14 @@ lib_draw_graph.postprocessor.collision_sep = (8);
  */
 lib_draw_graph.postprocessor.adjust_sep = (function lib_draw_graph$postprocessor$adjust_sep(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___36572 = arguments.length;
-var i__4731__auto___36573 = (0);
+var len__4730__auto___36555 = arguments.length;
+var i__4731__auto___36556 = (0);
 while(true){
-if((i__4731__auto___36573 < len__4730__auto___36572)){
-args__4736__auto__.push((arguments[i__4731__auto___36573]));
+if((i__4731__auto___36556 < len__4730__auto___36555)){
+args__4736__auto__.push((arguments[i__4731__auto___36556]));
 
-var G__36574 = (i__4731__auto___36573 + (1));
-i__4731__auto___36573 = G__36574;
+var G__36557 = (i__4731__auto___36556 + (1));
+i__4731__auto___36556 = G__36557;
 continue;
 } else {
 }
@@ -227,11 +227,11 @@ var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.I
 return lib_draw_graph.postprocessor.adjust_sep.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
 });
 
-lib_draw_graph.postprocessor.adjust_sep.cljs$core$IFn$_invoke$arity$variadic = (function (sep,p__36519){
-var map__36520 = p__36519;
-var map__36520__$1 = (((((!((map__36520 == null))))?(((((map__36520.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__36520.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__36520):map__36520);
-var cluster_sep = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__36520__$1,new cljs.core.Keyword(null,"cluster-sep","cluster-sep",127315253),null);
-var BT_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__36520__$1,new cljs.core.Keyword(null,"BT?","BT?",664855515),false);
+lib_draw_graph.postprocessor.adjust_sep.cljs$core$IFn$_invoke$arity$variadic = (function (sep,p__36466){
+var map__36467 = p__36466;
+var map__36467__$1 = (((((!((map__36467 == null))))?(((((map__36467.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__36467.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__36467):map__36467);
+var cluster_sep = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__36467__$1,new cljs.core.Keyword(null,"cluster-sep","cluster-sep",127315253),null);
+var BT_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__36467__$1,new cljs.core.Keyword(null,"BT?","BT?",664855515),false);
 if(cljs.core.not(BT_QMARK_)){
 if(cljs.core.truth_(cluster_sep)){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(sep,new cljs.core.Keyword(null,"l","l",1395893423),cluster_sep,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"r","r",-471384190),cluster_sep,new cljs.core.Keyword(null,"b","b",1482224470),cluster_sep], 0));
@@ -264,11 +264,11 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(sep,new cljs.core.Ke
 lib_draw_graph.postprocessor.adjust_sep.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-lib_draw_graph.postprocessor.adjust_sep.cljs$lang$applyTo = (function (seq36516){
-var G__36517 = cljs.core.first(seq36516);
-var seq36516__$1 = cljs.core.next(seq36516);
+lib_draw_graph.postprocessor.adjust_sep.cljs$lang$applyTo = (function (seq36464){
+var G__36465 = cljs.core.first(seq36464);
+var seq36464__$1 = cljs.core.next(seq36464);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__36517,seq36516__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__36465,seq36464__$1);
 });
 
 lib_draw_graph.postprocessor.parse_int = (function lib_draw_graph$postprocessor$parse_int(s){
@@ -279,11 +279,11 @@ if(cljs.core.integer_QMARK_(cs)){
 return cs;
 } else {
 try{return lib_draw_graph.postprocessor.parse_int(cs);
-}catch (e36528){if((e36528 instanceof Error)){
-var e = e36528;
+}catch (e36475){if((e36475 instanceof Error)){
+var e = e36475;
 throw lib_draw_graph.util.err(error_msg);
 } else {
-throw e36528;
+throw e36475;
 
 }
 }}
@@ -299,42 +299,42 @@ var tasks = cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArr
 var clstrs = lib_draw_graph.postprocessor.tasks__GT_clusters(tasks);
 var rects = lib_draw_graph.postprocessor.clusters__GT_boxes(z,clstrs);
 var seps = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (cluster_sep,BT_QMARK_,tasks,clstrs,rects){
-return (function (a,p__36531){
-var vec__36532 = p__36531;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36532,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36532,(1),null);
-var s = cljs.core.apply.cljs$core$IFn$_invoke$arity$3(lib_draw_graph.postprocessor.sep,cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,k),cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (vec__36532,k,v,cluster_sep,BT_QMARK_,tasks,clstrs,rects){
-return (function (p1__36529_SHARP_){
-return cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,p1__36529_SHARP_);
-});})(vec__36532,k,v,cluster_sep,BT_QMARK_,tasks,clstrs,rects))
+return (function (a,p__36480){
+var vec__36481 = p__36480;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36481,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36481,(1),null);
+var s = cljs.core.apply.cljs$core$IFn$_invoke$arity$3(lib_draw_graph.postprocessor.sep,cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,k),cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (vec__36481,k,v,cluster_sep,BT_QMARK_,tasks,clstrs,rects){
+return (function (p1__36476_SHARP_){
+return cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,p1__36476_SHARP_);
+});})(vec__36481,k,v,cluster_sep,BT_QMARK_,tasks,clstrs,rects))
 ,v));
 var adj_s = (cljs.core.truth_(cluster_sep)?lib_draw_graph.postprocessor.adjust_sep.cljs$core$IFn$_invoke$arity$variadic(s,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"cluster-sep","cluster-sep",127315253),cluster_sep,new cljs.core.Keyword(null,"BT?","BT?",664855515),BT_QMARK_], 0)):lib_draw_graph.postprocessor.adjust_sep.cljs$core$IFn$_invoke$arity$variadic(s,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"BT?","BT?",664855515),BT_QMARK_], 0)));
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(a,k,adj_s);
 });})(cluster_sep,BT_QMARK_,tasks,clstrs,rects))
 ,cljs.core.PersistentArrayMap.EMPTY,tasks);
 var inner_rects = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps){
-return (function (a,p__36535){
-var vec__36536 = p__36535;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36536,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36536,(1),null);
+return (function (a,p__36489){
+var vec__36490 = p__36489;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36490,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36490,(1),null);
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(a,k,lib_draw_graph.geometry.inner_rect(v,cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,k)));
 });})(cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps))
 ,cljs.core.PersistentArrayMap.EMPTY,seps);
 var e = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects){
-return (function (a,p__36540){
-var vec__36541 = p__36540;
-var prnt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36541,(0),null);
-var chdn = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36541,(1),null);
-var state = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"boundary","boundary",-2000996754),cljs.core.get.cljs$core$IFn$_invoke$arity$2(inner_rects,prnt),new cljs.core.Keyword(null,"objects","objects",2099713734),cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (vec__36541,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects){
-return (function (p1__36530_SHARP_){
-return cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,p1__36530_SHARP_);
-});})(vec__36541,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects))
+return (function (a,p__36494){
+var vec__36496 = p__36494;
+var prnt = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36496,(0),null);
+var chdn = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36496,(1),null);
+var state = new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"boundary","boundary",-2000996754),cljs.core.get.cljs$core$IFn$_invoke$arity$2(inner_rects,prnt),new cljs.core.Keyword(null,"objects","objects",2099713734),cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(((function (vec__36496,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects){
+return (function (p1__36477_SHARP_){
+return cljs.core.get.cljs$core$IFn$_invoke$arity$2(rects,p1__36477_SHARP_);
+});})(vec__36496,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects))
 ,cljs.core.get.cljs$core$IFn$_invoke$arity$2(tasks,prnt))], null);
-var constr = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"boundary","boundary",-2000996754),true,new cljs.core.Keyword(null,"grow","grow",-524118895),true,new cljs.core.Keyword(null,"collision","collision",-201625508),(cljs.core.truth_(cluster_sep)?cluster_sep:lib_draw_graph.postprocessor.collision_sep),new cljs.core.Keyword(null,"obstacles","obstacles",1370670211),cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (state,vec__36541,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects){
-return (function (acc,cur){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(acc,(node_label_fn.cljs$core$IFn$_invoke$arity$1 ? node_label_fn.cljs$core$IFn$_invoke$arity$1(cur) : node_label_fn.call(null,cur)),lib_draw_graph.svg.node__GT_rect(z,(node_label_fn.cljs$core$IFn$_invoke$arity$1 ? node_label_fn.cljs$core$IFn$_invoke$arity$1(cur) : node_label_fn.call(null,cur))));
-});})(state,vec__36541,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects))
-,cljs.core.PersistentArrayMap.EMPTY,lib_draw_graph.clustered.cluster__GT_nodes.cljs$core$IFn$_invoke$arity$2(g,prnt))], null);
+var constr = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"boundary","boundary",-2000996754),true,new cljs.core.Keyword(null,"grow","grow",-524118895),true,new cljs.core.Keyword(null,"collision","collision",-201625508),(cljs.core.truth_(cluster_sep)?cluster_sep:lib_draw_graph.postprocessor.collision_sep),new cljs.core.Keyword(null,"obstacles","obstacles",1370670211),cljs.core.mapv.cljs$core$IFn$_invoke$arity$2(((function (state,vec__36496,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects){
+return (function (p1__36478_SHARP_){
+return lib_draw_graph.svg.node__GT_rect(z,(node_label_fn.cljs$core$IFn$_invoke$arity$1 ? node_label_fn.cljs$core$IFn$_invoke$arity$1(p1__36478_SHARP_) : node_label_fn.call(null,p1__36478_SHARP_)));
+});})(state,vec__36496,prnt,chdn,cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects))
+,lib_draw_graph.clustered.cluster__GT_nodes.cljs$core$IFn$_invoke$arity$2(g,prnt))], null);
 return cljs.core.assoc_in(cljs.core.assoc_in(cljs.core.assoc_in(a,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [prnt,new cljs.core.Keyword(null,"constraints","constraints",422775616)], null),constr),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [prnt,new cljs.core.Keyword(null,"state","state",-1988618099)], null),state),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [prnt,new cljs.core.Keyword(null,"boundary-sep","boundary-sep",959091714)], null),cljs.core.get.cljs$core$IFn$_invoke$arity$2(seps,prnt));
 });})(cluster_sep,BT_QMARK_,tasks,clstrs,rects,seps,inner_rects))
 ,cljs.core.PersistentArrayMap.EMPTY,tasks);
@@ -344,17 +344,17 @@ return e;
  * Flattens an environment back rectangles
  */
 lib_draw_graph.postprocessor.env__GT_map = (function lib_draw_graph$postprocessor$env__GT_map(env){
-return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (a,p__36548){
-var vec__36550 = p__36548;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36550,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36550,(1),null);
+return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (a,p__36503){
+var vec__36504 = p__36503;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36504,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36504,(1),null);
 var sep = new cljs.core.Keyword(null,"boundary-sep","boundary-sep",959091714).cljs$core$IFn$_invoke$arity$1(v);
 var bdry = new cljs.core.Keyword(null,"boundary","boundary",-2000996754).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"state","state",-1988618099).cljs$core$IFn$_invoke$arity$1(v));
 var rect = (cljs.core.truth_(sep)?lib_draw_graph.geometry.outer_rect(sep,bdry):bdry);
-var others = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (sep,bdry,rect,vec__36550,k,v){
+var others = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (sep,bdry,rect,vec__36504,k,v){
 return (function (a_SINGLEQUOTE_,c_SINGLEQUOTE_){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(a_SINGLEQUOTE_,new cljs.core.Keyword(null,"name","name",1843675177).cljs$core$IFn$_invoke$arity$1(c_SINGLEQUOTE_),c_SINGLEQUOTE_);
-});})(sep,bdry,rect,vec__36550,k,v))
+});})(sep,bdry,rect,vec__36504,k,v))
 ,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"objects","objects",2099713734).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"state","state",-1988618099).cljs$core$IFn$_invoke$arity$1(v)));
 return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(a,k,rect),others], 0));
 }),cljs.core.PersistentArrayMap.EMPTY,env);
@@ -372,10 +372,10 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(acc,new cljs.core.Keyword(n
 });})(env1))
 ,cljs.core.PersistentArrayMap.EMPTY,new cljs.core.Keyword(null,"objects","objects",2099713734).cljs$core$IFn$_invoke$arity$1(new_st));
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (env1,objects){
-return (function (acc,p__36555){
-var vec__36556 = p__36555;
-var k__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36556,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36556,(1),null);
+return (function (acc,p__36515){
+var vec__36516 = p__36515;
+var k__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36516,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36516,(1),null);
 if((!((cljs.core.get.cljs$core$IFn$_invoke$arity$2(acc,k__$1) == null)))){
 var sep = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(acc,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [k__$1,new cljs.core.Keyword(null,"boundary-sep","boundary-sep",959091714)], null));
 return cljs.core.assoc_in(acc,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [k__$1,new cljs.core.Keyword(null,"state","state",-1988618099),new cljs.core.Keyword(null,"boundary","boundary",-2000996754)], null),lib_draw_graph.geometry.inner_rect(sep,v));
@@ -400,12 +400,12 @@ return m;
 });})(env,rankdir,y_retard,x_retard))
 ,cljs.core.PersistentVector.EMPTY,new cljs.core.Keyword(null,"pp-clusters","pp-clusters",478062894).cljs$core$IFn$_invoke$arity$1(opts)):new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"x","x",2099068185),new cljs.core.Keyword(null,"w","w",354169001),new cljs.core.Keyword(null,"y","y",-1757859776),new cljs.core.Keyword(null,"h","h",1109658740)], null));
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(((function (env,rankdir,y_retard,x_retard,dims){
-return (function (a,p__36559){
-var vec__36560 = p__36559;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36560,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36560,(1),null);
+return (function (a,p__36522){
+var vec__36525 = p__36522;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36525,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__36525,(1),null);
 var cur = cljs.core.get.cljs$core$IFn$_invoke$arity$2(a,k);
-var new_st = lib_draw_graph.anneal.annealing.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"state","state",-1988618099).cljs$core$IFn$_invoke$arity$1(cur),(15000),(0),new cljs.core.Keyword(null,"constraints","constraints",422775616).cljs$core$IFn$_invoke$arity$1(cur),lib_draw_graph.anneal.neighbor_fn,lib_draw_graph.anneal.cost_fn,lib_draw_graph.anneal.p_fn,lib_draw_graph.anneal.temp_fn,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"terminate-early?","terminate-early?",-74748151),true,new cljs.core.Keyword(null,"dims","dims",-466522889),dims,new cljs.core.Keyword(null,"x-retard","x-retard",1308817436),x_retard,new cljs.core.Keyword(null,"y-retard","y-retard",1549838503),y_retard,new cljs.core.Keyword(null,"max-move","max-move",-879805405),(function (){var bdry = new cljs.core.Keyword(null,"boundary","boundary",-2000996754).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"state","state",-1988618099).cljs$core$IFn$_invoke$arity$1(cur));
+var new_st = lib_draw_graph.anneal.annealing.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.Keyword(null,"state","state",-1988618099).cljs$core$IFn$_invoke$arity$1(cur),(25000),(0),new cljs.core.Keyword(null,"constraints","constraints",422775616).cljs$core$IFn$_invoke$arity$1(cur),lib_draw_graph.anneal.neighbor_fn,lib_draw_graph.anneal.cost_fn,lib_draw_graph.anneal.p_fn,lib_draw_graph.anneal.temp_fn,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"terminate-early?","terminate-early?",-74748151),true,new cljs.core.Keyword(null,"dims","dims",-466522889),dims,new cljs.core.Keyword(null,"x-retard","x-retard",1308817436),x_retard,new cljs.core.Keyword(null,"y-retard","y-retard",1549838503),y_retard,new cljs.core.Keyword(null,"max-move","max-move",-879805405),(function (){var bdry = new cljs.core.Keyword(null,"boundary","boundary",-2000996754).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"state","state",-1988618099).cljs$core$IFn$_invoke$arity$1(cur));
 if(((cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("TB",rankdir)) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("BT",rankdir)))){
 return cljs.core.quot(new cljs.core.Keyword(null,"w","w",354169001).cljs$core$IFn$_invoke$arity$1(bdry),lib_draw_graph.postprocessor.max_move_factor);
 } else {
@@ -440,8 +440,8 @@ if((!(BT_QMARK_))){
 var temp__5718__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(env,clstr);
 if(cljs.core.truth_(temp__5718__auto__)){
 var edited = temp__5718__auto__;
-var G__36563 = new cljs.core.Keyword(null,"labeljust","labeljust",-370267851).cljs$core$IFn$_invoke$arity$1(lib_draw_graph.clustered.merged_cluster_attr(g,clstr,new cljs.core.Keyword(null,"style","style",-496642736)));
-switch (G__36563) {
+var G__36529 = new cljs.core.Keyword(null,"labeljust","labeljust",-370267851).cljs$core$IFn$_invoke$arity$1(lib_draw_graph.clustered.merged_cluster_attr(g,clstr,new cljs.core.Keyword(null,"style","style",-496642736)));
+switch (G__36529) {
 case "l":
 return cljs.core.assoc_in(cljs.core.assoc_in(cljs.core.assoc_in(node,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"x","x",2099068185)], null),(new cljs.core.Keyword(null,"x","x",2099068185).cljs$core$IFn$_invoke$arity$1(edited) + lib_draw_graph.postprocessor.x_label_spacer)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"y","y",-1757859776)], null),(new cljs.core.Keyword(null,"y","y",-1757859776).cljs$core$IFn$_invoke$arity$1(edited) + lib_draw_graph.postprocessor.y_label_spacer)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"text-anchor","text-anchor",585613696)], null),"start");
 
@@ -461,8 +461,8 @@ return node;
 var temp__5718__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(env,clstr);
 if(cljs.core.truth_(temp__5718__auto__)){
 var edited = temp__5718__auto__;
-var G__36564 = new cljs.core.Keyword(null,"labeljust","labeljust",-370267851).cljs$core$IFn$_invoke$arity$1(lib_draw_graph.clustered.merged_cluster_attr(g,clstr,new cljs.core.Keyword(null,"style","style",-496642736)));
-switch (G__36564) {
+var G__36531 = new cljs.core.Keyword(null,"labeljust","labeljust",-370267851).cljs$core$IFn$_invoke$arity$1(lib_draw_graph.clustered.merged_cluster_attr(g,clstr,new cljs.core.Keyword(null,"style","style",-496642736)));
+switch (G__36531) {
 case "l":
 return cljs.core.assoc_in(cljs.core.assoc_in(cljs.core.assoc_in(node,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"x","x",2099068185)], null),(new cljs.core.Keyword(null,"x","x",2099068185).cljs$core$IFn$_invoke$arity$1(edited) + lib_draw_graph.postprocessor.x_label_spacer)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"y","y",-1757859776)], null),((new cljs.core.Keyword(null,"y","y",-1757859776).cljs$core$IFn$_invoke$arity$1(edited) + new cljs.core.Keyword(null,"h","h",1109658740).cljs$core$IFn$_invoke$arity$1(edited)) - lib_draw_graph.postprocessor.y_label_spacer_BT)),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"attrs","attrs",-2090668713),new cljs.core.Keyword(null,"text-anchor","text-anchor",585613696)], null),"start");
 

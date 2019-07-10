@@ -186,19 +186,14 @@
              (let [state {;; boundary is the inner-rect
                           :boundary (get inner-rects prnt)
                           ;; but object within the boundary are outers (true rects) not inners
-                          :objects (map #(get rects %) (get tasks prnt))}
+                          :objects (mapv #(get rects %) (get tasks prnt))}
                    constr {:boundary true
                            :grow true
                            :collision (if cluster-sep
                                         cluster-sep
                                         collision-sep)
-                           :obstacles (reduce
-                                       (fn [acc cur]
-                                         (assoc acc
-                                                (node-label-fn cur)
-                                                (svg/node->rect z (node-label-fn cur))))
-                                       {}
-                                       (clstr/cluster->nodes g prnt))}]
+                           :obstacles (mapv #(svg/node->rect z (node-label-fn %))
+                                            (clstr/cluster->nodes g prnt))}]
                (-> a
                    (assoc-in [prnt :constraints] constr)
                    (assoc-in [prnt :state] state)
@@ -267,7 +262,7 @@
               (let [cur (get a k)
                     ;z (println cur)
                     new-st (anneal/annealing (:state cur)
-                                      15000
+                                      25000
                                       0
                                       (:constraints cur)
                                       anneal/neighbor-fn

@@ -25,14 +25,14 @@ return n.toString((16));
  */
 lib_draw_graph.graph.str__GT_rgb = (function lib_draw_graph$graph$str__GT_rgb(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___35746 = arguments.length;
-var i__4731__auto___35747 = (0);
+var len__4730__auto___35553 = arguments.length;
+var i__4731__auto___35554 = (0);
 while(true){
-if((i__4731__auto___35747 < len__4730__auto___35746)){
-args__4736__auto__.push((arguments[i__4731__auto___35747]));
+if((i__4731__auto___35554 < len__4730__auto___35553)){
+args__4736__auto__.push((arguments[i__4731__auto___35554]));
 
-var G__35751 = (i__4731__auto___35747 + (1));
-i__4731__auto___35747 = G__35751;
+var G__35555 = (i__4731__auto___35554 + (1));
+i__4731__auto___35554 = G__35555;
 continue;
 } else {
 }
@@ -43,10 +43,10 @@ var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.I
 return lib_draw_graph.graph.str__GT_rgb.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
 });
 
-lib_draw_graph.graph.str__GT_rgb.cljs$core$IFn$_invoke$arity$variadic = (function (s,p__35671){
-var map__35672 = p__35671;
-var map__35672__$1 = (((((!((map__35672 == null))))?(((((map__35672.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__35672.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__35672):map__35672);
-var blend_with = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__35672__$1,new cljs.core.Keyword(null,"blend-with","blend-with",343035248),(12320699));
+lib_draw_graph.graph.str__GT_rgb.cljs$core$IFn$_invoke$arity$variadic = (function (s,p__35482){
+var map__35483 = p__35482;
+var map__35483__$1 = (((((!((map__35483 == null))))?(((((map__35483.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__35483.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__35483):map__35483);
+var blend_with = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__35483__$1,new cljs.core.Keyword(null,"blend-with","blend-with",343035248),(12320699));
 var h = (cljs.core.hash(s) >> (8));
 var rgb = lib_draw_graph.graph.color_channels(h);
 var rgb_blend = lib_draw_graph.graph.color_channels(blend_with);
@@ -59,11 +59,11 @@ return ["#",cljs.core.str.cljs$core$IFn$_invoke$arity$1(lib_draw_graph.graph.hex
 lib_draw_graph.graph.str__GT_rgb.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-lib_draw_graph.graph.str__GT_rgb.cljs$lang$applyTo = (function (seq35669){
-var G__35670 = cljs.core.first(seq35669);
-var seq35669__$1 = cljs.core.next(seq35669);
+lib_draw_graph.graph.str__GT_rgb.cljs$lang$applyTo = (function (seq35480){
+var G__35481 = cljs.core.first(seq35480);
+var seq35480__$1 = cljs.core.next(seq35480);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__35670,seq35669__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__35481,seq35480__$1);
 });
 
 lib_draw_graph.graph.edge_invisible_QMARK_ = (function lib_draw_graph$graph$edge_invisible_QMARK_(g,n1,n2){
@@ -71,8 +71,8 @@ var style = new cljs.core.Keyword(null,"style","style",-496642736).cljs$core$IFn
 var and__4120__auto__ = style;
 if(cljs.core.truth_(and__4120__auto__)){
 return cljs.core.some(((function (and__4120__auto__,style){
-return (function (p1__35674_SHARP_){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("invis",p1__35674_SHARP_);
+return (function (p1__35485_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("invis",p1__35485_SHARP_);
 });})(and__4120__auto__,style))
 ,clojure.string.split.cljs$core$IFn$_invoke$arity$2(style,/,/));
 } else {
@@ -82,8 +82,8 @@ return and__4120__auto__;
 lib_draw_graph.graph.leaf_QMARK_ = (function lib_draw_graph$graph$leaf_QMARK_(g,n){
 var succs = loom.graph.successors_STAR_(g,n);
 var visible_succs = cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (succs){
-return (function (p1__35675_SHARP_){
-return cljs.core.not(lib_draw_graph.graph.edge_invisible_QMARK_(g,n,p1__35675_SHARP_));
+return (function (p1__35486_SHARP_){
+return cljs.core.not(lib_draw_graph.graph.edge_invisible_QMARK_(g,n,p1__35486_SHARP_));
 });})(succs))
 ,succs);
 return cljs.core.empty_QMARK_(visible_succs);
@@ -102,8 +102,8 @@ return and__4120__auto__;
 lib_draw_graph.graph.successors = (function lib_draw_graph$graph$successors(g,n){
 var succs = loom.graph.successors_STAR_(g,n);
 return cljs.core.filter.cljs$core$IFn$_invoke$arity$2(((function (succs){
-return (function (p1__35682_SHARP_){
-return cljs.core.not(lib_draw_graph.graph.edge_invisible_QMARK_(g,n,p1__35682_SHARP_));
+return (function (p1__35487_SHARP_){
+return cljs.core.not(lib_draw_graph.graph.edge_invisible_QMARK_(g,n,p1__35487_SHARP_));
 });})(succs))
 ,succs);
 });
@@ -119,14 +119,14 @@ return cljs.core.first(cljs.core.ffirst(nested));
  */
 lib_draw_graph.graph.group_map = (function lib_draw_graph$graph$group_map(var_args){
 var args__4736__auto__ = [];
-var len__4730__auto___35766 = arguments.length;
-var i__4731__auto___35767 = (0);
+var len__4730__auto___35565 = arguments.length;
+var i__4731__auto___35566 = (0);
 while(true){
-if((i__4731__auto___35767 < len__4730__auto___35766)){
-args__4736__auto__.push((arguments[i__4731__auto___35767]));
+if((i__4731__auto___35566 < len__4730__auto___35565)){
+args__4736__auto__.push((arguments[i__4731__auto___35566]));
 
-var G__35768 = (i__4731__auto___35767 + (1));
-i__4731__auto___35767 = G__35768;
+var G__35567 = (i__4731__auto___35566 + (1));
+i__4731__auto___35566 = G__35567;
 continue;
 } else {
 }
@@ -146,11 +146,11 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(acc,cljs.core.first(cur),cl
 lib_draw_graph.graph.group_map.cljs$lang$maxFixedArity = (1);
 
 /** @this {Function} */
-lib_draw_graph.graph.group_map.cljs$lang$applyTo = (function (seq35687){
-var G__35688 = cljs.core.first(seq35687);
-var seq35687__$1 = cljs.core.next(seq35687);
+lib_draw_graph.graph.group_map.cljs$lang$applyTo = (function (seq35490){
+var G__35491 = cljs.core.first(seq35490);
+var seq35490__$1 = cljs.core.next(seq35490);
 var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__35688,seq35687__$1);
+return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__35491,seq35490__$1);
 });
 
 lib_draw_graph.graph.default_options = new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"graph","graph",1558099509),new cljs.core.PersistentArrayMap(null, 6, [new cljs.core.Keyword(null,"dpi","dpi",-986162832),(72),new cljs.core.Keyword(null,"layout","layout",-2120940921),"dot",new cljs.core.Keyword(null,"splines","splines",1787583529),"lines",new cljs.core.Keyword(null,"overlap","overlap",-1673335644),"prism",new cljs.core.Keyword(null,"pad","pad",-36734541),0.2,new cljs.core.Keyword(null,"rankdir","rankdir",-2029540135),"LR"], null),new cljs.core.Keyword(null,"node","node",581201198),new cljs.core.PersistentArrayMap(null, 5, [new cljs.core.Keyword(null,"style","style",-496642736),"filled",new cljs.core.Keyword(null,"fontsize","fontsize",368767350),(10),new cljs.core.Keyword(null,"fixedsize","fixedsize",1191363170),"true",new cljs.core.Keyword(null,"shape","shape",1190694006),"ellipse",new cljs.core.Keyword(null,"margin","margin",-995903681),"0.1"], null),new cljs.core.Keyword(null,"env","env",-1815813235),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"show-roots?","show-roots?",-1350839449),false], null)], null);
@@ -183,9 +183,19 @@ return lib_draw_graph.graph.fff(loom.graph.nodes(g));
 }
 }
 })();
-return lib_draw_graph.graph.str__GT_rgb((function (){var fexpr__35699 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(color_key);
-return (fexpr__35699.cljs$core$IFn$_invoke$arity$1 ? fexpr__35699.cljs$core$IFn$_invoke$arity$1(n) : fexpr__35699.call(null,n));
+return lib_draw_graph.graph.str__GT_rgb((function (){var fexpr__35505 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(color_key);
+return (fexpr__35505.cljs$core$IFn$_invoke$arity$1 ? fexpr__35505.cljs$core$IFn$_invoke$arity$1(n) : fexpr__35505.call(null,n));
 })());
+});
+/**
+ * True is label is or starts with an html like label.
+ */
+lib_draw_graph.graph.html_like_label_QMARK_ = (function lib_draw_graph$graph$html_like_label_QMARK_(s){
+if(cljs.core.truth_(s)){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("<<",cljs.core.subs.cljs$core$IFn$_invoke$arity$3(s,(0),(2)));
+} else {
+return null;
+}
 });
 /**
  * Gets the first valid label from the metadata, which can be a node or edge metadata.
@@ -193,9 +203,9 @@ return (fexpr__35699.cljs$core$IFn$_invoke$arity$1 ? fexpr__35699.cljs$core$IFn$
 lib_draw_graph.graph.first_label = (function lib_draw_graph$graph$first_label(lbls,metadata){
 var lbls__$1 = clojure.string.split.cljs$core$IFn$_invoke$arity$2(lbls,/\//);
 var lbl = cljs.core.some(((function (lbls__$1){
-return (function (p1__35700_SHARP_){
-var v = (function (){var fexpr__35701 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(p1__35700_SHARP_);
-return (fexpr__35701.cljs$core$IFn$_invoke$arity$1 ? fexpr__35701.cljs$core$IFn$_invoke$arity$1(metadata) : fexpr__35701.call(null,metadata));
+return (function (p1__35507_SHARP_){
+var v = (function (){var fexpr__35512 = cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(p1__35507_SHARP_);
+return (fexpr__35512.cljs$core$IFn$_invoke$arity$1 ? fexpr__35512.cljs$core$IFn$_invoke$arity$1(metadata) : fexpr__35512.call(null,metadata));
 })();
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("",v)){
 return false;
@@ -215,11 +225,17 @@ return lbl;
  */
 lib_draw_graph.graph.composite_label = (function lib_draw_graph$graph$composite_label(lbls,metadata){
 var lbls__$1 = clojure.string.split.cljs$core$IFn$_invoke$arity$2(lbls,/&/);
-var lbl = cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.str,cljs.core.interpose.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (lbls__$1){
+var flbl = cljs.core.get.cljs$core$IFn$_invoke$arity$2(metadata,cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(cljs.core.first(lbls__$1)));
+var lbl = (cljs.core.truth_(lib_draw_graph.graph.html_like_label_QMARK_(flbl))?flbl:cljs.core.apply.cljs$core$IFn$_invoke$arity$4(cljs.core.str,flbl,"\n",cljs.core.interpose.cljs$core$IFn$_invoke$arity$2("\n",cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (lbls__$1,flbl){
 return (function (x){
-return cljs.core.get.cljs$core$IFn$_invoke$arity$2(metadata,cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(x));
-});})(lbls__$1))
-,lbls__$1)));
+var l = cljs.core.get.cljs$core$IFn$_invoke$arity$2(metadata,cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(x));
+if(cljs.core.truth_(lib_draw_graph.graph.html_like_label_QMARK_(l))){
+return "";
+} else {
+return l;
+}
+});})(lbls__$1,flbl))
+,cljs.core.rest(lbls__$1)))));
 if((lbl == null)){
 return "";
 } else {
@@ -357,8 +373,8 @@ return lib_draw_graph.graph.group_map.cljs$core$IFn$_invoke$arity$variadic(opts,
 });
 lib_draw_graph.graph.cluster_args = (function lib_draw_graph$graph$cluster_args(g){
 return new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"node->clusters","node->clusters",-265377067),(function (n){
-var fexpr__35720 = cljs.core.partial.cljs$core$IFn$_invoke$arity$3(lib_draw_graph.clustered.node__GT_clusters,g,lib_draw_graph.clustered.cluster_key(g));
-return (fexpr__35720.cljs$core$IFn$_invoke$arity$1 ? fexpr__35720.cljs$core$IFn$_invoke$arity$1(n) : fexpr__35720.call(null,n));
+var fexpr__35537 = cljs.core.partial.cljs$core$IFn$_invoke$arity$3(lib_draw_graph.clustered.node__GT_clusters,g,lib_draw_graph.clustered.cluster_key(g));
+return (fexpr__35537.cljs$core$IFn$_invoke$arity$1 ? fexpr__35537.cljs$core$IFn$_invoke$arity$1(n) : fexpr__35537.call(null,n));
 }),new cljs.core.Keyword(null,"cluster->descriptor","cluster->descriptor",-1433685113),(function (n){
 return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"label","label",1718410804),n], null),(function (){var x = lib_draw_graph.clustered.merged_cluster_attr(g,n,new cljs.core.Keyword(null,"style","style",-496642736));
 var y = (((x == null))?cljs.core.PersistentArrayMap.EMPTY:x);
@@ -387,8 +403,8 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$4(rhizome.dot.graph__GT_dot,k
 lib_draw_graph.graph.loomgraph__GT_dot = (function lib_draw_graph$graph$loomgraph__GT_dot(g,rhi_args){
 var ks = loom.graph.nodes(g);
 var succs_fn = ((function (ks){
-return (function (p1__35732_SHARP_){
-return loom.graph.successors_STAR_(g,p1__35732_SHARP_);
+return (function (p1__35542_SHARP_){
+return loom.graph.successors_STAR_(g,p1__35542_SHARP_);
 });})(ks))
 ;
 return lib_draw_graph.graph.graph__GT_dot(ks,succs_fn,rhi_args);

@@ -134,6 +134,13 @@
     (str->rgb ((keyword color-key) n))))
 
 
+(defn html-like-label?
+  "True is label is or starts with an html like label."
+  [s]
+  (when s
+    (= "<<" (subs s 0 2))))
+
+
 (defn first-label
   "Gets the first valid label from the metadata, which can be a node or edge metadata."
   [lbls metadata]
@@ -147,11 +154,18 @@
   "Gets the composite label from the metadata, which can be a node or edge metadata."
   [lbls metadata]
   (let [lbls (str/split lbls #"&")
-        lbl (apply str
-                   (interpose "\n"
-                              (map
-                               (fn [x] (get metadata (keyword x)))
-                               lbls)))]
+        flbl (get metadata (keyword (first lbls)))
+        lbl (if (html-like-label? flbl)
+              flbl
+              (apply str flbl "\n"
+                     (interpose "\n"
+                                (map
+                                 (fn [x] 
+                                   (let [l (get metadata (keyword x))]
+                                     (if (html-like-label? l)
+                                       ""  ;; filter out subsequent html-like labels
+                                       l)))
+                                 (rest lbls)))))]
     (if (nil? lbl) "" lbl)))
 
 

@@ -27,7 +27,7 @@ n,node_dbTradeStore,dbTradeStore:Regulatory Reporting
 n,node_SAPBW,SAP - BW:Financial Reporting
 n,node_FDW,FDW:Financial Reporting
 n,node_Collat,Collat:Margin Collateral
-n,node_PES,Payment Execution Services:Payments
+n,node_PES,Payment\nExecution\nServices:Payments
 n,node_FMSGB,FMS GB:Payments
 n,node_Computron,Computron:Subledgers
 n,node_dbInternetDE,db-Internet DE:Payments
@@ -52,7 +52,7 @@ n,node_Calico,Calico:Subledgers
 n,node_dbMole,dbMole:Position Management
 n,node_Kondor,Kondor:Position Management
 n,node_Magellan,Magellan:Position Management
-n,node_EnterpriseRisk,Enterprise Risk:Risk
+n,node_EnterpriseRisk,<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'><TR><TD ROWSPAN='3' BGCOLOR='yellow'>class</TD></TR><TR><TD PORT='here' BGCOLOR='lightblue'>qualifier</TD></TR></TABLE>>:Risk|margin:0.001
 n,node_DMIST,DMIST:Settlements
 n,node_DTCC,DTCC:Settlements
 n,node_GCMS,GCMS:Treasury|fillcolor:#E8EEF7

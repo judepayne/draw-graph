@@ -14,6 +14,9 @@
 (def ^:const PEN 1000000)                ;; Penalty cost amount
 
 
+(def job-env (atom {}))  ;; a global var for an annealing job
+
+
 ;; From Clojure data analysis cookbook
 (defn annealing
 
@@ -31,17 +34,18 @@
             max-move max-move-default}}]
    (let [cost (cost-fn constraints initial)
          last-cost (atom cost)]
+     (reset! job-env {:obj-count (count (:objects initial))})
      (loop [state initial
             cost cost
             k 1]
        ;; check every 500 reps that cost has changed more than 0.01%
        (if (and (= 0 (rem k 500))
                 terminate-early?
-                (> 0.0001 (let [lc @last-cost
+                (> 0.00005 (let [lc @last-cost
                               del-cost (/ (- lc cost) cost)]
                             (reset! last-cost cost)
                             del-cost)))
-         state
+          state
 
          ;; if it hasn't, loop the annealing function
          (if (and (< k max-iter)
@@ -152,7 +156,7 @@
               :grow      (if v (bigger? prev-item item) true)
               :boundary  (if v (inside? bdry item) true)
               :collision (if sep (not-any? #(overlaps? sep item %) others) true)
-              :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) (vals v)) true))))
+              :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) v) true))))
      true
      constraints)))
 
