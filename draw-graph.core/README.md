@@ -14,7 +14,7 @@ For example, saying you have the following map of data and options:
 
     {\"options\":{\"constraint\":true,\"pp-font\":\"\",\"fixedsize\":\"true\",\"pp-cluster-sep\":\"\",\"num-cluster-edges\":\"4\",\"overlap\":\"false\",\"color-on\":\"\",\"layout\":\"dot\",\"show-roots?\":false,\"splines\":\"splines\",\"post-process?\":false,\"pp-anneal-bias\":\"3\",\"pp-clusters\":{\"y\":true,\"h\":true,\"x\":true,\"w\":true},\"concentrate\":false,\"show-constraints?\":false,\"fix-ranks?\":true,\"label\":\"name\",\"elide\":\"0\",\"shape\":\"ellipse\",\"url\":\"\",\"cluster-on\":\"animal\",\"rankdir\":\"TB\",\"tooltip\":\"\"},\"data\":\"h,animal:name\\ne,pandas:simone,pandas:max\\ne,pandas:shahar,pandas:summer\\ne,pandas:nikkai,pandas:isobel\\ne,pandas:malakai,pandas:delila\\ne,pandas:cristolene,pandas:shahar,relationship:friend|color:deeppink\\ne,pandas:kacey,pandas:shahar|shape:rect:fillcolor:blue:fontcolor:white,relationship:friend\\ne,pandas:malakai,pandas:ivy\\ne,pandas:max,pandas:Bridget,|color:blue\\ne,pandas:ivy,squirrels:huxley,|color:red\\ne,pandas:kacey,brownbears:cosmo,|color:deeppink\\ne,brownbears:cosmo|shape:septagon:style:filled,brownbears:eliza,|color:deeppink\\ne,pandas:simone,pandas:ivy,|color:green2\\ne,pandas:simone,pandas:summer,|color:green2\\ncs,pandas|bgcolor:cornsilk1:style:rounded\\ncs,brownbears|bgcolor:palegreen:color:limegreen:margin:20\\ncs,squirrels|bgcolor:pink:style:rounded:margin:15\"}
     
-(which is the same as the first example at https://draw-graph.com)
+(which is the same as the first drop-down example at https://draw-graph.com)
 
 that should be *url encoded* to:
 
@@ -27,6 +27,8 @@ https://draw-graph.com?%7B%22options%22%3A%7B%22constraint%22%3Atrue%2C%22pp-fon
 (url-?-encoded-json-map)
 
 The site will open with the data and options loaded, just ready for you to click!
+
+The options correspond to the options in the front-end (please see https://draw-graph.com) and there's a full description of them in the cmd-draw-graph folder.
 
 ## License
 
