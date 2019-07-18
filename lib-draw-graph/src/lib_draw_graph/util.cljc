@@ -43,6 +43,25 @@
      (down m nil)))
 
 
+
+(defn parse-int [s]
+  (try
+    (let [n #?(:clj (Integer/parseInt s)
+               :cljs (cljs.reader/read-string s))]
+      (if (integer? n) n (throw (err (str s " should be an integer.")))))
+    #? (:clj (catch Exception e (throw (err (str s " should be an integer."))))
+        :cljs (catch js/Error e (throw (err (str s " should be an integer.")))))))
+
+
+(defn parse-float [s]
+  (try
+    (let [n #?(:clj (Float/parseFloat s)
+               :cljs (cljs.reader/read-string s))]
+      (if (float? n) n (throw (err (str s " should be a floating point number.")))))
+    #? (:clj (catch Exception e (throw (err (str s " should be a floating point number."))))
+        :cljs (catch js/Error e (throw (err (str s " should be a floating point number.")))))))
+
+
 ;; -----------------------------
 ;; Loom.graph section
 

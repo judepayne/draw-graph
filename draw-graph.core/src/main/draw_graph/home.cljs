@@ -54,12 +54,7 @@
 (declare update-ace)
 (def pan-zoom (atom nil))
 
-
-(file/file-reader-listen (fn [e] 
-                           (do (swap! local-state merge e)
-                               ;(update-ace)
-                               )))
-
+(file/file-reader-listen (fn [e] (swap! local-state merge e)))
 
 
 ;; -------------------------
@@ -318,8 +313,7 @@
                    (when-not (= value @value-atom)
                      (reset! value-atom value)))))
           (when on-cm-init
-            (on-cm-init inst))
-          ))
+            (on-cm-init inst))))
 
       :component-did-update
       (fn [this old-argv]
@@ -330,6 +324,34 @@
       (fn [_ _ _]
         @value-atom
         [:div.item5 {:id "editor" :style style}])})))
+
+
+;; ---------------
+;; loading data
+
+(defn url-encode
+  [string]
+  (some-> string str (js/encodeURIComponent) (.replace "+" "%20")))
+
+
+(defn url-decode
+  [string]
+  (some-> string str (js/decodeURIComponent)))
+
+
+(defn load-data-from-params [params-str]
+  (try
+    (let [params (->> (subs params-str 1)
+                     url-decode
+                     (.parse js/JSON))
+          params (js->clj params :keywordize-keys true)]
+
+      (when (:options params) (swap! local-state assoc :options (:options params)))
+      (when (:data params) (swap! local-state assoc :data (:data params)))
+    ;  (when (:click params) (get-svg))
+      )
+    (catch js/Error e
+      (log "Error: Query string could not be converted to data!"))))
 
 
 (defn load-example-data [ex-fn]
@@ -446,7 +468,6 @@
     :tabIndex 5
     :on-change #(swap! local-state update-in [:options :cluster-on]
                        (fn [e] (-> % .-target .-value)))}
-
    (if (= "" (first @headers))
      [:option {:key "none" :value ""} "-"]
      (cons [:option {:key "none" :value ""} "-"]
@@ -659,8 +680,7 @@
      (row "filter graph" [filtergraph] "Filters the graph - good for zooming in")
      (row "elide lower levels" [elide-levels] "Hide <n> lowest levels in the graph")
      (row "post process" [pp?] "Post Procees the svg: anneal clusters and font replacement")
-     (row "anneal cluster separation" [pp-cluster-sep] "How close clusters are allowed to get in pixels during annealing")
-]))
+     (row "anneal cluster separation" [pp-cluster-sep] "How close clusters are allowed to get in pixels during annealing")]))
 
 
 (defn middle-disp-opts1 [state]
@@ -673,8 +693,7 @@
      (row "highlight roots" [show-roots] "Highlights the roots of the graph")
      (row "anneal expand clusters" [pp-clusters] "Controls which dimensions of clusters are expanded in post processing")
      (row "font" [pp-font] "The name of the replacement font to use in post processing")    
-     (empty-row) (empty-row)
-]))
+     (empty-row) (empty-row)]))
 
 
 (defn right-disp-opts1 [state]
@@ -686,8 +705,8 @@
      (empty-row) (empty-row)
      (row "highlight constraints" [show-constraints] "Highlights all (rank) constraining edges, including ordinarily invisible generated cluster edges. For debugging layouts")
      (row "anneal bias" [anneal-bias] "Favors left-right cluster expansion by this factor in TB/ BT layouts, ditto for top bottom in LR/ RL layouts")
-     (row "cluster edges num" [cluster-edges-num] "number of invisible edges to create between nodes in two clusters that have a cluster edge. See Help page for further information.")
-]))
+     (row "cluster edges num" [cluster-edges-num] "number of invisible edges to create between nodes in two clusters that have a cluster edge. See Help page for further information.")]))
+
 
 (defn left-disp-opts2 [state]
   (fn []
@@ -696,9 +715,8 @@
      (row "layout" [layout] "The Graphviz layout algorithm")
      (row "(node) fixedsize" [fixedsize] "Nodes fixed in size or varied according to contents")
      (row "nodesep" [nodesep] "Separation between nodes in inches")     
-     (row "overlap" [overlap] "Determines how Graphviz removes overlapping edges")
-     
-]))
+     (row "overlap" [overlap] "Determines how Graphviz removes overlapping edges")]))
+
 
 (defn middle-disp-opts2 [state]
   (fn []
@@ -707,9 +725,8 @@
      (row "rankdir" [rankdir] "The layout direction e.g. TB mean Top Bottom etc")
      (row "splines" [splines] "Controls the form of the edges in the graph")
      (row "ranksep" [ranksep] "Separation between ranks in inches")
-     (row "scale" [scale] "Scales the graph up by this factor")   
-     
-]))
+     (row "scale" [scale] "Scales the graph up by this factor")]))
+
 
 (defn right-disp-opts2 [state]
   (fn []
@@ -718,9 +735,7 @@
      (row "node shape" [shape] "The shape used for nodes")
      (empty-row) (empty-row)
      (row "concentrate (edges)" [concentrate] "Merge edges with a common end point")
-     (row "edge constraints" [constraint] "Sets whether edges influence rank in dot layouts")
-
-]))
+     (row "edge constraints" [constraint] "Sets whether edges influence rank in dot layouts")]))
 
 
 
@@ -828,11 +843,16 @@
 ;; -------------------------
 ;; Page
 
+(defn get-params []
+  (let [params (.-search (.-location js/window))]
+    (when (not (= "" params))
+        (load-data-from-params (.-search (.-location js/window))))))
 
 
 (defn home-page []
   (find-region)
+  (get-params)
   [:div.page
    [:link {:href "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" :rel "stylesheet"}]
-;   @options
+;   @local-state
    [:div.main [controls disp-opts-state]]])

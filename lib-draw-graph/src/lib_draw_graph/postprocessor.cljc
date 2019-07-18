@@ -87,6 +87,17 @@
        (with-chdn g)))
 
 
+(defn ->graph
+  "turns free clusters with children into a loom graph."
+  [free-clusters]
+  (let [edges (reduce
+               (fn [a [k v]]
+                 (apply conj a (map #(vector k %) v)))
+               []
+               free-clusters)]
+    (apply loom.graph/digraph edges)))
+
+
 ;; Now we need to set up the annealing jobs by reading in the svg
 ;; Since graphviz labels clusters at the top, we'll use the top
 ;; of the uppermost sibling as the top boundary (taking into account
@@ -170,6 +181,7 @@
                       (str->int  (-> opts :pp-cluster-sep) "cluster separation should be an integer"))
         BT? (= (-> opts :rankdir) "BT")
         tasks (into {} (free-clusters-with-children g))
+        task-graph (->graph tasks)
         clstrs (tasks->clusters tasks)
         rects (clusters->boxes z clstrs)
         seps (reduce
@@ -197,7 +209,9 @@
                (-> a
                    (assoc-in [prnt :constraints] constr)
                    (assoc-in [prnt :state] state)
-                   (assoc-in [prnt :boundary-sep] (get seps prnt)))))
+                   (assoc-in [prnt :boundary-sep] (get seps prnt))
+                   ;; for now we set only root clusters to shrink
+                   (assoc-in [prnt :root?] (util/root? task-graph prnt)))))
            {}
            tasks)]
     e))
@@ -205,16 +219,20 @@
 
 
 (defn env->map
-  "Flattens an environment back rectangles"
+  "Flattens an environment back into rectangles."
   [env]
   (reduce
    (fn [a [k v]]
      (let [sep (:boundary-sep v)
            bdry (-> v :state :boundary)
            rect (if sep (g/outer-rect sep bdry) bdry)
-           others (reduce (fn [a' c'] (assoc a' (:name c') c')) {} (-> v :state :objects))]
+           root? (:root? v)
+           others (reduce (fn [a' c']
+                            (assoc a'
+                                   (:name c') c'))
+                          {} (-> v :state :objects))]
        (-> a
-           (assoc k rect)
+           (assoc k (assoc rect :root? root?))
            (merge others))))
    {}
    env))
@@ -222,6 +240,15 @@
 
 (def max-move-factor 50)  ;; max move defined by size of primary annealing dimension / this
 
+
+(defn shrink-bias
+  "Defines a shrink bias on the basis of number of child clusters"
+  [n]
+  (cond
+    (and (< n 4)) 2
+    (and (< n 7)) 3
+    (and (< n 14)) 3
+    :else 4))
 
 
 (defn update-env
@@ -245,8 +272,6 @@
 (defn do-annealing
   [z g opts label-fn]
   (let [env (env z g opts label-fn)
-        ;b (println env)
-        ;b (reduce (fn [a [k v]] (println k (-> :state :boundary) (-> v :state :objects))) {} env)
         rankdir (-> opts :rankdir)
         y-retard (if (or (= "TB" rankdir) (= "BT" rankdir))
                    (str->int (-> opts :pp-anneal-bias) "anneal bias should be an integer") nil)
@@ -258,9 +283,7 @@
                                         (-> opts :pp-clusters))
                [:x :w :y :h])]
     (reduce (fn [a [k v]]
-              ;(println "loop " k (get a k))
               (let [cur (get a k)
-                    ;z (println cur)
                     new-st (anneal/annealing (:state cur)
                                       25000
                                       0
@@ -276,7 +299,9 @@
                                       :max-move (let [bdry (-> cur :state :boundary)]
                                                   (if (or (= "TB" rankdir) (= "BT" rankdir))
                                                     (quot (:w bdry) max-move-factor)
-                                                    (quot (:h bdry) max-move-factor))))]
+                                                    (quot (:h bdry) max-move-factor)))
+                                      :shrink-bias (when (:root? cur)
+                                                     (shrink-bias (count (-> cur :state :objects)))))]
                 (update-env a k new-st)))
             env
             env)))
@@ -356,14 +381,38 @@
                  (partial editor-label-posn env g opts)))
 
 
+(defn viewbox-size
+  "calculates the canvas size from seq of root clusters, svg translation and viewbox.
+  The svg's upper left point is always at 0,0.
+  translation is a 2 element vector in form [tx ty].
+  viewbox is a 2 element vector in form [vbx vby]."
+  [roots [tx ty] [vbx vby]]
+  (let [rects (vals roots)
+        min-x (+ tx (apply min (map :x rects)))
+        max-x (+ tx (apply max (map #(+ (:x %) (:w %)) rects)))
+        min-y (+ ty (apply min (map #(:y %) rects))) ;; negative y axis compensation
+        max-y (+ ty (apply max (map #(+ (:y %) (:h %)) rects)))
+        x-gap (min min-x (- vbx max-x))
+        y-gap (min min-y (- vby max-y))
+        x (+ max-x x-gap)
+        y (+ max-y y-gap)]
+    [x y]))
+
+
 (defn optimize-clusters
   "Anneals free clusters in z & g.
    z is a zipper over the svg and g the underlying graph.
    Returns svg."
   [svg g label-fn opts]
   (let [z (svg->zipper svg)
-        env-out (env->map (do-annealing z g opts label-fn))]
-    (-> (edit-cluster-rects z env-out)
+        env-out (env->map (do-annealing z g opts label-fn))
+        roots (into {} (filter (fn [[k v]] (:root? v)) env-out))
+        canvas (-> z svg/canvas)
+        translation (-> canvas :transform :translate)
+        viewbox (-> canvas :viewbox)
+        [vbx vby] (viewbox-size roots translation viewbox)
+        z' (svg/->zipper (svg/set-canvas z vbx vby))]
+    (-> (edit-cluster-rects z' env-out)
         svg/->zipper
         (edit-cluster-labels g opts env-out)
         svg/->xml)))

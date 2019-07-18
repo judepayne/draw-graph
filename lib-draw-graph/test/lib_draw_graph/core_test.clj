@@ -21,10 +21,10 @@
 (def standard-options
   [:show-roots? false
    :cluster-on "function"
-  ; :color-on "application"
+   ;:color-on "application"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "application&function"
+   :label "application"
    :edge-label "type"
    :shape "rect"
    :nodesep 0.5
@@ -38,7 +38,7 @@
    :url "link"
    :scale 2
    :overlap "false"
-   :concentrate false
+   :concentrate true
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
    :num-cluster-edges "9"
  ;  :elide "0"

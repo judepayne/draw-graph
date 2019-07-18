@@ -22,15 +22,6 @@
   (= sub (select-keys m (keys sub))))
 
 
-(defn parse-num [s]
-  (try
-    (let [n #?(:clj (clojure.edn/read-string s)
-               :cljs (cljs.reader/read-string s))]
-      (if (number? n) n (throw (util/err "Both terms in an inequality filter must be numbers."))))
-    #? (:clj (catch Exception e (throw (util/err "Both terms in an inequality filter must be numbers.")))
-        :cljs (catch js/Error e (throw (util/err "Both terms in an inequality filter must be numbers."))))))
-
-
 (defn find-node
   "Checks if part-node is part of one of the nodes in the graph. Both part-node
   and the nodes in the graph must be in map format. e.g. part-node {:id 12} and
@@ -225,7 +216,7 @@
   [g opts edges]
   (let [ri (get-rank-info g (clstr/cluster-key g))
         ;; look up vector of cluster edges nums or use [2 2] as a default
-        edge-nums (get cluster-edges (parse-num (-> opts :num-cluster-edges)) [2 2])
+        edge-nums (get cluster-edges (util/parse-int (-> opts :num-cluster-edges)) [2 2])
         g' (reduce (fn [acc [c1 c2]]
                      (add-stack acc ri [c1 c2] edge-nums))
                    g

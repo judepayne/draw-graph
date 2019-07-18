@@ -12,6 +12,7 @@
 
 (def ^:const max-move-default 14)         ;; default move amount +/- dim can be changed by
 (def ^:const PEN 1000000)                ;; Penalty cost amount
+(def ^:const shrink-bias-default nil)
 
 
 (def job-env (atom {}))  ;; a global var for an annealing job
@@ -28,13 +29,15 @@
     cost-fn          ;; the cost function
     p-fn             ;; the probability of a move function
     temp-fn          ;; the temperature of the system
-    & {:keys [dims terminate-early? x-retard y-retard max-move]
+    & {:keys [dims terminate-early? x-retard y-retard max-move shrink-bias]
        :or {dims [:x :y :w :h] terminate-early? false
             x-retard nil y-retard nil
-            max-move max-move-default}}]
+            max-move max-move-default
+            shrink-bias shrink-bias-default}}]
    (let [cost (cost-fn constraints initial)
          last-cost (atom cost)]
-     (reset! job-env {:obj-count (count (:objects initial))})
+     (reset! job-env {:obj-count (count (:objects initial))
+                      :shrink-bias shrink-bias})
      (loop [state initial
             cost cost
             k 1]
@@ -117,11 +120,17 @@
   "Varies a random item from state and returns the new state
   after checking that the new state passes constraints."
   [state dims x-retard y-retard max-move]
-  (let [state' (:objects state)
-        item (rand-nth state')
+  (let [r (let [shrink-bias (:shrink-bias @job-env)]
+            (if shrink-bias
+              (rand-int shrink-bias)
+              nil))
+        vary-bdry? (= 0 r)
+        item (if vary-bdry? (:boundary state) (rand-nth (:objects state)))
         next (vary-rect item dims x-retard y-retard max-move)
-        next-state (assoc state :objects (conj (remove #(= item %) state') next))]
-    {:path [:next-state :objects]
+        next-state (if vary-bdry?
+                     (assoc state :boundary next)
+                     (assoc state :objects (conj (remove #(= item %) (:objects state)) next)))]
+    {:path [:next-state (if vary-bdry? :boundary :objects)]
      :name (:name next)
      :next-state next-state}))
 
@@ -133,32 +142,42 @@
 
 (defn ->varied
   "returns the varied item when passed a neighbor-fn output map"
-  [m]
-  (if-let [nm (:name m)]
-    (->> (get-in m (:path m))
-         (find-first (fn [n] (= nm (:name n)))))
-    (get-in m (:path m))))
+  [m path name]
+  (let [item-or-items (get-in m path)]
+    (if (sequential? item-or-items)
+      (find-first (fn [n] (= name (:name n))) item-or-items)
+      item-or-items)))
 
 
 (defn- passes-constraints?
   "Checks that the new (proposed) state item satisfies constraints."
   [constraints state next-state]
-  (let [nm (:name next-state)
-        item (->varied next-state)
-        prev-item (find-first #(= nm (:name %)) (:objects state))
+  (let [path (:path next-state)
+        nm (:name next-state)
+        item (->varied next-state path nm)
+        prev-item (->varied state (rest path) nm)
         sep (:collision constraints)
         bdry (get-in next-state [:next-state :boundary])
-        others (remove #(= (:name %) nm) (:objects state))]
-    (reduce
-     (fn [a [k v]]
-       (and a
-            (case k
-              :grow      (if v (bigger? prev-item item) true)
-              :boundary  (if v (inside? bdry item) true)
-              :collision (if sep (not-any? #(overlaps? sep item %) others) true)
-              :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) v) true))))
-     true
-     constraints)))
+        bdry? (if (= :boundary (second path)) true false)
+        objects (get-in next-state [:next-state :objects])
+        other-objects (remove #(= (:name %) nm) objects)
+        test (reduce
+              (fn [a [k v]]
+                (and a
+                     (case k
+                       :grow      (if v (if bdry?
+                                          (not (bigger? prev-item item))
+                                          (bigger? prev-item item))
+                                      true)
+                       :boundary  (if v (if bdry?
+                                          (every? #(inside? bdry %) objects)
+                                          (inside? bdry item))
+                                      true)
+                       :collision (if (and sep (not bdry?)) (not-any? #(overlaps? sep item %) other-objects) true)
+                       :obstacles (if (and v sep) (not-any? #(overlaps? sep item %) v) true))))
+              true
+              constraints)]
+    test))
 
 
 (defn cost-fn

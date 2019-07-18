@@ -1,0 +1,4 @@
+native-image \
+-H:+ReportUnsupportedElementsAtRuntime \
+-J-Xmx3G -J-Xms3G --no-server \
+-jar target/cmd-draw-graph-0.2.0-standalone.jar

@@ -48,11 +48,15 @@
 
 
 (defn str-pair->xy [pair]
-  #?(:clj (xy. (read-string (first pair))
-               (read-string (second pair)))
+  #?(:clj (xy. (util/parse-float (first pair))
+               (util/parse-float (second pair)))
      :cljs (xy. (cljs.reader/read-string (first pair))
                 (cljs.reader/read-string (second pair)))))
 
+
+(defn str->num [s]
+  #?(:clj (util/parse-float s)
+     :cljs (cljs.reader/read-string s)))               
 
 ;; -----------------
 ;; READING SVG
@@ -108,6 +112,38 @@
    (points-parser s)))
 
 
+(defparser viewbox-parser
+  (str
+   "S = N+
+  <N> = " regex-number)
+  :auto-whitespace whitespace)
+
+
+(defn parse-viewbox [s]
+  (insta/transform
+   {:S (fn [& args] (drop 2 (map str->num args)))}
+   (viewbox-parser s)))
+
+
+(defparser transform-parser
+  (str
+   "S = SCALE ROTATE TRANSLATE
+   SCALE = <'scale('> N+ <')'>
+   ROTATE = <'rotate('> N <')'>
+   TRANSLATE = <'translate('> N+ <')'>
+   <N> = " regex-number)
+  :auto-whitespace whitespace)
+
+
+(defn parse-transform [s]
+  (insta/transform
+   {:SCALE (fn [& args] {:scale (map str->num args)})
+    :ROTATE (fn [arg] {:rotate (str->num arg)})
+    :TRANSLATE (fn [& args] {:translate (map str->num args)})
+    :S (fn [& args] (apply merge args))}
+   (transform-parser s)))
+
+
 (defn polygon->bounding-box
   "Returns the bounding box of the points.
   pts should be a collection of xy's"
@@ -138,6 +174,7 @@
         (assoc bdg :radius radius))))
 
 
+(def svg :xmlns.http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg/svg)
 ;; 11 nexts between two subsequent cluster g's
 (def g :xmlns.http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg/g)
 ;; 2 previous
@@ -220,6 +257,14 @@
     (= content (list cluster))))
 
 
+(defn graph [loc]
+  (= "graph" (:class (:attrs (zip/node loc)))))
+
+
+(defn the-svg [loc]
+  (= svg (:tag (zip/node loc))))
+
+
 (defn all-nodes [loc]
   (= "node" (:class (:attrs (zip/node loc)))))
 
@@ -298,6 +343,26 @@
        (if-let [matcher-result (match-pred loc)]
          (recur (zip/next loc) (conj nodes (zip/node (jump shift loc))))
          (recur (zip/next loc) nodes))))))
+
+
+(defn canvas [zipper]
+  (let [viewbox (:viewBox (:attrs (zip/node zipper)))
+        transform (:transform (:attrs (zip/node (zip/next (zip/next zipper)))))]
+    {:viewbox (parse-viewbox viewbox)
+     :transform (parse-transform transform)}))
+
+
+(defn set-canvas [zipper vbx vby]
+  (zip/root (zip/edit zipper
+                      assoc
+                      :attrs
+                      {:width (str vbx "pt")
+                       :height (str vby "pt")
+                       :viewBox (str "0.00 0.00 " vbx " " vby)})))
+
+
+(defn just-the-node [zipper]
+  (zip/node zipper))
 
 
 (defn cluster->rect [zipper clstr]
