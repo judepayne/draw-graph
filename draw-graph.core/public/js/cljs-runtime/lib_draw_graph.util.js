@@ -41,9 +41,9 @@ return cljs.core.last(maps);
 lib_draw_graph.util.deep_merge.cljs$lang$maxFixedArity = (0);
 
 /** @this {Function} */
-lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq35351){
+lib_draw_graph.util.deep_merge.cljs$lang$applyTo = (function (seq35350){
 var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq35351));
+return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq35350));
 });
 
 /**
@@ -55,9 +55,9 @@ return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq
 lib_draw_graph.util.update_keys = (function lib_draw_graph$util$update_keys(m,update_QMARK_,key_fn){
 var down = (function lib_draw_graph$util$update_keys_$_f(x,p){
 if(cljs.core.map_entry_QMARK_(x)){
-var vec__35365 = x;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35365,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35365,(1),null);
+var vec__35367 = x;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35367,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__35367,(1),null);
 if((v == null)){
 return null;
 } else {
@@ -108,11 +108,11 @@ return n;
 } else {
 throw lib_draw_graph.util.err([cljs.core.str.cljs$core$IFn$_invoke$arity$1(s)," should be a floating point number."].join(''));
 }
-}catch (e35390){if((e35390 instanceof Error)){
-var e = e35390;
+}catch (e35394){if((e35394 instanceof Error)){
+var e = e35394;
 throw lib_draw_graph.util.err([cljs.core.str.cljs$core$IFn$_invoke$arity$1(s)," should be a floating point number."].join(''));
 } else {
-throw e35390;
+throw e35394;
 
 }
 }});
@@ -148,8 +148,8 @@ return cljs.core.empty_QMARK_(lib_draw_graph.util.predecessors_not_self(g,n));
  * Returns the roots from the graph.
  */
 lib_draw_graph.util.roots = (function lib_draw_graph$util$roots(g){
-return cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__35412_SHARP_){
-return lib_draw_graph.util.root_QMARK_(g,p1__35412_SHARP_);
+return cljs.core.filter.cljs$core$IFn$_invoke$arity$2((function (p1__35411_SHARP_){
+return lib_draw_graph.util.root_QMARK_(g,p1__35411_SHARP_);
 }),loom.graph.nodes(g));
 });
 
