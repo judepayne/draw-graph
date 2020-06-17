@@ -2,8 +2,8 @@
       :author "Jude Payne"}
   lib-draw-graph.preprocessor
   (:require [loom.graph                     :as loom.graph]
+            [extra-loom.multigraph          :as extra-loom]
             [loom.alg-generic               :as loom.gen]
-            [loom.alg                       :as loom.alg]
             [loom.attr                      :as loom.attr]
             [lib-draw-graph.clustered       :as clstr]
             [lib-draw-graph.graph           :as graph]
@@ -280,11 +280,11 @@
              (apply loom.graph/remove-nodes g filtered-nodes))]
      (if filter-edges?
        (let [edges-to-check (filter   ;; don't filter out any invis/ scaffolding edges
-                             (fn [[src dst]] (not= (loom.attr/attr g' src dst :style) "invis"))
+                             (fn [edge] (not= (loom.attr/attr g' edge :style) "invis"))
                              (loom.graph/edges g'))
              filtered-edges  (filter
-                              (fn [[src dst]]
-                                (filter-fn (loom.attr/attr g' src dst :meta)))
+                              (fn [edge]
+                                (filter-fn (loom.attr/attr g' edge :meta)))
                               edges-to-check)]
         (apply loom.graph/remove-edges g' filtered-edges))
       g')))

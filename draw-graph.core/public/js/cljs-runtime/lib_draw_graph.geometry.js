@@ -21,9 +21,9 @@ lib_draw_graph.geometry.outside_QMARK_ = cljs.core.complement(lib_draw_graph.geo
  */
 lib_draw_graph.geometry.inner_rect = (function lib_draw_graph$geometry$inner_rect(sep,rect){
 if(typeof sep === 'number'){
-var G__36110 = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"l","l",1395893423),sep,new cljs.core.Keyword(null,"r","r",-471384190),sep,new cljs.core.Keyword(null,"t","t",-1397832519),sep,new cljs.core.Keyword(null,"b","b",1482224470),sep], null);
-var G__36111 = rect;
-return (lib_draw_graph.geometry.inner_rect.cljs$core$IFn$_invoke$arity$2 ? lib_draw_graph.geometry.inner_rect.cljs$core$IFn$_invoke$arity$2(G__36110,G__36111) : lib_draw_graph.geometry.inner_rect.call(null,G__36110,G__36111));
+var G__37256 = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"l","l",1395893423),sep,new cljs.core.Keyword(null,"r","r",-471384190),sep,new cljs.core.Keyword(null,"t","t",-1397832519),sep,new cljs.core.Keyword(null,"b","b",1482224470),sep], null);
+var G__37257 = rect;
+return (lib_draw_graph.geometry.inner_rect.cljs$core$IFn$_invoke$arity$2 ? lib_draw_graph.geometry.inner_rect.cljs$core$IFn$_invoke$arity$2(G__37256,G__37257) : lib_draw_graph.geometry.inner_rect.call(null,G__37256,G__37257));
 } else {
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(rect,new cljs.core.Keyword(null,"x","x",2099068185),(new cljs.core.Keyword(null,"x","x",2099068185).cljs$core$IFn$_invoke$arity$1(rect) + new cljs.core.Keyword(null,"l","l",1395893423).cljs$core$IFn$_invoke$arity$1(sep)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"y","y",-1757859776),(new cljs.core.Keyword(null,"y","y",-1757859776).cljs$core$IFn$_invoke$arity$1(rect) + new cljs.core.Keyword(null,"t","t",-1397832519).cljs$core$IFn$_invoke$arity$1(sep)),new cljs.core.Keyword(null,"w","w",354169001),((new cljs.core.Keyword(null,"w","w",354169001).cljs$core$IFn$_invoke$arity$1(rect) - new cljs.core.Keyword(null,"r","r",-471384190).cljs$core$IFn$_invoke$arity$1(sep)) - new cljs.core.Keyword(null,"l","l",1395893423).cljs$core$IFn$_invoke$arity$1(sep)),new cljs.core.Keyword(null,"h","h",1109658740),((new cljs.core.Keyword(null,"h","h",1109658740).cljs$core$IFn$_invoke$arity$1(rect) - new cljs.core.Keyword(null,"b","b",1482224470).cljs$core$IFn$_invoke$arity$1(sep)) - new cljs.core.Keyword(null,"t","t",-1397832519).cljs$core$IFn$_invoke$arity$1(sep))], 0));
 }
@@ -35,9 +35,9 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(rect,new cljs.core.K
  */
 lib_draw_graph.geometry.outer_rect = (function lib_draw_graph$geometry$outer_rect(sep,rect){
 if(typeof sep === 'number'){
-var G__36115 = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"l","l",1395893423),sep,new cljs.core.Keyword(null,"r","r",-471384190),sep,new cljs.core.Keyword(null,"t","t",-1397832519),sep,new cljs.core.Keyword(null,"b","b",1482224470),sep], null);
-var G__36116 = rect;
-return (lib_draw_graph.geometry.outer_rect.cljs$core$IFn$_invoke$arity$2 ? lib_draw_graph.geometry.outer_rect.cljs$core$IFn$_invoke$arity$2(G__36115,G__36116) : lib_draw_graph.geometry.outer_rect.call(null,G__36115,G__36116));
+var G__37264 = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"l","l",1395893423),sep,new cljs.core.Keyword(null,"r","r",-471384190),sep,new cljs.core.Keyword(null,"t","t",-1397832519),sep,new cljs.core.Keyword(null,"b","b",1482224470),sep], null);
+var G__37265 = rect;
+return (lib_draw_graph.geometry.outer_rect.cljs$core$IFn$_invoke$arity$2 ? lib_draw_graph.geometry.outer_rect.cljs$core$IFn$_invoke$arity$2(G__37264,G__37265) : lib_draw_graph.geometry.outer_rect.call(null,G__37264,G__37265));
 } else {
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$variadic(rect,new cljs.core.Keyword(null,"x","x",2099068185),(new cljs.core.Keyword(null,"x","x",2099068185).cljs$core$IFn$_invoke$arity$1(rect) - new cljs.core.Keyword(null,"l","l",1395893423).cljs$core$IFn$_invoke$arity$1(sep)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.Keyword(null,"y","y",-1757859776),(new cljs.core.Keyword(null,"y","y",-1757859776).cljs$core$IFn$_invoke$arity$1(rect) - new cljs.core.Keyword(null,"t","t",-1397832519).cljs$core$IFn$_invoke$arity$1(sep)),new cljs.core.Keyword(null,"w","w",354169001),((new cljs.core.Keyword(null,"w","w",354169001).cljs$core$IFn$_invoke$arity$1(rect) + new cljs.core.Keyword(null,"r","r",-471384190).cljs$core$IFn$_invoke$arity$1(sep)) + new cljs.core.Keyword(null,"l","l",1395893423).cljs$core$IFn$_invoke$arity$1(sep)),new cljs.core.Keyword(null,"h","h",1109658740),((new cljs.core.Keyword(null,"h","h",1109658740).cljs$core$IFn$_invoke$arity$1(rect) + new cljs.core.Keyword(null,"b","b",1482224470).cljs$core$IFn$_invoke$arity$1(sep)) + new cljs.core.Keyword(null,"t","t",-1397832519).cljs$core$IFn$_invoke$arity$1(sep))], 0));
 }

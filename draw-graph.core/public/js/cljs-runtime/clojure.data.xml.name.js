@@ -16,13 +16,13 @@ clojure.data.xml.name.decode_uri = clojure.data.xml.js.name.decode_uri;
 
 cljs.core.alter_meta_BANG_(new cljs.core.Var(function(){return clojure.data.xml.name.decode_uri;},new cljs.core.Symbol("clojure.data.xml.name","decode-uri","clojure.data.xml.name/decode-uri",-1422284784,null),new cljs.core.PersistentArrayMap(null, 8, [new cljs.core.Keyword(null,"file","file",-1269645878),"clojure/data/xml/name.cljc",new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Symbol(null,"clojure.data.xml.name","clojure.data.xml.name",1709632289,null),new cljs.core.Keyword(null,"doc","doc",1913296891),null,new cljs.core.Keyword(null,"line","line",212345235),23,new cljs.core.Keyword(null,"column","column",2078222095),1,new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol(null,"decode-uri","decode-uri",1921734364,null),new cljs.core.Keyword(null,"test","test",577538877),(cljs.core.truth_(clojure.data.xml.name.decode_uri)?clojure.data.xml.name.decode_uri.cljs$lang$test:null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.List.EMPTY], null)),cljs.core.constantly(cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(cljs.core.meta(new cljs.core.Var(function(){return clojure.data.xml.js.name.decode_uri;},new cljs.core.Symbol("clojure.data.xml.js.name","decode-uri","clojure.data.xml.js.name/decode-uri",1069441439,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"clojure.data.xml.js.name","clojure.data.xml.js.name",-527694126,null),new cljs.core.Symbol(null,"decode-uri","decode-uri",1921734364,null),"clojure/data/xml/js/name.cljs",17,1,8,8,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"ns","ns",2082130287,null)], null)),null,(cljs.core.truth_(clojure.data.xml.js.name.decode_uri)?clojure.data.xml.js.name.decode_uri.cljs$lang$test:null)]))),new cljs.core.Keyword(null,"wrapped-by","wrapped-by",1051044074),new cljs.core.Var(function(){return clojure.data.xml.name.decode_uri;},new cljs.core.Symbol("clojure.data.xml.name","decode-uri","clojure.data.xml.name/decode-uri",-1422284784,null),new cljs.core.PersistentArrayMap(null, 8, [new cljs.core.Keyword(null,"file","file",-1269645878),"clojure/data/xml/name.cljc",new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Symbol(null,"clojure.data.xml.name","clojure.data.xml.name",1709632289,null),new cljs.core.Keyword(null,"doc","doc",1913296891),null,new cljs.core.Keyword(null,"line","line",212345235),23,new cljs.core.Keyword(null,"column","column",2078222095),1,new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Symbol(null,"decode-uri","decode-uri",1921734364,null),new cljs.core.Keyword(null,"test","test",577538877),(cljs.core.truth_(clojure.data.xml.name.decode_uri)?clojure.data.xml.name.decode_uri.cljs$lang$test:null),new cljs.core.Keyword(null,"arglists","arglists",1661989754),cljs.core.List.EMPTY], null)))));
 clojure.data.xml.name.uri_symbol = (function clojure$data$xml$name$uri_symbol(uri){
-return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1((function (){var G__50682 = ["xmlns.",cljs.core.str.cljs$core$IFn$_invoke$arity$1(uri)].join('');
-return (clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1(G__50682) : clojure.data.xml.name.encode_uri.call(null,G__50682));
+return cljs.core.symbol.cljs$core$IFn$_invoke$arity$1((function (){var G__54799 = ["xmlns.",cljs.core.str.cljs$core$IFn$_invoke$arity$1(uri)].join('');
+return (clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1(G__54799) : clojure.data.xml.name.encode_uri.call(null,G__54799));
 })());
 });
 clojure.data.xml.name.symbol_uri = (function clojure$data$xml$name$symbol_uri(ss){
-var du = (function (){var G__50687 = cljs.core.str.cljs$core$IFn$_invoke$arity$1(ss);
-return (clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1(G__50687) : clojure.data.xml.name.decode_uri.call(null,G__50687));
+var du = (function (){var G__54800 = cljs.core.str.cljs$core$IFn$_invoke$arity$1(ss);
+return (clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1(G__54800) : clojure.data.xml.name.decode_uri.call(null,G__54800));
 })();
 if(cljs.core.truth_(du.startsWith("xmlns."))){
 return cljs.core.subs.cljs$core$IFn$_invoke$arity$2(du,(6));
@@ -43,8 +43,8 @@ clojure.data.xml.name.qname_local = (function clojure$data$xml$name$qname_local(
 return clojure.data.xml.protocols.qname_local(v);
 });
 clojure.data.xml.name.qname = (function clojure$data$xml$name$qname(var_args){
-var G__50693 = arguments.length;
-switch (G__50693) {
+var G__54803 = arguments.length;
+switch (G__54803) {
 case 1:
 return clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -63,21 +63,21 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 });
 
-clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$1 = (function (local){
+(clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$1 = (function (local){
 return clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2("",local);
-});
+}));
 
-clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2 = (function (uri,local){
-return cljs.core.keyword.cljs$core$IFn$_invoke$arity$2(((clojure.string.blank_QMARK_(uri))?null:(function (){var G__50694 = ["xmlns.",cljs.core.str.cljs$core$IFn$_invoke$arity$1(uri)].join('');
-return (clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1(G__50694) : clojure.data.xml.name.encode_uri.call(null,G__50694));
+(clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2 = (function (uri,local){
+return cljs.core.keyword.cljs$core$IFn$_invoke$arity$2(((clojure.string.blank_QMARK_(uri))?null:(function (){var G__54804 = ["xmlns.",cljs.core.str.cljs$core$IFn$_invoke$arity$1(uri)].join('');
+return (clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.encode_uri.cljs$core$IFn$_invoke$arity$1(G__54804) : clojure.data.xml.name.encode_uri.call(null,G__54804));
 })()),local);
-});
+}));
 
-clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$3 = (function (uri,local,prefix){
+(clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$3 = (function (uri,local,prefix){
 return clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2(uri,local);
-});
+}));
 
-clojure.data.xml.name.qname.cljs$lang$maxFixedArity = 3;
+(clojure.data.xml.name.qname.cljs$lang$maxFixedArity = 3);
 
 clojure.data.xml.name.namespaced_QMARK_ = (function clojure$data$xml$name$namespaced_QMARK_(qn){
 return (!(clojure.string.blank_QMARK_(clojure.data.xml.name.qname_uri(qn))));
@@ -96,21 +96,21 @@ return cljs.core.str.cljs$core$IFn$_invoke$arity$1(ns);
 });
 clojure.data.xml.name.xmlns_uri = "http://www.w3.org/2000/xmlns/";
 clojure.data.xml.name.xml_uri = "http://www.w3.org/XML/1998/namespace";
-cljs.core.Keyword.prototype.clojure$data$xml$protocols$AsQName$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.Keyword.prototype.clojure$data$xml$protocols$AsQName$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.Keyword.prototype.clojure$data$xml$protocols$AsQName$qname_local$arity$1 = (function (kw){
+(cljs.core.Keyword.prototype.clojure$data$xml$protocols$AsQName$qname_local$arity$1 = (function (kw){
 var kw__$1 = this;
 return cljs.core.name(kw__$1);
-});
+}));
 
-cljs.core.Keyword.prototype.clojure$data$xml$protocols$AsQName$qname_uri$arity$1 = (function (kw){
+(cljs.core.Keyword.prototype.clojure$data$xml$protocols$AsQName$qname_uri$arity$1 = (function (kw){
 var kw__$1 = this;
-var temp__5718__auto__ = cljs.core.namespace(kw__$1);
-if(cljs.core.truth_(temp__5718__auto__)){
-var ns = temp__5718__auto__;
+var temp__5733__auto__ = cljs.core.namespace(kw__$1);
+if(cljs.core.truth_(temp__5733__auto__)){
+var ns = temp__5733__auto__;
 if(cljs.core.truth_(ns.startsWith("xmlns."))){
-var G__50708 = cljs.core.subs.cljs$core$IFn$_invoke$arity$2(ns,(6));
-return (clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1(G__50708) : clojure.data.xml.name.decode_uri.call(null,G__50708));
+var G__54812 = cljs.core.subs.cljs$core$IFn$_invoke$arity$2(ns,(6));
+return (clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1 ? clojure.data.xml.name.decode_uri.cljs$core$IFn$_invoke$arity$1(G__54812) : clojure.data.xml.name.decode_uri.call(null,G__54812));
 } else {
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2("xmlns",ns)){
 return clojure.data.xml.name.xmlns_uri;
@@ -121,7 +121,7 @@ throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Keyword ns is not an xmln
 } else {
 return "";
 }
-});
+}));
 clojure.data.xml.name.as_qname = (function clojure$data$xml$name$as_qname(n){
 return clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2(clojure.data.xml.name.qname_uri(n),clojure.data.xml.name.qname_local(n));
 });
@@ -129,7 +129,7 @@ return clojure.data.xml.name.qname.cljs$core$IFn$_invoke$arity$2(clojure.data.xm
  * Dummy file name for :require'ing xmlns uri
  */
 clojure.data.xml.name.uri_file = (function clojure$data$xml$name$uri_file(uri){
-return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(clojure.string.replace(cljs.core.name(clojure.data.xml.name.uri_symbol(uri)),".","/")),".cljc"].join('');
+return [clojure.string.replace(cljs.core.name(clojure.data.xml.name.uri_symbol(uri)),".","/"),".cljc"].join('');
 });
 /**
  * Shell command to create a dummy file for xmlns. Execute from a source root.
@@ -180,45 +180,45 @@ return null;
 clojure.data.xml.name.separate_xmlns = (function clojure$data$xml$name$separate_xmlns(attrs,cont){
 var attrs_STAR_ = cljs.core.transient$(cljs.core.PersistentArrayMap.EMPTY);
 var xmlns_STAR_ = cljs.core.transient$(cljs.core.PersistentArrayMap.EMPTY);
-var G__50740 = cljs.core.keys(attrs);
-var vec__50746 = G__50740;
-var qn = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50746,(0),null);
-var attrs_SINGLEQUOTE_ = vec__50746;
+var G__54826 = cljs.core.keys(attrs);
+var vec__54827 = G__54826;
+var qn = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54827,(0),null);
+var attrs_SINGLEQUOTE_ = vec__54827;
 var attrs_STAR___$1 = attrs_STAR_;
 var xmlns_STAR___$1 = xmlns_STAR_;
-var G__50740__$1 = G__50740;
+var G__54826__$1 = G__54826;
 while(true){
 var attrs_STAR___$2 = attrs_STAR___$1;
 var xmlns_STAR___$2 = xmlns_STAR___$1;
-var vec__50760 = G__50740__$1;
-var qn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__50760,(0),null);
-var attrs_SINGLEQUOTE___$1 = vec__50760;
+var vec__54836 = G__54826__$1;
+var qn__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__54836,(0),null);
+var attrs_SINGLEQUOTE___$1 = vec__54836;
 if(cljs.core.seq(attrs_SINGLEQUOTE___$1)){
 var val = cljs.core.get.cljs$core$IFn$_invoke$arity$2(attrs,qn__$1);
 if(clojure.data.xml.name.xmlns_attr_QMARK_(qn__$1)){
 var prefix = clojure.data.xml.name.xmlns_attr_prefix(qn__$1);
 clojure.data.xml.name.legal_xmlns_binding_BANG_(prefix,val);
 
-var G__50835 = attrs_STAR___$2;
-var G__50836 = cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(xmlns_STAR___$2,prefix,val);
-var G__50837 = cljs.core.next(attrs_SINGLEQUOTE___$1);
-attrs_STAR___$1 = G__50835;
-xmlns_STAR___$1 = G__50836;
-G__50740__$1 = G__50837;
+var G__54884 = attrs_STAR___$2;
+var G__54885 = cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(xmlns_STAR___$2,prefix,val);
+var G__54886 = cljs.core.next(attrs_SINGLEQUOTE___$1);
+attrs_STAR___$1 = G__54884;
+xmlns_STAR___$1 = G__54885;
+G__54826__$1 = G__54886;
 continue;
 } else {
-var G__50838 = cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(attrs_STAR___$2,qn__$1,val);
-var G__50839 = xmlns_STAR___$2;
-var G__50840 = cljs.core.next(attrs_SINGLEQUOTE___$1);
-attrs_STAR___$1 = G__50838;
-xmlns_STAR___$1 = G__50839;
-G__50740__$1 = G__50840;
+var G__54887 = cljs.core.assoc_BANG_.cljs$core$IFn$_invoke$arity$3(attrs_STAR___$2,qn__$1,val);
+var G__54888 = xmlns_STAR___$2;
+var G__54889 = cljs.core.next(attrs_SINGLEQUOTE___$1);
+attrs_STAR___$1 = G__54887;
+xmlns_STAR___$1 = G__54888;
+G__54826__$1 = G__54889;
 continue;
 }
 } else {
-var G__50769 = cljs.core.persistent_BANG_(attrs_STAR___$2);
-var G__50770 = cljs.core.persistent_BANG_(xmlns_STAR___$2);
-return (cont.cljs$core$IFn$_invoke$arity$2 ? cont.cljs$core$IFn$_invoke$arity$2(G__50769,G__50770) : cont.call(null,G__50769,G__50770));
+var G__54839 = cljs.core.persistent_BANG_(attrs_STAR___$2);
+var G__54840 = cljs.core.persistent_BANG_(xmlns_STAR___$2);
+return (cont.cljs$core$IFn$_invoke$arity$2 ? cont.cljs$core$IFn$_invoke$arity$2(G__54839,G__54840) : cont.call(null,G__54839,G__54840));
 }
 break;
 }
@@ -229,8 +229,8 @@ clojure.data.xml.name.prefix_alphabet = cljs.core.apply.cljs$core$IFn$_invoke$ar
  * Zero-arity can only be called, when *gen-prefix-counter* is bound and will increment it.
  */
 clojure.data.xml.name.gen_prefix = (function clojure$data$xml$name$gen_prefix(var_args){
-var G__50785 = arguments.length;
-switch (G__50785) {
+var G__54844 = arguments.length;
+switch (G__54844) {
 case 0:
 return clojure.data.xml.name.gen_prefix.cljs$core$IFn$_invoke$arity$0();
 
@@ -245,19 +245,19 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 });
 
-clojure.data.xml.name.gen_prefix.cljs$core$IFn$_invoke$arity$0 = (function (){
+(clojure.data.xml.name.gen_prefix.cljs$core$IFn$_invoke$arity$0 = (function (){
 var c = clojure.data.xml.name._STAR_gen_prefix_counter_STAR_;
 if((void 0 === c)){
 throw cljs.core.ex_info.cljs$core$IFn$_invoke$arity$2("Not bound: *gen-prefix-counter*",new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"v","v",21465059),new cljs.core.Var(function(){return clojure.data.xml.name._STAR_gen_prefix_counter_STAR_;},new cljs.core.Symbol("clojure.data.xml.name","*gen-prefix-counter*","clojure.data.xml.name/*gen-prefix-counter*",499226926,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"dynamic","dynamic",704819571),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"clojure.data.xml.name","clojure.data.xml.name",1709632289,null),new cljs.core.Symbol(null,"*gen-prefix-counter*","*gen-prefix-counter*",1689494762,null),"clojure/data/xml/name.cljc",23,1,true,188,190,cljs.core.List.EMPTY,"Thread local counter for a single document",(cljs.core.truth_(clojure.data.xml.name._STAR_gen_prefix_counter_STAR_)?clojure.data.xml.name._STAR_gen_prefix_counter_STAR_.cljs$lang$test:null)]))], null));
 } else {
 }
 
-clojure.data.xml.name._STAR_gen_prefix_counter_STAR_ = (c + (1));
+(clojure.data.xml.name._STAR_gen_prefix_counter_STAR_ = (c + (1)));
 
 return clojure.data.xml.name.gen_prefix.cljs$core$IFn$_invoke$arity$1(c);
-});
+}));
 
-clojure.data.xml.name.gen_prefix.cljs$core$IFn$_invoke$arity$1 = (function (n){
+(clojure.data.xml.name.gen_prefix.cljs$core$IFn$_invoke$arity$1 = (function (n){
 var cnt = clojure.data.xml.name.prefix_alphabet.length;
 var sb = (new goog.string.StringBuffer());
 var n_STAR_ = n;
@@ -267,17 +267,17 @@ var n_STAR__STAR_ = cljs.core.quot(n_STAR_,cnt);
 sb.append((clojure.data.xml.name.prefix_alphabet[ch]));
 
 if((n_STAR__STAR_ > (0))){
-var G__50850 = n_STAR__STAR_;
-n_STAR_ = G__50850;
+var G__54893 = n_STAR__STAR_;
+n_STAR_ = G__54893;
 continue;
 } else {
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(sb);
 }
 break;
 }
-});
+}));
 
-clojure.data.xml.name.gen_prefix.cljs$lang$maxFixedArity = 1;
+(clojure.data.xml.name.gen_prefix.cljs$lang$maxFixedArity = 1);
 
 
 //# sourceMappingURL=clojure.data.xml.name.js.map

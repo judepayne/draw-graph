@@ -29,8 +29,8 @@ return cljs.core.native_satisfies_QMARK_(cats.protocols.Context,v);
  *   is returned as is without any inference operation.
  */
 cats.context.infer = (function cats$context$infer(var_args){
-var G__38990 = arguments.length;
-switch (G__38990) {
+var G__43665 = arguments.length;
+switch (G__43665) {
 case 0:
 return cats.context.infer.cljs$core$IFn$_invoke$arity$0();
 
@@ -45,16 +45,16 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 });
 
-cats.context.infer.cljs$core$IFn$_invoke$arity$0 = (function (){
+(cats.context.infer.cljs$core$IFn$_invoke$arity$0 = (function (){
 if((cats.context._STAR_context_STAR_ == null)){
 cats.context.throw_illegal_argument("No context is set.");
 } else {
 }
 
 return cats.context._STAR_context_STAR_;
-});
+}));
 
-cats.context.infer.cljs$core$IFn$_invoke$arity$1 = (function (v){
+(cats.context.infer.cljs$core$IFn$_invoke$arity$1 = (function (v){
 if((!((cats.context._STAR_context_STAR_ == null)))){
 return cats.context._STAR_context_STAR_;
 } else {
@@ -65,44 +65,44 @@ return cats.context.throw_illegal_argument(["No context is set and it can not be
 
 }
 }
-});
+}));
 
-cats.context.infer.cljs$lang$maxFixedArity = 1;
+(cats.context.infer.cljs$lang$maxFixedArity = 1);
 
 /**
  * Deprecated alias to `infer`.
  */
 cats.context.get_current = (function cats$context$get_current(var_args){
-var args__4736__auto__ = [];
-var len__4730__auto___38998 = arguments.length;
-var i__4731__auto___38999 = (0);
+var args__4795__auto__ = [];
+var len__4789__auto___43669 = arguments.length;
+var i__4790__auto___43670 = (0);
 while(true){
-if((i__4731__auto___38999 < len__4730__auto___38998)){
-args__4736__auto__.push((arguments[i__4731__auto___38999]));
+if((i__4790__auto___43670 < len__4789__auto___43669)){
+args__4795__auto__.push((arguments[i__4790__auto___43670]));
 
-var G__39000 = (i__4731__auto___38999 + (1));
-i__4731__auto___38999 = G__39000;
+var G__43671 = (i__4790__auto___43670 + (1));
+i__4790__auto___43670 = G__43671;
 continue;
 } else {
 }
 break;
 }
 
-var argseq__4737__auto__ = ((((0) < args__4736__auto__.length))?(new cljs.core.IndexedSeq(args__4736__auto__.slice((0)),(0),null)):null);
-return cats.context.get_current.cljs$core$IFn$_invoke$arity$variadic(argseq__4737__auto__);
+var argseq__4796__auto__ = ((((0) < args__4795__auto__.length))?(new cljs.core.IndexedSeq(args__4795__auto__.slice((0)),(0),null)):null);
+return cats.context.get_current.cljs$core$IFn$_invoke$arity$variadic(argseq__4796__auto__);
 });
 
-cats.context.get_current.cljs$core$IFn$_invoke$arity$variadic = (function (args){
+(cats.context.get_current.cljs$core$IFn$_invoke$arity$variadic = (function (args){
 return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cats.context.infer,args);
-});
+}));
 
-cats.context.get_current.cljs$lang$maxFixedArity = (0);
+(cats.context.get_current.cljs$lang$maxFixedArity = (0));
 
 /** @this {Function} */
-cats.context.get_current.cljs$lang$applyTo = (function (seq38996){
-var self__4718__auto__ = this;
-return self__4718__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq38996));
-});
+(cats.context.get_current.cljs$lang$applyTo = (function (seq43667){
+var self__4777__auto__ = this;
+return self__4777__auto__.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq(seq43667));
+}));
 
 
 //# sourceMappingURL=cats.context.js.map

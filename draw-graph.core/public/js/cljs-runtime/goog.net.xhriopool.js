@@ -2,12 +2,12 @@ goog.provide("goog.net.XhrIoPool");
 goog.require("goog.net.XhrIo");
 goog.require("goog.structs.PriorityPool");
 /**
- @constructor
- @extends {goog.structs.PriorityPool}
- @param {goog.structs.Map=} opt_headers
- @param {number=} opt_minCount
- @param {number=} opt_maxCount
- @param {boolean=} opt_withCredentials
+ * @constructor
+ * @extends {goog.structs.PriorityPool}
+ * @param {goog.structs.Map=} opt_headers
+ * @param {number=} opt_minCount
+ * @param {number=} opt_maxCount
+ * @param {boolean=} opt_withCredentials
  */
 goog.net.XhrIoPool = function(opt_headers, opt_minCount, opt_maxCount, opt_withCredentials) {
   /** @private @type {(goog.structs.Map|undefined)} */ this.headers_ = opt_headers;
@@ -16,8 +16,8 @@ goog.net.XhrIoPool = function(opt_headers, opt_minCount, opt_maxCount, opt_withC
 };
 goog.inherits(goog.net.XhrIoPool, goog.structs.PriorityPool);
 /**
- @return {!goog.net.XhrIo}
- @override
+ * @return {!goog.net.XhrIo}
+ * @override
  */
 goog.net.XhrIoPool.prototype.createObject = function() {
   var xhrIo = new goog.net.XhrIo;
@@ -33,9 +33,9 @@ goog.net.XhrIoPool.prototype.createObject = function() {
   return xhrIo;
 };
 /**
- @param {Object} obj
- @return {boolean}
- @override
+ * @param {Object} obj
+ * @return {boolean}
+ * @override
  */
 goog.net.XhrIoPool.prototype.objectCanBeReused = function(obj) {
   var xhr = /** @type {goog.net.XhrIo} */ (obj);

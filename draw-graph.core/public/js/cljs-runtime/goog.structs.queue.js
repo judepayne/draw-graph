@@ -1,8 +1,8 @@
 goog.provide("goog.structs.Queue");
 goog.require("goog.array");
 /**
- @constructor
- @template T
+ * @constructor
+ * @template T
  */
 goog.structs.Queue = function() {
   /** @private @type {!Array<T>} */ this.front_ = [];
@@ -16,33 +16,33 @@ goog.structs.Queue = function() {
   }
 };
 /**
- @param {T} element
+ * @param {T} element
  */
 goog.structs.Queue.prototype.enqueue = function(element) {
   this.back_.push(element);
 };
 /**
- @return {T}
+ * @return {T}
  */
 goog.structs.Queue.prototype.dequeue = function() {
   this.maybeFlip_();
   return this.front_.pop();
 };
 /**
- @return {T}
+ * @return {T}
  */
 goog.structs.Queue.prototype.peek = function() {
   this.maybeFlip_();
   return goog.array.peek(this.front_);
 };
 /**
- @return {number}
+ * @return {number}
  */
 goog.structs.Queue.prototype.getCount = function() {
   return this.front_.length + this.back_.length;
 };
 /**
- @return {boolean}
+ * @return {boolean}
  */
 goog.structs.Queue.prototype.isEmpty = function() {
   return goog.array.isEmpty(this.front_) && goog.array.isEmpty(this.back_);
@@ -52,21 +52,21 @@ goog.structs.Queue.prototype.clear = function() {
   this.back_ = [];
 };
 /**
- @param {T} obj
- @return {boolean}
+ * @param {T} obj
+ * @return {boolean}
  */
 goog.structs.Queue.prototype.contains = function(obj) {
   return goog.array.contains(this.front_, obj) || goog.array.contains(this.back_, obj);
 };
 /**
- @param {T} obj
- @return {boolean}
+ * @param {T} obj
+ * @return {boolean}
  */
 goog.structs.Queue.prototype.remove = function(obj) {
   return goog.array.removeLast(this.front_, obj) || goog.array.remove(this.back_, obj);
 };
 /**
- @return {!Array<T>}
+ * @return {!Array<T>}
  */
 goog.structs.Queue.prototype.getValues = function() {
   var res = [];

@@ -18,7 +18,7 @@ return f;
  * Sets the root (fn [data-map-delay]) called on invariant violations.
  */
 taoensso.truss.set_error_fn_BANG_ = (function taoensso$truss$set_error_fn_BANG_(f){
-return taoensso.truss.impl._STAR_error_fn_STAR_ = taoensso.truss._error_fn(f);
+return (taoensso.truss.impl._STAR_error_fn_STAR_ = taoensso.truss._error_fn(f));
 });
 
 //# sourceMappingURL=taoensso.truss.js.map

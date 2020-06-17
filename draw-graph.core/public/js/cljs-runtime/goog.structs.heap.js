@@ -3,9 +3,10 @@ goog.require("goog.array");
 goog.require("goog.object");
 goog.require("goog.structs.Node");
 /**
- @constructor
- @param {(goog.structs.Heap|Object)=} opt_heap
- @template K,V
+ * @constructor
+ * @param {(goog.structs.Heap|Object)=} opt_heap
+ * @template K
+ * @template V
  */
 goog.structs.Heap = function(opt_heap) {
   /** @private @type {Array<goog.structs.Node>} */ this.nodes_ = [];
@@ -14,8 +15,8 @@ goog.structs.Heap = function(opt_heap) {
   }
 };
 /**
- @param {K} key
- @param {V} value
+ * @param {K} key
+ * @param {V} value
  */
 goog.structs.Heap.prototype.insert = function(key, value) {
   var node = new goog.structs.Node(key, value);
@@ -24,7 +25,7 @@ goog.structs.Heap.prototype.insert = function(key, value) {
   this.moveUp_(nodes.length - 1);
 };
 /**
- @param {(goog.structs.Heap|Object)} heap
+ * @param {(goog.structs.Heap|Object)} heap
  */
 goog.structs.Heap.prototype.insertAll = function(heap) {
   var keys, values;
@@ -47,7 +48,7 @@ goog.structs.Heap.prototype.insertAll = function(heap) {
   }
 };
 /**
- @return {V}
+ * @return {V}
  */
 goog.structs.Heap.prototype.remove = function() {
   var nodes = this.nodes_;
@@ -66,7 +67,7 @@ goog.structs.Heap.prototype.remove = function() {
   return rootNode.getValue();
 };
 /**
- @return {V}
+ * @return {V}
  */
 goog.structs.Heap.prototype.peek = function() {
   var nodes = this.nodes_;
@@ -76,14 +77,14 @@ goog.structs.Heap.prototype.peek = function() {
   return nodes[0].getValue();
 };
 /**
- @return {K}
+ * @return {K}
  */
 goog.structs.Heap.prototype.peekKey = function() {
   return this.nodes_[0] && this.nodes_[0].getKey();
 };
 /**
- @private
- @param {number} index
+ * @private
+ * @param {number} index
  */
 goog.structs.Heap.prototype.moveDown_ = function(index) {
   var nodes = this.nodes_;
@@ -102,8 +103,8 @@ goog.structs.Heap.prototype.moveDown_ = function(index) {
   nodes[index] = node;
 };
 /**
- @private
- @param {number} index
+ * @private
+ * @param {number} index
  */
 goog.structs.Heap.prototype.moveUp_ = function(index) {
   var nodes = this.nodes_;
@@ -120,31 +121,31 @@ goog.structs.Heap.prototype.moveUp_ = function(index) {
   nodes[index] = node;
 };
 /**
- @private
- @param {number} index
- @return {number}
+ * @private
+ * @param {number} index
+ * @return {number}
  */
 goog.structs.Heap.prototype.getLeftChildIndex_ = function(index) {
   return index * 2 + 1;
 };
 /**
- @private
- @param {number} index
- @return {number}
+ * @private
+ * @param {number} index
+ * @return {number}
  */
 goog.structs.Heap.prototype.getRightChildIndex_ = function(index) {
   return index * 2 + 2;
 };
 /**
- @private
- @param {number} index
- @return {number}
+ * @private
+ * @param {number} index
+ * @return {number}
  */
 goog.structs.Heap.prototype.getParentIndex_ = function(index) {
   return index - 1 >> 1;
 };
 /**
- @return {!Array<V>}
+ * @return {!Array<V>}
  */
 goog.structs.Heap.prototype.getValues = function() {
   var nodes = this.nodes_;
@@ -156,7 +157,7 @@ goog.structs.Heap.prototype.getValues = function() {
   return rv;
 };
 /**
- @return {!Array<K>}
+ * @return {!Array<K>}
  */
 goog.structs.Heap.prototype.getKeys = function() {
   var nodes = this.nodes_;
@@ -168,8 +169,8 @@ goog.structs.Heap.prototype.getKeys = function() {
   return rv;
 };
 /**
- @param {V} val
- @return {boolean}
+ * @param {V} val
+ * @return {boolean}
  */
 goog.structs.Heap.prototype.containsValue = function(val) {
   return goog.array.some(this.nodes_, function(node) {
@@ -177,8 +178,8 @@ goog.structs.Heap.prototype.containsValue = function(val) {
   });
 };
 /**
- @param {K} key
- @return {boolean}
+ * @param {K} key
+ * @return {boolean}
  */
 goog.structs.Heap.prototype.containsKey = function(key) {
   return goog.array.some(this.nodes_, function(node) {
@@ -186,19 +187,19 @@ goog.structs.Heap.prototype.containsKey = function(key) {
   });
 };
 /**
- @return {!goog.structs.Heap}
+ * @return {!goog.structs.Heap}
  */
 goog.structs.Heap.prototype.clone = function() {
   return new goog.structs.Heap(this);
 };
 /**
- @return {number}
+ * @return {number}
  */
 goog.structs.Heap.prototype.getCount = function() {
   return this.nodes_.length;
 };
 /**
- @return {boolean}
+ * @return {boolean}
  */
 goog.structs.Heap.prototype.isEmpty = function() {
   return goog.array.isEmpty(this.nodes_);

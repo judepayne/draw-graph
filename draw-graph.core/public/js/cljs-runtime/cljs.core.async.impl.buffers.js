@@ -7,8 +7,8 @@ while(true){
 if((cnt < len)){
 (dest[(dest_start + cnt)] = (src[(src_start + cnt)]));
 
-var G__27899 = (cnt + (1));
-cnt = G__27899;
+var G__31391 = (cnt + (1));
+cnt = G__31391;
 continue;
 } else {
 return null;
@@ -26,7 +26,7 @@ this.tail = tail;
 this.length = length;
 this.arr = arr;
 });
-cljs.core.async.impl.buffers.RingBuffer.prototype.pop = (function (){
+(cljs.core.async.impl.buffers.RingBuffer.prototype.pop = (function (){
 var self__ = this;
 var _ = this;
 if((self__.length === (0))){
@@ -35,27 +35,27 @@ return null;
 var x = (self__.arr[self__.tail]);
 (self__.arr[self__.tail] = null);
 
-self__.tail = ((self__.tail + (1)) % self__.arr.length);
+(self__.tail = ((self__.tail + (1)) % self__.arr.length));
 
-self__.length = (self__.length - (1));
+(self__.length = (self__.length - (1)));
 
 return x;
 }
-});
+}));
 
-cljs.core.async.impl.buffers.RingBuffer.prototype.unshift = (function (x){
+(cljs.core.async.impl.buffers.RingBuffer.prototype.unshift = (function (x){
 var self__ = this;
 var _ = this;
 (self__.arr[self__.head] = x);
 
-self__.head = ((self__.head + (1)) % self__.arr.length);
+(self__.head = ((self__.head + (1)) % self__.arr.length));
 
-self__.length = (self__.length + (1));
+(self__.length = (self__.length + (1)));
 
 return null;
-});
+}));
 
-cljs.core.async.impl.buffers.RingBuffer.prototype.unbounded_unshift = (function (x){
+(cljs.core.async.impl.buffers.RingBuffer.prototype.unbounded_unshift = (function (x){
 var self__ = this;
 var this$ = this;
 if(((self__.length + (1)) === self__.arr.length)){
@@ -64,9 +64,9 @@ this$.resize();
 }
 
 return this$.unshift(x);
-});
+}));
 
-cljs.core.async.impl.buffers.RingBuffer.prototype.resize = (function (){
+(cljs.core.async.impl.buffers.RingBuffer.prototype.resize = (function (){
 var self__ = this;
 var _ = this;
 var new_arr_size = (self__.arr.length * (2));
@@ -74,70 +74,70 @@ var new_arr = (new Array(new_arr_size));
 if((self__.tail < self__.head)){
 cljs.core.async.impl.buffers.acopy(self__.arr,self__.tail,new_arr,(0),self__.length);
 
-self__.tail = (0);
+(self__.tail = (0));
 
-self__.head = self__.length;
+(self__.head = self__.length);
 
-return self__.arr = new_arr;
+return (self__.arr = new_arr);
 } else {
 if((self__.tail > self__.head)){
 cljs.core.async.impl.buffers.acopy(self__.arr,self__.tail,new_arr,(0),(self__.arr.length - self__.tail));
 
 cljs.core.async.impl.buffers.acopy(self__.arr,(0),new_arr,(self__.arr.length - self__.tail),self__.head);
 
-self__.tail = (0);
+(self__.tail = (0));
 
-self__.head = self__.length;
+(self__.head = self__.length);
 
-return self__.arr = new_arr;
+return (self__.arr = new_arr);
 } else {
 if((self__.tail === self__.head)){
-self__.tail = (0);
+(self__.tail = (0));
 
-self__.head = (0);
+(self__.head = (0));
 
-return self__.arr = new_arr;
+return (self__.arr = new_arr);
 } else {
 return null;
 }
 }
 }
-});
+}));
 
-cljs.core.async.impl.buffers.RingBuffer.prototype.cleanup = (function (keep_QMARK_){
+(cljs.core.async.impl.buffers.RingBuffer.prototype.cleanup = (function (keep_QMARK_){
 var self__ = this;
 var this$ = this;
-var n__4607__auto__ = self__.length;
+var n__4666__auto__ = self__.length;
 var x = (0);
 while(true){
-if((x < n__4607__auto__)){
-var v_27904 = this$.pop();
-if((keep_QMARK_.cljs$core$IFn$_invoke$arity$1 ? keep_QMARK_.cljs$core$IFn$_invoke$arity$1(v_27904) : keep_QMARK_.call(null,v_27904))){
-this$.unshift(v_27904);
+if((x < n__4666__auto__)){
+var v_31403 = this$.pop();
+if((keep_QMARK_.cljs$core$IFn$_invoke$arity$1 ? keep_QMARK_.cljs$core$IFn$_invoke$arity$1(v_31403) : keep_QMARK_.call(null,v_31403))){
+this$.unshift(v_31403);
 } else {
 }
 
-var G__27905 = (x + (1));
-x = G__27905;
+var G__31404 = (x + (1));
+x = G__31404;
 continue;
 } else {
 return null;
 }
 break;
 }
-});
+}));
 
-cljs.core.async.impl.buffers.RingBuffer.getBasis = (function (){
+(cljs.core.async.impl.buffers.RingBuffer.getBasis = (function (){
 return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.with_meta(new cljs.core.Symbol(null,"head","head",869147608,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"mutable","mutable",875778266),true], null)),cljs.core.with_meta(new cljs.core.Symbol(null,"tail","tail",494507963,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"mutable","mutable",875778266),true], null)),cljs.core.with_meta(new cljs.core.Symbol(null,"length","length",-2065447907,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"mutable","mutable",875778266),true], null)),cljs.core.with_meta(new cljs.core.Symbol(null,"arr","arr",2115492975,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"mutable","mutable",875778266),true], null))], null);
-});
+}));
 
-cljs.core.async.impl.buffers.RingBuffer.cljs$lang$type = true;
+(cljs.core.async.impl.buffers.RingBuffer.cljs$lang$type = true);
 
-cljs.core.async.impl.buffers.RingBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/RingBuffer";
+(cljs.core.async.impl.buffers.RingBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/RingBuffer");
 
-cljs.core.async.impl.buffers.RingBuffer.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
-return cljs.core._write(writer__4375__auto__,"cljs.core.async.impl.buffers/RingBuffer");
-});
+(cljs.core.async.impl.buffers.RingBuffer.cljs$lang$ctorPrWriter = (function (this__4428__auto__,writer__4429__auto__,opt__4430__auto__){
+return cljs.core._write(writer__4429__auto__,"cljs.core.async.impl.buffers/RingBuffer");
+}));
 
 /**
  * Positional factory function for cljs.core.async.impl.buffers/RingBuffer.
@@ -166,51 +166,51 @@ this.n = n;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return (self__.buf.length === self__.n);
-});
+}));
 
-cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return self__.buf.pop();
-});
+}));
 
-cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
+(cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
 var self__ = this;
 var this$__$1 = this;
 self__.buf.unbounded_unshift(itm);
 
 return this$__$1;
-});
+}));
 
-cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return null;
-});
+}));
 
-cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return self__.buf.length;
-});
+}));
 
-cljs.core.async.impl.buffers.FixedBuffer.getBasis = (function (){
+(cljs.core.async.impl.buffers.FixedBuffer.getBasis = (function (){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"buf","buf",1426618187,null),new cljs.core.Symbol(null,"n","n",-2092305744,null)], null);
-});
+}));
 
-cljs.core.async.impl.buffers.FixedBuffer.cljs$lang$type = true;
+(cljs.core.async.impl.buffers.FixedBuffer.cljs$lang$type = true);
 
-cljs.core.async.impl.buffers.FixedBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/FixedBuffer";
+(cljs.core.async.impl.buffers.FixedBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/FixedBuffer");
 
-cljs.core.async.impl.buffers.FixedBuffer.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
-return cljs.core._write(writer__4375__auto__,"cljs.core.async.impl.buffers/FixedBuffer");
-});
+(cljs.core.async.impl.buffers.FixedBuffer.cljs$lang$ctorPrWriter = (function (this__4428__auto__,writer__4429__auto__,opt__4430__auto__){
+return cljs.core._write(writer__4429__auto__,"cljs.core.async.impl.buffers/FixedBuffer");
+}));
 
 /**
  * Positional factory function for cljs.core.async.impl.buffers/FixedBuffer.
@@ -235,23 +235,23 @@ this.n = n;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return false;
-});
+}));
 
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return self__.buf.pop();
-});
+}));
 
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
 var self__ = this;
 var this$__$1 = this;
 if((self__.buf.length === self__.n)){
@@ -260,31 +260,31 @@ self__.buf.unshift(itm);
 }
 
 return this$__$1;
-});
+}));
 
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return null;
-});
+}));
 
-cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return self__.buf.length;
-});
+}));
 
-cljs.core.async.impl.buffers.DroppingBuffer.getBasis = (function (){
+(cljs.core.async.impl.buffers.DroppingBuffer.getBasis = (function (){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"buf","buf",1426618187,null),new cljs.core.Symbol(null,"n","n",-2092305744,null)], null);
-});
+}));
 
-cljs.core.async.impl.buffers.DroppingBuffer.cljs$lang$type = true;
+(cljs.core.async.impl.buffers.DroppingBuffer.cljs$lang$type = true);
 
-cljs.core.async.impl.buffers.DroppingBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/DroppingBuffer";
+(cljs.core.async.impl.buffers.DroppingBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/DroppingBuffer");
 
-cljs.core.async.impl.buffers.DroppingBuffer.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
-return cljs.core._write(writer__4375__auto__,"cljs.core.async.impl.buffers/DroppingBuffer");
-});
+(cljs.core.async.impl.buffers.DroppingBuffer.cljs$lang$ctorPrWriter = (function (this__4428__auto__,writer__4429__auto__,opt__4430__auto__){
+return cljs.core._write(writer__4429__auto__,"cljs.core.async.impl.buffers/DroppingBuffer");
+}));
 
 /**
  * Positional factory function for cljs.core.async.impl.buffers/DroppingBuffer.
@@ -309,23 +309,23 @@ this.n = n;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return false;
-});
+}));
 
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return self__.buf.pop();
-});
+}));
 
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
 var self__ = this;
 var this$__$1 = this;
 if((self__.buf.length === self__.n)){
@@ -336,31 +336,31 @@ this$__$1.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1(null);
 self__.buf.unshift(itm);
 
 return this$__$1;
-});
+}));
 
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return null;
-});
+}));
 
-cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (this$){
+(cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (this$){
 var self__ = this;
 var this$__$1 = this;
 return self__.buf.length;
-});
+}));
 
-cljs.core.async.impl.buffers.SlidingBuffer.getBasis = (function (){
+(cljs.core.async.impl.buffers.SlidingBuffer.getBasis = (function (){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"buf","buf",1426618187,null),new cljs.core.Symbol(null,"n","n",-2092305744,null)], null);
-});
+}));
 
-cljs.core.async.impl.buffers.SlidingBuffer.cljs$lang$type = true;
+(cljs.core.async.impl.buffers.SlidingBuffer.cljs$lang$type = true);
 
-cljs.core.async.impl.buffers.SlidingBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/SlidingBuffer";
+(cljs.core.async.impl.buffers.SlidingBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/SlidingBuffer");
 
-cljs.core.async.impl.buffers.SlidingBuffer.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
-return cljs.core._write(writer__4375__auto__,"cljs.core.async.impl.buffers/SlidingBuffer");
-});
+(cljs.core.async.impl.buffers.SlidingBuffer.cljs$lang$ctorPrWriter = (function (this__4428__auto__,writer__4429__auto__,opt__4430__auto__){
+return cljs.core._write(writer__4429__auto__,"cljs.core.async.impl.buffers/SlidingBuffer");
+}));
 
 /**
  * Positional factory function for cljs.core.async.impl.buffers/SlidingBuffer.
@@ -391,44 +391,44 @@ this.val = val;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 });
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL;
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = cljs.core.PROTOCOL_SENTINEL);
 
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (_){
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return false;
-});
+}));
 
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (_){
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$remove_BANG_$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 return self__.val;
-});
+}));
 
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$add_BANG__STAR_$arity$2 = (function (this$,itm){
 var self__ = this;
 var this$__$1 = this;
 if(cljs.core.async.impl.buffers.undelivered_QMARK_(self__.val)){
-self__.val = itm;
+(self__.val = itm);
 } else {
 }
 
 return this$__$1;
-});
+}));
 
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (_){
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$close_buf_BANG_$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 if(cljs.core.async.impl.buffers.undelivered_QMARK_(self__.val)){
-return self__.val = null;
+return (self__.val = null);
 } else {
 return null;
 }
-});
+}));
 
-cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (_){
+(cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$ICounted$_count$arity$1 = (function (_){
 var self__ = this;
 var ___$1 = this;
 if(cljs.core.async.impl.buffers.undelivered_QMARK_(self__.val)){
@@ -436,19 +436,19 @@ return (0);
 } else {
 return (1);
 }
-});
+}));
 
-cljs.core.async.impl.buffers.PromiseBuffer.getBasis = (function (){
+(cljs.core.async.impl.buffers.PromiseBuffer.getBasis = (function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.with_meta(new cljs.core.Symbol(null,"val","val",1769233139,null),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"mutable","mutable",875778266),true], null))], null);
-});
+}));
 
-cljs.core.async.impl.buffers.PromiseBuffer.cljs$lang$type = true;
+(cljs.core.async.impl.buffers.PromiseBuffer.cljs$lang$type = true);
 
-cljs.core.async.impl.buffers.PromiseBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/PromiseBuffer";
+(cljs.core.async.impl.buffers.PromiseBuffer.cljs$lang$ctorStr = "cljs.core.async.impl.buffers/PromiseBuffer");
 
-cljs.core.async.impl.buffers.PromiseBuffer.cljs$lang$ctorPrWriter = (function (this__4374__auto__,writer__4375__auto__,opt__4376__auto__){
-return cljs.core._write(writer__4375__auto__,"cljs.core.async.impl.buffers/PromiseBuffer");
-});
+(cljs.core.async.impl.buffers.PromiseBuffer.cljs$lang$ctorPrWriter = (function (this__4428__auto__,writer__4429__auto__,opt__4430__auto__){
+return cljs.core._write(writer__4429__auto__,"cljs.core.async.impl.buffers/PromiseBuffer");
+}));
 
 /**
  * Positional factory function for cljs.core.async.impl.buffers/PromiseBuffer.

@@ -159,7 +159,7 @@
          (assoc sep :l min-lrt :r min-lrt :t min-lrt))))))
 
 
-(defn parse-int [s]
+(defn parse-integer [s]
   #?(:clj (Integer/parseInt s)
      :cljs (js/parseInt s)))
 
@@ -168,7 +168,7 @@
   (if (integer? cs)
     cs
     (try
-      (parse-int cs)
+      (parse-integer cs)
       #?(:clj (catch Exception e (throw (util/err error-msg)))
          :cljs (catch js/Error e (throw (util/err error-msg)))))))
 

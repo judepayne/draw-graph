@@ -12,7 +12,6 @@
 
 (defn about-page []
   [:div.block-text
-   [:p (utils/md->hiccup page-content)]
-   [:iframe {:src "test.html"}]])
+   [:p (utils/md->hiccup page-content)]])
 
 

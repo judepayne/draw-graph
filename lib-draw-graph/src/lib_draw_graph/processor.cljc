@@ -5,11 +5,13 @@
             [lib-draw-graph.parser          :as parser]
             [loom.graph                     :as loom.graph]
             [loom.attr                      :as loom.attr]
+            [extra-loom.multigraph          :as multigraph]
             [clojure.string                 :as str]
             [lib-draw-graph.clustered       :as clstr]
             [lib-draw-graph.preprocessor    :as preprocessor]
             [lib-draw-graph.postprocessor   :as postprocessor]
-            [lib-draw-graph.util            :as util]))
+            [lib-draw-graph.util            :as util])
+  (:refer-clojure :exclude [pop peek]))
 
 
 ;; Keys used in all JSON messages
@@ -91,51 +93,73 @@
   (loom.attr/add-attr-to-edges g :meta m [[src dst]]))
 
 
+;; For edges, I don't know which edge (its id) from parsed
+;; so I'll need to create a map of stacks of form
+;; { [src cur] <stack of edges> ... }
+;; then, when processing in loom-graph below, I find the edges at [src cur] in the map &
+;; pop the first edge, apply style and meta to it, rinse and repeat
+;; the stack will have to live inside an atom to preserve state and remove the 
+;; need to pass around inside a reduction.
+
+(defprotocol MultiStack
+  (pop [this k] "Pops the first item in the stack under key k.")
+  (peek [this k] "Peek at the first item in the stack under key k.")
+  (push [this k item] "Push the item onto the stack under key k."))
+
+
+(extend-type #?(:clj clojure.lang.Atom
+                :cljs Atom)
+  MultiStack
+  (pop [this k]
+    (let [item (first (get @this k))]
+      (swap! this update-in [k] rest)
+      item))
+  (peek [this k]
+    (first (get @this k)))
+  (push [this k item]
+    (swap! this update-in [k] (fn [r] (cons item r)))))
+
+
+(defn edge-attr-map
+  "Makes an attr map from a parsed edge"
+  [pe]
+  (merge (:style pe) (when (:meta pe) {:meta (:meta pe)})))
+
 
 (defn loom-graph
   ([parsed] (loom-graph parsed nil))
   ([parsed cluster-on]
    (let [;; construct the initial graph
-         gr0 (apply loom.graph/digraph (map #(vector (:src %) (:dst %)) (:edges parsed)))
-         ;; add edge attrs: style and meta
-         gr1 (reduce (fn [acc cur]
-                       (let [g' (if (:style cur)
-                                  (add-attr-map acc [(:src cur) (:dst cur)] (:style cur))
-                                  acc)
-                             g'' (if (:meta cur)
-                                   (add-meta-map-to-edge g' (:src cur) (:dst cur) (:meta cur))
-                                   g')]
-                         g''))
-                     gr0
-                     (:edges parsed))
+         gr0 (apply multigraph/multidigraph (map #(vector (:src %) (:dst %) (edge-attr-map %))
+                                                 (:edges parsed)))
          ;; add node attributes
-         gr2 (reduce (fn [acc [nd attrs]]
+         gr1 (reduce (fn [acc [nd attrs]]
                        (add-attr-map acc nd attrs))
-                     gr1 (:nodes parsed))]
+                     gr0 (:nodes parsed))]
      (if (and cluster-on
               (some #{(keyword cluster-on)} (:header parsed))) ;; check to prevent stack-overflow
        (let [;; add cluster styles
-             gr3 (reduce (fn [acc cur]
+             gr2 (reduce (fn [acc cur]
                            (clstr/add-attr-to-cluster acc (first cur) :style (second cur)))
-                         gr2
+                         gr1
                          (:cluster-styles parsed))
              
              ;; add cluster parents
-             gr4 (reduce (fn [acc [c p]]
+             gr3 (reduce (fn [acc [c p]]
                            (clstr/add-cluster-parent acc c p))
-                         gr3 (:cluster-parents parsed))
+                         gr2 (:cluster-parents parsed))
              ;; add cluster edges
-             gr5 (reduce (fn [acc [c1 c2]]
+             gr4 (reduce (fn [acc [c1 c2]]
                            (-> acc
                                (clstr/add-cluster-edge c1 c2)
                                ;(preprocessor/add-stack (keyword cluster-on) [c1 c2])
                                ;we'll add te invisible edges later, post filtering
                                ))
-                         gr4
+                         gr3
                          (:cluster-edges parsed))]
 
-         (clstr/add-cluster-key gr5 cluster-on))
-       gr2))))
+         (clstr/add-cluster-key gr4 cluster-on))
+       gr1))))
 
 
 (defn apply-filtering-operations

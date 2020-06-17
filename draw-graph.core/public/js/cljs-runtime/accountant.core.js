@@ -15,34 +15,29 @@ return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(location.pathname),cljs.core
 if((typeof accountant !== 'undefined') && (typeof accountant.core !== 'undefined') && (typeof accountant.core.history !== 'undefined')){
 } else {
 accountant.core.history = (function (){var transformer = (new goog.history.Html5History.TokenTransformer());
-transformer.retrieveToken = accountant.core.transformer_retrieve_token;
+(transformer.retrieveToken = accountant.core.transformer_retrieve_token);
 
-transformer.createUrl = accountant.core.transformer_create_url;
+(transformer.createUrl = accountant.core.transformer_create_url);
 
 return (new goog.history.Html5History(window,transformer));
 })();
 }
 accountant.core.dispatch_on_navigate = (function accountant$core$dispatch_on_navigate(history,nav_handler){
-var G__36414 = history;
-var G__36415 = goog.history.EventType.NAVIGATE;
-var G__36416 = ((function (G__36414,G__36415){
-return (function (e){
+return goog.events.listen(history,goog.history.EventType.NAVIGATE,(function (e){
 var token = e.token;
 return (nav_handler.cljs$core$IFn$_invoke$arity$1 ? nav_handler.cljs$core$IFn$_invoke$arity$1(token) : nav_handler.call(null,token));
-});})(G__36414,G__36415))
-;
-return goog.events.listen(G__36414,G__36415,G__36416);
+}));
 });
 /**
  * Given a DOM node, if it is an element node, return its href attribute.
  *   Otherwise, return nil.
  */
 accountant.core.get_href_attribute = (function accountant$core$get_href_attribute(node){
-if(cljs.core.truth_((function (){var and__4120__auto__ = node;
-if(cljs.core.truth_(and__4120__auto__)){
+if(cljs.core.truth_((function (){var and__4174__auto__ = node;
+if(cljs.core.truth_(and__4174__auto__)){
 return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(node.nodeType,Node.ELEMENT_NODE);
 } else {
-return and__4120__auto__;
+return and__4174__auto__;
 }
 })())){
 return node.getAttribute("href");
@@ -60,26 +55,26 @@ accountant.core.find_href_node = (function accountant$core$find_href_node(e){
 while(true){
 var href = accountant.core.get_href_attribute(e);
 var attrs = e.attributes;
-var navigation_link_QMARK_ = (function (){var and__4120__auto__ = href;
-if(cljs.core.truth_(and__4120__auto__)){
-var and__4120__auto____$1 = attrs;
-if(cljs.core.truth_(and__4120__auto____$1)){
+var navigation_link_QMARK_ = (function (){var and__4174__auto__ = href;
+if(cljs.core.truth_(and__4174__auto__)){
+var and__4174__auto____$1 = attrs;
+if(cljs.core.truth_(and__4174__auto____$1)){
 return cljs.core.not((attrs["data-trigger"]));
 } else {
-return and__4120__auto____$1;
+return and__4174__auto____$1;
 }
 } else {
-return and__4120__auto__;
+return and__4174__auto__;
 }
 })();
 if(cljs.core.truth_(navigation_link_QMARK_)){
 return e;
 } else {
-var temp__5720__auto__ = e.parentNode;
-if(cljs.core.truth_(temp__5720__auto__)){
-var parent = temp__5720__auto__;
-var G__36484 = parent;
-e = G__36484;
+var temp__5735__auto__ = e.parentNode;
+if(cljs.core.truth_(temp__5735__auto__)){
+var parent = temp__5735__auto__;
+var G__41296 = parent;
+e = G__41296;
 continue;
 } else {
 return null;
@@ -108,27 +103,24 @@ return ["#",cljs.core.str.cljs$core$IFn$_invoke$arity$1(fragment)].join('');
  * Create a click handler that blocks page reloads for known routes
  */
 accountant.core.prevent_reload_on_known_path = (function accountant$core$prevent_reload_on_known_path(history,path_exists_QMARK_,reload_same_path_QMARK_){
-var G__36424 = document;
-var G__36425 = "click";
-var G__36426 = ((function (G__36424,G__36425){
-return (function (e){
+return goog.events.listen(document,"click",(function (e){
 var target = e.target;
 var button = e.button;
 var meta_key = e.metaKey;
 var alt_key = e.altKey;
 var ctrl_key = e.ctrlKey;
 var shift_key = e.shiftKey;
-var any_key = (function (){var or__4131__auto__ = meta_key;
-if(cljs.core.truth_(or__4131__auto__)){
-return or__4131__auto__;
+var any_key = (function (){var or__4185__auto__ = meta_key;
+if(cljs.core.truth_(or__4185__auto__)){
+return or__4185__auto__;
 } else {
-var or__4131__auto____$1 = alt_key;
-if(cljs.core.truth_(or__4131__auto____$1)){
-return or__4131__auto____$1;
+var or__4185__auto____$1 = alt_key;
+if(cljs.core.truth_(or__4185__auto____$1)){
+return or__4185__auto____$1;
 } else {
-var or__4131__auto____$2 = ctrl_key;
-if(cljs.core.truth_(or__4131__auto____$2)){
-return or__4131__auto____$2;
+var or__4185__auto____$2 = ctrl_key;
+if(cljs.core.truth_(or__4185__auto____$2)){
+return or__4185__auto____$2;
 } else {
 return shift_key;
 }
@@ -150,35 +142,27 @@ var current_host = window.location.hostname;
 var current_port = window.location.port;
 var loc = window.location;
 var current_relative_href = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(loc.pathname),cljs.core.str.cljs$core$IFn$_invoke$arity$1(loc.query),cljs.core.str.cljs$core$IFn$_invoke$arity$1(loc.hash)].join('');
-if(cljs.core.truth_((function (){var and__4120__auto__ = cljs.core.not(any_key);
-if(and__4120__auto__){
-var and__4120__auto____$1 = (function (){var fexpr__36432 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["",null,"_self",null], null), null);
-return (fexpr__36432.cljs$core$IFn$_invoke$arity$1 ? fexpr__36432.cljs$core$IFn$_invoke$arity$1(link_target) : fexpr__36432.call(null,link_target));
+if(cljs.core.truth_(((cljs.core.not(any_key))?(function (){var and__4174__auto__ = (function (){var fexpr__41212 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, ["",null,"_self",null], null), null);
+return (fexpr__41212.cljs$core$IFn$_invoke$arity$1 ? fexpr__41212.cljs$core$IFn$_invoke$arity$1(link_target) : fexpr__41212.call(null,link_target));
 })();
-if(cljs.core.truth_(and__4120__auto____$1)){
-var and__4120__auto____$2 = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(button,(0));
-if(and__4120__auto____$2){
-var and__4120__auto____$3 = cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(host,current_host);
-if(and__4120__auto____$3){
-var and__4120__auto____$4 = ((cljs.core.not(port)) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.str.cljs$core$IFn$_invoke$arity$1(port),cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_port))));
-if(and__4120__auto____$4){
+if(cljs.core.truth_(and__4174__auto__)){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(button,(0))){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(host,current_host)){
+if(((cljs.core.not(port)) || (cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.str.cljs$core$IFn$_invoke$arity$1(port),cljs.core.str.cljs$core$IFn$_invoke$arity$1(current_port))))){
 return (path_exists_QMARK_.cljs$core$IFn$_invoke$arity$1 ? path_exists_QMARK_.cljs$core$IFn$_invoke$arity$1(path) : path_exists_QMARK_.call(null,path));
 } else {
-return and__4120__auto____$4;
+return false;
 }
 } else {
-return and__4120__auto____$3;
+return false;
 }
 } else {
-return and__4120__auto____$2;
+return false;
 }
 } else {
-return and__4120__auto____$1;
+return and__4174__auto__;
 }
-} else {
-return and__4120__auto__;
-}
-})())){
+})():false))){
 if(cljs.core.not_EQ_.cljs$core$IFn$_invoke$arity$2(current_relative_href,relative_href)){
 history.setToken(relative_href,title);
 } else {
@@ -187,18 +171,14 @@ history.setToken(relative_href,title);
 e.preventDefault();
 
 if(cljs.core.truth_(reload_same_path_QMARK_)){
-var G__36433 = history;
-var G__36434 = (new goog.history.Event(path,true));
-return goog.events.dispatchEvent(G__36433,G__36434);
+return goog.events.dispatchEvent(history,(new goog.history.Event(path,true)));
 } else {
 return null;
 }
 } else {
 return null;
 }
-});})(G__36424,G__36425))
-;
-return goog.events.listen(G__36424,G__36425,G__36426);
+}));
 });
 if((typeof accountant !== 'undefined') && (typeof accountant.core !== 'undefined') && (typeof accountant.core.nav_handler !== 'undefined')){
 } else {
@@ -217,44 +197,42 @@ accountant.core.path_exists_QMARK_ = null;
  * 
  *   path-exists?: a fn of one argument, a path. Return truthy if this path is handled by the SPA
  */
-accountant.core.configure_navigation_BANG_ = (function accountant$core$configure_navigation_BANG_(p__36438){
-var map__36439 = p__36438;
-var map__36439__$1 = (((((!((map__36439 == null))))?(((((map__36439.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__36439.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__36439):map__36439);
-var nav_handler = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36439__$1,new cljs.core.Keyword(null,"nav-handler","nav-handler",2039495484));
-var path_exists_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36439__$1,new cljs.core.Keyword(null,"path-exists?","path-exists?",1473384514));
-var reload_same_path_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__36439__$1,new cljs.core.Keyword(null,"reload-same-path?","reload-same-path?",1981904231));
+accountant.core.configure_navigation_BANG_ = (function accountant$core$configure_navigation_BANG_(p__41217){
+var map__41218 = p__41217;
+var map__41218__$1 = (((((!((map__41218 == null))))?(((((map__41218.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__41218.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.cljs$core$IFn$_invoke$arity$2(cljs.core.hash_map,map__41218):map__41218);
+var nav_handler = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41218__$1,new cljs.core.Keyword(null,"nav-handler","nav-handler",2039495484));
+var path_exists_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41218__$1,new cljs.core.Keyword(null,"path-exists?","path-exists?",1473384514));
+var reload_same_path_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__41218__$1,new cljs.core.Keyword(null,"reload-same-path?","reload-same-path?",1981904231));
 accountant.core.history.setUseFragment(false);
 
 accountant.core.history.setPathPrefix("");
 
 accountant.core.history.setEnabled(true);
 
-accountant.core.nav_handler = nav_handler;
+(accountant.core.nav_handler = nav_handler);
 
-accountant.core.path_exists_QMARK_ = path_exists_QMARK_;
+(accountant.core.path_exists_QMARK_ = path_exists_QMARK_);
 
 accountant.core.dispatch_on_navigate(accountant.core.history,nav_handler);
 
 return accountant.core.prevent_reload_on_known_path(accountant.core.history,path_exists_QMARK_,reload_same_path_QMARK_);
 });
 accountant.core.map__GT_params = (function accountant$core$map__GT_params(query){
-var params = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__36441_SHARP_){
-return cljs.core.name(p1__36441_SHARP_);
+var params = cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__41229_SHARP_){
+return cljs.core.name(p1__41229_SHARP_);
 }),cljs.core.keys(query));
 var values = cljs.core.vals(query);
 var pairs = cljs.core.partition.cljs$core$IFn$_invoke$arity$2((2),cljs.core.interleave.cljs$core$IFn$_invoke$arity$2(params,values));
-return clojure.string.join.cljs$core$IFn$_invoke$arity$2("&",cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (params,values,pairs){
-return (function (p1__36442_SHARP_){
-return clojure.string.join.cljs$core$IFn$_invoke$arity$2("=",p1__36442_SHARP_);
-});})(params,values,pairs))
-,pairs));
+return clojure.string.join.cljs$core$IFn$_invoke$arity$2("&",cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (p1__41230_SHARP_){
+return clojure.string.join.cljs$core$IFn$_invoke$arity$2("=",p1__41230_SHARP_);
+}),pairs));
 });
 /**
  * add a browser history entry. updates window/location
  */
 accountant.core.navigate_BANG_ = (function accountant$core$navigate_BANG_(var_args){
-var G__36451 = arguments.length;
-switch (G__36451) {
+var G__41265 = arguments.length;
+switch (G__41265) {
 case 1:
 return accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -269,24 +247,22 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 }
 });
 
-accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$1 = (function (route){
+(accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$1 = (function (route){
 return accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$2(route,cljs.core.PersistentArrayMap.EMPTY);
-});
+}));
 
-accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$2 = (function (route,query){
+(accountant.core.navigate_BANG_.cljs$core$IFn$_invoke$arity$2 = (function (route,query){
 if(cljs.core.truth_(accountant.core.nav_handler)){
 var token = accountant.core.history.getToken();
 var old_route = cljs.core.first(clojure.string.split.cljs$core$IFn$_invoke$arity$2(token,"?"));
-var query_string = accountant.core.map__GT_params(cljs.core.reduce_kv(((function (token,old_route){
-return (function (valid,k,v){
+var query_string = accountant.core.map__GT_params(cljs.core.reduce_kv((function (valid,k,v){
 if(cljs.core.truth_(v)){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(valid,k,v);
 } else {
 return valid;
 }
-});})(token,old_route))
-,cljs.core.PersistentArrayMap.EMPTY,query));
-var with_params = ((cljs.core.empty_QMARK_(query_string))?route:[cljs.core.str.cljs$core$IFn$_invoke$arity$1(route),"?",cljs.core.str.cljs$core$IFn$_invoke$arity$1(query_string)].join(''));
+}),cljs.core.PersistentArrayMap.EMPTY,query));
+var with_params = ((cljs.core.empty_QMARK_(query_string))?route:[cljs.core.str.cljs$core$IFn$_invoke$arity$1(route),"?",query_string].join(''));
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(old_route,route)){
 return accountant.core.history.replaceToken(with_params);
 } else {
@@ -295,9 +271,9 @@ return accountant.core.history.setToken(with_params);
 } else {
 return console.error("can't navigate! until configure-navigation! called");
 }
-});
+}));
 
-accountant.core.navigate_BANG_.cljs$lang$maxFixedArity = 2;
+(accountant.core.navigate_BANG_.cljs$lang$maxFixedArity = 2);
 
 accountant.core.dispatch_current_BANG_ = (function accountant$core$dispatch_current_BANG_(){
 
@@ -305,8 +281,8 @@ var path = window.location.pathname;
 var query = window.location.search;
 var hash = window.location.hash;
 if(cljs.core.truth_(accountant.core.nav_handler)){
-var G__36461 = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(path),cljs.core.str.cljs$core$IFn$_invoke$arity$1(query),cljs.core.str.cljs$core$IFn$_invoke$arity$1(hash)].join('');
-return (accountant.core.nav_handler.cljs$core$IFn$_invoke$arity$1 ? accountant.core.nav_handler.cljs$core$IFn$_invoke$arity$1(G__36461) : accountant.core.nav_handler.call(null,G__36461));
+var G__41287 = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(path),cljs.core.str.cljs$core$IFn$_invoke$arity$1(query),cljs.core.str.cljs$core$IFn$_invoke$arity$1(hash)].join('');
+return (accountant.core.nav_handler.cljs$core$IFn$_invoke$arity$1 ? accountant.core.nav_handler.cljs$core$IFn$_invoke$arity$1(G__41287) : accountant.core.nav_handler.call(null,G__41287));
 } else {
 return console.error("can't dispatch-current until configure-navigation! called");
 }

@@ -35,6 +35,8 @@
 "h,animal:name
 e,pandas:simone,pandas:max
 e,pandas:shahar,pandas:summer
+e,pandas:shahar,pandas:summer,|color:red
+e,pandas:shahar,pandas:summer,|color:cornflowerblue
 e,pandas:nikkai,pandas:isobel
 e,pandas:malakai,pandas:delila
 e,pandas:cristolene,pandas:shahar,relationship:friend|color:deeppink

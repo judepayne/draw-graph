@@ -2,7 +2,6 @@
       :author "Jude Payne"}
   lib-draw-graph.clustered
   (:require [loom.graph            :as loom.graph]
-            [loom.attr             :as loom.attr]
             [loom.alg-generic      :as loom.gen]
             [clojure.set           :as set]))
 

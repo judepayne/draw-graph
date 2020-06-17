@@ -12,7 +12,9 @@ e,Current State:Lifecycle:BAD Image|fillcolor:#E8EEF7,Current State:Risk:Guerill
 e,Current State:Lifecycle:CONFIRMATIONS\nWriter\nDoc|fillcolor:#E8EEF7,Current State:Reporting:i-Assert(CZH)|fillcolor:#E8EEF7,|color:#dd809e
 e,Current State:Lifecycle:Fidelity Plus|fillcolor:#c6ddf2:shape:box,Current State:Reporting:i-Assert(CZH)|fillcolor:#E8EEF7,|color:#dd809e:label:10k/day:URL:http://www.google.com:labeltooltip:Fidelity->i-Assert(CZH):edgetooltip:Fidelity->i-Assert(CZH):fontcolor:blue:headlabel:10k/day:taillabel:10k/day:fontsize:10
 e,Current State:Lifecycle:Fidelity Plus|fillcolor:#c6ddf2:shape:box,Current State:Reporting:1-Charge|fillcolor:#E8EEF7,|color:#dd809e:URL:http://www.google.com:target:_graphviz:penwidth:2:tooltip:click me. tooltip and url demo
+e,Current State:Lifecycle:Fidelity Plus|fillcolor:#c6ddf2:shape:box,Current State:Reporting:1-Charge|fillcolor:#E8EEF7,|color:#44809e:URL:http://www.google.com:target:_graphviz:penwidth:2:tooltip:click me. tooltip and url demo
 e,Current State:Risk:Guerilla Risk|fillcolor:#E8EEF7,Current State:Risk:GRIMACE|fillcolor:#E8EEF7,|color:#267a17:constraint:false
+e,Current State:Risk:Guerilla Risk|fillcolor:#E8EEF7,Current State:Risk:GRIMACE|fillcolor:#E8EEF7,|color:#267a98
 cp,Golden Sources:Current State
 cp,Capture:Current State
 cp,Lifecycle:Current State

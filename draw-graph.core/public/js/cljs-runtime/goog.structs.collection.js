@@ -1,25 +1,25 @@
 goog.provide("goog.structs.Collection");
 /**
- @interface
- @template T
+ * @interface
+ * @template T
  */
 goog.structs.Collection = function() {
 };
 /**
- @param {T} value
+ * @param {T} value
  */
 goog.structs.Collection.prototype.add;
 /**
- @param {T} value
+ * @param {T} value
  */
 goog.structs.Collection.prototype.remove;
 /**
- @param {T} value
- @return {boolean}
+ * @param {T} value
+ * @return {boolean}
  */
 goog.structs.Collection.prototype.contains;
 /**
- @return {number}
+ * @return {number}
  */
 goog.structs.Collection.prototype.getCount;
 

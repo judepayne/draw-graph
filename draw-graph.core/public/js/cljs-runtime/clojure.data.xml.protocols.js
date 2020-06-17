@@ -13,14 +13,14 @@ clojure.data.xml.protocols.qname_local = (function clojure$data$xml$protocols$qn
 if((((!((qname == null)))) && ((!((qname.clojure$data$xml$protocols$AsQName$qname_local$arity$1 == null)))))){
 return qname.clojure$data$xml$protocols$AsQName$qname_local$arity$1(qname);
 } else {
-var x__4433__auto__ = (((qname == null))?null:qname);
-var m__4434__auto__ = (clojure.data.xml.protocols.qname_local[goog.typeOf(x__4433__auto__)]);
-if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4434__auto__.call(null,qname));
+var x__4487__auto__ = (((qname == null))?null:qname);
+var m__4488__auto__ = (clojure.data.xml.protocols.qname_local[goog.typeOf(x__4487__auto__)]);
+if((!((m__4488__auto__ == null)))){
+return (m__4488__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4488__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4488__auto__.call(null,qname));
 } else {
-var m__4431__auto__ = (clojure.data.xml.protocols.qname_local["_"]);
-if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4431__auto__.call(null,qname));
+var m__4485__auto__ = (clojure.data.xml.protocols.qname_local["_"]);
+if((!((m__4485__auto__ == null)))){
+return (m__4485__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4485__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4485__auto__.call(null,qname));
 } else {
 throw cljs.core.missing_protocol("AsQName.qname-local",qname);
 }
@@ -35,14 +35,14 @@ clojure.data.xml.protocols.qname_uri = (function clojure$data$xml$protocols$qnam
 if((((!((qname == null)))) && ((!((qname.clojure$data$xml$protocols$AsQName$qname_uri$arity$1 == null)))))){
 return qname.clojure$data$xml$protocols$AsQName$qname_uri$arity$1(qname);
 } else {
-var x__4433__auto__ = (((qname == null))?null:qname);
-var m__4434__auto__ = (clojure.data.xml.protocols.qname_uri[goog.typeOf(x__4433__auto__)]);
-if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4434__auto__.call(null,qname));
+var x__4487__auto__ = (((qname == null))?null:qname);
+var m__4488__auto__ = (clojure.data.xml.protocols.qname_uri[goog.typeOf(x__4487__auto__)]);
+if((!((m__4488__auto__ == null)))){
+return (m__4488__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4488__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4488__auto__.call(null,qname));
 } else {
-var m__4431__auto__ = (clojure.data.xml.protocols.qname_uri["_"]);
-if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4431__auto__.call(null,qname));
+var m__4485__auto__ = (clojure.data.xml.protocols.qname_uri["_"]);
+if((!((m__4485__auto__ == null)))){
+return (m__4485__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4485__auto__.cljs$core$IFn$_invoke$arity$1(qname) : m__4485__auto__.call(null,qname));
 } else {
 throw cljs.core.missing_protocol("AsQName.qname-uri",qname);
 }
@@ -64,14 +64,14 @@ clojure.data.xml.protocols.gen_event = (function clojure$data$xml$protocols$gen_
 if((((!((item == null)))) && ((!((item.clojure$data$xml$protocols$EventGeneration$gen_event$arity$1 == null)))))){
 return item.clojure$data$xml$protocols$EventGeneration$gen_event$arity$1(item);
 } else {
-var x__4433__auto__ = (((item == null))?null:item);
-var m__4434__auto__ = (clojure.data.xml.protocols.gen_event[goog.typeOf(x__4433__auto__)]);
-if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(item) : m__4434__auto__.call(null,item));
+var x__4487__auto__ = (((item == null))?null:item);
+var m__4488__auto__ = (clojure.data.xml.protocols.gen_event[goog.typeOf(x__4487__auto__)]);
+if((!((m__4488__auto__ == null)))){
+return (m__4488__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4488__auto__.cljs$core$IFn$_invoke$arity$1(item) : m__4488__auto__.call(null,item));
 } else {
-var m__4431__auto__ = (clojure.data.xml.protocols.gen_event["_"]);
-if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(item) : m__4431__auto__.call(null,item));
+var m__4485__auto__ = (clojure.data.xml.protocols.gen_event["_"]);
+if((!((m__4485__auto__ == null)))){
+return (m__4485__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4485__auto__.cljs$core$IFn$_invoke$arity$1(item) : m__4485__auto__.call(null,item));
 } else {
 throw cljs.core.missing_protocol("EventGeneration.gen-event",item);
 }
@@ -87,14 +87,14 @@ clojure.data.xml.protocols.next_events = (function clojure$data$xml$protocols$ne
 if((((!((item == null)))) && ((!((item.clojure$data$xml$protocols$EventGeneration$next_events$arity$2 == null)))))){
 return item.clojure$data$xml$protocols$EventGeneration$next_events$arity$2(item,next_items);
 } else {
-var x__4433__auto__ = (((item == null))?null:item);
-var m__4434__auto__ = (clojure.data.xml.protocols.next_events[goog.typeOf(x__4433__auto__)]);
-if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$2(item,next_items) : m__4434__auto__.call(null,item,next_items));
+var x__4487__auto__ = (((item == null))?null:item);
+var m__4488__auto__ = (clojure.data.xml.protocols.next_events[goog.typeOf(x__4487__auto__)]);
+if((!((m__4488__auto__ == null)))){
+return (m__4488__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4488__auto__.cljs$core$IFn$_invoke$arity$2(item,next_items) : m__4488__auto__.call(null,item,next_items));
 } else {
-var m__4431__auto__ = (clojure.data.xml.protocols.next_events["_"]);
-if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$2(item,next_items) : m__4431__auto__.call(null,item,next_items));
+var m__4485__auto__ = (clojure.data.xml.protocols.next_events["_"]);
+if((!((m__4485__auto__ == null)))){
+return (m__4485__auto__.cljs$core$IFn$_invoke$arity$2 ? m__4485__auto__.cljs$core$IFn$_invoke$arity$2(item,next_items) : m__4485__auto__.call(null,item,next_items));
 } else {
 throw cljs.core.missing_protocol("EventGeneration.next-events",item);
 }
@@ -115,14 +115,14 @@ clojure.data.xml.protocols.as_elements = (function clojure$data$xml$protocols$as
 if((((!((expr == null)))) && ((!((expr.clojure$data$xml$protocols$AsElements$as_elements$arity$1 == null)))))){
 return expr.clojure$data$xml$protocols$AsElements$as_elements$arity$1(expr);
 } else {
-var x__4433__auto__ = (((expr == null))?null:expr);
-var m__4434__auto__ = (clojure.data.xml.protocols.as_elements[goog.typeOf(x__4433__auto__)]);
-if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(expr) : m__4434__auto__.call(null,expr));
+var x__4487__auto__ = (((expr == null))?null:expr);
+var m__4488__auto__ = (clojure.data.xml.protocols.as_elements[goog.typeOf(x__4487__auto__)]);
+if((!((m__4488__auto__ == null)))){
+return (m__4488__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4488__auto__.cljs$core$IFn$_invoke$arity$1(expr) : m__4488__auto__.call(null,expr));
 } else {
-var m__4431__auto__ = (clojure.data.xml.protocols.as_elements["_"]);
-if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(expr) : m__4431__auto__.call(null,expr));
+var m__4485__auto__ = (clojure.data.xml.protocols.as_elements["_"]);
+if((!((m__4485__auto__ == null)))){
+return (m__4485__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4485__auto__.cljs$core$IFn$_invoke$arity$1(expr) : m__4485__auto__.call(null,expr));
 } else {
 throw cljs.core.missing_protocol("AsElements.as-elements",expr);
 }
@@ -143,14 +143,14 @@ clojure.data.xml.protocols.xml_str = (function clojure$data$xml$protocols$xml_st
 if((((!((node == null)))) && ((!((node.clojure$data$xml$protocols$AsXmlString$xml_str$arity$1 == null)))))){
 return node.clojure$data$xml$protocols$AsXmlString$xml_str$arity$1(node);
 } else {
-var x__4433__auto__ = (((node == null))?null:node);
-var m__4434__auto__ = (clojure.data.xml.protocols.xml_str[goog.typeOf(x__4433__auto__)]);
-if((!((m__4434__auto__ == null)))){
-return (m__4434__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4434__auto__.cljs$core$IFn$_invoke$arity$1(node) : m__4434__auto__.call(null,node));
+var x__4487__auto__ = (((node == null))?null:node);
+var m__4488__auto__ = (clojure.data.xml.protocols.xml_str[goog.typeOf(x__4487__auto__)]);
+if((!((m__4488__auto__ == null)))){
+return (m__4488__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4488__auto__.cljs$core$IFn$_invoke$arity$1(node) : m__4488__auto__.call(null,node));
 } else {
-var m__4431__auto__ = (clojure.data.xml.protocols.xml_str["_"]);
-if((!((m__4431__auto__ == null)))){
-return (m__4431__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4431__auto__.cljs$core$IFn$_invoke$arity$1(node) : m__4431__auto__.call(null,node));
+var m__4485__auto__ = (clojure.data.xml.protocols.xml_str["_"]);
+if((!((m__4485__auto__ == null)))){
+return (m__4485__auto__.cljs$core$IFn$_invoke$arity$1 ? m__4485__auto__.cljs$core$IFn$_invoke$arity$1(node) : m__4485__auto__.call(null,node));
 } else {
 throw cljs.core.missing_protocol("AsXmlString.xml-str",node);
 }

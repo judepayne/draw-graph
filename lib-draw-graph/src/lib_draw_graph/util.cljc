@@ -2,7 +2,8 @@
       :author "Jude Payne"}
   lib-draw-graph.util
   (:require
-        [loom.graph           :as loom.graph]))
+        [loom.graph           :as loom.graph]
+        [extra-loom.multigraph :as multigraph]))
 
 
 (defn err
@@ -64,6 +65,14 @@
 
 ;; -----------------------------
 ;; Loom.graph section
+
+;; tell the difference between a Loom graph and an Extra-Loom graph
+
+(defn multigraph?
+  "Is the graph an extra-loom graph (which has different edge attrs)?"
+  [g]
+  )
+
 
 
 (defn predecessors-not-self

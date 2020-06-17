@@ -1,10 +1,10 @@
 h,animal:name
 e,pandas:simone,pandas:max
-e,pandas:shar\nhar,pandas:summer
+e,pandas:shahar,pandas:summer
 e,pandas:nikkai,pandas:isobel
 e,pandas:malakai,pandas:delila
-e,pandas:cristolene,pandas:shar\nhar,relationship:friend|color:deeppink
-e,pandas:kacey,pandas:shar\nhar|shape:rect:fillcolor:blue:fontcolor:white,relationship:friend
+e,pandas:cristolene,pandas:shahar,relationship:friend|color:deeppink
+e,pandas:kacey,pandas:shahar|shape:rect:fillcolor:blue:fontcolor:white,relationship:friend
 e,pandas:malakai,pandas:ivy
 e,pandas:max,pandas:Bridget,|color:blue
 e,pandas:ivy,squirrels:huxley,|color:red

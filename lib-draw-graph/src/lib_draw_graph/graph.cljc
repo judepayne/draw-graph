@@ -6,6 +6,7 @@
     lib-draw-graph.graph
     (:require [rhizome.dot                     :as rhidot]
               [loom.graph                      :as loom.graph]
+              [extra-loom.multigraph           :as extra-loom]
               [loom.attr                       :as loom.attr]
               [clojure.string                  :as str]
               [lib-draw-graph.clustered        :as clstr]
@@ -137,7 +138,7 @@
 (defn html-like-label?
   "True is label is or starts with an html like label."
   [s]
-  (when s
+  (when (and s (> (count s) 1))
     (= "<<" (subs s 0 2))))
 
 
@@ -230,28 +231,23 @@
      (loom.attr/attrs g n))))
 
 
-(defn ^:private constrained? [g n1 n2]
-  (loom.attr/attr g n1 n2 :constraint))
-
-
-(defn ^:private maybe-show-constraint [g opts n1 n2]
+(defn ^:private maybe-show-constraint [opts edge-attr-map]
   (let [show (-> opts :env :show-constraints?)]
-    (when (and show (constrained? g n1 n2))
+    (when (and show (:constraint edge-attr-map))
       {:style "" :color "deeppink3" :penwidth 4})))
 
 
 (defn edge-label
   "Returns the label for the edge n1 n2 in g given options."
-  [g opts n1 n2]
+  [opts metadata]
   (when-let [lbls (-> opts :edge :edge-label)]
-    (let [metadata (loom.attr/attr g n1 n2 :meta)]
-      (if (str/includes? lbls "/")
-        (first-label lbls metadata)
-        (composite-label lbls metadata)))))
+    (if (str/includes? lbls "/")
+      (first-label lbls metadata)
+      (composite-label lbls metadata))))
 
 
 (defn constraints
-  [g opts n1 n2]
+  [opts]
   (if (-> opts :env :constraint)
     {:constraint true}
     {:constraint false}))
@@ -260,14 +256,26 @@
 (defn ^:private edge-descriptor
   "Return map of attributes for the edge from *display-conf*"
   [g opts n1 n2]
-  (merge
-   (if (-> opts :edge :edge-label)
-     {:xlabel (doub-slash-n (edge-label g opts n1 n2)) :forcelabels true}
-     nil)
-   (constraints g opts n1 n2)
-   ;; per edge attrs supplied by user
-   (dissoc (loom.attr/attrs g n1 n2) :meta)
-   (maybe-show-constraint g opts n1 n2)))
+  (let [description (fn [attr-map]
+                      (let [metadata (:meta attr-map)]
+                        (merge
+                         (if (-> opts :edge :edge-label)
+                           {:xlabel (doub-slash-n (edge-label opts metadata)) :forcelabels true}
+                           nil)
+                         (constraints opts)
+                         ;; per edge attrs supplied by user
+                         (dissoc attr-map :meta)
+                         (maybe-show-constraint opts attr-map))))
+        desc (if (extra-loom/extra-loom-graph? g)
+               (let [edges (extra-loom/edges-between g n1 n2)
+                     attr-fn (fn [es]
+                               (reduce (fn [acc cur]
+                                         (conj acc (description (loom.attr/attrs g cur))))
+                                       []
+                                       es))]
+                 (attr-fn edges))
+               (description (loom.attr/attrs g n1 n2)))]
+    desc))
 
 
 ;; NEEDS TO CHANGE WHEN NEW OPTS ADDED
@@ -288,9 +296,6 @@
    :node->clusters
    (fn [n] ((partial clstr/node->clusters g (clstr/cluster-key g)) n))
 
-;   :node->cluster
-;   (fn [n] (get n (clstr/cluster-key g)))
-
    :cluster->descriptor
    (fn [n] (merge {:label n}
                   (let [x (clstr/merged-cluster-attr g n :style)
@@ -302,8 +307,7 @@
      (clstr/first-cluster-attr g n :fix-ranks))
 
    :cluster->parent
-   (partial clstr/cluster-parent g)   
-   })
+   (partial clstr/cluster-parent g)})
 
 
 (defn ^:private get-rhizome-args

@@ -2,11 +2,11 @@ goog.provide("goog.structs.PriorityPool");
 goog.require("goog.structs.Pool");
 goog.require("goog.structs.PriorityQueue");
 /**
- @constructor
- @extends {goog.structs.Pool<VALUE>}
- @param {number=} opt_minCount
- @param {number=} opt_maxCount
- @template VALUE
+ * @constructor
+ * @extends {goog.structs.Pool<VALUE>}
+ * @param {number=} opt_minCount
+ * @param {number=} opt_maxCount
+ * @template VALUE
  */
 goog.structs.PriorityPool = function(opt_minCount, opt_maxCount) {
   /** @private @type {(number|undefined)} */ this.delayTimeout_ = undefined;
@@ -17,7 +17,7 @@ goog.inherits(goog.structs.PriorityPool, goog.structs.Pool);
 /** @private @type {number} */ goog.structs.PriorityPool.DEFAULT_PRIORITY_ = 100;
 /** @override */ goog.structs.PriorityPool.prototype.setDelay = function(delay) {
   goog.structs.PriorityPool.base(this, "setDelay", delay);
-  if (!goog.isDefAndNotNull(this.lastAccess)) {
+  if (this.lastAccess == null) {
     return;
   }
   goog.global.clearTimeout(this.delayTimeout_);
@@ -25,10 +25,10 @@ goog.inherits(goog.structs.PriorityPool, goog.structs.Pool);
   this.handleQueueRequests_();
 };
 /**
- @param {Function=} opt_callback
- @param {number=} opt_priority
- @return {(VALUE|undefined)}
- @override
+ * @param {Function=} opt_callback
+ * @param {number=} opt_priority
+ * @return {(VALUE|undefined)}
+ * @override
  */
 goog.structs.PriorityPool.prototype.getObject = function(opt_callback, opt_priority) {
   if (!opt_callback) {
@@ -38,7 +38,7 @@ goog.structs.PriorityPool.prototype.getObject = function(opt_callback, opt_prior
     }
     return result;
   }
-  var priority = goog.isDef(opt_priority) ? opt_priority : goog.structs.PriorityPool.DEFAULT_PRIORITY_;
+  var priority = opt_priority !== undefined ? opt_priority : goog.structs.PriorityPool.DEFAULT_PRIORITY_;
   this.requestQueue_.enqueue(priority, opt_callback);
   this.handleQueueRequests_();
   return undefined;
@@ -56,8 +56,8 @@ goog.structs.PriorityPool.prototype.getObject = function(opt_callback, opt_prior
   }
 };
 /**
- @param {VALUE} obj
- @override
+ * @param {VALUE} obj
+ * @override
  */
 goog.structs.PriorityPool.prototype.addFreeObject = function(obj) {
   goog.structs.PriorityPool.superClass_.addFreeObject.call(this, obj);

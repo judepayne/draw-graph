@@ -3,12 +3,12 @@ goog.require("goog.structs");
 goog.require("goog.structs.Collection");
 goog.require("goog.structs.Map");
 /**
- @final
- @constructor
- @implements {goog.structs.Collection<T>}
- @param {(Array<T>|Object<?,T>)=} opt_values
- @template T
- @deprecated This type is misleading: use ES6 Set instead.
+ * @final
+ * @constructor
+ * @implements {goog.structs.Collection<T>}
+ * @param {(Array<T>|Object<?,T>)=} opt_values
+ * @template T
+ * @deprecated This type is misleading: use ES6 Set instead.
  */
 goog.structs.Set = function(opt_values) {
   this.map_ = new goog.structs.Map;
@@ -18,9 +18,9 @@ goog.structs.Set = function(opt_values) {
 };
 /** @private @const @type {function(?Object):number} */ goog.structs.Set.getUid_ = goog.getUid;
 /**
- @private
- @param {*} val
- @return {string}
+ * @private
+ * @param {*} val
+ * @return {string}
  */
 goog.structs.Set.getKey_ = function(val) {
   var type = typeof val;
@@ -31,21 +31,21 @@ goog.structs.Set.getKey_ = function(val) {
   }
 };
 /**
- @return {number}
- @override
+ * @return {number}
+ * @override
  */
 goog.structs.Set.prototype.getCount = function() {
   return this.map_.getCount();
 };
 /**
- @param {T} element
- @override
+ * @param {T} element
+ * @override
  */
 goog.structs.Set.prototype.add = function(element) {
   this.map_.set(goog.structs.Set.getKey_(element), element);
 };
 /**
- @param {(Array<T>|goog.structs.Collection<T>|Object<?,T>)} col
+ * @param {(Array<T>|goog.structs.Collection<T>|Object<?,T>)} col
  */
 goog.structs.Set.prototype.addAll = function(col) {
   var values = goog.structs.getValues(col);
@@ -55,7 +55,7 @@ goog.structs.Set.prototype.addAll = function(col) {
   }
 };
 /**
- @param {(Array<T>|goog.structs.Collection<T>|Object<?,T>)} col
+ * @param {(Array<T>|goog.structs.Collection<T>|Object<?,T>)} col
  */
 goog.structs.Set.prototype.removeAll = function(col) {
   var values = goog.structs.getValues(col);
@@ -65,9 +65,9 @@ goog.structs.Set.prototype.removeAll = function(col) {
   }
 };
 /**
- @param {T} element
- @return {boolean}
- @override
+ * @param {T} element
+ * @return {boolean}
+ * @override
  */
 goog.structs.Set.prototype.remove = function(element) {
   return this.map_.remove(goog.structs.Set.getKey_(element));
@@ -76,30 +76,30 @@ goog.structs.Set.prototype.clear = function() {
   this.map_.clear();
 };
 /**
- @return {boolean}
+ * @return {boolean}
  */
 goog.structs.Set.prototype.isEmpty = function() {
   return this.map_.isEmpty();
 };
 /**
- @param {T} element
- @return {boolean}
- @override
+ * @param {T} element
+ * @return {boolean}
+ * @override
  */
 goog.structs.Set.prototype.contains = function(element) {
   return this.map_.containsKey(goog.structs.Set.getKey_(element));
 };
 /**
- @param {(goog.structs.Collection<T>|Object)} col
- @return {boolean}
+ * @param {(goog.structs.Collection<T>|Object)} col
+ * @return {boolean}
  */
 goog.structs.Set.prototype.containsAll = function(col) {
   return goog.structs.every(col, this.contains, this);
 };
 /**
- @param {(Array<S>|Object<?,S>)} col
- @return {!goog.structs.Set<(T|S)>}
- @template S
+ * @param {(Array<S>|Object<?,S>)} col
+ * @return {!goog.structs.Set<(T|S)>}
+ * @template S
  */
 goog.structs.Set.prototype.intersection = function(col) {
   var result = new goog.structs.Set;
@@ -113,8 +113,8 @@ goog.structs.Set.prototype.intersection = function(col) {
   return result;
 };
 /**
- @param {(Array<T>|goog.structs.Collection<T>|Object<?,T>)} col
- @return {!goog.structs.Set}
+ * @param {(Array<T>|goog.structs.Collection<T>|Object<?,T>)} col
+ * @return {!goog.structs.Set}
  */
 goog.structs.Set.prototype.difference = function(col) {
   var result = this.clone();
@@ -122,27 +122,27 @@ goog.structs.Set.prototype.difference = function(col) {
   return result;
 };
 /**
- @return {!Array<T>}
+ * @return {!Array<T>}
  */
 goog.structs.Set.prototype.getValues = function() {
   return this.map_.getValues();
 };
 /**
- @return {!goog.structs.Set<T>}
+ * @return {!goog.structs.Set<T>}
  */
 goog.structs.Set.prototype.clone = function() {
   return new goog.structs.Set(this);
 };
 /**
- @param {(goog.structs.Collection<T>|Object)} col
- @return {boolean}
+ * @param {(goog.structs.Collection<T>|Object)} col
+ * @return {boolean}
  */
 goog.structs.Set.prototype.equals = function(col) {
   return this.getCount() == goog.structs.getCount(col) && this.isSubsetOf(col);
 };
 /**
- @param {(goog.structs.Collection<T>|Object)} col
- @return {boolean}
+ * @param {(goog.structs.Collection<T>|Object)} col
+ * @return {boolean}
  */
 goog.structs.Set.prototype.isSubsetOf = function(col) {
   var colCount = goog.structs.getCount(col);
@@ -157,8 +157,8 @@ goog.structs.Set.prototype.isSubsetOf = function(col) {
   });
 };
 /**
- @param {boolean=} opt_keys
- @return {!goog.iter.Iterator}
+ * @param {boolean=} opt_keys
+ * @return {!goog.iter.Iterator}
  */
 goog.structs.Set.prototype.__iterator__ = function(opt_keys) {
   return this.map_.__iterator__(false);

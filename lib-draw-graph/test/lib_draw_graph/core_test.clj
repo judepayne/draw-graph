@@ -24,9 +24,9 @@
    ;:color-on "application"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
-   :label "application"
-   :edge-label "type"
-   :shape "rect"
+   :label "name"
+   :edge-label "lbl"
+   :shape "ellipse"
    :nodesep 0.5
    :ranksep 0.8
    ;:sep 1 
@@ -55,7 +55,7 @@
  ;  :filter-graph "id<30"
  ;  :paths "owner = Ruth|owner = Paul"
  ;  :paths "function:Capture or function:Lifecycle|function:Reporting"
-   :post-process? true
+   :post-process? false
    :pp-clusters {:y true :h true :x true :w true}
 ;   :pp-clusters {:y false :h false :x false :w false}
    :pp-anneal-bias "3"
@@ -140,7 +140,7 @@
 ;; Generating standard outs for browsing
 
 (def default-options
-  {:label ""
+  {:label "name"
    :show-roots? false
    :shape "ellipse"
    :layout "neato"
@@ -456,7 +456,7 @@
                      :nodesep "0.7"
                      :constraint "false"
                      :edge-label "type"
-                     :filter-graph "function=Capture or function:Risk"
+                     :filter-graph "function=Capture or function=Risk"
                      })]
     (is (nil?
          (spit "test/ex-out/9-6 filter function.svg"
@@ -477,7 +477,7 @@
                      :nodesep "1.0"
                      :constraint "false"
                      :edge-label "type"
-                     :filter-graph "function=[Capture or Lifecycle or Risk]"
+                     :filter-graph "function in (Capture, Lifecycle, Risk)"
                      })]
     (is (nil?
          (spit "test/ex-out/9-7 filter function clause.svg"
@@ -498,7 +498,7 @@
                      :nodesep "0.7"
                      :constraint "false"
                      :edge-label "type"
-                     :paths "function=[Capture or Lifecycle or Risk]|owner=Daniel"
+                     :paths "function in (Capture, Lifecycle, Risk)|owner=Daniel"
                      })]
     (is (nil?
          (spit "test/ex-out/9-8 paths.svg"

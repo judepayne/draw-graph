@@ -17,7 +17,10 @@
    [clojure.data.xml         :as xml]
    [lib-draw-graph.svg       :as svg]
    [draw-graph.ip            :as ip]
-   [goog.dom                 :as dom])
+   [goog.dom                 :as dom]
+   ;["./codemirror/lib/codemirror" :as codemirror :refer (CodeMirror)]
+   [codemirror]
+   )
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
 

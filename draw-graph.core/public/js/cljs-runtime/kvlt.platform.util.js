@@ -2,40 +2,40 @@ goog.provide('kvlt.platform.util');
 goog.require('cljs.core');
 goog.require('clojure.walk');
 kvlt.platform.util.exception__GT_map = (function kvlt$platform$util$exception__GT_map(var_args){
-var args__4736__auto__ = [];
-var len__4730__auto___38891 = arguments.length;
-var i__4731__auto___38892 = (0);
+var args__4795__auto__ = [];
+var len__4789__auto___43610 = arguments.length;
+var i__4790__auto___43611 = (0);
 while(true){
-if((i__4731__auto___38892 < len__4730__auto___38891)){
-args__4736__auto__.push((arguments[i__4731__auto___38892]));
+if((i__4790__auto___43611 < len__4789__auto___43610)){
+args__4795__auto__.push((arguments[i__4790__auto___43611]));
 
-var G__38893 = (i__4731__auto___38892 + (1));
-i__4731__auto___38892 = G__38893;
+var G__43612 = (i__4790__auto___43611 + (1));
+i__4790__auto___43611 = G__43612;
 continue;
 } else {
 }
 break;
 }
 
-var argseq__4737__auto__ = ((((1) < args__4736__auto__.length))?(new cljs.core.IndexedSeq(args__4736__auto__.slice((1)),(0),null)):null);
-return kvlt.platform.util.exception__GT_map.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4737__auto__);
+var argseq__4796__auto__ = ((((1) < args__4795__auto__.length))?(new cljs.core.IndexedSeq(args__4795__auto__.slice((1)),(0),null)):null);
+return kvlt.platform.util.exception__GT_map.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4796__auto__);
 });
 
-kvlt.platform.util.exception__GT_map.cljs$core$IFn$_invoke$arity$variadic = (function (e,p__38862){
-var vec__38863 = p__38862;
-var hints = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__38863,(0),null);
+(kvlt.platform.util.exception__GT_map.cljs$core$IFn$_invoke$arity$variadic = (function (e,p__43599){
+var vec__43600 = p__43599;
+var hints = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__43600,(0),null);
 return cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"message","message",-406056002),e.message,new cljs.core.Keyword(null,"type","type",1174270348),new cljs.core.Keyword(null,"http-error","http-error",-1040049553),new cljs.core.Keyword(null,"error","error",-978969032),new cljs.core.Keyword(null,"http-error","http-error",-1040049553)], null),hints], 0));
-});
+}));
 
-kvlt.platform.util.exception__GT_map.cljs$lang$maxFixedArity = (1);
+(kvlt.platform.util.exception__GT_map.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-kvlt.platform.util.exception__GT_map.cljs$lang$applyTo = (function (seq38853){
-var G__38854 = cljs.core.first(seq38853);
-var seq38853__$1 = cljs.core.next(seq38853);
-var self__4717__auto__ = this;
-return self__4717__auto__.cljs$core$IFn$_invoke$arity$variadic(G__38854,seq38853__$1);
-});
+(kvlt.platform.util.exception__GT_map.cljs$lang$applyTo = (function (seq43597){
+var G__43598 = cljs.core.first(seq43597);
+var seq43597__$1 = cljs.core.next(seq43597);
+var self__4776__auto__ = this;
+return self__4776__auto__.cljs$core$IFn$_invoke$arity$variadic(G__43598,seq43597__$1);
+}));
 
 kvlt.platform.util.gunzip = (function kvlt$platform$util$gunzip(s){
 return s;

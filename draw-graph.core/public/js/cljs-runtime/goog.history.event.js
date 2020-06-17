@@ -2,11 +2,11 @@ goog.provide("goog.history.Event");
 goog.require("goog.events.Event");
 goog.require("goog.history.EventType");
 /**
- @final
- @constructor
- @extends {goog.events.Event}
- @param {string} token
- @param {boolean} isNavigation
+ * @final
+ * @constructor
+ * @extends {goog.events.Event}
+ * @param {string} token
+ * @param {boolean} isNavigation
  */
 goog.history.Event = function(token, isNavigation) {
   goog.events.Event.call(this, goog.history.EventType.NAVIGATE);

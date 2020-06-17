@@ -6,11 +6,11 @@ goog.require("goog.events.EventTarget");
 goog.require("goog.events.EventType");
 goog.require("goog.history.Event");
 /**
- @final
- @constructor
- @extends {goog.events.EventTarget}
- @param {Window=} opt_win
- @param {goog.history.Html5History.TokenTransformer=} opt_transformer
+ * @final
+ * @constructor
+ * @extends {goog.events.EventTarget}
+ * @param {Window=} opt_win
+ * @param {goog.history.Html5History.TokenTransformer=} opt_transformer
  */
 goog.history.Html5History = function(opt_win, opt_transformer) {
   goog.events.EventTarget.call(this);
@@ -23,8 +23,8 @@ goog.history.Html5History = function(opt_win, opt_transformer) {
 };
 goog.inherits(goog.history.Html5History, goog.events.EventTarget);
 /**
- @param {Window=} opt_win
- @return {boolean}
+ * @param {Window=} opt_win
+ * @return {boolean}
  */
 goog.history.Html5History.isSupported = function(opt_win) {
   var win = opt_win || window;
@@ -34,7 +34,7 @@ goog.history.Html5History.isSupported = function(opt_win) {
 /** @private @type {boolean} */ goog.history.Html5History.prototype.useFragment_ = true;
 /** @private @type {string} */ goog.history.Html5History.prototype.pathPrefix_ = "/";
 /**
- @param {boolean} enable
+ * @param {boolean} enable
  */
 goog.history.Html5History.prototype.setEnabled = function(enable) {
   if (enable == this.enabled_) {
@@ -46,7 +46,7 @@ goog.history.Html5History.prototype.setEnabled = function(enable) {
   }
 };
 /**
- @return {string}
+ * @return {string}
  */
 goog.history.Html5History.prototype.getToken = function() {
   if (this.useFragment_) {
@@ -56,8 +56,8 @@ goog.history.Html5History.prototype.getToken = function() {
   }
 };
 /**
- @param {string} token
- @param {string=} opt_title
+ * @param {string} token
+ * @param {string=} opt_title
  */
 goog.history.Html5History.prototype.setToken = function(token, opt_title) {
   if (token == this.getToken()) {
@@ -67,8 +67,8 @@ goog.history.Html5History.prototype.setToken = function(token, opt_title) {
   this.dispatchEvent(new goog.history.Event(token, false));
 };
 /**
- @param {string} token
- @param {string=} opt_title
+ * @param {string} token
+ * @param {string=} opt_title
  */
 goog.history.Html5History.prototype.replaceToken = function(token, opt_title) {
   this.window_.history.replaceState(null, opt_title || this.window_.document.title || "", this.getUrl_(token));
@@ -81,7 +81,7 @@ goog.history.Html5History.prototype.replaceToken = function(token, opt_title) {
   }
 };
 /**
- @param {boolean} useFragment
+ * @param {boolean} useFragment
  */
 goog.history.Html5History.prototype.setUseFragment = function(useFragment) {
   if (this.useFragment_ != useFragment) {
@@ -94,20 +94,20 @@ goog.history.Html5History.prototype.setUseFragment = function(useFragment) {
   }
 };
 /**
- @param {string} pathPrefix
+ * @param {string} pathPrefix
  */
 goog.history.Html5History.prototype.setPathPrefix = function(pathPrefix) {
   this.pathPrefix_ = pathPrefix;
 };
 /**
- @return {string}
+ * @return {string}
  */
 goog.history.Html5History.prototype.getPathPrefix = function() {
   return this.pathPrefix_;
 };
 /**
- @private
- @return {?string}
+ * @private
+ * @return {?string}
  */
 goog.history.Html5History.prototype.getFragment_ = function() {
   if (this.useFragment_) {
@@ -119,9 +119,9 @@ goog.history.Html5History.prototype.getFragment_ = function() {
   }
 };
 /**
- @private
- @param {string} token
- @return {string}
+ * @private
+ * @param {string} token
+ * @return {string}
  */
 goog.history.Html5History.prototype.getUrl_ = function(token) {
   if (this.useFragment_) {
@@ -131,8 +131,8 @@ goog.history.Html5History.prototype.getUrl_ = function(token) {
   }
 };
 /**
- @private
- @param {goog.events.BrowserEvent} e
+ * @private
+ * @param {goog.events.BrowserEvent} e
  */
 goog.history.Html5History.prototype.onHistoryEvent_ = function(e) {
   if (this.enabled_) {
@@ -146,17 +146,17 @@ goog.history.Html5History.prototype.onHistoryEvent_ = function(e) {
 /** @interface */ goog.history.Html5History.TokenTransformer = function() {
 };
 /**
- @param {string} pathPrefix
- @param {Location} location
- @return {string}
+ * @param {string} pathPrefix
+ * @param {Location} location
+ * @return {string}
  */
 goog.history.Html5History.TokenTransformer.prototype.retrieveToken = function(pathPrefix, location) {
 };
 /**
- @param {string} token
- @param {string} pathPrefix
- @param {Location} location
- @return {string}
+ * @param {string} token
+ * @param {string} pathPrefix
+ * @param {Location} location
+ * @return {string}
  */
 goog.history.Html5History.TokenTransformer.prototype.createUrl = function(token, pathPrefix, location) {
 };
