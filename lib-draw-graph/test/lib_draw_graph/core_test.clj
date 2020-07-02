@@ -20,12 +20,12 @@
 
 (def standard-options
   [:show-roots? false
-   :cluster-on "function"
+   :cluster-on ""
    ;:color-on "application"
    :layout "dot"
    ;; :dpi 72  <- dpi should be 72!
    :label "name"
-   :edge-label "lbl"
+   :edge-label "relationship"
    :shape "ellipse"
    :nodesep 0.5
    :ranksep 0.8
@@ -34,15 +34,15 @@
    :splines "ortho"
    :rankdir "TB"
    :fixedsize false
-   :tooltip "application&id"
-   :url "link"
+   :tooltip ""
+   :url ""
    :scale 2
    :overlap "false"
-   :concentrate true
+   :concentrate false
    ;; possible values for num-cluster-edges: 1 2 3 4 6 9 12 16
    :num-cluster-edges "9"
  ;  :elide "0"
-   :constraint false
+   :constraint true
    :show-constraints? false
    :fix-ranks? false
  ;  :filter-graph "application = sysTicket or function = Reporting"
@@ -50,14 +50,13 @@
  ;  :filter-graph "level<ted"
  ;  :filter-graph "format = legacy"
  ;  :filter-graph "volume not in (30, 25) and format in (legacy)"
- ;  :filter-graph "animal=pandas"
+   :filter-graph "relationship=friend"
  ;   :filter-graph "owner = Ruth"
  ;  :filter-graph "id<30"
  ;  :paths "owner = Ruth|owner = Paul"
  ;  :paths "function:Capture or function:Lifecycle|function:Reporting"
    :post-process? false
    :pp-clusters {:y true :h true :x true :w true}
-;   :pp-clusters {:y false :h false :x false :w false}
    :pp-anneal-bias "3"
    :pp-cluster-sep "0"
    :pp-font "sans-serif"

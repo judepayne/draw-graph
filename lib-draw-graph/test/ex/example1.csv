@@ -1,5 +1,6 @@
 h,animal:name
-e,pandas:simone,pandas:max
+e,pandas:simone,pandas:max,relationship:friend
+e,pandas:simone,pandas:max,relationship:enemy
 e,pandas:shahar,pandas:summer
 e,pandas:nikkai,pandas:isobel
 e,pandas:malakai,pandas:delila

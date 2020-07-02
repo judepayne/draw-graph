@@ -1,209 +1,208 @@
-<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="597.7999992370605pt" height="641.300048828125pt" viewBox="0.00 0.00 597.7999992370605 641.300048828125">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 631.15)">
-<title>%3</title>
-<polygon fill="white" stroke="transparent" points="-14.4,14.4 -14.4,-631.15 585.4,-631.15 585.4,14.4 -14.4,14.4"/>
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="637.7999992370605pt" height="649.800048828125pt" viewBox="0.00 0.00 637.7999992370605 649.800048828125">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(14.4 642.9)">
+<polygon fill="white" stroke="transparent" points="-14.4,14.4 -14.4,-642.9 626.4,-642.9 626.4,14.4 -14.4,14.4"/>
 <g id="clust1" class="cluster">
-<title>cluster44458</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="10,-608 10,-13 559,-13 559,-608 10,-608"/>
-<text text-anchor="end" x="549" y="-590" font-family="sans-serif" font-size="14.00">Current State</text>
+<title>cluster15124</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="9,-620 9,-16 600,-16 600,-620 9,-620"/>
+<text text-anchor="end" x="590" y="-602" font-family="sans-serif" font-size="14.00">Current State</text>
 </g>
 <g id="clust2" class="cluster">
-<title>cluster44459</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="10,-333 10,-187 559,-187 559,-333 10,-333"/>
-<text text-anchor="end" x="549" y="-315" font-family="sans-serif" font-size="14.00">Risk</text>
+<title>cluster15125</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="9,-339 9,-191 600,-191 600,-339 9,-339"/>
+<text text-anchor="end" x="590" y="-321" font-family="sans-serif" font-size="14.00">Risk</text>
 </g>
 <g id="clust3" class="cluster">
-<title>cluster44460</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="306,-435 306,-333 559,-333 559,-435 306,-435"/>
-<text text-anchor="end" x="549" y="-417" font-family="sans-serif" font-size="14.00">Capture</text>
+<title>cluster15126</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="327,-440 327,-339 600,-339 600,-440 327,-440"/>
+<text text-anchor="end" x="590" y="-422" font-family="sans-serif" font-size="14.00">Capture</text>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster44461</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="10,-435 10,-333 306,-333 306,-435 10,-435"/>
-<text text-anchor="end" x="296" y="-417" font-family="sans-serif" font-size="14.00">Lifecycle</text>
+<title>cluster15127</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="9,-440 9,-339 327,-339 327,-440 9,-440"/>
+<text text-anchor="end" x="317" y="-422" font-family="sans-serif" font-size="14.00">Lifecycle</text>
 </g>
 <g id="clust5" class="cluster">
-<title>cluster44462</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="10,-102 10,-13 559,-13 559,-102 10,-102"/>
-<text text-anchor="end" x="549" y="-84" font-family="sans-serif" font-size="14.00">Reporting</text>
+<title>cluster15128</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="9,-101 9,-16 600,-16 600,-101 9,-101"/>
+<text text-anchor="end" x="590" y="-83" font-family="sans-serif" font-size="14.00">Reporting</text>
 </g>
 <g id="clust6" class="cluster">
-<title>cluster44463</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="10,-578 10,-435 559,-435 559,-578 10,-578"/>
-<text text-anchor="end" x="549" y="-560" font-family="sans-serif" font-size="14.00">Golden Sources</text>
+<title>cluster15129</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="9,-589 9,-440 600,-440 600,-589 9,-589"/>
+<text text-anchor="end" x="590" y="-571" font-family="sans-serif" font-size="14.00">Golden Sources</text>
 </g>
 <g id="clust7" class="cluster">
-<title>cluster44464</title>
-<polygon fill="#fdfdff" stroke="#49c1e5" points="10,-187 10,-102 559,-102 559,-187 10,-187"/>
-<text text-anchor="end" x="549" y="-169" font-family="sans-serif" font-size="14.00">Settlement</text>
+<title>cluster15130</title>
+<polygon fill="#fdfdff" stroke="#49c1e5" points="9,-191 9,-101 600,-101 600,-191 9,-191"/>
+<text text-anchor="end" x="590" y="-173" font-family="sans-serif" font-size="14.00">Settlement</text>
 </g>
 
 <g id="node1" class="node">
-<title>node44437</title>
+<title>node15103</title>
 <g id="a_node1"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M342,-147.73C342,-149.53 329.9,-151 315,-151 300.1,-151 288,-149.53 288,-147.73 288,-147.73 288,-118.27 288,-118.27 288,-116.47 300.1,-115 315,-115 329.9,-115 342,-116.47 342,-118.27 342,-118.27 342,-147.73 342,-147.73"/>
-<path fill="none" stroke="black" d="M342,-147.73C342,-145.92 329.9,-144.45 315,-144.45 300.1,-144.45 288,-145.92 288,-147.73"/>
-<text text-anchor="middle" x="315" y="-130" font-family="sans-serif" font-size="10.00">hePikes</text>
+<path fill="#e8eef7" stroke="black" d="M389.5,-148.73C389.5,-150.53 376.73,-152 361,-152 345.27,-152 332.5,-150.53 332.5,-148.73 332.5,-148.73 332.5,-119.27 332.5,-119.27 332.5,-117.47 345.27,-116 361,-116 376.73,-116 389.5,-117.47 389.5,-119.27 389.5,-119.27 389.5,-148.73 389.5,-148.73"/>
+<path fill="none" stroke="black" d="M389.5,-148.73C389.5,-146.92 376.73,-145.45 361,-145.45 345.27,-145.45 332.5,-146.92 332.5,-148.73"/>
+<text text-anchor="middle" x="361" y="-131.5" font-family="sans-serif" font-size="10.00">hePikes</text>
 </a>
 </g>
 </g>
 
 <g id="node6" class="node">
-<title>node44442</title>
+<title>node15108</title>
 <g id="a_node6"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M346.66,-56.73C346.66,-58.53 332.47,-60 315,-60 297.53,-60 283.34,-58.53 283.34,-56.73 283.34,-56.73 283.34,-27.27 283.34,-27.27 283.34,-25.47 297.53,-24 315,-24 332.47,-24 346.66,-25.47 346.66,-27.27 346.66,-27.27 346.66,-56.73 346.66,-56.73"/>
-<path fill="none" stroke="black" d="M346.66,-56.73C346.66,-54.92 332.47,-53.45 315,-53.45 297.53,-53.45 283.34,-54.92 283.34,-56.73"/>
-<text text-anchor="middle" x="315" y="-39" font-family="sans-serif" font-size="10.00">TradeDepo</text>
+<path fill="#e8eef7" stroke="black" d="M395.5,-56.73C395.5,-58.53 380.04,-60 361,-60 341.96,-60 326.5,-58.53 326.5,-56.73 326.5,-56.73 326.5,-27.27 326.5,-27.27 326.5,-25.47 341.96,-24 361,-24 380.04,-24 395.5,-25.47 395.5,-27.27 395.5,-27.27 395.5,-56.73 395.5,-56.73"/>
+<path fill="none" stroke="black" d="M395.5,-56.73C395.5,-54.92 380.04,-53.45 361,-53.45 341.96,-53.45 326.5,-54.92 326.5,-56.73"/>
+<text text-anchor="middle" x="361" y="-39.5" font-family="sans-serif" font-size="10.00">TradeDepo</text>
 </a>
 </g>
 </g>
 
 
 <g id="node19" class="node">
-<title>node44455</title>
+<title>node15121</title>
 <g id="a_node19"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M264.69,-56.73C264.69,-58.53 252.28,-60 237,-60 221.72,-60 209.31,-58.53 209.31,-56.73 209.31,-56.73 209.31,-27.27 209.31,-27.27 209.31,-25.47 221.72,-24 237,-24 252.28,-24 264.69,-25.47 264.69,-27.27 264.69,-27.27 264.69,-56.73 264.69,-56.73"/>
-<path fill="none" stroke="black" d="M264.69,-56.73C264.69,-54.92 252.28,-53.45 237,-53.45 221.72,-53.45 209.31,-54.92 209.31,-56.73"/>
-<text text-anchor="middle" x="237" y="-39" font-family="sans-serif" font-size="10.00">1-Charge</text>
+<path fill="#e8eef7" stroke="black" d="M308.5,-56.73C308.5,-58.53 294.38,-60 277,-60 259.62,-60 245.5,-58.53 245.5,-56.73 245.5,-56.73 245.5,-27.27 245.5,-27.27 245.5,-25.47 259.62,-24 277,-24 294.38,-24 308.5,-25.47 308.5,-27.27 308.5,-27.27 308.5,-56.73 308.5,-56.73"/>
+<path fill="none" stroke="black" d="M308.5,-56.73C308.5,-54.92 294.38,-53.45 277,-53.45 259.62,-53.45 245.5,-54.92 245.5,-56.73"/>
+<text text-anchor="middle" x="277" y="-39.5" font-family="sans-serif" font-size="10.00">1-Charge</text>
 </a>
 </g>
 </g>
 
 
 <g id="node2" class="node">
-<title>node44438</title>
+<title>node15104</title>
 <g id="a_node2"><a xlink:title=": " target="_blank">
-<path fill="#eebd1b" stroke="black" d="M547,-545.48C547,-547.28 534.9,-548.75 520,-548.75 505.1,-548.75 493,-547.28 493,-545.48 493,-545.48 493,-516.02 493,-516.02 493,-514.22 505.1,-512.75 520,-512.75 534.9,-512.75 547,-514.22 547,-516.02 547,-516.02 547,-545.48 547,-545.48"/>
-<path fill="none" stroke="black" d="M547,-545.48C547,-543.67 534.9,-542.2 520,-542.2 505.1,-542.2 493,-543.67 493,-545.48"/>
-<text text-anchor="middle" x="520" y="-527.75" font-family="sans-serif" font-size="10.00">Products</text>
+<path fill="#eebd1b" stroke="black" d="M587.5,-555.23C587.5,-557.03 573.38,-558.5 556,-558.5 538.62,-558.5 524.5,-557.03 524.5,-555.23 524.5,-555.23 524.5,-525.77 524.5,-525.77 524.5,-523.97 538.62,-522.5 556,-522.5 573.38,-522.5 587.5,-523.97 587.5,-525.77 587.5,-525.77 587.5,-555.23 587.5,-555.23"/>
+<path fill="none" stroke="black" d="M587.5,-555.23C587.5,-553.42 573.38,-551.95 556,-551.95 538.62,-551.95 524.5,-553.42 524.5,-555.23"/>
+<text text-anchor="middle" x="556" y="-538" font-family="sans-serif" font-size="10.00">Products</text>
 </a>
 </g>
 </g>
 
 <g id="node21" class="node">
-<title>node44457</title>
+<title>node15123</title>
 <g id="a_node21"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M546.74,-491.4C546.74,-493.73 532.96,-495.63 516,-495.63 499.04,-495.63 485.26,-493.73 485.26,-491.4 485.26,-491.4 485.26,-453.35 485.26,-453.35 485.26,-451.02 499.04,-449.12 516,-449.12 532.96,-449.12 546.74,-451.02 546.74,-453.35 546.74,-453.35 546.74,-491.4 546.74,-491.4"/>
-<path fill="none" stroke="black" d="M546.74,-491.4C546.74,-489.07 532.96,-487.17 516,-487.17 499.04,-487.17 485.26,-489.07 485.26,-491.4"/>
-<text text-anchor="middle" x="516" y="-474.38" font-family="sans-serif" font-size="10.00">Instrument</text>
-<text text-anchor="middle" x="516" y="-464.38" font-family="sans-serif" font-size="10.00">Hub</text>
+<path fill="#e8eef7" stroke="black" d="M587.5,-500.8C587.5,-503.26 570.69,-505.25 550,-505.25 529.31,-505.25 512.5,-503.26 512.5,-500.8 512.5,-500.8 512.5,-460.7 512.5,-460.7 512.5,-458.24 529.31,-456.25 550,-456.25 570.69,-456.25 587.5,-458.24 587.5,-460.7 587.5,-460.7 587.5,-500.8 587.5,-500.8"/>
+<path fill="none" stroke="black" d="M587.5,-500.8C587.5,-498.34 570.69,-496.34 550,-496.34 529.31,-496.34 512.5,-498.34 512.5,-500.8"/>
+<text text-anchor="middle" x="550" y="-483.75" font-family="sans-serif" font-size="10.00">Instrument</text>
+<text text-anchor="middle" x="550" y="-472.75" font-family="sans-serif" font-size="10.00">Hub</text>
 </a>
 </g>
 </g>
 
 
 <g id="node3" class="node">
-<title>node44439</title>
+<title>node15105</title>
 <g id="a_node3"><a xlink:title=": " target="_blank">
-<path fill="#eebd1b" stroke="black" d="M475.47,-545.48C475.47,-547.28 462.26,-548.75 446,-548.75 429.74,-548.75 416.53,-547.28 416.53,-545.48 416.53,-545.48 416.53,-516.02 416.53,-516.02 416.53,-514.22 429.74,-512.75 446,-512.75 462.26,-512.75 475.47,-514.22 475.47,-516.02 475.47,-516.02 475.47,-545.48 475.47,-545.48"/>
-<path fill="none" stroke="black" d="M475.47,-545.48C475.47,-543.67 462.26,-542.2 446,-542.2 429.74,-542.2 416.53,-543.67 416.53,-545.48"/>
-<text text-anchor="middle" x="446" y="-527.75" font-family="sans-serif" font-size="10.00">Employee</text>
+<path fill="#eebd1b" stroke="black" d="M506.5,-555.23C506.5,-557.03 492.38,-558.5 475,-558.5 457.62,-558.5 443.5,-557.03 443.5,-555.23 443.5,-555.23 443.5,-525.77 443.5,-525.77 443.5,-523.97 457.62,-522.5 475,-522.5 492.38,-522.5 506.5,-523.97 506.5,-525.77 506.5,-525.77 506.5,-555.23 506.5,-555.23"/>
+<path fill="none" stroke="black" d="M506.5,-555.23C506.5,-553.42 492.38,-551.95 475,-551.95 457.62,-551.95 443.5,-553.42 443.5,-555.23"/>
+<text text-anchor="middle" x="475" y="-538" font-family="sans-serif" font-size="10.00">Employee</text>
 </a>
 </g>
 </g>
 
 <g id="node15" class="node">
-<title>node44451</title>
+<title>node15117</title>
 <g id="a_node15"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M467,-487.1C467,-488.91 454.9,-490.38 440,-490.38 425.1,-490.38 413,-488.91 413,-487.1 413,-487.1 413,-457.65 413,-457.65 413,-455.84 425.1,-454.38 440,-454.38 454.9,-454.38 467,-455.84 467,-457.65 467,-457.65 467,-487.1 467,-487.1"/>
-<path fill="none" stroke="black" d="M467,-487.1C467,-485.3 454.9,-483.83 440,-483.83 425.1,-483.83 413,-485.3 413,-487.1"/>
-<text text-anchor="middle" x="440" y="-469.38" font-family="sans-serif" font-size="10.00">Affinity</text>
+<path fill="#e8eef7" stroke="black" d="M494.5,-495.48C494.5,-497.28 480.38,-498.75 463,-498.75 445.62,-498.75 431.5,-497.28 431.5,-495.48 431.5,-495.48 431.5,-466.02 431.5,-466.02 431.5,-464.22 445.62,-462.75 463,-462.75 480.38,-462.75 494.5,-464.22 494.5,-466.02 494.5,-466.02 494.5,-495.48 494.5,-495.48"/>
+<path fill="none" stroke="black" d="M494.5,-495.48C494.5,-493.67 480.38,-492.2 463,-492.2 445.62,-492.2 431.5,-493.67 431.5,-495.48"/>
+<text text-anchor="middle" x="463" y="-478.25" font-family="sans-serif" font-size="10.00">Affinity</text>
 </a>
 </g>
 </g>
 
 
 <g id="node4" class="node">
-<title>node44440</title>
+<title>node15106</title>
 <g id="a_node4"><a xlink:title=": " target="_blank">
-<path fill="#eebd1b" stroke="black" d="M399,-545.48C399,-547.28 386.9,-548.75 372,-548.75 357.1,-548.75 345,-547.28 345,-545.48 345,-545.48 345,-516.02 345,-516.02 345,-514.22 357.1,-512.75 372,-512.75 386.9,-512.75 399,-514.22 399,-516.02 399,-516.02 399,-545.48 399,-545.48"/>
-<path fill="none" stroke="black" d="M399,-545.48C399,-543.67 386.9,-542.2 372,-542.2 357.1,-542.2 345,-543.67 345,-545.48"/>
-<text text-anchor="middle" x="372" y="-527.75" font-family="sans-serif" font-size="10.00">Clients</text>
+<path fill="#eebd1b" stroke="black" d="M425.5,-555.23C425.5,-557.03 412.73,-558.5 397,-558.5 381.27,-558.5 368.5,-557.03 368.5,-555.23 368.5,-555.23 368.5,-525.77 368.5,-525.77 368.5,-523.97 381.27,-522.5 397,-522.5 412.73,-522.5 425.5,-523.97 425.5,-525.77 425.5,-525.77 425.5,-555.23 425.5,-555.23"/>
+<path fill="none" stroke="black" d="M425.5,-555.23C425.5,-553.42 412.73,-551.95 397,-551.95 381.27,-551.95 368.5,-553.42 368.5,-555.23"/>
+<text text-anchor="middle" x="397" y="-538" font-family="sans-serif" font-size="10.00">Clients</text>
 </a>
 </g>
 </g>
 
 <g id="node10" class="node">
-<title>node44446</title>
+<title>node15112</title>
 <g id="a_node10"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M395,-487.1C395,-488.91 382.9,-490.38 368,-490.38 353.1,-490.38 341,-488.91 341,-487.1 341,-487.1 341,-457.65 341,-457.65 341,-455.84 353.1,-454.38 368,-454.38 382.9,-454.38 395,-455.84 395,-457.65 395,-457.65 395,-487.1 395,-487.1"/>
-<path fill="none" stroke="black" d="M395,-487.1C395,-485.3 382.9,-483.83 368,-483.83 353.1,-483.83 341,-485.3 341,-487.1"/>
-<text text-anchor="middle" x="368" y="-469.38" font-family="sans-serif" font-size="10.00">ERP</text>
+<path fill="#e8eef7" stroke="black" d="M413,-495.48C413,-497.28 400.9,-498.75 386,-498.75 371.1,-498.75 359,-497.28 359,-495.48 359,-495.48 359,-466.02 359,-466.02 359,-464.22 371.1,-462.75 386,-462.75 400.9,-462.75 413,-464.22 413,-466.02 413,-466.02 413,-495.48 413,-495.48"/>
+<path fill="none" stroke="black" d="M413,-495.48C413,-493.67 400.9,-492.2 386,-492.2 371.1,-492.2 359,-493.67 359,-495.48"/>
+<text text-anchor="middle" x="386" y="-478.25" font-family="sans-serif" font-size="10.00">ERP</text>
 </a>
 </g>
 </g>
 
 
 <g id="node5" class="node">
-<title>node44441</title>
+<title>node15107</title>
 <g id="a_node5"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M285,-487.1C285,-488.91 272.9,-490.38 258,-490.38 243.1,-490.38 231,-488.91 231,-487.1 231,-487.1 231,-457.65 231,-457.65 231,-455.84 243.1,-454.38 258,-454.38 272.9,-454.38 285,-455.84 285,-457.65 285,-457.65 285,-487.1 285,-487.1"/>
-<path fill="none" stroke="black" d="M285,-487.1C285,-485.3 272.9,-483.83 258,-483.83 243.1,-483.83 231,-485.3 231,-487.1"/>
-<text text-anchor="middle" x="258" y="-469.38" font-family="sans-serif" font-size="10.00">P-RAM</text>
+<path fill="#e8eef7" stroke="black" d="M308,-495.48C308,-497.28 295.9,-498.75 281,-498.75 266.1,-498.75 254,-497.28 254,-495.48 254,-495.48 254,-466.02 254,-466.02 254,-464.22 266.1,-462.75 281,-462.75 295.9,-462.75 308,-464.22 308,-466.02 308,-466.02 308,-495.48 308,-495.48"/>
+<path fill="none" stroke="black" d="M308,-495.48C308,-493.67 295.9,-492.2 281,-492.2 266.1,-492.2 254,-493.67 254,-495.48"/>
+<text text-anchor="middle" x="281" y="-478.25" font-family="sans-serif" font-size="10.00">P-RAM</text>
 </a>
 </g>
 </g>
 
 <g id="node7" class="node">
-<title>node44443</title>
+<title>node15109</title>
 <g id="a_node7"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M290.63,-386.73C290.63,-388.53 276.01,-390 258,-390 239.99,-390 225.37,-388.53 225.37,-386.73 225.37,-386.73 225.37,-357.27 225.37,-357.27 225.37,-355.47 239.99,-354 258,-354 276.01,-354 290.63,-355.47 290.63,-357.27 290.63,-357.27 290.63,-386.73 290.63,-386.73"/>
-<path fill="none" stroke="black" d="M290.63,-386.73C290.63,-384.92 276.01,-383.45 258,-383.45 239.99,-383.45 225.37,-384.92 225.37,-386.73"/>
-<text text-anchor="middle" x="258" y="-369" font-family="sans-serif" font-size="10.00">BAD Image</text>
+<path fill="#e8eef7" stroke="black" d="M315.5,-391.23C315.5,-393.03 300.04,-394.5 281,-394.5 261.96,-394.5 246.5,-393.03 246.5,-391.23 246.5,-391.23 246.5,-361.77 246.5,-361.77 246.5,-359.97 261.96,-358.5 281,-358.5 300.04,-358.5 315.5,-359.97 315.5,-361.77 315.5,-361.77 315.5,-391.23 315.5,-391.23"/>
+<path fill="none" stroke="black" d="M315.5,-391.23C315.5,-389.42 300.04,-387.95 281,-387.95 261.96,-387.95 246.5,-389.42 246.5,-391.23"/>
+<text text-anchor="middle" x="281" y="-374" font-family="sans-serif" font-size="10.00">BAD Image</text>
 </a>
 </g>
 </g>
 
 
 <g id="node9" class="node">
-<title>node44445</title>
+<title>node15111</title>
 <g id="a_node9"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M473,-386.73C473,-388.53 460.9,-390 446,-390 431.1,-390 419,-388.53 419,-386.73 419,-386.73 419,-357.27 419,-357.27 419,-355.47 431.1,-354 446,-354 460.9,-354 473,-355.47 473,-357.27 473,-357.27 473,-386.73 473,-386.73"/>
-<path fill="none" stroke="black" d="M473,-386.73C473,-384.92 460.9,-383.45 446,-383.45 431.1,-383.45 419,-384.92 419,-386.73"/>
-<text text-anchor="middle" x="446" y="-369" font-family="sans-serif" font-size="10.00">HCB</text>
+<path fill="#e8eef7" stroke="black" d="M500,-391.23C500,-393.03 487.9,-394.5 473,-394.5 458.1,-394.5 446,-393.03 446,-391.23 446,-391.23 446,-361.77 446,-361.77 446,-359.97 458.1,-358.5 473,-358.5 487.9,-358.5 500,-359.97 500,-361.77 500,-361.77 500,-391.23 500,-391.23"/>
+<path fill="none" stroke="black" d="M500,-391.23C500,-389.42 487.9,-387.95 473,-387.95 458.1,-387.95 446,-389.42 446,-391.23"/>
+<text text-anchor="middle" x="473" y="-374" font-family="sans-serif" font-size="10.00">HCB</text>
 </a>
 </g>
 </g>
 
 
 <g id="node11" class="node">
-<title>node44447</title>
+<title>node15113</title>
 <g id="a_node11"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M546.8,-386.73C546.8,-388.53 534.34,-390 519,-390 503.66,-390 491.2,-388.53 491.2,-386.73 491.2,-386.73 491.2,-357.27 491.2,-357.27 491.2,-355.47 503.66,-354 519,-354 534.34,-354 546.8,-355.47 546.8,-357.27 546.8,-357.27 546.8,-386.73 546.8,-386.73"/>
-<path fill="none" stroke="black" d="M546.8,-386.73C546.8,-384.92 534.34,-383.45 519,-383.45 503.66,-383.45 491.2,-384.92 491.2,-386.73"/>
-<text text-anchor="middle" x="519" y="-369" font-family="sans-serif" font-size="10.00">sysTicket</text>
+<path fill="#e8eef7" stroke="black" d="M587.5,-391.23C587.5,-393.03 572.04,-394.5 553,-394.5 533.96,-394.5 518.5,-393.03 518.5,-391.23 518.5,-391.23 518.5,-361.77 518.5,-361.77 518.5,-359.97 533.96,-358.5 553,-358.5 572.04,-358.5 587.5,-359.97 587.5,-361.77 587.5,-361.77 587.5,-391.23 587.5,-391.23"/>
+<path fill="none" stroke="black" d="M587.5,-391.23C587.5,-389.42 572.04,-387.95 553,-387.95 533.96,-387.95 518.5,-389.42 518.5,-391.23"/>
+<text text-anchor="middle" x="553" y="-374" font-family="sans-serif" font-size="10.00">sysTicket</text>
 </a>
 </g>
 </g>
 
 
 <g id="node14" class="node">
-<title>node44450</title>
+<title>node15116</title>
 <g id="a_node14"><a xlink:title=": " target="_blank">
-<polygon fill="#c6ddf2" stroke="black" points="91.91,-390 24.09,-390 24.09,-354 91.91,-354 91.91,-390"/>
-<text text-anchor="middle" x="58" y="-369" font-family="sans-serif" font-size="10.00">Fidelity Plus</text>
+<polygon fill="#c6ddf2" stroke="black" points="117.5,-394.5 24.5,-394.5 24.5,-358.5 117.5,-358.5 117.5,-394.5"/>
+<text text-anchor="middle" x="71" y="-374" font-family="sans-serif" font-size="10.00">Fidelity Plus</text>
 </a>
 </g>
 </g>
 
 
 <g id="node13" class="node">
-<title>node44449</title>
+<title>node15115</title>
 <g id="a_node13"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M343.17,-238.73C343.17,-240.53 329.65,-242 313,-242 296.35,-242 282.83,-240.53 282.83,-238.73 282.83,-238.73 282.83,-209.27 282.83,-209.27 282.83,-207.47 296.35,-206 313,-206 329.65,-206 343.17,-207.47 343.17,-209.27 343.17,-209.27 343.17,-238.73 343.17,-238.73"/>
-<path fill="none" stroke="black" d="M343.17,-238.73C343.17,-236.92 329.65,-235.45 313,-235.45 296.35,-235.45 282.83,-236.92 282.83,-238.73"/>
-<text text-anchor="middle" x="313" y="-221" font-family="sans-serif" font-size="10.00">GRIMACE</text>
+<path fill="#e8eef7" stroke="black" d="M383.5,-240.73C383.5,-242.53 370.73,-244 355,-244 339.27,-244 326.5,-242.53 326.5,-240.73 326.5,-240.73 326.5,-211.27 326.5,-211.27 326.5,-209.47 339.27,-208 355,-208 370.73,-208 383.5,-209.47 383.5,-211.27 383.5,-211.27 383.5,-240.73 383.5,-240.73"/>
+<path fill="none" stroke="black" d="M383.5,-240.73C383.5,-238.92 370.73,-237.45 355,-237.45 339.27,-237.45 326.5,-238.92 326.5,-240.73"/>
+<text text-anchor="middle" x="355" y="-223.5" font-family="sans-serif" font-size="10.00">GRIMACE</text>
 </a>
 </g>
 </g>
 
 
 <g id="node20" class="node">
-<title>node44456</title>
+<title>node15122</title>
 <g id="a_node20"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M347.18,-291.73C347.18,-293.53 331.41,-295 312,-295 292.59,-295 276.82,-293.53 276.82,-291.73 276.82,-291.73 276.82,-262.27 276.82,-262.27 276.82,-260.47 292.59,-259 312,-259 331.41,-259 347.18,-260.47 347.18,-262.27 347.18,-262.27 347.18,-291.73 347.18,-291.73"/>
-<path fill="none" stroke="black" d="M347.18,-291.73C347.18,-289.92 331.41,-288.45 312,-288.45 292.59,-288.45 276.82,-289.92 276.82,-291.73"/>
-<text text-anchor="middle" x="312" y="-274" font-family="sans-serif" font-size="10.00">Guerilla Risk</text>
+<path fill="#e8eef7" stroke="black" d="M393.5,-293.73C393.5,-295.53 372.66,-297 347,-297 321.34,-297 300.5,-295.53 300.5,-293.73 300.5,-293.73 300.5,-264.27 300.5,-264.27 300.5,-262.47 321.34,-261 347,-261 372.66,-261 393.5,-262.47 393.5,-264.27 393.5,-264.27 393.5,-293.73 393.5,-293.73"/>
+<path fill="none" stroke="black" d="M393.5,-293.73C393.5,-291.92 372.66,-290.45 347,-290.45 321.34,-290.45 300.5,-291.92 300.5,-293.73"/>
+<text text-anchor="middle" x="347" y="-276.5" font-family="sans-serif" font-size="10.00">Guerilla Risk</text>
 </a>
 </g>
 </g>
@@ -211,19 +210,19 @@
 
 
 <g id="node8" class="node">
-<title>node44444</title>
+<title>node15110</title>
 <g id="a_node8"><a xlink:title=": " target="_blank">
-<path fill="#e8eef7" stroke="black" d="M191.6,-56.73C191.6,-58.53 174.75,-60 154,-60 133.25,-60 116.4,-58.53 116.4,-56.73 116.4,-56.73 116.4,-27.27 116.4,-27.27 116.4,-25.47 133.25,-24 154,-24 174.75,-24 191.6,-25.47 191.6,-27.27 191.6,-27.27 191.6,-56.73 191.6,-56.73"/>
-<path fill="none" stroke="black" d="M191.6,-56.73C191.6,-54.92 174.75,-53.45 154,-53.45 133.25,-53.45 116.4,-54.92 116.4,-56.73"/>
-<text text-anchor="middle" x="154" y="-39" font-family="sans-serif" font-size="10.00">i-Assert(CZH)</text>
+<path fill="#e8eef7" stroke="black" d="M227.5,-56.73C227.5,-58.53 206.66,-60 181,-60 155.34,-60 134.5,-58.53 134.5,-56.73 134.5,-56.73 134.5,-27.27 134.5,-27.27 134.5,-25.47 155.34,-24 181,-24 206.66,-24 227.5,-25.47 227.5,-27.27 227.5,-27.27 227.5,-56.73 227.5,-56.73"/>
+<path fill="none" stroke="black" d="M227.5,-56.73C227.5,-54.92 206.66,-53.45 181,-53.45 155.34,-53.45 134.5,-54.92 134.5,-56.73"/>
+<text text-anchor="middle" x="181" y="-39.5" font-family="sans-serif" font-size="10.00">i-Assert(CZH)</text>
 </a>
 </g>
 </g>
 
 <g id="edge13" class="edge">
-<title>node44445-&gt;node44437</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M459.5,-353.64C459.5,-297.68 459.5,-133 459.5,-133 459.5,-133 352.18,-133 352.18,-133"/>
-<polygon fill="black" stroke="black" points="352.18,-129.5 342.18,-133 352.18,-136.5 352.18,-129.5"/>
+<title>node15111-&gt;node15103</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M486.5,-358.27C486.5,-301.88 486.5,-134 486.5,-134 486.5,-134 399.79,-134 399.79,-134"/>
+<polygon fill="black" stroke="black" points="399.79,-130.5 389.79,-134 399.79,-137.5 399.79,-130.5"/>
 </g>
 
 
@@ -233,36 +232,36 @@
 
 
 <g id="edge21" class="edge">
-<title>node44447-&gt;node44442</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M535.59,-353.79C535.59,-284.61 535.59,-42 535.59,-42 535.59,-42 357.08,-42 357.08,-42"/>
-<polygon fill="black" stroke="black" points="357.08,-38.5 347.08,-42 357.08,-45.5 357.08,-38.5"/>
+<title>node15113-&gt;node15108</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M570.25,-358.04C570.25,-287.92 570.25,-42 570.25,-42 570.25,-42 405.55,-42 405.55,-42"/>
+<polygon fill="black" stroke="black" points="405.55,-38.5 395.55,-42 405.55,-45.5 405.55,-38.5"/>
 </g>
 
 
 <g id="node18" class="node">
-<title>node44454</title>
+<title>node15120</title>
 <g id="a_node18"><a xlink:title=": " target="_blank">
-<polygon fill="#e8eef7" stroke="black" points="207.65,-394 110.35,-394 110.35,-350 207.65,-350 207.65,-394"/>
-<text text-anchor="middle" x="159" y="-379" font-family="sans-serif" font-size="10.00">CONFIRMATIONS</text>
-<text text-anchor="middle" x="159" y="-369" font-family="sans-serif" font-size="10.00">Writer</text>
-<text text-anchor="middle" x="159" y="-359" font-family="sans-serif" font-size="10.00">Doc</text>
+<polygon fill="#e8eef7" stroke="black" points="228.5,-400 135.5,-400 135.5,-353 228.5,-353 228.5,-400"/>
+<text text-anchor="middle" x="182" y="-385" font-family="sans-serif" font-size="10.00">CONFIRMATIONS</text>
+<text text-anchor="middle" x="182" y="-374" font-family="sans-serif" font-size="10.00">Writer</text>
+<text text-anchor="middle" x="182" y="-363" font-family="sans-serif" font-size="10.00">Doc</text>
 </a>
 </g>
 </g>
 
 <g id="edge20" class="edge">
-<title>node44447-&gt;node44454</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M502.41,-354.1C502.41,-341.92 502.41,-328 502.41,-328 502.41,-328 195.56,-328 195.56,-328 195.56,-328 195.56,-339.74 195.56,-339.74"/>
-<polygon fill="black" stroke="black" points="192.06,-339.74 195.56,-349.74 199.06,-339.74 192.06,-339.74"/>
+<title>node15113-&gt;node15120</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M535.75,-394.73C535.75,-408.12 535.75,-424 535.75,-424 535.75,-424 206.5,-424 206.5,-424 206.5,-424 206.5,-410.25 206.5,-410.25"/>
+<polygon fill="black" stroke="black" points="210,-410.25 206.5,-400.25 203,-410.25 210,-410.25"/>
 </g>
 
 
 <g id="node12" class="node">
-<title>node44448</title>
+<title>node15114</title>
 <g id="a_node12"><a xlink:title=": " target="_blank">
-<path fill="#eebd1b" stroke="black" d="M309,-545.48C309,-547.28 296.9,-548.75 282,-548.75 267.1,-548.75 255,-547.28 255,-545.48 255,-545.48 255,-516.02 255,-516.02 255,-514.22 267.1,-512.75 282,-512.75 296.9,-512.75 309,-514.22 309,-516.02 309,-516.02 309,-545.48 309,-545.48"/>
-<path fill="none" stroke="black" d="M309,-545.48C309,-543.67 296.9,-542.2 282,-542.2 267.1,-542.2 255,-543.67 255,-545.48"/>
-<text text-anchor="middle" x="282" y="-527.75" font-family="sans-serif" font-size="10.00">Books</text>
+<path fill="#eebd1b" stroke="black" d="M332,-555.23C332,-557.03 319.9,-558.5 305,-558.5 290.1,-558.5 278,-557.03 278,-555.23 278,-555.23 278,-525.77 278,-525.77 278,-523.97 290.1,-522.5 305,-522.5 319.9,-522.5 332,-523.97 332,-525.77 332,-525.77 332,-555.23 332,-555.23"/>
+<path fill="none" stroke="black" d="M332,-555.23C332,-553.42 319.9,-551.95 305,-551.95 290.1,-551.95 278,-553.42 278,-555.23"/>
+<text text-anchor="middle" x="305" y="-538" font-family="sans-serif" font-size="10.00">Books</text>
 </a>
 </g>
 </g>
@@ -270,84 +269,84 @@
 
 
 <g id="edge28" class="edge">
-<title>node44450-&gt;node44444</title>
+<title>node15116-&gt;node15110</title>
 <g id="a_edge28"><a xlink:href="http://www.google.com" xlink:title="Fidelity-&gt;i-Assert(CZH)">
-<path fill="none" stroke="#dd809e" d="M41.02,-353.79C41.02,-284.61 41.02,-42 41.02,-42 41.02,-42 106.38,-42 106.38,-42"/>
-<polygon fill="#dd809e" stroke="#dd809e" points="106.38,-45.5 116.38,-42 106.38,-38.5 106.38,-45.5"/>
+<path fill="none" stroke="#dd809e" d="M47.75,-358.04C47.75,-287.92 47.75,-42 47.75,-42 47.75,-42 124.4,-42 124.4,-42"/>
+<polygon fill="#dd809e" stroke="#dd809e" points="124.4,-45.5 134.4,-42 124.4,-38.5 124.4,-45.5"/>
 </a>
 </g>
 <g id="a_edge28-label"><a xlink:href="http://www.google.com" xlink:title="Fidelity-&gt;i-Assert(CZH)">
-<text text-anchor="middle" x="75.51" y="-221" font-family="sans-serif" font-size="10.00" fill="blue">10k/day</text>
+<text text-anchor="middle" x="92.5" y="-223.5" font-family="sans-serif" font-size="10.00" fill="blue">10k/day</text>
 </a>
 </g>
 <g id="a_edge28-headlabel"><a xlink:href="http://www.google.com" xlink:title="10k/day">
-<text text-anchor="middle" x="98.87" y="-44" font-family="sans-serif" font-size="10.00" fill="blue">10k/day</text>
+<text text-anchor="middle" x="112.9" y="-45" font-family="sans-serif" font-size="10.00" fill="blue">10k/day</text>
 </a>
 </g>
 <g id="a_edge28-taillabel"><a xlink:href="http://www.google.com" xlink:title="10k/day">
-<text text-anchor="middle" x="23.51" y="-345.79" font-family="sans-serif" font-size="10.00" fill="blue">10k/day</text>
+<text text-anchor="middle" x="26.25" y="-350.04" font-family="sans-serif" font-size="10.00" fill="blue">10k/day</text>
 </a>
 </g>
 </g>
 
 <g id="edge26" class="edge">
-<title>node44450-&gt;node44455</title>
+<title>node15116-&gt;node15121</title>
 <g id="a_edge26"><a xlink:href="http://www.google.com" xlink:title="click me. tooltip and url demo" target="_graphviz">
-<path fill="none" stroke="#44809e" stroke-width="2" d="M58,-353.97C58,-334.42 58,-306 58,-306 58,-306 214.58,-306 214.58,-306 214.58,-306 214.58,-69.32 214.58,-69.32"/>
-<polygon fill="#44809e" stroke="#44809e" stroke-width="2" points="218.08,-69.32 214.58,-59.32 211.08,-69.32 218.08,-69.32"/>
+<path fill="none" stroke="#dd809e" stroke-width="2" d="M71,-358.49C71,-343.64 71,-325 71,-325 71,-325 260,-325 260,-325 260,-325 260,-70.13 260,-70.13"/>
+<polygon fill="#dd809e" stroke="#dd809e" stroke-width="2" points="263.5,-70.13 260,-60.13 256.5,-70.13 263.5,-70.13"/>
 </a>
 </g>
 </g>
 
 <g id="edge27" class="edge">
-<title>node44450-&gt;node44455</title>
+<title>node15116-&gt;node15121</title>
 <g id="a_edge27"><a xlink:href="http://www.google.com" xlink:title="click me. tooltip and url demo" target="_graphviz">
-<path fill="none" stroke="#dd809e" stroke-width="2" d="M74.98,-353.99C74.98,-337.95 74.98,-317 74.98,-317 74.98,-317 220.01,-317 220.01,-317 220.01,-317 220.01,-70.04 220.01,-70.04"/>
-<polygon fill="#dd809e" stroke="#dd809e" stroke-width="2" points="223.51,-70.04 220.01,-60.04 216.51,-70.04 223.51,-70.04"/>
+<path fill="none" stroke="#44809e" stroke-width="2" d="M94.25,-358.19C94.25,-348.67 94.25,-339 94.25,-339 94.25,-339 273.5,-339 273.5,-339 273.5,-339 273.5,-70.13 273.5,-70.13"/>
+<polygon fill="#44809e" stroke="#44809e" stroke-width="2" points="277,-70.13 273.5,-60.13 270,-70.13 277,-70.13"/>
 </a>
 </g>
 </g>
 
 <g id="node16" class="node">
-<title>node44452</title>
+<title>node15118</title>
 <g id="a_node16"><a xlink:title=": " target="_blank">
-<path fill="#eebd1b" stroke="black" d="M236.74,-545.48C236.74,-547.28 222.96,-548.75 206,-548.75 189.04,-548.75 175.26,-547.28 175.26,-545.48 175.26,-545.48 175.26,-516.02 175.26,-516.02 175.26,-514.22 189.04,-512.75 206,-512.75 222.96,-512.75 236.74,-514.22 236.74,-516.02 236.74,-516.02 236.74,-545.48 236.74,-545.48"/>
-<path fill="none" stroke="black" d="M236.74,-545.48C236.74,-543.67 222.96,-542.2 206,-542.2 189.04,-542.2 175.26,-543.67 175.26,-545.48"/>
-<text text-anchor="middle" x="206" y="-527.75" font-family="sans-serif" font-size="10.00">Instrument</text>
+<path fill="#eebd1b" stroke="black" d="M259.5,-555.23C259.5,-557.03 242.69,-558.5 222,-558.5 201.31,-558.5 184.5,-557.03 184.5,-555.23 184.5,-555.23 184.5,-525.77 184.5,-525.77 184.5,-523.97 201.31,-522.5 222,-522.5 242.69,-522.5 259.5,-523.97 259.5,-525.77 259.5,-525.77 259.5,-555.23 259.5,-555.23"/>
+<path fill="none" stroke="black" d="M259.5,-555.23C259.5,-553.42 242.69,-551.95 222,-551.95 201.31,-551.95 184.5,-553.42 184.5,-555.23"/>
+<text text-anchor="middle" x="222" y="-538" font-family="sans-serif" font-size="10.00">Instrument</text>
 </a>
 </g>
 </g>
 
 
 <g id="node17" class="node">
-<title>node44453</title>
+<title>node15119</title>
 <g id="a_node17"><a xlink:title=": " target="_blank">
-<polygon fill="#c6ddf2" stroke="black" points="382.9,-390 315.1,-390 315.1,-354 382.9,-354 382.9,-390"/>
-<text text-anchor="middle" x="349" y="-369" font-family="sans-serif" font-size="10.00">FORPS-bus</text>
+<polygon fill="#c6ddf2" stroke="black" points="409.5,-394.5 340.5,-394.5 340.5,-358.5 409.5,-358.5 409.5,-394.5"/>
+<text text-anchor="middle" x="375" y="-374" font-family="sans-serif" font-size="10.00">FORPS-bus</text>
 </a>
 </g>
 </g>
 
 
 <g id="edge31" class="edge">
-<title>node44454-&gt;node44444</title>
-<path fill="none" stroke="#dd809e" d="M154,-349.84C154,-349.84 154,-70.32 154,-70.32"/>
-<polygon fill="#dd809e" stroke="#dd809e" points="157.5,-70.32 154,-60.32 150.5,-70.32 157.5,-70.32"/>
+<title>node15120-&gt;node15110</title>
+<path fill="none" stroke="#dd809e" d="M158.5,-352.98C158.5,-352.98 158.5,-70.01 158.5,-70.01"/>
+<polygon fill="#dd809e" stroke="#dd809e" points="162,-70.01 158.5,-60.01 155,-70.01 162,-70.01"/>
 </g>
 
 
 
 
 <g id="edge34" class="edge">
-<title>node44456-&gt;node44449</title>
-<path fill="none" stroke="#267a17" d="M302.89,-258.76C302.89,-258.76 302.89,-252.09 302.89,-252.09"/>
-<polygon fill="#267a17" stroke="#267a17" points="306.39,-252.09 302.89,-242.09 299.39,-252.09 306.39,-252.09"/>
+<title>node15122-&gt;node15115</title>
+<path fill="none" stroke="#267a98" d="M345.5,-260.76C345.5,-260.76 345.5,-254.09 345.5,-254.09"/>
+<polygon fill="#267a98" stroke="#267a98" points="349,-254.09 345.5,-244.09 342,-254.09 349,-254.09"/>
 </g>
 
 <g id="edge35" class="edge">
-<title>node44456-&gt;node44449</title>
-<path fill="none" stroke="#267a98" d="M323.11,-258.76C323.11,-258.76 323.11,-252.09 323.11,-252.09"/>
-<polygon fill="#267a98" stroke="#267a98" points="326.61,-252.09 323.11,-242.09 319.61,-252.09 326.61,-252.09"/>
+<title>node15122-&gt;node15115</title>
+<path fill="none" stroke="#267a17" d="M364.5,-260.76C364.5,-260.76 364.5,-254.09 364.5,-254.09"/>
+<polygon fill="#267a17" stroke="#267a17" points="368,-254.09 364.5,-244.09 361,-254.09 368,-254.09"/>
 </g>
 </g>
 </svg>

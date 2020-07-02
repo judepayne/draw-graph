@@ -278,15 +278,18 @@
         g' (if (clstr/clustered? g)
              (clstr/remove-nodes g filtered-nodes)
              (apply loom.graph/remove-nodes g filtered-nodes))]
-     (if filter-edges?
-       (let [edges-to-check (filter   ;; don't filter out any invis/ scaffolding edges
-                             (fn [edge] (not= (loom.attr/attr g' edge :style) "invis"))
-                             (loom.graph/edges g'))
-             filtered-edges  (filter
-                              (fn [edge]
-                                (filter-fn (loom.attr/attr g' edge :meta)))
-                              edges-to-check)]
-        (apply loom.graph/remove-edges g' filtered-edges))
+    (if filter-edges?
+      (let [edges-to-check (filter   ;; don't filter out any invis/ scaffolding edges
+                            (fn [edge] (not= (loom.attr/attr g' edge :style) "invis"))
+                            (loom.graph/edges g'))
+            filtered-edges  (filter
+                             (fn [edge]
+                               (filter-fn (loom.attr/attr g' edge :meta)))
+                             edges-to-check)]
+        (println g')
+        (println (count (loom.graph/edges g')))
+        (println (count (loom.graph/edges (loom.graph/remove-edges* g' filtered-edges))))
+        (loom.graph/remove-edges* g' filtered-edges))
       g')))
 
 
